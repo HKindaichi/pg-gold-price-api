@@ -9,21 +9,31 @@ PG_URL = "https://publicgold.com.my/"
 
 
 def clean_num(s: str) -> int:
-    """
-    Convert strings like 'RM 683', '683', '683.00' into int 683
-    """
     s = s.replace("RM", "").replace(",", "").strip()
     return int(float(s))
 
 
+def pick_pg_jewel_table(soup: BeautifulSoup):
+    """
+    Pick the correct table that contains:
+    - headers: Purity, PG Sell, PG Buy
+    - rows including 999 and 916
+    """
+    tables = soup.find_all("table")
+
+    for t in tables:
+        txt = t.get_text(" ", strip=True).upper()
+
+        has_headers = ("PURITY" in txt) and ("PG SELL" in txt) and ("PG BUY" in txt)
+        has_values = ("999" in txt) and ("916" in txt)
+
+        if has_headers and has_values:
+            return t
+
+    return None
+
+
 def get_pg_prices():
-    """
-    Scrape PG JEWEL table from publicgold.com.my and return:
-    {
-      "999": {"sell": 683, "buy": 621},
-      "916": {"sell": 649, "buy": 564}
-    }
-    """
     try:
         r = requests.get(
             PG_URL,
@@ -35,26 +45,16 @@ def get_pg_prices():
         )
 
         soup = BeautifulSoup(r.text, "html.parser")
-
-        # Find the PG JEWEL table (not necessarily the first table)
-        tables = soup.find_all("table")
-        target = None
-
-        # Preferred: table containing these headers and label
-        for t in tables:
-            txt = t.get_text(" ", strip=True).upper()
-            if ("PG JEWEL" in txt) and ("PURITY" in txt) and ("PG SELL" in txt) and ("PG BUY" in txt):
-                target = t
-                break
+        target = pick_pg_jewel_table(soup)
 
         if not target:
             return None
 
         prices = {}
 
+        # Extract rows
         for row in target.find_all("tr"):
             cols = [c.get_text(strip=True) for c in row.find_all(["td", "th"])]
-            # Expect: Purity | PG Sell | PG Buy
             if len(cols) >= 3:
                 purity = cols[0].replace(" ", "")
                 sell = cols[1]
@@ -69,7 +69,6 @@ def get_pg_prices():
                     except Exception:
                         pass
 
-        # Ensure we got both
         if "999" not in prices or "916" not in prices:
             return None
 
@@ -104,9 +103,6 @@ def prices():
 
 @app.route("/debug")
 def debug():
-    """
-    Debug endpoint to see what tables were found and whether any contain 'PG JEWEL'
-    """
     r = requests.get(
         PG_URL,
         timeout=20,
@@ -117,11 +113,12 @@ def debug():
 
     info = []
     for i, t in enumerate(tables):
-        txt = t.get_text(" ", strip=True)
+        txt = t.get_text(" ", strip=True).upper()
         info.append({
             "index": i,
-            "has_pg_jewel": "PG JEWEL" in txt.upper(),
-            "preview": txt[:220]
+            "has_headers": ("PURITY" in txt and "PG SELL" in txt and "PG BUY" in txt),
+            "has_999_916": ("999" in txt and "916" in txt),
+            "preview": t.get_text(" ", strip=True)[:220]
         })
 
     return jsonify({
@@ -132,5 +129,4 @@ def debug():
 
 
 if __name__ == "__main__":
-    # Render listens on port 10000 by default in our setup
     app.run(host="0.0.0.0", port=10000)
