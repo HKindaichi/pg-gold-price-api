@@ -11,18 +11,26 @@ PG_URL = "https://publicgold.com.my/"
 # Optional security token for /refresh (set in Render ENV as REFRESH_TOKEN)
 REFRESH_TOKEN = None  # will be loaded on first request
 
-
 # In-memory cache (free & simple for MVP)
 CACHE = {
     "data": None,
     "updated_at": None,
+    "updated_label": None,  # NEW
     "source": "Public Gold (Reference)",
-    "country": "Malaysia"
+    "country": "Malaysia",
 }
 
 
 def now_my():
     return datetime.now(ZoneInfo("Asia/Kuala_Lumpur"))
+
+
+# NEW: Today -> "Today HH:MM", else keep date -> "YYYY-MM-DD HH:MM"
+def format_updated_label(dt: datetime) -> str:
+    now = now_my()
+    if dt.date() == now.date():
+        return f"Today {dt.strftime('%H:%M')}"
+    return dt.strftime("%Y-%m-%d %H:%M")
 
 
 def clean_num(s: str) -> int:
@@ -55,8 +63,8 @@ def scrape_pg_prices():
             timeout=20,
             headers={
                 "User-Agent": "Mozilla/5.0",
-                "Accept-Language": "en-US,en;q=0.9"
-            }
+                "Accept-Language": "en-US,en;q=0.9",
+            },
         )
         soup = BeautifulSoup(r.text, "html.parser")
         target = pick_pg_jewel_table(soup)
@@ -73,7 +81,7 @@ def scrape_pg_prices():
                 if purity in ["999", "916"]:
                     prices[purity] = {
                         "sell": clean_num(sell),
-                        "buy": clean_num(buy)
+                        "buy": clean_num(buy),
                     }
 
         if "999" not in prices or "916" not in prices:
@@ -97,8 +105,11 @@ def update_cache():
     if not prices:
         return False
 
+    now = now_my()
+
     CACHE["data"] = prices
-    CACHE["updated_at"] = now_my().strftime("%Y-%m-%d %H:%M:%S")
+    CACHE["updated_at"] = now.strftime("%Y-%m-%d %H:%M:%S")
+    CACHE["updated_label"] = format_updated_label(now)  # NEW
     return True
 
 
@@ -116,12 +127,15 @@ def prices():
     if CACHE["data"] is None:
         return jsonify({"status": "error", "message": "No cached data yet"}), 500
 
-    return jsonify({
-        "source": CACHE["source"],
-        "country": CACHE["country"],
-        "updated_at": CACHE["updated_at"],
-        "prices": CACHE["data"]
-    })
+    return jsonify(
+        {
+            "source": CACHE["source"],
+            "country": CACHE["country"],
+            "updated_at": CACHE["updated_at"],
+            "updated_label": CACHE["updated_label"],  # NEW
+            "prices": CACHE["data"],
+        }
+    )
 
 
 @app.route("/refresh")
@@ -142,11 +156,14 @@ def refresh():
     if not ok:
         return jsonify({"status": "error", "message": "Refresh failed"}), 500
 
-    return jsonify({
-        "status": "ok",
-        "updated_at": CACHE["updated_at"],
-        "prices": CACHE["data"]
-    })
+    return jsonify(
+        {
+            "status": "ok",
+            "updated_at": CACHE["updated_at"],
+            "updated_label": CACHE["updated_label"],  # NEW
+            "prices": CACHE["data"],
+        }
+    )
 
 
 @app.route("/debug")
@@ -157,12 +174,14 @@ def debug():
     info = []
     for i, t in enumerate(tables):
         txt = t.get_text(" ", strip=True).upper()
-        info.append({
-            "index": i,
-            "has_headers": ("PURITY" in txt and "PG SELL" in txt and "PG BUY" in txt),
-            "has_999_916": ("999" in txt and "916" in txt),
-            "preview": t.get_text(" ", strip=True)[:220]
-        })
+        info.append(
+            {
+                "index": i,
+                "has_headers": ("PURITY" in txt and "PG SELL" in txt and "PG BUY" in txt),
+                "has_999_916": ("999" in txt and "916" in txt),
+                "preview": t.get_text(" ", strip=True)[:220],
+            }
+        )
     return jsonify({"status": "ok", "table_count": len(tables), "tables": info})
 
 
