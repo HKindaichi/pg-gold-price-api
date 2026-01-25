@@ -1,22 +1,30 @@
-name: Update latest.json (every 6 hours)
+name: Update latest.json
 
 on:
+  workflow_dispatch:
   schedule:
-    - cron: "0 */6 * * *"   # tiap 6 jam
-  workflow_dispatch:        # boleh run manual
+    - cron: "0 */6 * * *"   # setiap 6 jam
+  push:
+    paths:
+      - "main.py"
+      - "requirements.txt"
+      - ".github/workflows/update-latest-json.yml"
 
 permissions:
   contents: write
 
 jobs:
-  update:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
 
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
@@ -26,14 +34,27 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Generate latest.json
+      - name: Run scraper
         run: |
           python main.py
+          echo "---- latest.json preview ----"
+          head -n 60 output/latest.json || true
 
-      - name: Commit & push if changed
+      - name: Commit & Push latest.json
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # pastikan file wujud
+          test -f output/latest.json
+
           git add output/latest.json
-          git diff --cached --quiet || git commit -m "chore: update latest.json"
+
+          # kalau tiada perubahan, jangan push
+          if git diff --cached --quiet; then
+            echo "No changes in output/latest.json"
+            exit 0
+          fi
+
+          git commit -m "chore: update latest.json"
           git push
