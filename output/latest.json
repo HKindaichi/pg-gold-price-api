@@ -1,0 +1,16 @@
+{
+  "updated_label": "Today 16:45",
+  "merchants": [
+    {
+      "id": "public_gold",
+      "name": "Public Gold",
+      "items": {
+        "999": {
+          "sell": 683,
+          "buy": 621,
+          "spread": 62
+        }
+      }
+    }
+  ]
+}
