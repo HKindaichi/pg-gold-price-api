@@ -40,7 +40,6 @@ def safe_float(text: str) -> float:
         raise ValueError("Empty number")
     s = text.strip()
     s = s.replace("RM", "").replace(",", "").strip()
-    # keep digits + dot only
     m = re.search(r"(\d+(?:\.\d+)?)", s)
     if not m:
         raise ValueError(f"Cannot parse number from: {text}")
@@ -56,12 +55,42 @@ def spread_value(sell: float, buy: float) -> float:
 
 
 def http_get(url: str) -> str:
+    """
+    Generic GET (used by Public Gold). DON'T change this to avoid breaking PG.
+    """
     r = requests.get(
         url,
         timeout=25,
         headers={
             "User-Agent": "Mozilla/5.0",
             "Accept-Language": "en-US,en;q=0.9",
+        },
+    )
+    r.raise_for_status()
+    return r.text
+
+
+def http_get_maybank(url: str) -> str:
+    """
+    Maybank2u sometimes needs more "browser-like" headers.
+    This is isolated so Public Gold remains untouched.
+    """
+    r = requests.get(
+        url,
+        timeout=30,
+        allow_redirects=True,
+        headers={
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/120.0.0.0 Safari/537.36"
+            ),
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Cache-Control": "no-cache",
+            "Pragma": "no-cache",
+            "Referer": "https://www.maybank2u.com.my/",
+            "Connection": "keep-alive",
         },
     )
     r.raise_for_status()
@@ -130,48 +159,59 @@ def scrape_migai_items() -> dict:
       {
         "999": {"sell": 652.06, "buy": 637.94, "spread": 14.12}
       }
+
+    Approach:
+    1) Regex on raw HTML (most reliable)
+    2) Fallback: scan all tables for a row containing "below 100 grams"
     """
-    html = http_get(MIGAI_URL)
-    soup = BeautifulSoup(html, "html.parser")
+    html = http_get_maybank(MIGAI_URL)
 
-    # Find the MIGA-i section by heading text (robust-ish)
-    # We'll search any text that matches "Maybank Islamic Gold Account-i (MIGA-i)"
-    section_text = soup.find(string=re.compile(r"Maybank Islamic Gold Account-i\s*\(MIGA-i\)", re.I))
-    if not section_text:
-        return {}
+    # --- Strategy 1: regex on flattened HTML text
+    # Replace tags with spaces and normalize whitespace.
+    html_flat = re.sub(r"<[^>]+>", " ", html)
+    html_flat = re.sub(r"\s+", " ", html_flat).strip()
 
-    # Find the nearest table after that heading
-    heading_el = section_text.parent
-    table = heading_el.find_next("table")
-    if not table:
-        return {}
+    # Match: For below 100 grams 652.06 637.94 (RM optional)
+    m = re.search(
+        r"For\s*below\s*100\s*grams\s*RM?\s*([0-9]+(?:\.[0-9]+)?)\s*RM?\s*([0-9]+(?:\.[0-9]+)?)",
+        html_flat,
+        re.IGNORECASE,
+    )
 
-    # Look for row that contains "below 100"
-    target_row = None
-    for tr in table.find_all("tr"):
-        row_txt = tr.get_text(" ", strip=True).lower()
-        if "below" in row_txt and "100" in row_txt:
-            target_row = tr
-            break
-
-    if not target_row:
-        return {}
-
-    tds = [td.get_text(" ", strip=True) for td in target_row.find_all(["td", "th"])]
-    # Expected: [Date/Label, Selling, Buying]
-    if len(tds) < 3:
-        return {}
-
-    sell = round(safe_float(tds[1]), 2)
-    buy = round(safe_float(tds[2]), 2)
-
-    return {
-        "999": {
-            "sell": sell,
-            "buy": buy,
-            "spread": spread_value(sell, buy),
+    if m:
+        sell = round(float(m.group(1)), 2)
+        buy = round(float(m.group(2)), 2)
+        return {
+            "999": {
+                "sell": sell,
+                "buy": buy,
+                "spread": spread_value(sell, buy),
+            }
         }
-    }
+
+    # --- Strategy 2: fallback scan in tables (robust if wording differs slightly)
+    soup = BeautifulSoup(html, "html.parser")
+    for table in soup.find_all("table"):
+        for tr in table.find_all("tr"):
+            row_txt = tr.get_text(" ", strip=True).lower()
+            if ("below" in row_txt) and ("100" in row_txt) and ("gram" in row_txt):
+                cells = [c.get_text(" ", strip=True) for c in tr.find_all(["td", "th"])]
+                if len(cells) >= 3:
+                    try:
+                        sell = round(safe_float(cells[1]), 2)
+                        buy = round(safe_float(cells[2]), 2)
+                        return {
+                            "999": {
+                                "sell": sell,
+                                "buy": buy,
+                                "spread": spread_value(sell, buy),
+                            }
+                        }
+                    except Exception:
+                        # if parse fail, continue searching other rows/tables
+                        pass
+
+    return {}
 
 
 # =========================
@@ -183,7 +223,7 @@ def build_payload() -> dict:
 
     merchants = []
 
-    # Public Gold
+    # Public Gold (UNCHANGED)
     pg_items = scrape_public_gold_items()
     if pg_items:
         merchants.append(
@@ -194,7 +234,7 @@ def build_payload() -> dict:
             }
         )
 
-    # MIGA-i
+    # MIGA-i (FIXED)
     migai_items = scrape_migai_items()
     if migai_items:
         merchants.append(
@@ -204,6 +244,11 @@ def build_payload() -> dict:
                 "items": migai_items,
             }
         )
+    else:
+        # Keep the merchant visible if you want, even when fail:
+        # merchants.append({"id": "miga_i", "name": "MIGA-i", "items": {}})
+        # For now, we keep old behavior (only append if got items)
+        pass
 
     return {
         "updated_label": updated_label,
