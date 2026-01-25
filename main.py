@@ -1,28 +1,18 @@
 import json
-import re
-from dataclasses import dataclass
+import os
 from datetime import datetime
-from pathlib import Path
-from typing import Dict, Any, Optional
 from zoneinfo import ZoneInfo
 
 import requests
 from bs4 import BeautifulSoup
 
-# ================== CONFIG ==================
-TZ_MY = ZoneInfo("Asia/Kuala_Lumpur")
-OUT_DIR = Path("output")
-OUT_FILE = OUT_DIR / "latest.json"
+PG_URL = "https://publicgold.com.my/"
+OUTPUT_PATH = os.path.join("output", "latest.json")
 
-USER_AGENT = "Mozilla/5.0 (GoldPriceBot/1.0)"
-REQ_TIMEOUT = 25
 
-# ================== HELPERS ==================
 def now_my() -> datetime:
-    return datetime.now(TZ_MY)
+    return datetime.now(ZoneInfo("Asia/Kuala_Lumpur"))
 
-def fmt_updated_at(dt: datetime) -> str:
-    return dt.strftime("%Y-%m-%d %H:%M:%S")
 
 def format_updated_label(dt: datetime) -> str:
     now = now_my()
@@ -30,144 +20,123 @@ def format_updated_label(dt: datetime) -> str:
         return f"Today {dt.strftime('%H:%M')}"
     return dt.strftime("%Y-%m-%d %H:%M")
 
-def calc_spread(sell: Optional[float], buy: Optional[float]) -> Dict[str, Any]:
-    if sell is None or buy is None:
-        return {"spread": None, "spread_pct": None}
-    spread = sell - buy
-    spread_pct = (spread / sell * 100.0) if sell else None
-    return {
-        "spread": round(spread, 2),
-        "spread_pct": round(spread_pct, 2) if spread_pct else None,
+
+def clean_num(s: str) -> int:
+    # Example "RM 699" / "699" / "699.00"
+    s = s.replace("RM", "").replace(",", "").strip()
+    return int(float(s))
+
+
+def pick_pg_jewel_table(soup: BeautifulSoup):
+    tables = soup.find_all("table")
+    for t in tables:
+        txt = t.get_text(" ", strip=True).upper()
+        has_headers = ("PURITY" in txt) and ("PG SELL" in txt) and ("PG BUY" in txt)
+        has_values = ("999" in txt) and ("916" in txt)
+        if has_headers and has_values:
+            return t
+    return None
+
+
+def scrape_public_gold():
+    """
+    Return:
+    {
+      "id": "public_gold",
+      "name": "Public Gold",
+      "updated_label": "...",
+      "items": {
+        "999": {"sell": 699, "buy": 636, "spread": 63},
+        "916": {"sell": 665, "buy": 578, "spread": 87}
+      }
     }
-
-def write_json(payload: dict):
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
-    with open(OUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(payload, f, ensure_ascii=False, indent=2)
-
-def http_get(url: str) -> str:
+    """
     r = requests.get(
-        url,
-        timeout=REQ_TIMEOUT,
-        headers={"User-Agent": USER_AGENT},
+        PG_URL,
+        timeout=25,
+        headers={
+            "User-Agent": "Mozilla/5.0 (compatible; pg-gold-price-bot/1.0)",
+            "Accept-Language": "en-US,en;q=0.9",
+        },
     )
     r.raise_for_status()
-    return r.text
 
-def clean_rm(s: str) -> Optional[float]:
-    try:
-        return float(s.replace("RM", "").replace(",", "").strip())
-    except Exception:
-        return None
+    soup = BeautifulSoup(r.text, "html.parser")
+    table = pick_pg_jewel_table(soup)
+    if not table:
+        raise RuntimeError("Public Gold table not found (page structure changed).")
 
-# ================== DATA MODEL ==================
-@dataclass
-class MerchantResult:
-    id: str
-    name: str
-    items: Dict[str, Dict[str, Any]]
-    status: str = "ok"
-    error: Optional[str] = None
+    prices = {}
+    for row in table.find_all("tr"):
+        cols = [c.get_text(strip=True) for c in row.find_all(["td", "th"])]
+        if len(cols) >= 3:
+            purity = cols[0].replace(" ", "")
+            sell = cols[1]
+            buy = cols[2]
+            if purity in ["999", "916"]:
+                sell_n = clean_num(sell)
+                buy_n = clean_num(buy)
+                prices[purity] = {
+                    "sell": sell_n,
+                    "buy": buy_n,
+                    "spread": abs(sell_n - buy_n),
+                }
 
-def make_item(sell, buy, source):
-    item = {
-        "sell": sell,
-        "buy": buy,
-        "source": source,
-        "status": "ok" if sell and buy else "error",
+    # Hard check
+    if "999" not in prices or "916" not in prices:
+        raise RuntimeError("Public Gold missing 999/916 rows after parsing.")
+
+    return {
+        "id": "public_gold",
+        "name": "Public Gold",
+        "items": prices,
     }
-    item.update(calc_spread(sell, buy))
-    return item
 
-# ================== PUBLIC GOLD ==================
-def scrape_public_gold() -> MerchantResult:
-    url = "https://publicgold.com.my/"
-    items = {}
 
-    try:
-        soup = BeautifulSoup(http_get(url), "html.parser")
-        table = None
+def scrape_miga_i_placeholder():
+    """
+    Placeholder untuk MIGA-i.
+    Nanti bila kau confirm source/logic MIGA-i, kita ganti function ni.
 
-        for t in soup.find_all("table"):
-            txt = t.get_text(" ", strip=True).upper()
-            if "PURITY" in txt and "PG SELL" in txt and "PG BUY" in txt:
-                table = t
-                break
+    Buat masa sekarang, kita return kosong supaya UI tak pecah.
+    """
+    return {
+        "id": "miga_i",
+        "name": "MIGA-i",
+        "items": {}  # nanti isi "999"/"916"
+    }
 
-        if not table:
-            raise Exception("Table not found")
 
-        for row in table.find_all("tr"):
-            cols = [c.get_text(strip=True) for c in row.find_all(["td", "th"])]
-            if len(cols) >= 3 and cols[0] in ("999", "916"):
-                items[cols[0]] = make_item(
-                    clean_rm(cols[1]),
-                    clean_rm(cols[2]),
-                    url,
-                )
+def build_payload():
+    ts = now_my()
+    updated_label = format_updated_label(ts)
 
-        return MerchantResult(
-            id="public_gold",
-            name="Public Gold",
-            items=items,
-            status="ok" if items else "error",
-        )
+    merchants = []
+    # Public Gold
+    merchants.append(scrape_public_gold())
+    # MIGA-i (placeholder dulu)
+    merchants.append(scrape_miga_i_placeholder())
 
-    except Exception as e:
-        return MerchantResult(
-            id="public_gold",
-            name="Public Gold",
-            items={
-                "999": make_item(None, None, url),
-                "916": make_item(None, None, url),
-            },
-            status="error",
-            error=str(e),
-        )
+    return {
+        "updated_label": updated_label,
+        "merchants": merchants,
+    }
 
-# ================== MIGA-i (READY) ==================
-def scrape_miga_i() -> MerchantResult:
-    # Placeholder – enable bila MIGA bagi URL rasmi
-    return MerchantResult(
-        id="miga_i",
-        name="MIGA-i",
-        items={
-            "999": make_item(None, None, "pending"),
-            "916": make_item(None, None, "pending"),
-        },
-        status="partial",
-        error="MIGA-i source not configured yet",
-    )
 
-# ================== MAIN ==================
+def ensure_output_dir():
+    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
+
+
 def main():
-    now = now_my()
+    ensure_output_dir()
+    payload = build_payload()
 
-    merchants = [
-        scrape_public_gold(),
-        scrape_miga_i(),
-    ]
+    with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=2)
 
-    payload = {
-        "status": "ok",
-        "updated_at": fmt_updated_at(now),
-        "updated_label": format_updated_label(now),
-        "timezone": "Asia/Kuala_Lumpur",
-        "country": "Malaysia",
-        "merchants": [
-            {
-                "id": m.id,
-                "name": m.name,
-                "status": m.status,
-                "items": m.items,
-                **({"error": m.error} if m.error else {}),
-            }
-            for m in merchants
-        ],
-    }
+    print(f"✅ Wrote {OUTPUT_PATH}")
+    print(json.dumps(payload, ensure_ascii=False, indent=2))
 
-    write_json(payload)
-    print("✅ latest.json generated")
 
 if __name__ == "__main__":
     main()
