@@ -1,5 +1,6 @@
 {
-  "updated_label": "Today 16:07",
+  "updated_label": "Today 16:49",
+  "migai_updated_label": "Today 16:40",
   "merchants": [
     {
       "id": "public_gold",
@@ -20,7 +21,13 @@
     {
       "id": "miga_i",
       "name": "MIGA-i",
-      "items": {}
+      "items": {
+        "999": {
+          "sell": 650.01,
+          "buy": 625.26,
+          "spread": 24.75
+        }
+      }
     }
   ]
 }
