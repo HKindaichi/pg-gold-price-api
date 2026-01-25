@@ -1,16 +1,26 @@
 {
-  "updated_label": "Today 17:00",
+  "updated_label": "Today 14:53",
   "merchants": [
     {
       "id": "public_gold",
       "name": "Public Gold",
       "items": {
         "999": {
-          "sell": 683,
-          "buy": 621,
-          "spread": 62
+          "sell": 699,
+          "buy": 636,
+          "spread": 63
+        },
+        "916": {
+          "sell": 665,
+          "buy": 578,
+          "spread": 87
         }
       }
+    },
+    {
+      "id": "miga_i",
+      "name": "MIGA-i",
+      "items": {}
     }
   ]
 }
