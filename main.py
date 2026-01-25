@@ -33,13 +33,9 @@ def format_updated_label(dt: datetime) -> str:
 
 
 def safe_float(text: str) -> float:
-    """
-    Convert '652.06', 'RM 652.06', '652.06 ' -> 652.06
-    """
     if text is None:
         raise ValueError("Empty number")
-    s = text.strip()
-    s = s.replace("RM", "").replace(",", "").strip()
+    s = text.strip().replace("RM", "").replace(",", "").strip()
     m = re.search(r"(\d+(?:\.\d+)?)", s)
     if not m:
         raise ValueError(f"Cannot parse number from: {text}")
@@ -54,14 +50,12 @@ def spread_value(sell: float, buy: float) -> float:
     return round(sell - buy, 2)
 
 
-def http_get(url: str) -> str:
-    """
-    Generic GET (used by Public Gold). DON'T change this to avoid breaking PG.
-    """
+def http_get(url: str, timeout: int = 25, headers: dict | None = None) -> str:
     r = requests.get(
         url,
-        timeout=25,
-        headers={
+        timeout=timeout,
+        headers=headers
+        or {
             "User-Agent": "Mozilla/5.0",
             "Accept-Language": "en-US,en;q=0.9",
         },
@@ -70,31 +64,35 @@ def http_get(url: str) -> str:
     return r.text
 
 
-def http_get_maybank(url: str) -> str:
+def http_get_retry(url: str, tries: int = 3, timeout: int = 25, headers: dict | None = None) -> str:
+    last_err = None
+    for i in range(tries):
+        try:
+            return http_get(url, timeout=timeout, headers=headers)
+        except Exception as e:
+            last_err = e
+    raise last_err
+
+
+def http_get_maybank_best_effort(url: str) -> str:
     """
-    Maybank2u sometimes needs more "browser-like" headers.
-    This is isolated so Public Gold remains untouched.
+    Maybank sometimes blocks/timeout on GitHub Actions.
+    We do: retry + more browser-like headers.
     """
-    r = requests.get(
-        url,
-        timeout=30,
-        allow_redirects=True,
-        headers={
-            "User-Agent": (
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/120.0.0.0 Safari/537.36"
-            ),
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-            "Accept-Language": "en-US,en;q=0.9",
-            "Cache-Control": "no-cache",
-            "Pragma": "no-cache",
-            "Referer": "https://www.maybank2u.com.my/",
-            "Connection": "keep-alive",
-        },
-    )
-    r.raise_for_status()
-    return r.text
+    headers = {
+        "User-Agent": (
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
+            "Chrome/120.0.0.0 Safari/537.36"
+        ),
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache",
+        "Referer": "https://www.maybank2u.com.my/",
+        "Connection": "keep-alive",
+    }
+    return http_get_retry(url, tries=3, timeout=30, headers=headers)
 
 
 # =========================
@@ -118,9 +116,8 @@ def scrape_public_gold_items() -> dict:
         "999": {"sell": 699, "buy": 636, "spread": 63},
         "916": {"sell": 665, "buy": 578, "spread": 87}
       }
-    (depends what exists on site)
     """
-    html = http_get(PUBLIC_GOLD_URL)
+    html = http_get_retry(PUBLIC_GOLD_URL, tries=3, timeout=25)
     soup = BeautifulSoup(html, "html.parser")
 
     table = pick_pg_jewel_table(soup)
@@ -152,52 +149,43 @@ def scrape_public_gold_items() -> dict:
 # =========================
 # Scraper: MIGA-i (Maybank)
 # =========================
-def scrape_migai_items() -> dict:
+def scrape_migai_items_best_effort() -> dict:
     """
-    We use: 'For below 100 grams' row only.
-    Output:
-      {
-        "999": {"sell": 652.06, "buy": 637.94, "spread": 14.12}
-      }
-
-    Approach:
-    1) Regex on raw HTML (most reliable)
-    2) Fallback: scan all tables for a row containing "below 100 grams"
+    Best-effort scrape.
+    If Maybank blocks/timeouts, return {} WITHOUT crashing the whole workflow.
     """
-    html = http_get_maybank(MIGAI_URL)
+    try:
+        html = http_get_maybank_best_effort(MIGAI_URL)
 
-    # --- Strategy 1: regex on flattened HTML text
-    # Replace tags with spaces and normalize whitespace.
-    html_flat = re.sub(r"<[^>]+>", " ", html)
-    html_flat = re.sub(r"\s+", " ", html_flat).strip()
+        # Flatten HTML and regex search for: "For below 100 grams 652.06 637.94"
+        html_flat = re.sub(r"<[^>]+>", " ", html)
+        html_flat = re.sub(r"\s+", " ", html_flat).strip()
 
-    # Match: For below 100 grams 652.06 637.94 (RM optional)
-    m = re.search(
-        r"For\s*below\s*100\s*grams\s*RM?\s*([0-9]+(?:\.[0-9]+)?)\s*RM?\s*([0-9]+(?:\.[0-9]+)?)",
-        html_flat,
-        re.IGNORECASE,
-    )
+        m = re.search(
+            r"For\s*below\s*100\s*grams\s*RM?\s*([0-9]+(?:\.[0-9]+)?)\s*RM?\s*([0-9]+(?:\.[0-9]+)?)",
+            html_flat,
+            re.IGNORECASE,
+        )
 
-    if m:
-        sell = round(float(m.group(1)), 2)
-        buy = round(float(m.group(2)), 2)
-        return {
-            "999": {
-                "sell": sell,
-                "buy": buy,
-                "spread": spread_value(sell, buy),
+        if m:
+            sell = round(float(m.group(1)), 2)
+            buy = round(float(m.group(2)), 2)
+            return {
+                "999": {
+                    "sell": sell,
+                    "buy": buy,
+                    "spread": spread_value(sell, buy),
+                }
             }
-        }
 
-    # --- Strategy 2: fallback scan in tables (robust if wording differs slightly)
-    soup = BeautifulSoup(html, "html.parser")
-    for table in soup.find_all("table"):
-        for tr in table.find_all("tr"):
-            row_txt = tr.get_text(" ", strip=True).lower()
-            if ("below" in row_txt) and ("100" in row_txt) and ("gram" in row_txt):
-                cells = [c.get_text(" ", strip=True) for c in tr.find_all(["td", "th"])]
-                if len(cells) >= 3:
-                    try:
+        # Fallback: scan tables for "below 100 grams" row
+        soup = BeautifulSoup(html, "html.parser")
+        for table in soup.find_all("table"):
+            for tr in table.find_all("tr"):
+                row_txt = tr.get_text(" ", strip=True).lower()
+                if ("below" in row_txt) and ("100" in row_txt) and ("gram" in row_txt):
+                    cells = [c.get_text(" ", strip=True) for c in tr.find_all(["td", "th"])]
+                    if len(cells) >= 3:
                         sell = round(safe_float(cells[1]), 2)
                         buy = round(safe_float(cells[2]), 2)
                         return {
@@ -207,11 +195,15 @@ def scrape_migai_items() -> dict:
                                 "spread": spread_value(sell, buy),
                             }
                         }
-                    except Exception:
-                        # if parse fail, continue searching other rows/tables
-                        pass
 
-    return {}
+        # Not found
+        print("⚠️ MIGA-i: pattern not found in HTML (page changed / different content).")
+        return {}
+
+    except Exception as e:
+        # Important: don't crash the workflow
+        print(f"⚠️ MIGA-i scrape failed (non-fatal): {type(e).__name__}: {e}")
+        return {}
 
 
 # =========================
@@ -223,7 +215,7 @@ def build_payload() -> dict:
 
     merchants = []
 
-    # Public Gold (UNCHANGED)
+    # Public Gold (MUST WORK)
     pg_items = scrape_public_gold_items()
     if pg_items:
         merchants.append(
@@ -234,21 +226,15 @@ def build_payload() -> dict:
             }
         )
 
-    # MIGA-i (FIXED)
-    migai_items = scrape_migai_items()
-    if migai_items:
-        merchants.append(
-            {
-                "id": "miga_i",
-                "name": "MIGA-i",
-                "items": migai_items,
-            }
-        )
-    else:
-        # Keep the merchant visible if you want, even when fail:
-        # merchants.append({"id": "miga_i", "name": "MIGA-i", "items": {}})
-        # For now, we keep old behavior (only append if got items)
-        pass
+    # MIGA-i (BEST EFFORT)
+    migai_items = scrape_migai_items_best_effort()
+    merchants.append(
+        {
+            "id": "miga_i",
+            "name": "MIGA-i",
+            "items": migai_items,  # boleh {} kalau fail
+        }
+    )
 
     return {
         "updated_label": updated_label,
@@ -265,12 +251,17 @@ def write_output(payload: dict):
 def main():
     payload = build_payload()
 
-    # If nothing scraped, fail workflow (so you notice)
-    if not payload.get("merchants"):
-        raise SystemExit("No merchants scraped. Check selectors / site changed.")
+    # Fail only if Public Gold missing (core data)
+    has_pg = any(m.get("id") == "public_gold" and m.get("items") for m in payload.get("merchants", []))
+    if not has_pg:
+        raise SystemExit("Public Gold scrape failed. Check selectors / site changed.")
 
     write_output(payload)
     print(f"✅ Wrote {OUTPUT_PATH} with {len(payload['merchants'])} merchants.")
+    # Print quick check
+    for m in payload["merchants"]:
+        if m["id"] == "miga_i":
+            print("MIGA-i items:", m["items"])
 
 
 if __name__ == "__main__":
