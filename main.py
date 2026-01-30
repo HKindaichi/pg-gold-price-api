@@ -229,10 +229,39 @@ def build_payload() -> dict:
     }
 
 
+
 def write_output(payload: dict):
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
+    
+    # 1. Write latest.json (existing behavior)
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
+
+    # 2. Append to history.csv
+    csv_path = os.path.join("output", "history.csv")
+    file_exists = os.path.isfile(csv_path)
+    
+    # We'll flatten the data for CSV: timestamp, merchant, item, sell, buy, spread
+    # format_updated_label returns "Today HH:MM" or "YYYY-MM-DD HH:MM". 
+    # For history, we prefer a standard ISO timestamp or similar.
+    timestamp = now_my().strftime("%Y-%m-%d %H:%M:%S")
+
+    with open(csv_path, "a", encoding="utf-8") as f:
+        # Write header if new file
+        if not file_exists:
+            f.write("timestamp,merchant,item,sell,buy,spread\n")
+        
+        for merchant in payload.get("merchants", []):
+            m_name = merchant["id"] # public_gold or miga_i
+            items = merchant.get("items", {})
+            for item_key, item_data in items.items():
+                # item_key is "999" or "916"
+                sell = item_data.get("sell", 0)
+                buy = item_data.get("buy", 0)
+                spread = item_data.get("spread", 0)
+                
+                f.write(f"{timestamp},{m_name},{item_key},{sell},{buy},{spread}\n")
+
 
 
 def main():
