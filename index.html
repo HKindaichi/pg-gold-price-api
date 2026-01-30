@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,7 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-    
+
     <style>
         :root {
             --bg-color: #0f172a;
@@ -121,11 +122,17 @@
 
         /* Responsive adjustments */
         @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .chart-container { height: 300px; }
+            h1 {
+                font-size: 2rem;
+            }
+
+            .chart-container {
+                height: 300px;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
@@ -139,12 +146,16 @@
         <div id="dashboard" style="display: none;">
             <div class="latest-price">
                 <div class="price-item">
-                    <div class="price-label">PG Sell (999)</div>
+                    <div class="price-label">PG Sell</div>
                     <div class="price-value" id="latest-sell">-</div>
                 </div>
                 <div class="price-item">
-                    <div class="price-label">PG Buy (999)</div>
+                    <div class="price-label">PG Buy</div>
                     <div class="price-value" id="latest-buy">-</div>
+                </div>
+                <div class="price-item" style="border-color: rgba(239, 68, 68, 0.3);">
+                    <div class="price-label" style="color: #fca5a5;">Spread</div>
+                    <div class="price-value" id="latest-spread" style="color: #ef4444;">-</div>
                 </div>
             </div>
 
@@ -168,14 +179,14 @@
                 const response = await fetch(CSV_URL);
                 if (!response.ok) throw new Error("Network response was not ok");
                 const csvText = await response.text();
-                
+
                 Papa.parse(csvText, {
                     header: true,
                     skipEmptyLines: true,
-                    complete: function(results) {
+                    complete: function (results) {
                         processData(results.data);
                     },
-                    error: function(err) {
+                    error: function (err) {
                         console.error("CSV Parse Error:", err);
                         showError("Failed to parse data.");
                     }
@@ -194,7 +205,7 @@
         function processData(data) {
             // Filter for Public Gold 999 for now
             const pg999 = data.filter(row => row.merchant === 'public_gold' && row.item === '999');
-            
+
             if (pg999.length === 0) {
                 showError("No Public Gold (999) data available.");
                 return;
@@ -206,25 +217,27 @@
             // Prepare Chart Data
             const labels = pg999.map(row => {
                 const date = new Date(row.timestamp);
-                return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             });
             const sellPrices = pg999.map(row => parseFloat(row.sell));
             const buyPrices = pg999.map(row => parseFloat(row.buy));
+            const spreadPrices = pg999.map(row => parseFloat(row.spread));
 
             // Update Latest Display
             const latest = pg999[pg999.length - 1];
             document.getElementById('latest-sell').innerText = `RM ${latest.sell}`;
             document.getElementById('latest-buy').innerText = `RM ${latest.buy}`;
+            document.getElementById('latest-spread').innerText = `RM ${latest.spread}`;
 
-            renderChart(labels, sellPrices, buyPrices);
-            
+            renderChart(labels, sellPrices, buyPrices, spreadPrices);
+
             document.getElementById('loading').style.display = 'none';
             document.getElementById('dashboard').style.display = 'block';
         }
 
-        function renderChart(labels, sellData, buyData) {
+        function renderChart(labels, sellData, buyData, spreadData) {
             const ctx = document.getElementById('goldChart').getContext('2d');
-            
+
             // Gradient for line
             const gradientSell = ctx.createLinearGradient(0, 0, 0, 400);
             gradientSell.addColorStop(0, 'rgba(251, 191, 36, 0.5)');
@@ -244,7 +257,8 @@
                             fill: true,
                             tension: 0.4,
                             pointRadius: 4,
-                            pointBackgroundColor: '#fbbf24'
+                            pointBackgroundColor: '#fbbf24',
+                            yAxisID: 'y'
                         },
                         {
                             label: 'Buy Price (RM/g)',
@@ -254,7 +268,19 @@
                             borderDash: [5, 5],
                             fill: false,
                             tension: 0.4,
-                            pointRadius: 0
+                            pointRadius: 0,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Spread (RM)',
+                            data: spreadData,
+                            borderColor: '#ef4444',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 2,
+                            yAxisID: 'y1'
                         }
                     ]
                 },
@@ -276,7 +302,7 @@
                             borderColor: 'rgba(255,255,255,0.1)',
                             borderWidth: 1,
                             padding: 10,
-                            displayColors: false,
+                            displayColors: true,
                         }
                     },
                     scales: {
@@ -285,8 +311,20 @@
                             ticks: { color: '#64748b' }
                         },
                         y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
                             grid: { color: 'rgba(255,255,255,0.05)' },
-                            ticks: { color: '#64748b' }
+                            ticks: { color: '#fbbf24' },
+                            title: { display: true, text: 'Price (RM)', color: '#94a3b8' }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            grid: { drawOnChartArea: false },
+                            ticks: { color: '#ef4444' },
+                            title: { display: true, text: 'Spread (RM)', color: '#ef4444' }
                         }
                     }
                 }
@@ -297,4 +335,5 @@
         fetchData();
     </script>
 </body>
+
 </html>
