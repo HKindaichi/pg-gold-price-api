@@ -172,7 +172,8 @@
     </div>
 
     <script>
-        const CSV_URL = 'output/history.csv';
+        // Add cache buster to prevent browser from serving old CSV data
+        const CSV_URL = 'output/history.csv?v=' + new Date().getTime();
 
         async function fetchData() {
             try {
