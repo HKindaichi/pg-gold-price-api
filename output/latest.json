@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 16:49",
+  "updated_label": "Today 07:16",
   "migai_updated_label": "Today 16:40",
   "merchants": [
     {
@@ -7,14 +7,14 @@
       "name": "Public Gold",
       "items": {
         "999": {
-          "sell": 699,
-          "buy": 636,
-          "spread": 63
+          "sell": 675,
+          "buy": 614,
+          "spread": 61
         },
         "916": {
-          "sell": 665,
-          "buy": 578,
-          "spread": 87
+          "sell": 642,
+          "buy": 558,
+          "spread": 84
         }
       }
     },
