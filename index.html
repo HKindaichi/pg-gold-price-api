@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gold Price Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>World Gold Price</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +21,12 @@
             --text-secondary: #94a3b8;
             --accent-gold: #fbbf24;
             --accent-gold-glow: rgba(251, 191, 36, 0.2);
-            --chart-line: #fbbf24;
+            --danger: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -29,258 +34,411 @@
             background-color: var(--bg-color);
             color: var(--text-primary);
             margin: 0;
-            padding: 20px;
+            padding: 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        .container {
-            width: 100%;
-            max-width: 1000px;
-        }
-
+        /* --- Header --- */
         header {
-            margin-bottom: 40px;
+            padding: 20px;
             text-align: center;
+            background: rgba(15, 23, 42, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         h1 {
             font-weight: 600;
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             margin: 0;
             background: linear-gradient(to right, #fde68a, #fbbf24);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 4px 20px var(--accent-gold-glow);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .subtitle {
+        .back-btn {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
             color: var(--text-secondary);
-            margin-top: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        /* --- Content Views --- */
+        .view {
+            display: none;
+            /* Hidden by default */
+            padding: 20px;
+            flex: 1;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Home Menu Buttons --- */
+        .menu-grid {
+            display: grid;
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+
+        .menu-btn {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: left;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .menu-btn:active {
+            transform: scale(0.98);
+        }
+
+        .menu-btn h3 {
+            color: var(--accent-gold);
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .menu-btn span {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+        }
+
+        /* --- Lists --- */
+        .list-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .list-item {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .list-item:hover {
+            border-color: var(--accent-gold);
+        }
+
+        .list-item-title {
+            font-weight: 600;
             font-size: 1.1rem;
         }
 
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            margin-bottom: 30px;
-        }
-
-        .chart-container {
-            position: relative;
-            height: 400px;
-            width: 100%;
-        }
-
+        /* --- Detail View Components --- */
         .latest-price {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
             margin-bottom: 30px;
         }
 
         .price-item {
             background: rgba(255, 255, 255, 0.03);
             border-radius: 15px;
-            padding: 20px;
-            min-width: 150px;
+            padding: 15px;
             text-align: center;
             border: 1px solid rgba(251, 191, 36, 0.1);
         }
 
         .price-label {
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             margin-bottom: 5px;
         }
 
         .price-value {
-            font-size: 1.8rem;
+            font-size: 1.2rem;
             font-weight: 600;
             color: var(--accent-gold);
         }
 
-        .loading {
-            text-align: center;
-            padding: 50px;
-            color: var(--text-secondary);
+        .price-value.spread {
+            color: var(--danger);
         }
 
-        footer {
-            margin-top: auto;
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            text-align: center;
-            padding-top: 20px;
+        .chart-card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 15px;
+            height: 400px;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            .chart-container {
-                height: 300px;
-            }
+        .placeholder-text {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 50px;
+            font-size: 1.2rem;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
-        <header>
-            <h1>Gold Price Tracker</h1>
-            <div class="subtitle">Live data from Public Gold & MIGA-i</div>
-        </header>
+    <!-- Header -->
+    <header>
+        <button id="back-btn" class="back-btn" onclick="goBack()" style="display: none;">←</button>
+        <h1 id="page-title">WORLD GOLD</h1>
+    </header>
 
-        <div id="loading" class="loading">Loading data...</div>
+    <!-- VIEW: HOME -->
+    <div id="view-home" class="view active">
+        <div class="menu-grid">
+            <div class="menu-btn" onclick="navigateTo('view-merchants')">
+                <h3>MERCHANT</h3>
+                <span>→</span>
+            </div>
+            <div class="menu-btn" onclick="navigateTo('view-portfolio')">
+                <h3>MY PORTFOLIO</h3>
+                <span>→</span>
+            </div>
+            <div class="menu-btn" onclick="navigateTo('view-settings')">
+                <h3>SETTING</h3>
+                <span>→</span>
+            </div>
+        </div>
+    </div>
 
-        <div id="dashboard" style="display: none;">
+    <!-- VIEW: MERCHANT LIST -->
+    <div id="view-merchants" class="view">
+        <div class="list-group">
+            <div class="list-item" onclick="showMerchantDetail('public_gold', 'Public Gold')">
+                <span class="list-item-title">Public Gold</span>
+                <span style="color: var(--accent-gold);">View ></span>
+            </div>
+            <div class="list-item" onclick="showMerchantDetail('miga_i', 'MIGA-i')">
+                <span class="list-item-title">MIGA-i</span>
+                <span style="color: var(--accent-gold);">View ></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW: MERCHANT DETAIL -->
+    <div id="view-merchant-detail" class="view">
+        <h2 id="merchant-name"
+            style="text-align: center; margin-bottom: 20px; color: var(--text-secondary); font-weight: 300;">-</h2>
+
+        <div id="loading" style="text-align: center; color: var(--text-secondary);">Loading data...</div>
+
+        <div id="detail-content" style="display: none;">
             <div class="latest-price">
                 <div class="price-item">
-                    <div class="price-label">PG Sell</div>
-                    <div class="price-value" id="latest-sell">-</div>
+                    <div class="price-label">Sell (999)</div>
+                    <div class="price-value" id="val-sell">-</div>
                 </div>
                 <div class="price-item">
-                    <div class="price-label">PG Buy</div>
-                    <div class="price-value" id="latest-buy">-</div>
+                    <div class="price-label">Buy (999)</div>
+                    <div class="price-value" id="val-buy">-</div>
                 </div>
                 <div class="price-item" style="border-color: rgba(239, 68, 68, 0.3);">
                     <div class="price-label" style="color: #fca5a5;">Spread</div>
-                    <div class="price-value" id="latest-spread" style="color: #ef4444;">-</div>
+                    <div class="price-value spread" id="val-spread">-</div>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="chart-container">
-                    <canvas id="goldChart"></canvas>
-                </div>
+            <div class="chart-card">
+                <canvas id="goldChart"></canvas>
             </div>
         </div>
+    </div>
 
-        <footer>
-            Updated automatically every 6 hours.
-        </footer>
+    <!-- VIEW: PORTFOLIO -->
+    <div id="view-portfolio" class="view">
+        <div class="placeholder-text">Coming Soon</div>
+    </div>
+
+    <!-- VIEW: SETTINGS -->
+    <div id="view-settings" class="view">
+        <div class="placeholder-text">Coming Soon</div>
     </div>
 
     <script>
-        // Add cache buster to prevent browser from serving old CSV data
-        const CSV_URL = 'output/history.csv?v=' + new Date().getTime();
+        // --- Navigation Logic ---
+        const historyStack = ['view-home'];
+        let currentMerchantId = null;
 
-        async function fetchData() {
-            try {
-                const response = await fetch(CSV_URL);
-                if (!response.ok) throw new Error("Network response was not ok");
-                const csvText = await response.text();
+        function navigateTo(viewId) {
+            // Hide current
+            document.querySelector('.view.active').classList.remove('active');
+            // Show new
+            document.getElementById(viewId).classList.add('active');
 
-                Papa.parse(csvText, {
-                    header: true,
-                    skipEmptyLines: true,
-                    complete: function (results) {
-                        processData(results.data);
-                    },
-                    error: function (err) {
-                        console.error("CSV Parse Error:", err);
-                        showError("Failed to parse data.");
-                    }
-                });
-            } catch (error) {
-                console.error("Fetch Error:", error);
-                // Fallback for demo purposes if file doesn't exist yet
-                showError("No history data found yet. Wait for the first scheduled run!");
+            historyStack.push(viewId);
+            updateHeader();
+        }
+
+        function goBack() {
+            if (historyStack.length > 1) {
+                const current = historyStack.pop();
+                document.getElementById(current).classList.remove('active');
+
+                const prev = historyStack[historyStack.length - 1];
+                document.getElementById(prev).classList.add('active');
+
+                updateHeader();
             }
         }
 
-        function showError(msg) {
-            document.getElementById('loading').innerText = msg;
+        function updateHeader() {
+            const backBtn = document.getElementById('back-btn');
+            const title = document.getElementById('page-title');
+
+            if (historyStack.length > 1) {
+                backBtn.style.display = 'block';
+                // Adjust title based on view if needed, or keep generic
+            } else {
+                backBtn.style.display = 'none';
+            }
         }
 
-        function processData(data) {
-            // Filter for Public Gold 999 for now
-            const pg999 = data.filter(row => row.merchant === 'public_gold' && row.item === '999');
+        // --- Data Logic ---
+        const CSV_URL = 'output/history.csv?v=' + new Date().getTime();
+        let chartInstance = null;
 
-            if (pg999.length === 0) {
-                showError("No Public Gold (999) data available.");
+        function showMerchantDetail(merchantId, merchantName) {
+            currentMerchantId = merchantId;
+            document.getElementById('merchant-name').innerText = merchantName;
+            navigateTo('view-merchant-detail');
+            loadData(merchantId);
+        }
+
+        async function loadData(merchantId) {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('detail-content').style.display = 'none';
+
+            try {
+                const response = await fetch(CSV_URL);
+                if (!response.ok) throw new Error("No data file");
+                const text = await response.text();
+
+                Papa.parse(text, {
+                    header: true,
+                    skipEmptyLines: true,
+                    complete: function (res) {
+                        renderMerchantData(res.data, merchantId);
+                    }
+                });
+            } catch (e) {
+                document.getElementById('loading').innerText = "Data not found.";
+            }
+        }
+
+        function renderMerchantData(data, merchantId) {
+            // Filter
+            const rows = data.filter(r => r.merchant === merchantId && r.item === '999');
+
+            if (rows.length === 0) {
+                document.getElementById('loading').innerText = "No data for this merchant.";
                 return;
             }
 
-            // Sort by timestamp
-            pg999.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+            rows.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
 
-            // Prepare Chart Data
-            const labels = pg999.map(row => {
-                const date = new Date(row.timestamp);
-                return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            // Latest
+            const latest = rows[rows.length - 1];
+            document.getElementById('val-sell').innerText = `RM ${latest.sell}`;
+            document.getElementById('val-buy').innerText = `RM ${latest.buy}`;
+            document.getElementById('val-spread').innerText = `RM ${latest.spread}`;
+
+            // Chart
+            const labels = rows.map(r => {
+                const d = new Date(r.timestamp);
+                return d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             });
-            const sellPrices = pg999.map(row => parseFloat(row.sell));
-            const buyPrices = pg999.map(row => parseFloat(row.buy));
-            const spreadPrices = pg999.map(row => parseFloat(row.spread));
+            const sells = rows.map(r => parseFloat(r.sell));
+            const buys = rows.map(r => parseFloat(r.buy));
+            const spreads = rows.map(r => parseFloat(r.spread));
 
-            // Update Latest Display
-            const latest = pg999[pg999.length - 1];
-            document.getElementById('latest-sell').innerText = `RM ${latest.sell}`;
-            document.getElementById('latest-buy').innerText = `RM ${latest.buy}`;
-            document.getElementById('latest-spread').innerText = `RM ${latest.spread}`;
-
-            renderChart(labels, sellPrices, buyPrices, spreadPrices);
+            drawChart(labels, sells, buys, spreads);
 
             document.getElementById('loading').style.display = 'none';
-            document.getElementById('dashboard').style.display = 'block';
+            document.getElementById('detail-content').style.display = 'block';
         }
 
-        function renderChart(labels, sellData, buyData, spreadData) {
+        function drawChart(labels, sells, buys, spreads) {
             const ctx = document.getElementById('goldChart').getContext('2d');
 
-            // Gradient for line
-            const gradientSell = ctx.createLinearGradient(0, 0, 0, 400);
-            gradientSell.addColorStop(0, 'rgba(251, 191, 36, 0.5)');
-            gradientSell.addColorStop(1, 'rgba(251, 191, 36, 0.0)');
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
 
-            new Chart(ctx, {
+            const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+            gradient.addColorStop(0, 'rgba(251, 191, 36, 0.4)');
+            gradient.addColorStop(1, 'rgba(251, 191, 36, 0.0)');
+
+            chartInstance = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: labels,
                     datasets: [
                         {
-                            label: 'Sell Price (RM/g)',
-                            data: sellData,
+                            label: 'Sell',
+                            data: sells,
                             borderColor: '#fbbf24',
-                            backgroundColor: gradientSell,
-                            borderWidth: 3,
+                            backgroundColor: gradient,
                             fill: true,
                             tension: 0.4,
-                            pointRadius: 4,
-                            pointBackgroundColor: '#fbbf24',
                             yAxisID: 'y'
                         },
                         {
-                            label: 'Buy Price (RM/g)',
-                            data: buyData,
+                            label: 'Buy',
+                            data: buys,
                             borderColor: '#94a3b8',
-                            borderWidth: 2,
                             borderDash: [5, 5],
-                            fill: false,
                             tension: 0.4,
-                            pointRadius: 0,
+                            fill: false,
                             yAxisID: 'y'
                         },
                         {
-                            label: 'Spread (RM)',
-                            data: spreadData,
+                            label: 'Spread',
+                            data: spreads,
                             borderColor: '#ef4444',
-                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
-                            borderWidth: 2,
-                            fill: true,
                             tension: 0.4,
-                            pointRadius: 2,
+                            fill: false,
                             yAxisID: 'y1'
                         }
                     ]
@@ -288,52 +446,27 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    interaction: {
-                        intersect: false,
-                        mode: 'index',
-                    },
+                    interaction: { mode: 'index', intersect: false },
                     plugins: {
-                        legend: {
-                            labels: { color: '#cbd5e1' }
-                        },
-                        tooltip: {
-                            backgroundColor: '#1e293b',
-                            titleColor: '#fbbf24',
-                            bodyColor: '#f8fafc',
-                            borderColor: 'rgba(255,255,255,0.1)',
-                            borderWidth: 1,
-                            padding: 10,
-                            displayColors: true,
-                        }
+                        legend: { labels: { color: '#cbd5e1' } },
+                        tooltip: { backgroundColor: '#1e293b', titleColor: '#fbbf24' }
                     },
                     scales: {
-                        x: {
-                            grid: { color: 'rgba(255,255,255,0.05)' },
-                            ticks: { color: '#64748b' }
-                        },
+                        x: { display: false }, /* Hide X labels to clean up */
                         y: {
-                            type: 'linear',
-                            display: true,
                             position: 'left',
                             grid: { color: 'rgba(255,255,255,0.05)' },
-                            ticks: { color: '#fbbf24' },
-                            title: { display: true, text: 'Price (RM)', color: '#94a3b8' }
+                            ticks: { color: '#fbbf24' }
                         },
                         y1: {
-                            type: 'linear',
-                            display: true,
                             position: 'right',
                             grid: { drawOnChartArea: false },
-                            ticks: { color: '#ef4444' },
-                            title: { display: true, text: 'Spread (RM)', color: '#ef4444' }
+                            ticks: { color: '#ef4444' }
                         }
                     }
                 }
             });
         }
-
-        // Start
-        fetchData();
     </script>
 </body>
 
