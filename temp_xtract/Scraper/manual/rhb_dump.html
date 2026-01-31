@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Unavailable</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        font-family: Lato, Verdana, sans-serif;
+        margin: 0;
+        background-color: #ffffff;
+      }
+
+      p {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .maintenance-error-container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 20px;
+      }
+
+      .rhb-logo-container {
+        margin-bottom: 32px;
+      }
+
+      .rhb-logo {
+        width: 150px;
+        height: auto;
+      }
+
+      .error-text-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 600px;
+        text-align: center;
+      }
+
+      .main-error-title {
+        font-size: 60px;
+        font-weight: 400;
+        color: #0067b1;
+        margin-bottom: 32px;
+      }
+
+      .main-error-description {
+        font-size: 28px;
+        font-weight: 700;
+        color: #404040;
+        margin-bottom: 32px;
+      }
+
+      .main-error-second-description {
+        font-size: 16px;
+        color: #404040
+      }
+
+      .cta-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 70px 15px;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .cta-button {
+        width: 100%;
+        border: 1px solid #0067b1;
+        padding: 10.5px 21px;
+        border-radius: 4px;
+
+        font-family: Lato, Verdana, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .cta-button:link,
+      .cta-button:visited,
+      .cta-button:hover,
+      .cta-button:active {
+        text-decoration: none;
+      }
+
+      .button-1 {
+        background-color: #0067b1;
+        color: #ffffff;
+      }
+
+      .button-1:hover {
+        background-color: #0071c3;
+      }
+
+      .button-2 {
+        background-color: #ffffff;
+        color: #0067b1;
+      }
+
+      .button-2:hover {
+        background-color: #0067b1;
+        color: #ffffff;
+      }
+
+      @media (min-width: 768px) {
+        .cta-container {
+          flex-direction: row;
+          gap: 30px;
+        }
+
+        .cta-button {
+          width: 150px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="maintenance-error-page" class="maintenance-error-container">
+      <div class="error-text-container">
+        <p class="main-error-title">We are sorry </p>
+        <p class="main-error-description">
+          Sorry, we couldn't find the content you were looking for.
+        </p>
+        <p class="main-error-second-description">
+          It may have been moved or is no longer available.
+        </p>
+      </div>
+      <div class="cta-container">
+        <a
+          class="cta-button button-1"
+          href="/index.html"
+          target="_blank"
+        >
+          Back to Home Page
+        </a>
+        <a id="regularContactUs"
+          class="cta-button button-2"
+          href="/others/contact-us/index.html"
+          target="_blank"
+          >Contact Us</a
+        >
+		<a id="foundationContactUs"
+          class="cta-button button-2"
+          href="/contact-us/index.html"
+          target="_blank"
+          >Contact Us</a
+        >
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+	(function()
+	{
+		if(location.hostname.toLowerCase().indexOf("foundation") != -1){
+			document.getElementById('regularContactUs').style.display = 'none'
+		}
+		else{
+			document.getElementById('foundationContactUs').style.display = 'none'
+		}
+	}
+	)()
+</script>

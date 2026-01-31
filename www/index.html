@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>World Gold Price</title>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-gold: #fbbf24;
+            --accent-gold-glow: rgba(251, 191, 36, 0.2);
+            --danger: #ef4444;
+            --safe-area-top: env(safe-area-inset-top, 20px);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+            /* Prevent bounce scrolling on iOS except in scrollable areas */
+            overscroll-behavior-y: none;
+        }
+
+        /* --- Header --- */
+        header {
+            padding: calc(var(--safe-area-top) + 15px) 20px 20px 20px;
+            text-align: center;
+            background: rgba(15, 23, 42, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        h1 {
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin: 0;
+            background: linear-gradient(to right, #fde68a, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 20px;
+            top: calc(var(--safe-area-top) + 15px);
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0 10px;
+            line-height: 1;
+        }
+
+        /* --- Content Views --- */
+        .view {
+            display: none;
+            padding: 20px;
+            flex: 1;
+            animation: fadeIn 0.3s ease-out;
+            padding-bottom: 50px;
+            /* Space for bottom gesture bar */
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Home Menu Buttons --- */
+        .menu-grid {
+            display: grid;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+
+        .menu-btn {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: left;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .menu-btn:active {
+            transform: scale(0.98);
+            background-color: rgba(30, 41, 59, 0.8);
+        }
+
+        .menu-btn h3 {
+            color: var(--accent-gold);
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .menu-btn span {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+
+        /* --- Lists --- */
+        .list-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .list-item {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background-color 0.2s;
+        }
+
+        .list-item:active {
+            background-color: rgba(30, 41, 59, 0.8);
+        }
+
+        .list-item-title {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* --- Detail View Components --- */
+        .latest-price {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .price-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            border: 1px solid rgba(251, 191, 36, 0.1);
+        }
+
+        .price-label {
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .price-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            white-space: nowrap;
+        }
+
+        .price-value.spread {
+            color: var(--danger);
+        }
+
+        .chart-card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 15px;
+            height: 350px;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+        }
+
+        .placeholder-text {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 50px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <button id="back-btn" class="back-btn" onclick="goBack()" style="display: none;">←</button>
+        <h1 id="page-title">Gold Track</h1>
+    </header>
+
+    <!-- VIEW: HOME -->
+    <div id="view-home" class="view active">
+        <div class="menu-grid">
+            <div class="menu-btn" onclick="navigateTo('view-merchants')">
+                <h3>Merchants</h3>
+                <span>→</span>
+            </div>
+            <div class="menu-btn" onclick="navigateTo('view-portfolio')">
+                <h3>My Portfolio</h3>
+                <span>→</span>
+            </div>
+            <div class="menu-btn" onclick="navigateTo('view-settings')">
+                <h3>Settings</h3>
+                <span>→</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW: MERCHANT LIST -->
+    <div id="view-merchants" class="view">
+        <div class="list-group">
+            <div class="list-item" onclick="showMerchantDetail('public_gold', 'Public Gold')">
+                <span class="list-item-title">Public Gold</span>
+                <span style="color: var(--accent-gold);">View ></span>
+            </div>
+            <div class="list-item" onclick="showMerchantDetail('miga_i', 'MIGA-i')">
+                <span class="list-item-title">MIGA-i</span>
+                <span style="color: var(--accent-gold);">View ></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW: MERCHANT DETAIL -->
+    <div id="view-merchant-detail" class="view">
+        <h2 id="merchant-name"
+            style="text-align: center; margin-bottom: 20px; color: var(--text-secondary); font-weight: 300; font-size: 1.2rem;">
+            -</h2>
+
+        <div id="loading" style="text-align: center; color: var(--text-secondary);">Loading live data...</div>
+
+        <div id="detail-content" style="display: none;">
+            <div class="latest-price">
+                <div class="price-item">
+                    <div class="price-label">Sell (999)</div>
+                    <div class="price-value" id="val-sell">-</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-label">Buy (999)</div>
+                    <div class="price-value" id="val-buy">-</div>
+                </div>
+                <div class="price-item" style="border-color: rgba(239, 68, 68, 0.3);">
+                    <div class="price-label" style="color: #fca5a5;">Spread</div>
+                    <div class="price-value spread" id="val-spread">-</div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <canvas id="goldChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW: PORTFOLIO -->
+    <div id="view-portfolio" class="view">
+        <div class="placeholder-text">Coming Soon</div>
+    </div>
+
+    <!-- VIEW: SETTINGS -->
+    <div id="view-settings" class="view">
+        <div class="placeholder-text">Coming Soon</div>
+        <p style="text-align: center; color: var(--text-secondary); margin-top: 20px; font-size: 0.8rem;">
+            v1.0.0 (Mobile)
+        </p>
+    </div>
+
+    <script>
+        // --- Navigation Logic ---
+        const historyStack = ['view-home'];
+        let currentMerchantId = null;
+
+        function navigateTo(viewId) {
+            // Hide current
+            document.querySelector('.view.active').classList.remove('active');
+            // Show new
+            document.getElementById(viewId).classList.add('active');
+
+            historyStack.push(viewId);
+            updateHeader();
+        }
+
+        function goBack() {
+            if (historyStack.length > 1) {
+                const current = historyStack.pop();
+                document.getElementById(current).classList.remove('active');
+
+                const prev = historyStack[historyStack.length - 1];
+                document.getElementById(prev).classList.add('active');
+
+                updateHeader();
+            }
+        }
+
+        function updateHeader() {
+            const backBtn = document.getElementById('back-btn');
+
+            if (historyStack.length > 1) {
+                backBtn.style.display = 'block';
+            } else {
+                backBtn.style.display = 'none';
+            }
+        }
+
+        // --- Data Logic ---
+        // IMPORTANT: REMOTE URL FOR LIVE DATA IN MOBILE APP
+        const CSV_URL = 'https://hkindaichi.github.io/pg-gold-price-api/output/history.csv?v=' + new Date().getTime();
+
+        let chartInstance = null;
+
+        function showMerchantDetail(merchantId, merchantName) {
+            currentMerchantId = merchantId;
+            document.getElementById('merchant-name').innerText = merchantName;
+            navigateTo('view-merchant-detail');
+            loadData(merchantId);
+        }
+
+        async function loadData(merchantId) {
+            document.getElementById('loading').innerText = "Connecting to server...";
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('detail-content').style.display = 'none';
+
+            try {
+                const response = await fetch(CSV_URL);
+                if (!response.ok) throw new Error("Connection failed");
+                const text = await response.text();
+
+                Papa.parse(text, {
+                    header: true,
+                    skipEmptyLines: true,
+                    complete: function (res) {
+                        renderMerchantData(res.data, merchantId);
+                    },
+                    error: function (err) {
+                        throw err;
+                    }
+                });
+            } catch (e) {
+                document.getElementById('loading').innerHTML = "Unable to fetch data.<br><small>Check internet connection</small>";
+                console.error(e);
+            }
+        }
+
+        function renderMerchantData(data, merchantId) {
+            // Filter
+            const rows = data.filter(r => r.merchant === merchantId && r.item === '999');
+
+            if (rows.length === 0) {
+                document.getElementById('loading').innerText = "No data available.";
+                return;
+            }
+
+            rows.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+
+            // Latest
+            const latest = rows[rows.length - 1];
+            document.getElementById('val-sell').innerText = `RM ${latest.sell}`;
+            document.getElementById('val-buy').innerText = `RM ${latest.buy}`;
+            document.getElementById('val-spread').innerText = `RM ${latest.spread}`;
+
+            // Chart
+            const labels = rows.map(r => {
+                const d = new Date(r.timestamp);
+                return d.toLocaleDateString('en-MY', { month: 'short', day: 'numeric' }) + '\n' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            });
+            const sells = rows.map(r => parseFloat(r.sell));
+            const buys = rows.map(r => parseFloat(r.buy));
+            const spreads = rows.map(r => parseFloat(r.spread));
+
+            drawChart(labels, sells, buys, spreads);
+
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('detail-content').style.display = 'block';
+        }
+
+        function drawChart(labels, sells, buys, spreads) {
+            const ctx = document.getElementById('goldChart').getContext('2d');
+
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+            gradient.addColorStop(0, 'rgba(251, 191, 36, 0.4)');
+            gradient.addColorStop(1, 'rgba(251, 191, 36, 0.0)');
+
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Sell',
+                            data: sells,
+                            borderColor: '#fbbf24',
+                            backgroundColor: gradient,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 0,
+                            pointHitRadius: 20,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Buy',
+                            data: buys,
+                            borderColor: '#94a3b8',
+                            borderDash: [5, 5],
+                            tension: 0.4,
+                            fill: false,
+                            pointRadius: 0,
+                            yAxisID: 'y'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { labels: { color: '#cbd5e1', font: { size: 10 } } },
+                        tooltip: { backgroundColor: '#1e293b', titleColor: '#fbbf24', bodyFont: { size: 12 } }
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            ticks: {
+                                color: '#64748b',
+                                maxTicksLimit: 5,
+                                font: { size: 10 }
+                            },
+                            grid: { display: false }
+                        },
+                        y: {
+                            position: 'left',
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { color: '#fbbf24', font: { size: 10 } }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

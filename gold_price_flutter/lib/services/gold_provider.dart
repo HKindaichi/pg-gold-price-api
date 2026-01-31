@@ -1,0 +1,155 @@
+import 'package:flutter/material.dart';
+import '../models/gold_price.dart';
+import 'data_service.dart';
+
+class GoldProvider with ChangeNotifier {
+  final DataService _service = DataService();
+  
+  List<GoldRecord> _history = [];
+  bool _isLoading = false;
+  String? _error;
+
+  // UI State
+  String _selectedPurity = '999'; // '999', '916', 'Silver'
+  String _selectedRange = '7D'; // '7D', '1M', '6M', '1Y'
+  int _currentTabIndex = 0;
+
+  List<GoldRecord> get history => _history;
+  bool get isLoading => _isLoading;
+  String? get error => _error;
+  String get selectedPurity => _selectedPurity;
+  String get selectedRange => _selectedRange;
+  int get currentTabIndex => _currentTabIndex;
+
+  void setPurity(String purity) {
+    _selectedPurity = purity;
+    notifyListeners();
+  }
+
+  void setRange(String range) {
+    _selectedRange = range;
+    notifyListeners();
+  }
+
+  void setTabIndex(int index) {
+    _currentTabIndex = index;
+    notifyListeners();
+  }
+
+  Future<void> loadData() async {
+    _isLoading = true;
+    _error = null;
+    notifyListeners();
+
+    try {
+      _history = await _service.fetchGoldHistory();
+      _history.sort((a, b) => a.timestamp.compareTo(b.timestamp));
+    } catch (e) {
+      _error = e.toString();
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  // Helper to get latest record for dashboard (averaged or from a lead merchant)
+  GoldRecord? getLatestForDashboard() {
+    if (_selectedPurity == '999') {
+      var records = _history.where((r) => r.merchant == 'world_gold' && r.item == '999').toList();
+      if (records.isNotEmpty) return records.last;
+    }
+    if (_selectedPurity == '916') {
+      // 916 (22K) Logic: Calculate from World Spot 999 * 0.916
+      var records = _history.where((r) => r.merchant == 'world_gold' && r.item == '999').toList();
+      if (records.isNotEmpty) {
+        final r = records.last;
+        return GoldRecord(
+          timestamp: r.timestamp,
+          merchant: r.merchant,
+          item: '916',
+          sell: r.sell * 0.916,
+          buy: r.buy * 0.916,
+          spread: r.spread * 0.916
+        );
+      }
+    }
+    if (_selectedPurity == 'Silver') {
+      var records = _history.where((r) => r.merchant == 'world_silver' && r.item == 'Silver').toList();
+      if (records.isNotEmpty) return records.last;
+    }
+    var records = _history.where((r) => r.item == _selectedPurity && r.merchant != 'world_gold' && r.merchant != 'world_silver').toList();
+    if (records.isEmpty) return null;
+    return records.last;
+  }
+
+  List<GoldRecord> getHistoryForDashboard() {
+    List<GoldRecord> source;
+    if (_selectedPurity == '999') {
+      source = _history.where((r) => r.merchant == 'world_gold' && r.item == '999').toList();
+    } else if (_selectedPurity == '916') {
+         // 916 (22K) Logic: Calculate from World Spot 999 * 0.916
+        source = _history
+          .where((r) => r.merchant == 'world_gold' && r.item == '999')
+          .map((r) => GoldRecord(
+            timestamp: r.timestamp,
+            merchant: r.merchant,
+            item: '916',
+            sell: r.sell * 0.916,
+            buy: r.buy * 0.916,
+            spread: r.spread * 0.916
+          ))
+          .toList();
+    } else if (_selectedPurity == 'Silver') {
+      source = _history.where((r) => r.merchant == 'world_silver' && r.item == 'Silver').toList();
+    } else {
+      source = _history.where((r) => r.item == _selectedPurity && r.merchant != 'world_gold' && r.merchant != 'world_silver').toList();
+    }
+
+    if (source.isEmpty) return [];
+
+    // Filter by Range
+    DateTime now = DateTime.now();
+    DateTime threshold;
+
+    switch (_selectedRange) {
+      case '7D':
+        threshold = now.subtract(const Duration(days: 7));
+        break;
+      case '1M':
+        threshold = now.subtract(const Duration(days: 30));
+        break;
+      case '6M':
+        threshold = now.subtract(const Duration(days: 180));
+        break;
+      case '1Y':
+        threshold = now.subtract(const Duration(days: 365));
+        break;
+      default:
+        threshold = now.subtract(const Duration(days: 7));
+    }
+
+    return source.where((r) => r.timestamp.isAfter(threshold)).toList();
+  }
+
+  // Get unique merchants for the merchant list
+  List<String> getMerchants() {
+    return _history
+        .map((r) => r.merchant)
+        .where((m) => m != 'world_gold' && m != 'world_silver')
+        .toSet()
+        .toList();
+  }
+
+  GoldRecord? getLatestForMerchant(String merchant, String purity) {
+    var records = _history.where((r) => r.merchant == merchant && r.item == purity).toList();
+    if (records.isEmpty) return null;
+    return records.last;
+  }
+
+  // Aliases for compatibility with existing screens
+  GoldRecord? getLatest(String merchant) => getLatestForMerchant(merchant, _selectedPurity);
+
+  List<GoldRecord> getHistoryForMerchant(String merchant) {
+    return _history.where((r) => r.merchant == merchant && r.item == _selectedPurity).toList();
+  }
+}

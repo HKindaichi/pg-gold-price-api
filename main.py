@@ -4,277 +4,143 @@ import re
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-import requests
-from bs4 import BeautifulSoup
-
+from utils.common import now_my, format_updated_label, read_json_file
+from scrapers.base import GoldScraper
+from scrapers.public_gold import PublicGoldScraper
+from scrapers.miga_i import MigaiScraper
+from scrapers.cimb_egia import CimbEgiaScraper
+from scrapers.kab_gold import KabGoldScraper
+from scrapers.uob import UobScraper
+from scrapers.gb_gold import GbGoldScraper
+from scrapers.bank_islam import BigaScraper
+from scrapers.maa_gold import MaaGoldScraper
+from scrapers.world_gold import WorldGoldScraper
+from scrapers.world_silver import WorldSilverScraper
 
 # =========================
 # Config
 # =========================
-PUBLIC_GOLD_URL = "https://publicgold.com.my/"
 OUTPUT_PATH = os.path.join("output", "latest.json")
-
-# manual file for MIGA-i
-MIGAI_MANUAL_PATH = os.path.join("manual", "migai.json")
-
-TIMEZONE = "Asia/Kuala_Lumpur"
-
-
-# =========================
-# Helpers
-# =========================
-def now_my() -> datetime:
-    return datetime.now(ZoneInfo(TIMEZONE))
-
-
-def format_updated_label(dt: datetime) -> str:
-    now = now_my()
-    if dt.date() == now.date():
-        return f"Today {dt.strftime('%H:%M')}"
-    return dt.strftime("%Y-%m-%d %H:%M")
-
-
-def safe_float(text: str) -> float:
-    """
-    Convert '652.06', 'RM 652.06', '652.06 ' -> 652.06
-    """
-    if text is None:
-        raise ValueError("Empty number")
-    s = str(text).strip()
-    s = s.replace("RM", "").replace(",", "").strip()
-    m = re.search(r"(\d+(?:\.\d+)?)", s)
-    if not m:
-        raise ValueError(f"Cannot parse number from: {text}")
-    return float(m.group(1))
-
-
-def safe_int(text: str) -> int:
-    return int(round(safe_float(text)))
-
-
-def spread_value(sell: float, buy: float) -> float:
-    return round(float(sell) - float(buy), 2)
-
-
-def http_get(url: str) -> str:
-    r = requests.get(
-        url,
-        timeout=25,
-        headers={
-            "User-Agent": "Mozilla/5.0",
-            "Accept-Language": "en-US,en;q=0.9",
-        },
-    )
-    r.raise_for_status()
-    return r.text
-
-
-def read_json_file(path: str) -> dict:
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-
-# =========================
-# Scraper: Public Gold
-# =========================
-def pick_pg_jewel_table(soup: BeautifulSoup):
-    tables = soup.find_all("table")
-    for t in tables:
-        txt = t.get_text(" ", strip=True).upper()
-        has_headers = ("PURITY" in txt) and ("PG SELL" in txt) and ("PG BUY" in txt)
-        has_values = ("999" in txt) or ("916" in txt)
-        if has_headers and has_values:
-            return t
-    return None
-
-
-def scrape_public_gold_items() -> dict:
-    """
-    Output:
-      {
-        "999": {"sell": 699, "buy": 636, "spread": 63},
-        "916": {"sell": 665, "buy": 578, "spread": 87}
-      }
-    """
-    html = http_get(PUBLIC_GOLD_URL)
-    soup = BeautifulSoup(html, "html.parser")
-
-    table = pick_pg_jewel_table(soup)
-    if not table:
-        return {}
-
-    items = {}
-    for row in table.find_all("tr"):
-        cols = [c.get_text(strip=True) for c in row.find_all(["td", "th"])]
-        if len(cols) < 3:
-            continue
-
-        purity = cols[0].replace(" ", "")
-        if purity not in ["999", "916"]:
-            continue
-
-        sell = safe_int(cols[1])
-        buy = safe_int(cols[2])
-
-        items[purity] = {
-            "sell": sell,
-            "buy": buy,
-            "spread": int(round(sell - buy)),
-        }
-
-    return items
-
-
-# =========================
-# Manual: MIGA-i
-# =========================
-def load_migai_manual_items() -> tuple[dict, str | None]:
-    """
-    Reads manual/migai.json.
-
-    Expected format:
-    {
-      "updated_label": "Today 16:40",
-      "items": { "999": { "sell": 650.01, "buy": 625.26 } }
-    }
-
-    Returns: (items_dict_for_api, manual_updated_label_or_none)
-    items_dict_for_api:
-    {
-      "999": {"sell": 650.01, "buy": 625.26, "spread": 24.75}
-    }
-    """
-    if not os.path.exists(MIGAI_MANUAL_PATH):
-        return {}, None
-
-    try:
-        data = read_json_file(MIGAI_MANUAL_PATH)
-    except Exception:
-        return {}, None
-
-    items = (data or {}).get("items") or {}
-    if not isinstance(items, dict):
-        return {}, None
-
-    item_999 = items.get("999") or {}
-    if not isinstance(item_999, dict):
-        return {}, None
-
-    try:
-        sell = round(safe_float(item_999.get("sell")), 2)
-        buy = round(safe_float(item_999.get("buy")), 2)
-    except Exception:
-        return {}, None
-
-    out_items = {
-        "999": {
-            "sell": sell,
-            "buy": buy,
-            "spread": spread_value(sell, buy),
-        }
-    }
-
-    manual_label = data.get("updated_label")
-    if isinstance(manual_label, str) and manual_label.strip():
-        manual_label = manual_label.strip()
-    else:
-        manual_label = None
-
-    return out_items, manual_label
-
-
-# =========================
-# Build output JSON
-# =========================
-def build_payload() -> dict:
-    dt = now_my()
-    updated_label = format_updated_label(dt)
-
-    merchants = []
-
-    # Public Gold (auto)
-    pg_items = scrape_public_gold_items()
-    if pg_items:
-        merchants.append(
-            {
-                "id": "public_gold",
-                "name": "Public Gold",
-                "items": pg_items,
-            }
-        )
-
-    # MIGA-i (manual)
-    migai_items, migai_label = load_migai_manual_items()
-    if migai_items:
-        merchants.append(
-            {
-                "id": "miga_i",
-                "name": "MIGA-i",
-                "items": migai_items,
-            }
-        )
-
-        # Optional: if manual label exists, expose a separate field (does NOT break FlutterFlow)
-        # You can use this later if you want to show "MIGA-i Updated" separately.
-        if migai_label:
-            return {
-                "updated_label": updated_label,
-                "migai_updated_label": migai_label,
-                "merchants": merchants,
-            }
-
-    return {
-        "updated_label": updated_label,
-        "merchants": merchants,
-    }
-
-
+HISTORY_CSV_PATH = os.path.join("output", "history.csv")
 
 def write_output(payload: dict):
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     
-    # 1. Write latest.json (existing behavior)
+    # 1. Write latest.json
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
-    # 2. Append to history.csv
-    csv_path = os.path.join("output", "history.csv")
-    file_exists = os.path.isfile(csv_path)
-    
-    # We'll flatten the data for CSV: timestamp, merchant, item, sell, buy, spread
-    # format_updated_label returns "Today HH:MM" or "YYYY-MM-DD HH:MM". 
-    # For history, we prefer a standard ISO timestamp or similar.
+    # 2. Append to history.csv (Smart Mode: Skip duplicates)
+    file_exists = os.path.isfile(HISTORY_CSV_PATH)
     timestamp = now_my().strftime("%Y-%m-%d %H:%M:%S")
 
-    with open(csv_path, "a", encoding="utf-8") as f:
-        # Write header if new file
+    # Read last recorded prices to avoid consecutive duplicates
+    last_recorded = {}
+    if file_exists:
+        try:
+            with open(HISTORY_CSV_PATH, "r", encoding="utf-8") as f:
+                import csv
+                reader = csv.reader(f)
+                for row in reader:
+                    if len(row) >= 5 and row[0] != "timestamp":
+                        # timestamp, merchant, item, sell, buy, spread
+                        m_id = row[1]
+                        item_key = row[2]
+                        try:
+                            s_val = float(row[3])
+                            b_val = float(row[4])
+                            last_recorded[(m_id, item_key)] = (s_val, b_val)
+                        except ValueError:
+                            continue
+        except Exception as e:
+            print(f"Warning reading history for deduplication: {e}")
+
+    with open(HISTORY_CSV_PATH, "a", encoding="utf-8") as f:
         if not file_exists:
             f.write("timestamp,merchant,item,sell,buy,spread\n")
         
         for merchant in payload.get("merchants", []):
-            m_name = merchant["id"] # public_gold or miga_i
+            m_id = merchant["id"]
             items = merchant.get("items", {})
             for item_key, item_data in items.items():
-                # item_key is "999" or "916"
-                sell = item_data.get("sell", 0)
-                buy = item_data.get("buy", 0)
+                sell = float(item_data.get("sell", 0))
+                buy = float(item_data.get("buy", 0))
                 spread = item_data.get("spread", 0)
+
+                # Check for duplicate
+                last_entry = last_recorded.get((m_id, item_key))
                 
-                f.write(f"{timestamp},{m_name},{item_key},{sell},{buy},{spread}\n")
-
-
+                # Check if price changed
+                if last_entry:
+                    last_sell, last_buy = last_entry
+                    if last_sell == sell and last_buy == buy:
+                        # Exact same price as last record, SKIP
+                        continue
+                
+                # If new or changed, write it
+                f.write(f"{timestamp},{m_id},{item_key},{sell},{buy},{spread}\n")
+                print(f"Saved new history for {m_id} - {item_key}")
 
 def main():
-    payload = build_payload()
+    print("Starting Gold Scraper Job...")
+    
+    # 1. Register all scrapers
+    scrapers: list[GoldScraper] = [
+        PublicGoldScraper(),
+        MigaiScraper(),
+        CimbEgiaScraper(),
+        KabGoldScraper(),
+        UobScraper(),
+        GbGoldScraper(),
+        BigaScraper(),
+        MaaGoldScraper(),
+        WorldGoldScraper(),
+        WorldSilverScraper(),
+    ]
 
-    # if public gold missing, fail (so you notice)
-    has_pg = any(m.get("id") == "public_gold" for m in payload.get("merchants", []))
+    merchants = []
+    
+    # 2. Run each scraper
+    for scraper in scrapers:
+        print(f"Running scraper: {scraper.get_name()}...")
+        try:
+            result = scraper.scrape()
+            if isinstance(result, tuple):
+                items, last_updated = result
+            else:
+                items, last_updated = result, None
+
+            if items:
+                m_id = scraper.get_name().lower().replace(" ", "_").replace("-", "_")
+                merchant_data = {
+                    "id": m_id,
+                    "name": scraper.get_name(),
+                    "items": items
+                }
+                if last_updated:
+                    merchant_data["last_updated"] = last_updated
+                merchants.append(merchant_data)
+
+        except Exception as e:
+            print(f"Error running scraper {scraper.get_name()}: {e}")
+
+    # 3. Build Final Payload
+    dt = now_my()
+    updated_label = format_updated_label(dt)
+
+    payload = {
+        "updated_label": updated_label,
+        "merchants": merchants,
+    }
+
+    # 4. Mandatory check for Public Gold
+    has_pg = any(m.get("id") == "public_gold" for m in merchants)
     if not has_pg:
-        raise SystemExit("Public Gold missing. Scraper likely changed.")
+        print("WARNING: Public Gold missing from output.")
 
+    # 5. Write to file
     write_output(payload)
-    print(f"✅ Wrote {OUTPUT_PATH} with {len(payload['merchants'])} merchants.")
-
+    print(f"✅ Wrote {OUTPUT_PATH} and {HISTORY_CSV_PATH} with {len(merchants)} merchants.")
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,576 @@
+--- Found 'Gold Price' at line 4220 ---
+4210: </b>
+4211: </p>
+4212: <h3>
+4213: <span class="body-text-32">
+4214: <span style="color: rgb(76,131,122);">
+4215: Buy or Sell
+4216: </span>
+4217: </span>
+4218: <span style="color: rgb(50,50,50);">
+4219: <span class="body-text-24">
+4220: Your Target Gold Price
+4221: </span>
+4222: </span>
+4223: </h3>
+4224: </div>
+4225: <div class="btn-read-more btn-red">
+4226: <div class="btn mx-auto">
+4227: </div>
+4228: </div>
+4229: </div>
+4230: </div>
+4231: <div class="cmp-richText aem-GridColumn--phone--12 aem-GridColumn aem-GridColumn--default--5">
+4232: <div class="cmp-text !mt-1 md:!mt-3 md:!ml-3 md:!mr-3" data-component="text">
+4233: <div class="text-author-content">
+4234: <p>
+4235: via CIMB Clicks and we will execute the order for you
+4236: </p>
+4237: </div>
+4238: <div class="btn-read-more btn-red">
+4239: <div class="btn mx-auto">
+-------------------------------
+--- Found 'Gold Price' at line 4277 ---
+4267: <div class="btn mx-auto">
+4268: </div>
+4269: </div>
+4270: </div>
+4271: </div>
+4272: <div class="cmp-richText aem-GridColumn--phone--12 aem-GridColumn aem-GridColumn--default--4">
+4273: <div class="cmp-text !mt-1 md:!mt-3 md:!ml-5" data-component="text">
+4274: <div class="text-author-content">
+4275: <p>
+4276: <span class="body-text-18">
+4277: with Gold Price Appreciation
+4278: </span>
+4279: </p>
+4280: </div>
+4281: <div class="btn-read-more btn-red">
+4282: <div class="btn mx-auto">
+4283: </div>
+4284: </div>
+4285: </div>
+4286: </div>
+4287: </div>
+4288: </div>
+4289: <div class="cmp-emptyGap aem-GridColumn aem-GridColumn--default--12">
+4290: <div class="hidden md:block" style="margin-top:40px">
+4291: </div>
+4292: <div class="block md:hidden sm:block" style="margin-top:32px">
+4293: </div>
+4294: </div>
+4295: </div>
+4296: </div>
+-------------------------------
+--- Found 'Gold Price' at line 4322 ---
+4312: </h2>
+4313: </div>
+4314: <div class="btn-read-more btn-red">
+4315: <div class="btn mx-auto">
+4316: </div>
+4317: </div>
+4318: </div>
+4319: </div>
+4320: <div class="cmp-privilegeFeature variant-font-white aem-GridColumn aem-GridColumn--default--12">
+4321: <privilege-feature class="privilege-feature md:!mt-0 md:!mb-10 !mt-0 !mb-8 relative" data-component="privilege-feature" data-vue-default="{
+4322: 'listing': [{&quot;iconPath&quot;:&quot;/content/dam/cimb/personal/icons/malaysia/day-to-day-banking/icon_Better_Savings.svg&quot;,&quot;title&quot;:&quot;Affordable&quot;,&quot;description&quot;:&quot;\u003cp\u003eA low-cost option for investors looking to add precious metals to their investment portfolio, starting from just 1 gram.\u003c/p\u003e\r\n&quot;},{&quot;iconPath&quot;:&quot;/content/dam/cimb/personal/icons/malaysia/day-to-day-banking/currency-exchange-services/icon-phone-tap.svg&quot;,&quot;title&quot;:&quot;Liquid and Convenient with CIMB Clicks&quot;,&quot;description&quot;:&quot;\u003cp\u003eWith CIMB Clicks, you can buy and sell gold anytime, providing you with a liquid investment option that\u0027s always accessible.\u003c/p\u003e\r\n&quot;},{&quot;iconPath&quot;:&quot;/content/dam/cimb/personal/icons/malaysia/day-to-day-banking/investment-icons/icon-Capital-Gains.svg&quot;,&quot;title&quot;:&quot;Stay on Top of Gold Prices&quot;,&quot;description&quot;:&quot;\u003cp\u003eGet daily gold price updates and stay informed on market trends by subscribing to CIMB Clicks.\u003c/p\u003e\r\n\u003cp\u003e\u0026nbsp;\u003c/p\u003e\r\n\u003cp\u003eClick \u003ca data-modal\u003d\&quot;modalpopup\&quot; href\u003d\&quot;/content/cimb/malaysia/en/personal/wealth-management/investments/investment-products/e-gold-investment-account-egia/steps-to-subscribe.html\&quot;\u003e\u003cspan style\u003d\&quot;color: #ffffff;\&quot;\u003e\u003cu\u003ehere\u003c/u\u003e\u003c/span\u003e\u003c/a\u003e\u0026nbsp;to view steps to subscribe.\u003ca data-modal\u003d\&quot;modalpopup\&quot; href\u003d\&quot;/content/cimb/malaysia/en/personal/wealth-management/investments/investment-products/e-gold-investment-account-egia/steps-to-subscribe.html\&quot;\u003e\u003c/a\u003e\u003c/p\u003e\r\n&quot;},{&quot;iconPath&quot;:&quot;/content/dam/cimb/personal/icons/malaysia/day-to-day-banking/investment-icons/icon-Invest-and-Trade-Online.svg&quot;,&quot;title&quot;:&quot;Set Your Order, We Execute&quot;,&quot;description&quot;:&quot;\u003cp\u003eSet your target price, and we’ll automatically execute the transaction once it reaches your goal – save the hassle, no need to monitor it.\u003c/p\u003e\r\n&quot;}],
+4323: 'initialDisplayCount': 4,
+4324: }" inline-template="" v-cloak="">
+4325: <section>
+4326: <ul class="content-container list-none pl-0">
+4327: <li class="flex flex-wrap w-full md:w-1/2 mb-10 lg:mb-12" v-if="0 &lt; currentDisplayCount">
+4328: <div class="icon-section">
+4329: <svg class="icon-external w-16 h-12 icon-content">
+4330: <use data-use-external-svg="/content/dam/cimb/personal/icons/malaysia/day-to-day-banking/icon_Better_Savings.svg" xlink:href="">
+4331: </use>
+4332: </svg>
+4333: </div>
+4334: <div class="content">
+4335: <h6 class="mb-4">
+4336: Affordable
+4337: </h6>
+4338: <div class="description">
+4339: <p>
+4340: A low-cost option for investors looking to add precious metals to their investment portfolio, starting from just 1 gram.
+4341: </p>
+-------------------------------
+--- Found 'Gold Price' at line 4376 ---
+4366: </li>
+4367: <li class="flex flex-wrap w-full md:w-1/2 mb-10 lg:mb-12" v-if="2 &lt; currentDisplayCount">
+4368: <div class="icon-section">
+4369: <svg class="icon-external w-16 h-12 icon-content">
+4370: <use data-use-external-svg="/content/dam/cimb/personal/icons/malaysia/day-to-day-banking/investment-icons/icon-Capital-Gains.svg" xlink:href="">
+4371: </use>
+4372: </svg>
+4373: </div>
+4374: <div class="content">
+4375: <h6 class="mb-4">
+4376: Stay on Top of Gold Prices
+4377: </h6>
+4378: <div class="description">
+4379: <p>
+4380: Get daily gold price updates and stay informed on market trends by subscribing to CIMB Clicks.
+4381: </p>
+4382: <p>
+4383: </p>
+4384: <p>
+4385: Click
+4386: <a data-modal="modalpopup" href="/en/personal/wealth-management/investments/investment-products/e-gold-investment-account-egia/steps-to-subscribe.html">
+4387: <span style="color: rgb(255,255,255);">
+4388: <u>
+4389: here
+4390: </u>
+4391: </span>
+4392: </a>
+4393: to view steps to subscribe.
+4394: <a data-modal="modalpopup" href="/en/personal/wealth-management/investments/investment-products/e-gold-investment-account-egia/steps-to-subscribe.html">
+4395: </a>
+-------------------------------
+--- Found 'Gold Price' at line 4380 ---
+4370: <use data-use-external-svg="/content/dam/cimb/personal/icons/malaysia/day-to-day-banking/investment-icons/icon-Capital-Gains.svg" xlink:href="">
+4371: </use>
+4372: </svg>
+4373: </div>
+4374: <div class="content">
+4375: <h6 class="mb-4">
+4376: Stay on Top of Gold Prices
+4377: </h6>
+4378: <div class="description">
+4379: <p>
+4380: Get daily gold price updates and stay informed on market trends by subscribing to CIMB Clicks.
+4381: </p>
+4382: <p>
+4383: </p>
+4384: <p>
+4385: Click
+4386: <a data-modal="modalpopup" href="/en/personal/wealth-management/investments/investment-products/e-gold-investment-account-egia/steps-to-subscribe.html">
+4387: <span style="color: rgb(255,255,255);">
+4388: <u>
+4389: here
+4390: </u>
+4391: </span>
+4392: </a>
+4393: to view steps to subscribe.
+4394: <a data-modal="modalpopup" href="/en/personal/wealth-management/investments/investment-products/e-gold-investment-account-egia/steps-to-subscribe.html">
+4395: </a>
+4396: </p>
+4397: </div>
+4398: <a class="link cursor-pointer hover:no-underline font-bold" target="_blank">
+4399: </a>
+-------------------------------
+--- Found 'Gold Price' at line 4620 ---
+4610: </div>
+4611: </div>
+4612: <div class="responsivegrid aem-GridColumn--default--none aem-GridColumn--phone--none aem-GridColumn--phone--11 aem-GridColumn aem-GridColumn--default--12 aem-GridColumn--offset--phone--0 aem-GridColumn--offset--default--0">
+4613: <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 aem-Grid--phone--11">
+4614: <div class="cmp-richText aem-GridColumn--phone--11 aem-GridColumn aem-GridColumn--default--12">
+4615: <div class="cmp-text !mb-3" data-component="text">
+4616: <div class="text-author-content">
+4617: <h2>
+4618: <span class="body-text-32">
+4619: <b>
+4620: CIMB Bank Daily Gold Price
+4621: </b>
+4622: </span>
+4623: </h2>
+4624: </div>
+4625: <div class="btn-read-more btn-red">
+4626: <div class="btn mx-auto">
+4627: </div>
+4628: </div>
+4629: </div>
+4630: </div>
+4631: <div class="responsivegrid pr-0 xl:pr-12 aem-GridColumn--default--none aem-GridColumn--phone--none aem-GridColumn--phone--11 aem-GridColumn aem-GridColumn--default--6 aem-GridColumn--offset--phone--0 aem-GridColumn--offset--default--0">
+4632: <div class="aem-Grid aem-Grid--6 aem-Grid--default--6 aem-Grid--phone--11">
+4633: <div class="cmp-rates-charges aem-GridColumn--default--none aem-GridColumn--phone--none aem-GridColumn--phone--11 aem-GridColumn aem-GridColumn--default--6 aem-GridColumn--offset--phone--0 aem-GridColumn--offset--default--0">
+4634: <!-- SDI include (path: /content/cimb/malaysia/en/personal/wealth-management/investments/investment-products/e-gold-investment-account-egia/_jcr_content/root/responsivegrid_1918895993/responsivegrid_225273609/responsivegrid_955461848/rates_charges_copy_c.nocache.html/cimb/components/content/rates-charges, resourceType: cimb/components/content/rates-charges) -->
+4635: <div class="cmp-rates-charges rc-table lock-header table-content ignoreMobileRightPadding !mb-3" data-component="rates-charges-component">
+4636: <h3 class="mb-2">
+4637: </h3>
+4638: <p class="rc-description font-normal text-charcoal text-sm mb-2">
+4639: Last Updated: 5:10 pm, 27 Jan 2026, Tuesday
+-------------------------------
+--- Found 'Selling' at line 4652 ---
+4642: <!-- Rates and Charges : 3 Columns Table-->
+4643: <div class="table-3-col table-gold-investment relative">
+4644: <div class="table-scroll-area table-wrapper overflow-x-auto overflow-y-hidden relative">
+4645: <table border="1" cellpadding="1" cellspacing="0" width="100%">
+4646: <tbody>
+4647: <tr>
+4648: <th class="col-header">
+4649: Gold Type
+4650: </th>
+4651: <th class="col-header">
+4652: Bank Selling (RM/gram)
+4653: </th>
+4654: <th class="col-header">
+4655: Bank Buying (RM/gram)
+4656: </th>
+4657: </tr>
+4658: <tr>
+4659: <td>
+4660: CIMB Clicks
+4661: </td>
+4662: <td>
+4663: 660.2000
+4664: </td>
+4665: <td>
+4666: 631.0000
+4667: </td>
+4668: </tr>
+4669: <tr>
+4670: <td>
+4671: Branch/OTC
+-------------------------------
+--- Found 'Buying' at line 4655 ---
+4645: <table border="1" cellpadding="1" cellspacing="0" width="100%">
+4646: <tbody>
+4647: <tr>
+4648: <th class="col-header">
+4649: Gold Type
+4650: </th>
+4651: <th class="col-header">
+4652: Bank Selling (RM/gram)
+4653: </th>
+4654: <th class="col-header">
+4655: Bank Buying (RM/gram)
+4656: </th>
+4657: </tr>
+4658: <tr>
+4659: <td>
+4660: CIMB Clicks
+4661: </td>
+4662: <td>
+4663: 660.2000
+4664: </td>
+4665: <td>
+4666: 631.0000
+4667: </td>
+4668: </tr>
+4669: <tr>
+4670: <td>
+4671: Branch/OTC
+4672: </td>
+4673: <td>
+4674: 660.6000
+-------------------------------
+--- Found 'Gold Price' at line 4691 ---
+4681: </table>
+4682: </div>
+4683: </div>
+4684: </div>
+4685: </div>
+4686: <div class="cmp-richText aem-GridColumn--default--none aem-GridColumn--phone--none aem-GridColumn--phone--11 aem-GridColumn aem-GridColumn--default--6 aem-GridColumn--offset--phone--0 aem-GridColumn--offset--default--0">
+4687: <div class="cmp-text" data-component="text">
+4688: <div class="text-author-content">
+4689: <p>
+4690: <span class="body-text-2">
+4691: Disclaimer: Gold prices above are indicative prices and are subject to change without notice. Please check for the latest pricing via CIMB Clicks or at any CIMB Bank branch before performing any gold purchase or sale transactions.
+4692: </span>
+4693: </p>
+4694: </div>
+4695: <div class="btn-read-more btn-red">
+4696: <div class="btn mx-auto">
+4697: </div>
+4698: </div>
+4699: </div>
+4700: </div>
+4701: <div class="cmp-emptyGap aem-GridColumn--phone--11 aem-GridColumn aem-GridColumn--default--6">
+4702: <div class="hidden md:block" style="margin-top:40px">
+4703: </div>
+4704: <div class="block md:hidden sm:block" style="margin-top:32px">
+4705: </div>
+4706: </div>
+4707: </div>
+4708: </div>
+4709: <div class="responsivegrid aem-GridColumn--default--none aem-GridColumn--phone--none aem-GridColumn--phone--11 aem-GridColumn aem-GridColumn--default--6 aem-GridColumn--offset--phone--0 aem-GridColumn--offset--default--0">
+4710: <div class="aem-Grid aem-Grid--6 aem-Grid--default--6 aem-Grid--phone--11">
+-------------------------------
+--- Found 'Gold Price' at line 4716 ---
+4706: </div>
+4707: </div>
+4708: </div>
+4709: <div class="responsivegrid aem-GridColumn--default--none aem-GridColumn--phone--none aem-GridColumn--phone--11 aem-GridColumn aem-GridColumn--default--6 aem-GridColumn--offset--phone--0 aem-GridColumn--offset--default--0">
+4710: <div class="aem-Grid aem-Grid--6 aem-Grid--default--6 aem-Grid--phone--11">
+4711: <div class="cmp-richText aem-GridColumn--default--none aem-GridColumn--phone--11 aem-GridColumn--phone--newline aem-GridColumn aem-GridColumn--default--6 aem-GridColumn--offset--phone--0 aem-GridColumn--offset--default--0">
+4712: <div class="cmp-text md:!ml-16" data-component="text">
+4713: <div class="text-author-content">
+4714: <p>
+4715: <b>
+4716: Do You Know What Affects Gold Prices?
+4717: </b>
+4718: </p>
+4719: </div>
+4720: <div class="btn-read-more btn-red">
+4721: <div class="btn mx-auto">
+4722: </div>
+4723: </div>
+4724: </div>
+4725: </div>
+4726: <div class="cmp-image aem-GridColumn--default--none aem-GridColumn--phone--none aem-GridColumn--phone--11 aem-GridColumn aem-GridColumn--default--6 aem-GridColumn--offset--phone--0 aem-GridColumn--offset--default--0">
+4727: <div class="image-wrapper ignoreMobileXPadding image-left" data-template="/conf/cimb/settings/wcm/templates/product-detail-template">
+4728: <div class="aem-image md:!mr-12" data-alt="Harga Emas MYR" data-picture="">
+4729: <div data-media="(min-width: 320px)" data-src="/en/personal/wealth-management/investments/investment-products/e-gold-investment-account-egia/_jcr_content/root/responsivegrid_1918895993/responsivegrid_225273609/responsivegrid/image_988354781_copy.img.png/1749643292107/factors.png">
+4730: </div>
+4731: <div data-media="(min-width: 769px)" data-src="/content/dam/cimb/personal/images/malaysia/promo/egia/factors.png/jcr:content/renditions/original">
+4732: </div>
+4733: <div data-media="(min-width: 1281px)" data-src="/content/dam/cimb/personal/images/malaysia/promo/egia/factors.png/jcr:content/renditions/original">
+4734: </div>
+4735: </div>
+-------------------------------
+--- Found 'Gold Price' at line 4754 ---
+4744: </div>
+4745: <div class="block md:hidden sm:block" style="margin-top:32px">
+4746: </div>
+4747: </div>
+4748: <div class="cmp-richText aem-GridColumn aem-GridColumn--default--12">
+4749: <div class="cmp-text !mb-3" data-component="text">
+4750: <div class="text-author-content">
+4751: <h2>
+4752: <span class="body-text-32">
+4753: <b>
+4754: Gold Price Trend
+4755: </b>
+4756: </span>
+4757: </h2>
+4758: </div>
+4759: <div class="btn-read-more btn-red">
+4760: <div class="btn mx-auto">
+4761: </div>
+4762: </div>
+4763: </div>
+4764: </div>
+4765: <div class="responsivegrid aem-GridColumn aem-GridColumn--default--12">
+4766: <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 aem-Grid--phone--12">
+4767: <div class="responsivegrid aem-GridColumn--default--none aem-GridColumn--phone--none aem-GridColumn--phone--12 aem-GridColumn aem-GridColumn--default--6 aem-GridColumn--offset--phone--0 aem-GridColumn--offset--default--0">
+4768: <div class="aem-Grid aem-Grid--6 aem-Grid--default--6 aem-Grid--phone--12">
+4769: <div class="cmp-richText aem-GridColumn--default--none aem-GridColumn--phone--12 aem-GridColumn--phone--newline aem-GridColumn aem-GridColumn--default--5 aem-GridColumn--offset--phone--0 aem-GridColumn--offset--default--0">
+4770: <div class="cmp-text !mt-4 !mb-2" data-component="text">
+4771: <div class="text-author-content">
+4772: <h5>
+4773: <b>
+-------------------------------
+--- Found 'Gold Price' at line 4775 ---
+4765: <div class="responsivegrid aem-GridColumn aem-GridColumn--default--12">
+4766: <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 aem-Grid--phone--12">
+4767: <div class="responsivegrid aem-GridColumn--default--none aem-GridColumn--phone--none aem-GridColumn--phone--12 aem-GridColumn aem-GridColumn--default--6 aem-GridColumn--offset--phone--0 aem-GridColumn--offset--default--0">
+4768: <div class="aem-Grid aem-Grid--6 aem-Grid--default--6 aem-Grid--phone--12">
+4769: <div class="cmp-richText aem-GridColumn--default--none aem-GridColumn--phone--12 aem-GridColumn--phone--newline aem-GridColumn aem-GridColumn--default--5 aem-GridColumn--offset--phone--0 aem-GridColumn--offset--default--0">
+4770: <div class="cmp-text !mt-4 !mb-2" data-component="text">
+4771: <div class="text-author-content">
+4772: <h5>
+4773: <b>
+4774: <span class="body-text-24">
+4775: Gold Price in MYR
+4776: </span>
+4777: </b>
+4778: </h5>
+4779: </div>
+4780: <div class="btn-read-more btn-red">
+4781: <div class="btn mx-auto">
+4782: </div>
+4783: </div>
+4784: </div>
+4785: </div>
+4786: <div class="cmp-image aem-GridColumn--default--none aem-GridColumn--phone--6 aem-GridColumn aem-GridColumn--default--6 aem-GridColumn--offset--default--0">
+4787: <div class="image-wrapper ignoreMobileXPadding image-left" data-template="/conf/cimb/settings/wcm/templates/product-detail-template">
+4788: <div class="aem-image !ml-4 !mr-4 md:!ml-0 md:!mr-0" data-alt="Harga Emas MYR" data-picture="">
+4789: <div data-media="(min-width: 320px)" data-src="/content/dam/cimb/personal/documents/investment/e-gia/gldmyroct.png/jcr:content/renditions/original">
+4790: </div>
+4791: <div data-media="(min-width: 769px)" data-src="/content/dam/cimb/personal/documents/investment/e-gia/gldmyroct.png/jcr:content/renditions/original">
+4792: </div>
+4793: <div data-media="(min-width: 1281px)" data-src="/content/dam/cimb/personal/documents/investment/e-gia/gldmyroct.png/jcr:content/renditions/original">
+4794: </div>
+-------------------------------
+--- Found 'Gold Price' at line 4808 ---
+4798: </div>
+4799: </div>
+4800: <div class="responsivegrid aem-GridColumn--default--none aem-GridColumn--phone--none aem-GridColumn--phone--12 aem-GridColumn aem-GridColumn--default--6 aem-GridColumn--offset--phone--0 aem-GridColumn--offset--default--0">
+4801: <div class="aem-Grid aem-Grid--6 aem-Grid--default--6 aem-Grid--phone--12">
+4802: <div class="cmp-richText aem-GridColumn--default--none aem-GridColumn--phone--12 aem-GridColumn--phone--newline aem-GridColumn aem-GridColumn--default--6 aem-GridColumn--offset--phone--0 aem-GridColumn--offset--default--0">
+4803: <div class="cmp-text !mt-4 !mb-2" data-component="text">
+4804: <div class="text-author-content">
+4805: <h5>
+4806: <b>
+4807: <span class="body-text-24">
+4808: Gold Price in USD
+4809: </span>
+4810: </b>
+4811: </h5>
+4812: </div>
+4813: <div class="btn-read-more btn-red">
+4814: <div class="btn mx-auto">
+4815: </div>
+4816: </div>
+4817: </div>
+4818: </div>
+4819: <div class="cmp-image aem-GridColumn--default--none aem-GridColumn--phone--none aem-GridColumn--phone--12 aem-GridColumn aem-GridColumn--default--6 aem-GridColumn--offset--phone--0 aem-GridColumn--offset--default--0">
+4820: <div class="image-wrapper ignoreMobileXPadding image-left" data-template="/conf/cimb/settings/wcm/templates/product-detail-template">
+4821: <div class="aem-image !ml-4 !mr-4 md:!ml-0 md:!mr-2" data-alt="Gold Price USD" data-picture="">
+4822: <div data-media="(min-width: 320px)" data-src="/content/dam/cimb/personal/documents/investment/e-gia/xauusdoct.png/jcr:content/renditions/original">
+4823: </div>
+4824: <div data-media="(min-width: 769px)" data-src="/content/dam/cimb/personal/documents/investment/e-gia/xauusdoct.png/jcr:content/renditions/original">
+4825: </div>
+4826: <div data-media="(min-width: 1281px)" data-src="/content/dam/cimb/personal/documents/investment/e-gia/xauusdoct.png/jcr:content/renditions/original">
+4827: </div>
+-------------------------------
+--- Found 'Gold Price' at line 4821 ---
+4811: </h5>
+4812: </div>
+4813: <div class="btn-read-more btn-red">
+4814: <div class="btn mx-auto">
+4815: </div>
+4816: </div>
+4817: </div>
+4818: </div>
+4819: <div class="cmp-image aem-GridColumn--default--none aem-GridColumn--phone--none aem-GridColumn--phone--12 aem-GridColumn aem-GridColumn--default--6 aem-GridColumn--offset--phone--0 aem-GridColumn--offset--default--0">
+4820: <div class="image-wrapper ignoreMobileXPadding image-left" data-template="/conf/cimb/settings/wcm/templates/product-detail-template">
+4821: <div class="aem-image !ml-4 !mr-4 md:!ml-0 md:!mr-2" data-alt="Gold Price USD" data-picture="">
+4822: <div data-media="(min-width: 320px)" data-src="/content/dam/cimb/personal/documents/investment/e-gia/xauusdoct.png/jcr:content/renditions/original">
+4823: </div>
+4824: <div data-media="(min-width: 769px)" data-src="/content/dam/cimb/personal/documents/investment/e-gia/xauusdoct.png/jcr:content/renditions/original">
+4825: </div>
+4826: <div data-media="(min-width: 1281px)" data-src="/content/dam/cimb/personal/documents/investment/e-gia/xauusdoct.png/jcr:content/renditions/original">
+4827: </div>
+4828: </div>
+4829: </div>
+4830: </div>
+4831: </div>
+4832: </div>
+4833: <div class="cmp-emptyGap aem-GridColumn aem-GridColumn--default--12">
+4834: <div class="hidden md:block" style="margin-top:40px">
+4835: </div>
+4836: <div class="block md:hidden sm:block" style="margin-top:32px">
+4837: </div>
+4838: </div>
+4839: <div class="cmp-richText aem-GridColumn--phone--12 aem-GridColumn--phone--newline aem-GridColumn aem-GridColumn--default--12 aem-GridColumn--offset--phone--0">
+4840: <div class="cmp-text" data-component="text">
+-------------------------------
+--- Found 'Price *' at line 4904 ---
+4894: </th>
+4895: <th>
+4896: Nov
+4897: </th>
+4898: <th>
+4899: Dec
+4900: </th>
+4901: </tr>
+4902: <tr>
+4903: <td>
+4904: Price *
+4905: </td>
+4906: <td>
+4907: 401.04
+4908: </td>
+4909: <td>
+4910: 410.02
+4911: </td>
+4912: <td>
+4913: 445.30
+4914: </td>
+4915: <td>
+4916: 456.33
+4917: </td>
+4918: <td>
+4919: 450.16
+4920: </td>
+4921: <td>
+4922: 447.04
+4923: </td>
+-------------------------------
+--- Found 'Price *' at line 5036 ---
+5026: </th>
+5027: <th>
+5028: Nov
+5029: </th>
+5030: <th>
+5031: Dec
+5032: </th>
+5033: </tr>
+5034: <tr>
+5035: <td>
+5036: Price *
+5037: </td>
+5038: <td>
+5039: 2,793.84
+5040: </td>
+5041: <td>
+5042: 2,857.83
+5043: </td>
+5044: <td>
+5045: 3,123.57
+5046: </td>
+5047: <td>
+5048: 3,288.71
+5049: </td>
+5050: <td>
+5051: 3,289.25
+5052: </td>
+5053: <td>
+5054: 3,303.14
+5055: </td>
+-------------------------------
+--- Found 'Daily Price' at line 5882 ---
+5872: </div>
+5873: <div class="btn-read-more btn-red">
+5874: <div class="btn mx-auto">
+5875: </div>
+5876: </div>
+5877: </div>
+5878: </div>
+5879: <div class="cmp-ctabutton btn-black-text-more aem-GridColumn--phone--6 aem-GridColumn aem-GridColumn--tablet--6 aem-GridColumn--default--6">
+5880: <div class="cta-inner !mb-3">
+5881: <a class="btn" data-cta-anchor="" href="/en/personal/help-support/rates-charges/interest-rates-charges/interest-rates/gold-investment-account.html" target="_blank">
+5882: CIMB Bank e-Gold Investment Account - Daily Price
+5883: <svg class="icon-bytesize btn-iconArrow ml-2 inline-block" height="25" width="15">
+5884: <use stroke-width="3.5px" xlink:href="#i-chevron-right">
+5885: </use>
+5886: </svg>
+5887: </a>
+5888: </div>
+5889: </div>
+5890: <div class="cmp-ctabutton btn-black-text-more aem-GridColumn--phone--6 aem-GridColumn aem-GridColumn--tablet--6 aem-GridColumn--default--6">
+5891: <div class="cta-inner !mb-3">
+5892: <a class="btn" data-cta-anchor="" href="/en/personal/help-support/rates-charges/interest-rates-charges/fees-charges/e-gold-investment-account-egia-.html" target="_blank">
+5893: CIMB Bank e-Gold Investment Account - Rates &amp; Charges
+5894: <svg class="icon-bytesize btn-iconArrow ml-2 inline-block" height="25" width="15">
+5895: <use stroke-width="3.5px" xlink:href="#i-chevron-right">
+5896: </use>
+5897: </svg>
+5898: </a>
+5899: </div>
+5900: </div>
+5901: <div class="cmp-richText aem-GridColumn--phone--6 aem-GridColumn aem-GridColumn--tablet--6 aem-GridColumn--default--6">
+-------------------------------
+--- Found 'Gold Price' at line 5947 ---
+5937: <div class="html-component aem-GridColumn--phone--6 aem-GridColumn aem-GridColumn--tablet--6 aem-GridColumn--default--6">
+5938: <style>
+5939: // CSS code write here
+5940: </style>
+5941: <div class="a" style="border:1px solid black; font-weight: 700; font-family: Arial; font-size: 12pt;">
+5942: <br/>
+5943: <b style="text-decoration: underline; ">
+5944: WARNING
+5945: </b>
+5946: <br/>
+5947: THE e-GOLD INVESTMENT ACCOUNT (“eGIA”) IS NOT A PRINCIPAL PROTECTED PRODUCT NOR AN INTEREST BEARING ACCOUNT. THE RETURNS ON THE eGIA DEPENDS ON GOLD PRICE FLUCTUATIONS, THE RETURNS ON YOUR INVESTMENT IN GOLD ARE UNCERTAIN AND YOU RISK EARNING NO RETURNS AND/OR THE POSSIBILITY OF INCURRING LOSSES. YOU ARE ADVISED TO READ AND UNDERSTAND THE CONTENTS OF THE CIMB BANK e-GOLD INVESTMENT ACCOUNT AGREEMENT AND OPEN THE e-GIA BASED ON YOUR OWN JUDGEMENT AND/OR INDEPENDENT ADVICE OBTAINED. THIS PRODUCT IS NOT PROTECTED BY PERBADANAN INSURANS DEPOSIT MALAYSIA.
+5948: <br/>
+5949: <br/>
+5950: MEMBER OF PIDM.
+5951: </div>
+5952: <br/>
+5953: <script>
+5954: // JS code write here
+5955: </script>
+5956: </div>
+5957: <div class="cmp-emptyGap aem-GridColumn--phone--6 aem-GridColumn aem-GridColumn--tablet--6 aem-GridColumn--default--6">
+5958: <div class="hidden md:block" style="margin-top:40px">
+5959: </div>
+5960: <div class="block md:hidden sm:block" style="margin-top:32px">
+5961: </div>
+5962: </div>
+5963: </div>
+5964: </div>
+5965: <div class="responsivegrid aem-GridColumn aem-GridColumn--default--12">
+5966: <div class="aem-Grid aem-Grid--12 aem-Grid--default--12">
+-------------------------------

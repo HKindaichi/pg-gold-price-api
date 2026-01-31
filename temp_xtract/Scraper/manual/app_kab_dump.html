@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-nav-layout="horizontal" data-theme-mode="light" data-header-styles="dark" data-menu-styles="dark" data-toggled="close" style="--primary-rgb: 187, 134, 44;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Products | KABGOLD ®</title>
+    <link rel="shortcut icon" href="/media/img/favicon-16x16.png" />
+    <script src="/assets/v2/js/main.js"></script>
+    <link id="style" href="/assets/v2/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/v2/css/styles.min.css" rel="stylesheet">
+    <link href="/assets/v2/css/icons.css" rel="stylesheet">
+    <link href="/assets/v2/libs/node-waves/waves.min.css" rel="stylesheet">
+    <link href="/assets/v2/libs/simplebar/simplebar.min.css" rel="stylesheet">
+    <link href="/assets/app/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <script src="/assets/app/libs/jquery/jquery.min.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+<link rel="stylesheet" href="/assets/v2/libs/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" href="/media/plugins/simplepagination/simplePagination.css">
+
+        <script type="text/javascript" src="/media/plugins/simplepagination/jquery.simplePagination.js"></script>
+
+            <style>
+        .landing-body .app-sidebar {
+            inset-block-start: 0;
+            padding: .5rem 0;
+            height: auto !important;
+            background-color: #000;
+            box-shadow: none;
+            -webkit-border-end: 0;
+            border-inline-end: 0;
+        }
+
+        .landing-body .landing-banner {
+            position: relative;
+            width: 100%;
+            height: 37rem;
+            inset-block-start: 0;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .product-card .card-body {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 200px;
+            /* Set a fixed height */
+            object-fit: cover;
+            /* Ensures consistent image display */
+        }
+    </style>
+</head>
+
+<body class="landing-body">
+    <div class="landing-page-wrapper">
+
+        <!-- app-header -->
+        <header class="app-header">
+
+            <!-- Start::main-header-container -->
+            <div class="main-header-container container-fluid">
+
+                <!-- Start::header-content-left -->
+                <div class="header-content-left">
+
+                    <!-- Start::header-element -->
+                    <div class="header-element">
+                        <div class="horizontal-logo">
+                            <a href="index.html" class="header-logo">
+                                <img src="https://kabgold.my/wp-content/uploads/2024/05/logo-kabgold-horizontal-480x125.png" alt="logo" class="toggle-logo">
+                                <img src="https://kabgold.my/wp-content/uploads/2024/05/logo-kabgold-horizontal-480x125.png" alt="logo" class="toggle-dark">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- End::header-element -->
+
+                    <!-- Start::header-element -->
+                    <div class="header-element">
+                        <!-- Start::header-link -->
+                        <a href="javascript:void(0);" class="sidemenu-toggle header-link" data-bs-toggle="sidebar">
+                            <span class="open-toggle">
+                                <i class="ri-menu-3-line fs-20"></i>
+                            </span>
+                        </a>
+                        <!-- End::header-link -->
+                    </div>
+                    <!-- End::header-element -->
+
+                </div>
+                <!-- End::header-content-left -->
+
+                <!-- Start::header-content-right -->
+                <div class="header-content-right">
+
+                    <!-- Start::header-element -->
+                    <div class="header-element align-items-center">
+                        <!-- Start::header-link|switcher-icon -->
+                        <div class="btn-list d-lg-none d-block">
+                            <a href="sign-up-basic.html" class="btn btn-primary-light">
+                                Sign Up
+                            </a>
+                            <button class="btn btn-icon btn-success" data-bs-toggle="offcanvas" data-bs-target="#switcher-canvas">
+                                <i class="ri-settings-3-line"></i>
+                            </button>
+                        </div>
+                        <!-- End::header-link|switcher-icon -->
+                    </div>
+                    <!-- End::header-element -->
+
+                </div>
+                <!-- End::header-content-right -->
+
+            </div>
+            <!-- End::main-header-container -->
+
+        </header>
+        <!-- /app-header -->
+
+        <!-- Start::app-sidebar -->
+        <aside class="app-sidebar sticky" id="sidebar">
+
+            <div class="container p-0">
+                <!-- Start::main-sidebar -->
+                <div class="main-sidebar">
+
+                    <!-- Start::nav -->
+                    <nav class="main-menu-container nav nav-pills sub-open">
+                        <div class="landing-logo-container">
+                            <div class="horizontal-logo">
+                                <a href="index.html" class="header-logo">
+                                    <img src="https://kabgold.my/wp-content/uploads/2024/05/logo-kabgold-horizontal-480x125.png" alt="logo" class="desktop-logo">
+                                    <img src="https://kabgold.my/wp-content/uploads/2024/05/logo-kabgold-horizontal-480x125.png" alt="logo" class="desktop-white">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="slide-left" id="slide-left"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
+                            </svg></div>
+
+                        <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
+                            </svg></div>
+                        <div class="d-lg-flex d-none">
+                            <div class="btn-list d-lg-flex d-none mt-lg-2 mt-xl-0 mt-0">
+                                <a href="/auth" class="btn btn-wave btn-primary">
+                                    Sign In
+                                </a>
+                                <a href="/register" class="btn btn-wave btn-primary">
+                                    Join Now
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+                    <!-- End::nav -->
+
+                </div>
+                <!-- End::main-sidebar -->
+            </div>
+
+        </aside>
+
+        <div class="main-content landing-main">
+            <section class="section mt-5" id="title">
+                <div class="container text-center mt-5">
+                    <p class="fs-12 fw-semibold text-success mb-1"><span class="landing-section-heading">PRODUK</span></p>
+                    <h3 class="fw-semibold mb-2">PRODUK-PRODUK KAB GOLD</h3>
+                    <div class="row justify-content-center">
+                        <div class="col-xl-7">
+                            <p class="text-muted fs-15 mb-3 fw-normal">SYARIKAT EMAS BUMIPUTERA ISLAM YANG BERPANDUKAN SYARIAH</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="container">
+                <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb"><h1 class="page-title fw-semibold fs-18 mb-0"></h1><div class="ms-md-1 ms-0"><nav aria-label="breadcrumb"><ol class="breadcrumb m-0"></ol></nav></div></div>
+<div class="my-4">
+    <!--  -->
+    <div class="row">
+        <div class="col-xl-12" id="productContainer">
+            <!-- Products will be dynamically loaded here -->
+                        <div class="row" id="productRow">
+                                <div class="col-xxl-3 col-md-6 col-sm-12" id="posts">
+                    <div class="card custom-card product-card">
+                        <div class="card-body">
+                            <div class="product-image">
+                                <img src="https://panel.kabgold.my/media/shop/KABGOLD%20Collar%20Pin%20V1/DSC_7877.jpg.jpg" class="card-img mb-3" alt="...">
+                            </div>
+                            <p class="product-name fw-semibold mb-1 d-flex align-items-center justify-content-between text-uppercase">
+                                <a class="text-reset text-decoration-underline" href="product/view/192">kab gold logo collar pin</a>
+                            </p>
+                            <p class="product-description fs-11 text-muted mb-2">
+                                Has Variant
+                            </p>
+
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Sell Price <span class="fw-bold pricing" data-id="192">0</span>
+                            </p>
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Buy Price <span class="fw-bold buy_price" data-id="192">0</span>
+                            </p>
+
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Premium Fee : N/A
+                            </p>
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Stock : Has Variant
+                            </p>
+                        </div>
+                        <div class="card-footer text-center">
+                        </div>
+                    </div>
+                </div>
+                                <div class="col-xxl-3 col-md-6 col-sm-12" id="posts">
+                    <div class="card custom-card product-card">
+                        <div class="card-body">
+                            <div class="product-image">
+                                <img src="https://panel.kabgold.my/media/shop/KAB%20Woven%20Bag%20V1/kabgold-wovenbag3.png" class="card-img mb-3" alt="...">
+                            </div>
+                            <p class="product-name fw-semibold mb-1 d-flex align-items-center justify-content-between text-uppercase">
+                                <a class="text-reset text-decoration-underline" href="product/view/191">kab gold woven bag v1</a>
+                            </p>
+                            <p class="product-description fs-11 text-muted mb-2">
+                                Has Variant
+                            </p>
+
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Sell Price <span class="fw-bold pricing" data-id="191">0</span>
+                            </p>
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Buy Price <span class="fw-bold buy_price" data-id="191">0</span>
+                            </p>
+
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Premium Fee : N/A
+                            </p>
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Stock : Has Variant
+                            </p>
+                        </div>
+                        <div class="card-footer text-center">
+                        </div>
+                    </div>
+                </div>
+                                <div class="col-xxl-3 col-md-6 col-sm-12" id="posts">
+                    <div class="card custom-card product-card">
+                        <div class="card-body">
+                            <div class="product-image">
+                                <img src="https://panel.kabgold.my/media/shop/FB_IMG_1766662381161.jpg" class="card-img mb-3" alt="...">
+                            </div>
+                            <p class="product-name fw-semibold mb-1 d-flex align-items-center justify-content-between text-uppercase">
+                                <a class="text-reset text-decoration-underline" href="product/view/186">kalendar eksklusif kabgold 2026</a>
+                            </p>
+                            <p class="product-description fs-11 text-muted mb-2">
+                                Has Variant
+                            </p>
+
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Sell Price <span class="fw-bold pricing" data-id="186">0</span>
+                            </p>
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Buy Price <span class="fw-bold buy_price" data-id="186">0</span>
+                            </p>
+
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Premium Fee : N/A
+                            </p>
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Stock : Has Variant
+                            </p>
+                        </div>
+                        <div class="card-footer text-center">
+                        </div>
+                    </div>
+                </div>
+                                <div class="col-xxl-3 col-md-6 col-sm-12" id="posts">
+                    <div class="card custom-card product-card">
+                        <div class="card-body">
+                            <div class="product-image">
+                                <img src="https://panel.kabgold.my/media/shop/yesgoldbar0.5.jpg" class="card-img mb-3" alt="...">
+                            </div>
+                            <p class="product-name fw-semibold mb-1 d-flex align-items-center justify-content-between text-uppercase">
+                                <a class="text-reset text-decoration-underline" href="product/view/185">pelbagai 0.5g</a>
+                            </p>
+                            <p class="product-description fs-11 text-muted mb-2">
+                                Has Variant
+                            </p>
+
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Sell Price <span class="fw-bold pricing" data-id="185">0</span>
+                            </p>
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Buy Price <span class="fw-bold buy_price" data-id="185">0</span>
+                            </p>
+
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Premium Fee : N/A
+                            </p>
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Stock : Has Variant
+                            </p>
+                        </div>
+                        <div class="card-footer text-center">
+                        </div>
+                    </div>
+                </div>
+                                <div class="col-xxl-3 col-md-6 col-sm-12" id="posts">
+                    <div class="card custom-card product-card">
+                        <div class="card-body">
+                            <div class="product-image">
+                                <img src="https://panel.kabgold.my/media/shop/yesgoldbar1.jpg" class="card-img mb-3" alt="...">
+                            </div>
+                            <p class="product-name fw-semibold mb-1 d-flex align-items-center justify-content-between text-uppercase">
+                                <a class="text-reset text-decoration-underline" href="product/view/184">pelbagai 1 gram</a>
+                            </p>
+                            <p class="product-description fs-11 text-muted mb-2">
+                                Has Variant
+                            </p>
+
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Sell Price <span class="fw-bold pricing" data-id="184">0</span>
+                            </p>
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Buy Price <span class="fw-bold buy_price" data-id="184">0</span>
+                            </p>
+
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Premium Fee : N/A
+                            </p>
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Stock : Has Variant
+                            </p>
+                        </div>
+                        <div class="card-footer text-center">
+                        </div>
+                    </div>
+                </div>
+                                <div class="col-xxl-3 col-md-6 col-sm-12" id="posts">
+                    <div class="card custom-card product-card">
+                        <div class="card-body">
+                            <div class="product-image">
+                                <img src="https://panel.kabgold.my/media/shop/kabrajaperlis1gram.png" class="card-img mb-3" alt="...">
+                            </div>
+                            <p class="product-name fw-semibold mb-1 d-flex align-items-center justify-content-between text-uppercase">
+                                <a class="text-reset text-decoration-underline" href="product/view/182">gold bar 1g raja perlis</a>
+                            </p>
+                            <p class="product-description fs-11 text-muted mb-2">
+                                KAB1G-JPRP
+                            </p>
+
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Sell Price <span class="fw-bold pricing" data-id="182">0</span>
+                            </p>
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Buy Price <span class="fw-bold buy_price" data-id="182">0</span>
+                            </p>
+
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Premium Fee : RM 30.00
+                            </p>
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Stock : 36
+                            </p>
+                        </div>
+                        <div class="card-footer text-center">
+                        </div>
+                    </div>
+                </div>
+                                <div class="col-xxl-3 col-md-6 col-sm-12" id="posts">
+                    <div class="card custom-card product-card">
+                        <div class="card-body">
+                            <div class="product-image">
+                                <img src="https://panel.kabgold.my/media/shop/kabrajaperlis05gram.png" class="card-img mb-3" alt="...">
+                            </div>
+                            <p class="product-name fw-semibold mb-1 d-flex align-items-center justify-content-between text-uppercase">
+                                <a class="text-reset text-decoration-underline" href="product/view/181">gold bar 0.5g raja perlis</a>
+                            </p>
+                            <p class="product-description fs-11 text-muted mb-2">
+                                KAB05G-JPRP
+                            </p>
+
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Sell Price <span class="fw-bold pricing" data-id="181">0</span>
+                            </p>
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Buy Price <span class="fw-bold buy_price" data-id="181">0</span>
+                            </p>
+
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Premium Fee : RM 30.00
+                            </p>
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Stock : 41
+                            </p>
+                        </div>
+                        <div class="card-footer text-center">
+                        </div>
+                    </div>
+                </div>
+                                <div class="col-xxl-3 col-md-6 col-sm-12" id="posts">
+                    <div class="card custom-card product-card">
+                        <div class="card-body">
+                            <div class="product-image">
+                                <img src="https://panel.kabgold.my/media/shop/WhatsApp%20Image%202025-06-05%20at%2020.56.29_b820cda3.jpg" class="card-img mb-3" alt="...">
+                            </div>
+                            <p class="product-name fw-semibold mb-1 d-flex align-items-center justify-content-between text-uppercase">
+                                <a class="text-reset text-decoration-underline" href="product/view/180">gold bar 1kg</a>
+                            </p>
+                            <p class="product-description fs-11 text-muted mb-2">
+                                KAB1KG
+                            </p>
+
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Sell Price <span class="fw-bold pricing" data-id="180">0</span>
+                            </p>
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Buy Price <span class="fw-bold buy_price" data-id="180">0</span>
+                            </p>
+
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Premium Fee : RM 300.00
+                            </p>
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Stock : 2
+                            </p>
+                        </div>
+                        <div class="card-footer text-center">
+                        </div>
+                    </div>
+                </div>
+                                <div class="col-xxl-3 col-md-6 col-sm-12" id="posts">
+                    <div class="card custom-card product-card">
+                        <div class="card-body">
+                            <div class="product-image">
+                                <img src="https://panel.kabgold.my/media/shop/2025klasik05gram.png" class="card-img mb-3" alt="...">
+                            </div>
+                            <p class="product-name fw-semibold mb-1 d-flex align-items-center justify-content-between text-uppercase">
+                                <a class="text-reset text-decoration-underline" href="product/view/174">gold bar 0.5g klasik v3</a>
+                            </p>
+                            <p class="product-description fs-11 text-muted mb-2">
+                                KAB05G-2025
+                            </p>
+
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Sell Price <span class="fw-bold pricing" data-id="174">0</span>
+                            </p>
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Buy Price <span class="fw-bold buy_price" data-id="174">0</span>
+                            </p>
+
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Premium Fee : RM 15.00
+                            </p>
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Stock : 714
+                            </p>
+                        </div>
+                        <div class="card-footer text-center">
+                        </div>
+                    </div>
+                </div>
+                                <div class="col-xxl-3 col-md-6 col-sm-12" id="posts">
+                    <div class="card custom-card product-card">
+                        <div class="card-body">
+                            <div class="product-image">
+                                <img src="https://panel.kabgold.my/media/shop/rahmagold.png" class="card-img mb-3" alt="...">
+                            </div>
+                            <p class="product-name fw-semibold mb-1 d-flex align-items-center justify-content-between text-uppercase">
+                                <a class="text-reset text-decoration-underline" href="product/view/170">gold bar 1g palestine x rahma worldwide</a>
+                            </p>
+                            <p class="product-description fs-11 text-muted mb-2">
+                                KAB1G-RWW1
+                            </p>
+
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Sell Price <span class="fw-bold pricing" data-id="170">0</span>
+                            </p>
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Buy Price <span class="fw-bold buy_price" data-id="170">0</span>
+                            </p>
+
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Premium Fee : RM 50.00
+                            </p>
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Stock : 67
+                            </p>
+                        </div>
+                        <div class="card-footer text-center">
+                        </div>
+                    </div>
+                </div>
+                                <div class="col-xxl-3 col-md-6 col-sm-12" id="posts">
+                    <div class="card custom-card product-card">
+                        <div class="card-body">
+                            <div class="product-image">
+                                <img src="/media/shop/p125/gold-bar-1g-chinese-new-year173791830919330786.jpg" class="card-img mb-3" alt="...">
+                            </div>
+                            <p class="product-name fw-semibold mb-1 d-flex align-items-center justify-content-between text-uppercase">
+                                <a class="text-reset text-decoration-underline" href="product/view/167">gold bar 1g chinese new year 2025</a>
+                            </p>
+                            <p class="product-description fs-11 text-muted mb-2">
+                                KAB1G-CNY-25
+                            </p>
+
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Sell Price <span class="fw-bold pricing" data-id="167">0</span>
+                            </p>
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Buy Price <span class="fw-bold buy_price" data-id="167">0</span>
+                            </p>
+
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Premium Fee : RM 30.00
+                            </p>
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Stock : 46
+                            </p>
+                        </div>
+                        <div class="card-footer text-center">
+                        </div>
+                    </div>
+                </div>
+                                <div class="col-xxl-3 col-md-6 col-sm-12" id="posts">
+                    <div class="card custom-card product-card">
+                        <div class="card-body">
+                            <div class="product-image">
+                                <img src="/media/shop/p125/gold-bar-1g-202517369059441343280195.jpg" class="card-img mb-3" alt="...">
+                            </div>
+                            <p class="product-name fw-semibold mb-1 d-flex align-items-center justify-content-between text-uppercase">
+                                <a class="text-reset text-decoration-underline" href="product/view/166">gold bar 1g 2025</a>
+                            </p>
+                            <p class="product-description fs-11 text-muted mb-2">
+                                KAB1G-2025
+                            </p>
+
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Sell Price <span class="fw-bold pricing" data-id="166">0</span>
+                            </p>
+                            <p class="mb-1 fw-semibold fs-14 d-flex align-items-center justify-content-between">
+                                Buy Price <span class="fw-bold buy_price" data-id="166">0</span>
+                            </p>
+
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Premium Fee : RM 15.00
+                            </p>
+                            <p class="fs-11 text-danger fw-semibold mb-0 d-flex align-items-center">
+                                <i class="bi bi-tags-fill"></i>Stock : 167
+                            </p>
+                        </div>
+                        <div class="card-footer text-center">
+                        </div>
+                    </div>
+                </div>
+                            </div>
+                        <div id="pagination-container"></div>
+        </div>
+    </div>
+</div>
+<input type="hidden" class="txt_csrfname" name="csrf_kab_name" value="6bd5b299ab0226d185fc91b83312edbf" />
+<input type="hidden" class="items" name="items" value="77" />
+<input type="hidden" class="itemsOnPage" name="itemsOnPage" value="12" />
+<input type="hidden" class="currentPage" name="currentPage" value="1" />
+<script type="text/javascript">
+    $(document).ready(function() {
+        initializePriceUpdates();
+
+        // Initialize pagination
+        $('#pagination-container').pagination({
+            items: parseInt($('.items').val(), 10),
+            itemsOnPage: parseInt($('.itemsOnPage').val(), 10),
+            currentPage: parseInt($('.currentPage').val(), 10),
+            cssStyle: 'light-theme',
+            onPageClick: function(pageNumber) {
+                let newUrl = `/product?page=${pageNumber}`;
+                window.location.href = newUrl;
+            }
+        });
+    });
+
+    function initializePriceUpdates() {
+        // Separate the price update initialization
+        updateProductPrices(); // Immediate first update
+        scheduleNextPriceUpdate(); // Then schedule subsequent updates
+    }
+
+    // Function to calculate milliseconds until next quarter-hour plus delay
+    function getTimeUntilNextQuarterHour() {
+        var now = new Date();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+        var milliseconds = now.getMilliseconds();
+
+        // Calculate the minutes for the next quarter-hour
+        var nextQuarterMinutes = Math.ceil(minutes / 15) * 15;
+
+        // Handle the case when minutes are exactly at 0, 15, 30, 45
+        if (minutes % 15 === 0 && seconds === 0 && milliseconds === 0) {
+            nextQuarterMinutes = minutes;
+        }
+
+        if (nextQuarterMinutes === 60) {
+            nextQuarterMinutes = 0;
+            now.setHours(now.getHours() + 1);
+        }
+
+        // Create a Date object for the next quarter-hour
+        var nextQuarter = new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            now.getDate(),
+            now.getHours(),
+            nextQuarterMinutes,
+            0,
+            0
+        );
+
+        // Calculate the delay in milliseconds
+        var delay = nextQuarter - now;
+
+        // Add additional delay to allow the cron job to complete (e.g., 10 seconds)
+        var additionalDelay = 15000; // 15 seconds
+        delay += additionalDelay;
+
+        // Ensure the delay is not negative
+        if (delay < 0) {
+            delay += 15 * 60 * 1000; // Add 15 minutes
+        }
+
+        return delay;
+    }
+
+    // Function to schedule the next price update
+    function scheduleNextPriceUpdate() {
+        //console.log("Scheduling next price update");
+        var delay = getTimeUntilNextQuarterHour();
+        console.log("Delay calculated:", delay);
+
+        // Add error handling and more verbose logging
+        try {
+            setTimeout(function() {
+                //console.log("Executing price update");
+                updateProductPrices();
+            }, delay);
+        } catch (error) {
+            console.error("Error in scheduling price update:", error);
+        }
+    }
+
+    // Function to update product prices
+    function updateProductPrices() {
+        //console.log("Starting price update process");
+        const ids = {};
+
+        // Debug: Log the products being processed
+        $('#productRow .pricing').each(function() {
+            const productId = $(this).attr('data-id');
+            const currentPrice = $(this).text();
+
+            //console.log(`Product ID: ${productId}, Current Price: ${currentPrice}`);
+
+            if (productId && currentPrice) {
+                ids[productId] = currentPrice;
+            }
+        });
+
+        //console.log("Collected Product IDs:", ids);
+
+        if (Object.keys(ids).length === 0) {
+            console.warn("No products found to update");
+            scheduleNextPriceUpdate();
+            return;
+        }
+
+        $.ajax({
+                url: '/product/update-price',
+                type: 'GET',
+                data: {
+                    ids: ids
+                },
+                dataType: 'json',
+                beforeSend: function() {
+                    //console.log("Sending price update request");
+                }
+            })
+            .done(resp => {
+                //console.log("Price update response:", resp);
+
+                if (resp && resp.length > 0) {
+                    resp.forEach(item => {
+                        //console.log(`Updating product ${item.id}: Price ${item.price_sell}`);
+
+                        // More robust selector
+                        const $priceElement = $('#productRow .pricing[data-id="' + item.id + '"]');
+                        const $buyPriceElement = $('#productRow .buy_price[data-id="' + item.id + '"]');
+
+                        if ($priceElement.length) {
+                            $priceElement.text(item.price_sell);
+                        } else {
+                            console.warn(`No element found for product ${item.id}`);
+                        }
+
+                        if ($buyPriceElement.length) {
+                            $buyPriceElement.text(item.price_buy);
+                        }
+                    });
+                } else {
+                    console.warn("No price updates received");
+                }
+
+                scheduleNextPriceUpdate();
+            })
+            .fail((jqXHR, textStatus, errorThrown) => {
+                console.error("Price update failed:", {
+                    status: textStatus,
+                    error: errorThrown,
+                    responseText: jqXHR.responseText
+                });
+
+                scheduleNextPriceUpdate();
+            });
+    }
+
+    // Optional: Function to update a countdown timer display
+    function updateCountdownTimer(delay) {
+        // Convert delay from milliseconds to seconds
+        var remainingTime = Math.floor(delay / 1000);
+
+        // Update the countdown timer immediately
+        $('#countdown-timer').text(remainingTime);
+
+        // Clear any existing interval
+        if (window.countdownInterval) {
+            clearInterval(window.countdownInterval);
+        }
+
+        // Update the countdown timer every second
+        window.countdownInterval = setInterval(function() {
+            remainingTime--;
+            $('#countdown-timer').text(remainingTime);
+
+            // Show warning in last minute
+            if (remainingTime <= 60 && remainingTime > 0) {
+                $('.alert-price-change').show();
+            } else {
+                $('.alert-price-change').hide();
+            }
+
+            if (remainingTime <= 0) {
+                clearInterval(window.countdownInterval);
+            }
+        }, 1000);
+    }
+</script>
+            </div>
+        </div>
+        <div id="quickview" class="modal fade" tabindex="-1" data-bs-backdrop="false" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg border shadow">
+		<div class="modal-content"> </div>
+	</div>
+</div>
+<div id="quickview_full" class="modal fade" tabindex="-1" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-fullscreen">
+		<div class="modal-content"> </div>
+	</div>
+</div>
+<style>
+	.card-view {
+		margin-top: 10px;
+		margin-bottom: 15px;
+	}
+
+	.card-view-value {
+		white-space: normal;
+	}
+
+	.card-view-title {
+		white-space: normal;
+	}
+
+	.text-gold {
+		color: #BB862C;
+	}
+
+	.text-gold:hover {
+		color: #BB862C;
+	}
+
+	.whitespace {
+		white-space: normal;
+		/* or 'nowrap' depending on your choice */
+		word-wrap: break-word;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.bootstrap-table .fixed-table-body {
+		overflow: visible !important;
+	}
+</style>
+<script type="text/javascript">
+	sidebar_cart();
+	header_cart();
+
+	function sidebar_cart() {
+		$.ajax({
+				url: window.location.origin + '/cart/sidecart',
+				headers: {
+					'X-Requested-With': 'XMLHttpRequest'
+				},
+				type: 'get',
+				datatype: 'html'
+			})
+			.done(function(html) {
+				$("#headercart").empty().append(html);
+			})
+			.fail(function(jqXHR, textStatus, errorThrown) {
+				console.log(jqXHR);
+			});
+
+		/*$.ajax({ 
+			url: window.location.origin+'/cart/sidecart',
+			headers: {'X-Requested-With': 'XMLHttpRequest'}, 
+			success: function(html) {
+				$("#headercart").empty().append(html);
+			},
+			error: function(request, status, error){
+				console.log(request.responseText);
+			}
+		});*/
+	}
+
+	function header_cart() {
+		$.ajax({
+			url: window.location.origin + '/cart/headercart',
+			headers: {
+				'X-Requested-With': 'XMLHttpRequest'
+			},
+			success: function(response) {
+				//console.log(response);
+				$('#cart-icon-badge').text(response.totalitems);
+			}
+		});
+	}
+
+	$(document).ready(function() {
+		/*$(".modal").on("shown.bs.modal", function () {
+			if ($(".modal-backdrop").length > 1) {
+				$(".modal-backdrop").not(':first').remove();
+			}
+		})*/
+
+		/*$("#kt_daterangepicker").daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true,
+        minYear: 1901,
+        maxYear: parseInt(moment().format("YYYY"),12),
+		locale: {
+            format: 'DD-MM-YYYY'
+        }
+    });*/
+
+	});
+</script>        <footer class="footer mt-auto py-3 bg-white text-center">
+	<div class="container">
+		<span class="text-muted"> Copyright © KAB Goldynamics.
+		<script>document.write(new Date().getFullYear())</script>
+        All rights reserved
+		</span>
+	</div>
+</footer>
+						
+    </div>
+    <div class="scrollToTop">
+        <span class="arrow"><i class="ri-arrow-up-s-fill fs-20"></i></span>
+    </div>
+    <div id="responsive-overlay"></div>
+    <script src="/assets/v2/libs/@popperjs/core/umd/popper.min.js"></script>
+    <script src="/assets/v2/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script type="text/javascript" src="/assets/v2/libs/swiper/swiper-bundle.min.js"></script>
+
+        
+</body>
+
+</html>

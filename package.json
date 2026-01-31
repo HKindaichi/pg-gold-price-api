@@ -1,0 +1,18 @@
+{
+    "name": "gold-price-tracker-mobile",
+    "version": "1.0.0",
+    "description": "Mobile wrapper for Gold Price Tracker",
+    "scripts": {
+        "build": "echo 'No build step needed for vanilla HTML/JS'",
+        "start": "npx serve www"
+    },
+    "dependencies": {
+        "@capacitor/android": "^5.0.0",
+        "@capacitor/cli": "^5.0.0",
+        "@capacitor/core": "^5.0.0",
+        "@capacitor/ios": "^5.0.0"
+    },
+    "devDependencies": {
+        "serve": "^14.0.0"
+    }
+}

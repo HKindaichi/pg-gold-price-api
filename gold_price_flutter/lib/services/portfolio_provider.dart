@@ -1,0 +1,132 @@
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../models/portfolio_entry.dart';
+import 'dart:convert';
+
+class PortfolioProvider with ChangeNotifier {
+  List<PortfolioEntry> _entries = [];
+  bool _isLoading = true;
+  String _selectedOwner = "All";
+
+  List<PortfolioEntry> get entries => _entries;
+  bool get isLoading => _isLoading;
+  String get selectedOwner => _selectedOwner;
+
+  PortfolioProvider() {
+    loadEntries();
+  }
+
+  void setSelectedOwner(String owner) {
+    _selectedOwner = owner;
+    notifyListeners();
+  }
+
+  List<String> get owners {
+    final list = _entries.map((e) => e.ownerName).toSet().toList();
+    list.sort();
+    return ["All", ...list];
+  }
+
+  List<PortfolioEntry> get filteredEntries {
+    if (_selectedOwner == "All") {
+      return _entries..sort((a, b) => b.date.compareTo(a.date));
+    }
+    return _entries.where((e) => e.ownerName == _selectedOwner).toList()
+      ..sort((a, b) => b.date.compareTo(a.date));
+  }
+
+  Future<void> loadEntries() async {
+    _isLoading = true;
+    notifyListeners();
+
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final String? entriesJson = prefs.getString('portfolio_entries') ?? prefs.getString('diary_entries');
+      
+      if (entriesJson != null) {
+        final List<dynamic> decoded = json.decode(entriesJson);
+        _entries = decoded.map((item) => PortfolioEntry.fromMap(item)).toList();
+      }
+    } catch (e) {
+      debugPrint("Error loading portfolio entries: $e");
+    }
+
+    _isLoading = false;
+    notifyListeners();
+  }
+
+  Future<void> addEntry(PortfolioEntry entry) async {
+    _entries.add(entry);
+    await _saveToPrefs();
+    notifyListeners();
+  }
+
+  Future<void> deleteEntry(String id) async {
+    _entries.removeWhere((entry) => entry.id == id);
+    await _saveToPrefs();
+    notifyListeners();
+  }
+
+  Future<void> sellEntry(String id, double sellPricePerGram) async {
+    final index = _entries.indexWhere((e) => e.id == id);
+    if (index != -1) {
+      final entry = _entries[index];
+      _entries[index] = PortfolioEntry(
+        id: entry.id,
+        ownerName: entry.ownerName,
+        weight: entry.weight,
+        buyPricePerGram: entry.buyPricePerGram,
+        sellPricePerGram: sellPricePerGram,
+        type: entry.type,
+        date: entry.date,
+        notes: entry.notes,
+      );
+      await _saveToPrefs();
+      notifyListeners();
+    }
+  }
+
+  Future<void> _saveToPrefs() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final String encoded = json.encode(_entries.map((e) => e.toMap()).toList());
+      await prefs.setString('portfolio_entries', encoded);
+    } catch (e) {
+      debugPrint("Error saving portfolio entries: $e");
+    }
+  }
+
+  double calculateStats(String type, {String? owner}) {
+    List<PortfolioEntry> list = owner == null || owner == "All" 
+        ? _entries 
+        : _entries.where((e) => e.ownerName == owner).toList();
+    
+    // Only count unsold weight for the summary, OR show total managed? 
+    // Usually portfolio summary shows "holding". Let's show holding (unsold).
+    return list
+        .where((e) => e.type == type && e.sellPricePerGram == null)
+        .fold(0.0, (sum, e) => sum + e.weight);
+  }
+
+  double calculateTotalPL({String? owner}) {
+    List<PortfolioEntry> list = owner == null || owner == "All" 
+        ? _entries 
+        : _entries.where((e) => e.ownerName == owner).toList();
+    
+    return list.where((e) => e.sellPricePerGram != null).fold(0.0, (sum, e) {
+      // P/L = (Sell Rate - Buy Rate) * Weight
+      return sum + ((e.sellPricePerGram! - e.buyPricePerGram) * e.weight);
+    });
+  }
+
+  double calculateTotalAsset({String? owner}) {
+    List<PortfolioEntry> list = owner == null || owner == "All" 
+        ? _entries 
+        : _entries.where((e) => e.ownerName == owner).toList();
+    
+    // Total Asset = Purchase rate * weight of unsold gold
+    return list
+        .where((e) => e.sellPricePerGram == null)
+        .fold(0.0, (sum, e) => sum + (e.buyPricePerGram * e.weight));
+  }
+}

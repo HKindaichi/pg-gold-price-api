@@ -1,0 +1,8 @@
+{
+  "appId": "com.goldtrack.app",
+  "appName": "Gold Track",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}

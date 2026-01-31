@@ -1,0 +1,46 @@
+{
+    "updated_label": "Today 04:53",
+    "merchants": [
+        {
+            "id": "public_gold",
+            "name": "Public Gold",
+            "items": {
+                "999": {
+                    "sell": 709,
+                    "buy": 645,
+                    "spread": 64
+                },
+                "916": {
+                    "sell": 674,
+                    "buy": 586,
+                    "spread": 88
+                }
+            },
+            "last_updated": "28-Jan-2026"
+        },
+        {
+            "id": "miga_i",
+            "name": "MIGA-i",
+            "items": {
+                "999": {
+                    "sell": 657.52,
+                    "buy": 643.04,
+                    "spread": 14.48
+                }
+            },
+            "last_updated": "27 Jan 2026 08:56:22"
+        },
+        {
+            "id": "cimb_e_gia",
+            "name": "CIMB e-GIA",
+            "items": {
+                "999": {
+                    "sell": 660.2,
+                    "buy": 631.0,
+                    "spread": 29.2
+                }
+            },
+            "last_updated": "5:10 pm, 27 Jan 2026, Tuesday"
+        }
+    ]
+}
