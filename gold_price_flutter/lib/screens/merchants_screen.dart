@@ -208,21 +208,23 @@ class MerchantsScreen extends StatelessWidget {
             ),
       ),
       title: merchantId == 'uob'
-        ? Row(
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 displayName,
                 style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
               ),
-              const SizedBox(width: 6),
+              const SizedBox(height: 2),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
                 decoration: BoxDecoration(
                   color: Colors.redAccent.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(4),
                   border: Border.all(color: Colors.redAccent.withOpacity(0.5)),
                 ),
-                child: const Text("Non-Syariah", style: TextStyle(color: Colors.redAccent, fontSize: 8, fontWeight: FontWeight.bold)),
+                child: const Text("Non-Syariah", style: TextStyle(color: Colors.redAccent, fontSize: 7, fontWeight: FontWeight.bold)),
               ),
             ],
           )
