@@ -31,12 +31,12 @@ class MerchantDetailScreen extends StatelessWidget {
             return Center(child: Text("Error: ${provider.error}"));
           }
 
-          final latest = provider.getLatest(merchantId);
+          final latest = provider.getLatestForMerchant(merchantId, provider.merchantPurity);
           if (latest == null) {
             return const Center(child: Text("No data available for this merchant."));
           }
 
-          final history = provider.getHistoryForMerchant(merchantId);
+          final history = provider.getHistoryForMerchant(merchantId, provider.merchantPurity);
 
           return SingleChildScrollView(
             padding: const EdgeInsets.all(20),
@@ -56,7 +56,7 @@ class MerchantDetailScreen extends StatelessWidget {
   }
 
   Widget _buildPriceCards(BuildContext context, GoldProvider provider, GoldRecord latest) {
-    final purity = provider.selectedPurity;
+    final purity = provider.merchantPurity;
     return Row(
       children: [
         Expanded(child: _buildPriceItem(context, "Sell ($purity)", latest.sell, Theme.of(context).primaryColor)),

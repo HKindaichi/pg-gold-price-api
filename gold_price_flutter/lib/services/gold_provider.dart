@@ -156,7 +156,8 @@ class GoldProvider with ChangeNotifier {
   // Aliases for compatibility with existing screens
   GoldRecord? getLatest(String merchant) => getLatestForMerchant(merchant, _selectedPurity);
 
-  List<GoldRecord> getHistoryForMerchant(String merchant) {
-    return _history.where((r) => r.merchant == merchant && r.item == _selectedPurity).toList();
+  List<GoldRecord> getHistoryForMerchant(String merchant, [String? purity]) {
+    final targetPurity = purity ?? _selectedPurity;
+    return _history.where((r) => r.merchant == merchant && r.item == targetPurity).toList();
   }
 }
