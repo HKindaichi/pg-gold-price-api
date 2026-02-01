@@ -139,7 +139,7 @@ class PortfolioScreen extends StatelessWidget {
               Container(width: 1, height: 30, color: Colors.grey.withOpacity(0.2)),
               _buildSummaryItem("916 Gold", "${weight916.toStringAsFixed(2)}g", Colors.yellowAccent),
               Container(width: 1, height: 30, color: Colors.grey.withOpacity(0.2)),
-              _buildSummaryItem("Silver", "${weightSilver.toStringAsFixed(2)}g", Colors.blueGrey),
+              _buildSummaryItem("Silver", "${weightSilver.toStringAsFixed(2)}g", const Color(0xFF4DD0E1)),
             ],
           ),
           const Divider(height: 30, color: Colors.white10),
@@ -251,18 +251,37 @@ class PortfolioScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // 1. Weight + Type (Flexible to prevent overlap with price)
+                      // 1. Weight (Big & Clean)
+                      Text(
+                        "${entry.weight}g",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold, 
+                          fontSize: 16,
+                          color: isSold ? Colors.grey : Colors.white,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      
+                      // 2. Owner + Type (Small & Grey)
                       Row(
                         children: [
-                          Flexible(
-                            child: Text(
-                              "${entry.weight}g   ${(entry.type == '999' || entry.type == '916') ? 'Gold ${entry.type}' : entry.type}",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold, 
-                                fontSize: 14.5,
-                                color: isSold ? Colors.grey : Colors.white,
-                              ),
-                              overflow: TextOverflow.ellipsis,
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.05),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Text(entry.ownerName, style: const TextStyle(color: Colors.white70, fontSize: 10)),
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            (entry.type == '999' || entry.type == '916') ? '${entry.type} Gold' : entry.type,
+                            style: TextStyle(
+                              color: entry.type == '999' 
+                                  ? Colors.orangeAccent 
+                                  : (entry.type == '916' ? Colors.yellowAccent : const Color(0xFF4DD0E1)), 
+                              fontSize: 11,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           if (isSold) ...[
@@ -277,17 +296,6 @@ class PortfolioScreen extends StatelessWidget {
                             ),
                           ],
                         ],
-                      ),
-                      const SizedBox(height: 4),
-                      
-                      // 2. Owner Tag
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.05),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Text(entry.ownerName, style: const TextStyle(color: Colors.white60, fontSize: 10)),
                       ),
                       
                       // 3. Purchase From (Notes)
@@ -334,7 +342,7 @@ class PortfolioScreen extends StatelessWidget {
                       ),
                   ],
                 ),
-                const SizedBox(width: 0),
+                const SizedBox(width: 12),
                 IconButton(
                   icon: const Icon(Icons.delete_outline, color: Colors.grey, size: 18),
                   padding: EdgeInsets.zero,
