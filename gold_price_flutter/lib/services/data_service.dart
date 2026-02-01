@@ -3,15 +3,14 @@ import 'package:csv/csv.dart';
 import '../models/gold_price.dart';
 
 class DataService {
-  // TODO: Replace with actual GitHub Pages URL or API endpoint
-  // For basic testing, if you run 'flutter run -d chrome --web-renderer html',
-  // you might be able to fetch local if served, but valid URL is best.
-  static const String DATA_URL = "http://10.0.2.2:8000/output/history.csv";
+  // Production URL (GitHub Pages)
+  static const String DATA_URL = "https://hkindaichi.github.io/pg-gold-price-api/output/history.csv";
 
   Future<List<GoldRecord>> fetchGoldHistory() async {
     try {
       print("Fetching data from: $DATA_URL");
-      final response = await http.get(Uri.parse(DATA_URL));
+      final uri = Uri.parse("$DATA_URL?v=${DateTime.now().millisecondsSinceEpoch}");
+      final response = await http.get(uri);
       print("Response status: ${response.statusCode}");
       
       if (response.statusCode == 200) {

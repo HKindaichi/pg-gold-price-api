@@ -67,20 +67,55 @@ class PortfolioProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> sellEntry(String id, double sellPricePerGram) async {
+  Future<void> sellEntry(String id, double sellPricePerGram, double weightToSell) async {
     final index = _entries.indexWhere((e) => e.id == id);
     if (index != -1) {
       final entry = _entries[index];
-      _entries[index] = PortfolioEntry(
-        id: entry.id,
-        ownerName: entry.ownerName,
-        weight: entry.weight,
-        buyPricePerGram: entry.buyPricePerGram,
-        sellPricePerGram: sellPricePerGram,
-        type: entry.type,
-        date: entry.date,
-        notes: entry.notes,
-      );
+      
+      // Validation
+      if (weightToSell > entry.weight) return;
+
+      if (weightToSell == entry.weight) {
+        // Full Sell
+        _entries[index] = PortfolioEntry(
+          id: entry.id,
+          ownerName: entry.ownerName,
+          weight: entry.weight,
+          buyPricePerGram: entry.buyPricePerGram,
+          sellPricePerGram: sellPricePerGram,
+          type: entry.type,
+          date: entry.date,
+          notes: entry.notes,
+        );
+      } else {
+        // Partial Sell
+        // 1. Reduce weight of existing entry (The holding part)
+        double remainingWeight = entry.weight - weightToSell;
+        _entries[index] = PortfolioEntry(
+          id: entry.id,
+          ownerName: entry.ownerName,
+          weight: double.parse(remainingWeight.toStringAsFixed(4)), // Avoid precision errors
+          buyPricePerGram: entry.buyPricePerGram,
+          sellPricePerGram: null, // Still holding this part
+          type: entry.type,
+          date: entry.date,
+          notes: entry.notes,
+        );
+
+        // 2. Create new entry for the sold part
+        final newSoldEntry = PortfolioEntry(
+          id: "${entry.id}_sold_${DateTime.now().millisecondsSinceEpoch}",
+          ownerName: entry.ownerName,
+          weight: weightToSell,
+          buyPricePerGram: entry.buyPricePerGram,
+          sellPricePerGram: sellPricePerGram,
+          type: entry.type,
+          date: entry.date, // Keep original buy date for records
+          notes: "${entry.notes} (Partial Sell)",
+        );
+        _entries.insert(index, newSoldEntry); // Insert next to it
+      }
+      
       await _saveToPrefs();
       notifyListeners();
     }

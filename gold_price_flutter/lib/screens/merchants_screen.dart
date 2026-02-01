@@ -46,18 +46,19 @@ class MerchantsScreen extends StatelessWidget {
               ),
 
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 child: Row(
                   children: [
                     const Expanded(child: SizedBox()), // Space for icon/name
                     SizedBox(
-                      width: 230, // Reverted to wider width for full labels
+                      width: 175, // Reduced width for mobile
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: const [
-                          SizedBox(width: 70, child: Text("Shop Sells", textAlign: TextAlign.right, style: TextStyle(color: Colors.grey, fontSize: 10))),
-                          SizedBox(width: 75, child: Text("Shop Buys", textAlign: TextAlign.right, style: TextStyle(color: Colors.grey, fontSize: 10))),
-                          SizedBox(width: 65, child: Text("Spread", textAlign: TextAlign.right, style: TextStyle(color: Colors.redAccent, fontSize: 10))),
-                          SizedBox(width: 20), // Space for arrow icon
+                          SizedBox(width: 55, child: Text("Shop Sells", textAlign: TextAlign.right, style: TextStyle(color: Colors.grey, fontSize: 9))),
+                          SizedBox(width: 55, child: Text("Shop Buys", textAlign: TextAlign.right, style: TextStyle(color: Colors.grey, fontSize: 9))),
+                          SizedBox(width: 45, child: Text("Spread", textAlign: TextAlign.right, style: TextStyle(color: Colors.redAccent, fontSize: 9))),
+                          SizedBox(width: 18), // Space for arrow icon (16 + 2)
                         ],
                       ),
                     ),
@@ -165,6 +166,7 @@ class MerchantsScreen extends StatelessWidget {
     }
 
     return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 12), // Tighter padding
       onTap: () {
         Navigator.push(
           context,
@@ -177,8 +179,8 @@ class MerchantsScreen extends StatelessWidget {
         );
       },
       leading: Container(
-        width: 34,
-        height: 34,
+        width: 32, // Slightly smaller
+        height: 32,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: themeColor, // Background color matching the bank
@@ -216,36 +218,36 @@ class MerchantsScreen extends StatelessWidget {
         style: const TextStyle(color: Colors.grey, fontSize: 9),
       ),
       trailing: SizedBox(
-        width: 230, // Match the header width
+        width: 175, // Match the header width
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             SizedBox(
-              width: 70,
+              width: 55,
               child: Text(
                 record.sell.toStringAsFixed(2),
                 textAlign: TextAlign.right,
-                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
-              width: 75,
+              width: 55,
               child: Text(
                 record.buy.toStringAsFixed(2),
                 textAlign: TextAlign.right,
-                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.grey),
+                style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Colors.grey),
               ),
             ),
             SizedBox(
-              width: 65,
+              width: 45,
               child: Text(
                 record.spread.toStringAsFixed(2),
                 textAlign: TextAlign.right,
-                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.redAccent),
+                style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Colors.redAccent),
               ),
             ),
             const SizedBox(width: 2),
-            const Icon(Icons.chevron_right, color: Colors.grey, size: 18),
+            const Icon(Icons.chevron_right, color: Colors.grey, size: 16),
           ],
         ),
       ),

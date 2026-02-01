@@ -11,7 +11,7 @@ class PortfolioScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Portfolio", style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+        title: const Text("My Assets", style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
         centerTitle: false,
       ),
       body: Consumer<PortfolioProvider>(
@@ -225,7 +225,7 @@ class PortfolioScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      padding: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(8), // Reduced padding
                       decoration: BoxDecoration(
                         color: isSold 
                             ? Colors.grey.withOpacity(0.1)
@@ -243,178 +243,307 @@ class PortfolioScreen extends StatelessWidget {
                             : (entry.type == '999' 
                                 ? Colors.orangeAccent 
                                 : (entry.type == '916' ? Colors.yellowAccent : Colors.blueGrey)),
-                        size: 24,
+                        size: 20, // Reduced size
                       ),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // 1. Weight + Type (Flexible to prevent overlap with price)
+                      Row(
                         children: [
-                          Row(
-                            children: [
-                              Text(
-                                "${entry.weight}g   ${(entry.type == '999' || entry.type == '916') ? 'Gold ${entry.type}' : entry.type}",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold, 
-                                  fontSize: 16,
-                                  color: isSold ? Colors.grey : Colors.white,
-                                ),
-                              ),
-                              if (isSold) ...[
-                                const SizedBox(width: 8),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey.withOpacity(0.2),
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                  child: const Text("SOLD", style: TextStyle(color: Colors.grey, fontSize: 10, fontWeight: FontWeight.bold)),
-                                ),
-                              ],
-                            ],
-                          ),
-                          const SizedBox(height: 4),
-                          Row(
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                                decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.05),
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                child: Text(entry.ownerName, style: const TextStyle(color: Colors.white60, fontSize: 10)),
-                              ),
-                              const SizedBox(width: 8),
-                              Text("Buy date: $dateStr", style: const TextStyle(color: Colors.grey, fontSize: 12)),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          "RM ${entry.totalBuyPrice.toStringAsFixed(2)}",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold, 
-                            fontSize: 15, 
-                            color: isSold ? Colors.grey : const Color(0xFFfbbf24),
-                          ),
-                        ),
-                        Text(
-                          "@ RM ${entry.buyPricePerGram.toStringAsFixed(2)}/g",
-                          style: const TextStyle(color: Colors.grey, fontSize: 10),
-                        ),
-                        if (isSold)
-                          Padding(
-                            padding: const EdgeInsets.only(top: 4),
+                          Flexible(
                             child: Text(
-                              "Sold @ RM ${entry.sellPricePerGram!.toStringAsFixed(2)}/g",
-                              style: TextStyle(color: Colors.grey.withOpacity(0.7), fontSize: 10),
+                              "${entry.weight}g   ${(entry.type == '999' || entry.type == '916') ? 'Gold ${entry.type}' : entry.type}",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold, 
+                                fontSize: 16,
+                                color: isSold ? Colors.grey : Colors.white,
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                      ],
-                    ),
-                  ],
-                ),
-                if (isSold) ...[
-                  const Divider(height: 20, color: Colors.white10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text("Profit/Loss", style: TextStyle(color: Colors.grey, fontSize: 12)),
-                      Text(
-                        "${pl >= 0 ? '+' : ''}RM ${pl.toStringAsFixed(2)}",
-                        style: TextStyle(
-                          color: pl >= 0 ? Colors.greenAccent : Colors.redAccent,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                        ),
+                          if (isSold) ...[
+                            const SizedBox(width: 8),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                              decoration: BoxDecoration(
+                                color: Colors.grey.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: const Text("SOLD", style: TextStyle(color: Colors.grey, fontSize: 10, fontWeight: FontWeight.bold)),
+                            ),
+                          ],
+                        ],
                       ),
+                      const SizedBox(height: 4),
+                      
+                      // 2. Owner Tag
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.05),
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Text(entry.ownerName, style: const TextStyle(color: Colors.white60, fontSize: 10)),
+                      ),
+                      
+                      // 3. Purchase From (Notes)
+                      if (!isSold && entry.notes.isNotEmpty)
+                         Padding(
+                           padding: const EdgeInsets.only(top: 4),
+                           child: Text(
+                             entry.notes, 
+                             style: const TextStyle(color: Colors.grey, fontSize: 11),
+                             maxLines: 1,
+                             overflow: TextOverflow.ellipsis,
+                           ),
+                         ),
+
+                      // 4. Buy Date (Below Purchase From)
+                       Padding(
+                         padding: const EdgeInsets.only(top: 2),
+                         child: Text("Buy date: $dateStr", style: const TextStyle(color: Colors.grey, fontSize: 10)),
+                       ),
                     ],
                   ),
-                ],
-                if (!isSold && entry.notes.isNotEmpty)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0, left: 48),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        entry.notes, 
-                        style: const TextStyle(color: Colors.grey, fontSize: 11),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                ),
+                // Price Column
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      "RM ${entry.totalBuyPrice.toStringAsFixed(2)}",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold, 
+                        fontSize: 15, 
+                        color: isSold ? Colors.grey : const Color(0xFFfbbf24),
                       ),
                     ),
-                  ),
+                    Text(
+                      "@ RM ${entry.buyPricePerGram.toStringAsFixed(2)}/g",
+                      style: const TextStyle(color: Colors.grey, fontSize: 10),
+                    ),
+                    if (isSold)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4),
+                        child: Text(
+                          "Sold @ RM ${entry.sellPricePerGram!.toStringAsFixed(2)}/g",
+                          style: TextStyle(color: Colors.grey.withOpacity(0.7), fontSize: 10),
+                        ),
+                      ),
+                  ],
+                ),
+                const SizedBox(width: 8),
+                IconButton(
+                  icon: const Icon(Icons.delete_outline, color: Colors.grey, size: 20),
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
+                  onPressed: () => _confirmDelete(context, provider, entry),
+                ),
               ],
             ),
-          ),
+            if (isSold) ...[
+              const Divider(height: 20, color: Colors.white10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text("Profit/Loss", style: TextStyle(color: Colors.grey, fontSize: 12)),
+                  Text(
+                    "${pl >= 0 ? '+' : ''}RM ${pl.toStringAsFixed(2)}",
+                    style: TextStyle(
+                      color: pl >= 0 ? Colors.greenAccent : Colors.redAccent,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ],
         ),
       ),
-    );
-  }
+    ),
+  ),
+);
+}
 
+void _confirmDelete(BuildContext context, PortfolioProvider provider, dynamic entry) {
+showDialog(
+  context: context,
+  builder: (context) => AlertDialog(
+    backgroundColor: const Color(0xFF1e293b),
+    title: const Text("Delete Entry?", style: TextStyle(color: Colors.white)),
+    content: const Text(
+      "Are you sure you want to delete this asset entry? This action cannot be undone.",
+      style: TextStyle(color: Colors.white70),
+    ),
+    actions: [
+      TextButton(
+        onPressed: () => Navigator.pop(context),
+        child: const Text("Cancel"),
+      ),
+      TextButton(
+        onPressed: () {
+          provider.deleteEntry(entry.id);
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Entry deleted")),
+          );
+        },
+        child: const Text("Delete", style: TextStyle(color: Colors.redAccent)),
+      ),
+    ],
+  ),
+);
+}
   void _showSellDialog(BuildContext context, dynamic entry, PortfolioProvider provider) {
-    final controller = TextEditingController();
+    final priceController = TextEditingController();
+    final weightController = TextEditingController(text: entry.weight.toString());
+    
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: const Color(0xFF0f172a),
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-      builder: (context) => Padding(
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).viewInsets.bottom,
-          left: 20, right: 20, top: 20,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text("Sell Gold Entry", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 8),
-            Text("Bought at RM ${entry.buyPricePerGram.toStringAsFixed(2)}/g", style: const TextStyle(color: Colors.grey)),
-            const SizedBox(height: 20),
-            TextField(
-              controller: controller,
-              keyboardType: TextInputType.number,
-              autofocus: true,
-              style: const TextStyle(fontSize: 18),
-              decoration: InputDecoration(
-                labelText: "Sell Price (RM per gram)",
-                prefixText: "RM ",
-                suffixText: "/g",
-                filled: true,
-                fillColor: const Color(0xFF1e293b),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            double sellPrice = double.tryParse(priceController.text) ?? 0.0;
+            double sellWeight = double.tryParse(weightController.text) ?? 0.0;
+            
+            // Calculations
+            double remainingWeight = (entry.weight - sellWeight).clamp(0.0, entry.weight);
+            double totalSaleValue = sellWeight * sellPrice;
+            double totalCost = sellWeight * entry.buyPricePerGram;
+            double realizedPL = totalSaleValue - totalCost;
+
+            return Padding(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+                left: 20, right: 20, top: 20,
               ),
-            ),
-            const SizedBox(height: 20),
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                onPressed: () {
-                  final price = double.tryParse(controller.text);
-                  if (price != null) {
-                    provider.sellEntry(entry.id, price);
-                    Navigator.pop(context);
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.greenAccent,
-                  foregroundColor: Colors.black,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                ),
-                child: const Text("Confirm Sale", style: TextStyle(fontWeight: FontWeight.bold)),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Sell Gold Entry", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 8),
+                  Text("Bought at RM ${entry.buyPricePerGram.toStringAsFixed(2)}/g", style: const TextStyle(color: Colors.grey)),
+                  const SizedBox(height: 20),
+                  
+                  // ROW: Weight Input
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: weightController,
+                          keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                          style: const TextStyle(fontSize: 16),
+                          onChanged: (val) => setState(() {}),
+                          decoration: InputDecoration(
+                            labelText: "Weight to Sell (g)",
+                            filled: true,
+                            fillColor: const Color(0xFF1e293b),
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("Remaining", style: TextStyle(color: Colors.grey, fontSize: 10)),
+                          Text(
+                            "${remainingWeight.toStringAsFixed(2)}g", 
+                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+
+                  // Price Input
+                  TextField(
+                    controller: priceController,
+                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                    autofocus: true,
+                    style: const TextStyle(fontSize: 18),
+                    onChanged: (val) => setState(() {}),
+                    decoration: InputDecoration(
+                      labelText: "Sell Price (RM per gram)",
+                      prefixText: "RM ",
+                      suffixText: "/g",
+                      filled: true,
+                      fillColor: const Color(0xFF1e293b),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
+                    ),
+                  ),
+                  
+                  const SizedBox(height: 20),
+                  
+                  // Summary Box
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.05),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text("Total Sale Value", style: TextStyle(color: Colors.grey)),
+                            Text("RM ${totalSaleValue.toStringAsFixed(2)}", style: const TextStyle(fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                        const SizedBox(height: 8),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text("Realized Profit/Loss", style: TextStyle(color: Colors.grey)),
+                            Text(
+                              "${realizedPL >= 0 ? '+' : ''}RM ${realizedPL.toStringAsFixed(2)}", 
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: realizedPL >= 0 ? Colors.greenAccent : Colors.redAccent,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: (sellWeight > 0 && sellWeight <= entry.weight && sellPrice > 0) ? () {
+                        provider.sellEntry(entry.id, sellPrice, sellWeight);
+                        Navigator.pop(context);
+                      } : null, // Disable if invalid
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.greenAccent,
+                        foregroundColor: Colors.black,
+                        disabledBackgroundColor: Colors.grey.withOpacity(0.2),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      ),
+                      child: const Text("Confirm Sale", style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+                ],
               ),
-            ),
-            const SizedBox(height: 30),
-          ],
-        ),
-      ),
+            );
+          },
+        );
+      },
     );
   }
 }
