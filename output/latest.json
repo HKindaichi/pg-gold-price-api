@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 11:17",
+  "updated_label": "Today 11:28",
   "merchants": [
     {
       "id": "public_gold",
@@ -51,35 +51,20 @@
           "buy": 619705.0,
           "spread": 46944.0
         },
-        "Gold Bar 1G 2025": {
-          "sell": 693.0,
+        "Gold Bar 1G Palestine X Rahma Worldwide": {
+          "sell": 728.0,
           "buy": 618.0,
-          "spread": 75.0
+          "spread": 110.0
         },
         "Gold Bar 1G Chinese New Year 2025": {
           "sell": 708.0,
           "buy": 618.0,
           "spread": 90.0
         },
-        "Gold Bar 1G Palestine X Rahma Worldwide": {
-          "sell": 728.0,
-          "buy": 618.0,
-          "spread": 110.0
-        },
         "Gold Bar 0.5G Raja Perlis": {
           "sell": 371.0,
           "buy": 309.0,
           "spread": 62.0
-        },
-        "Pelbagai 1 Gram": {
-          "sell": 664.0,
-          "buy": 618.0,
-          "spread": 46.0
-        },
-        "Gold Bar 1G Raja Perlis": {
-          "sell": 708.0,
-          "buy": 618.0,
-          "spread": 90.0
         },
         "Gold Bar 0.5G Klasik V3": {
           "sell": 356.0,
@@ -91,10 +76,25 @@
           "buy": 309.0,
           "spread": 44.0
         },
+        "Pelbagai 1 Gram": {
+          "sell": 664.0,
+          "buy": 618.0,
+          "spread": 46.0
+        },
+        "Gold Bar 1G 2025": {
+          "sell": 693.0,
+          "buy": 618.0,
+          "spread": 75.0
+        },
         "Pelbagai 0.5G": {
           "sell": 332.0,
           "buy": 309.0,
           "spread": 23.0
+        },
+        "Gold Bar 1G Raja Perlis": {
+          "sell": 708.0,
+          "buy": 618.0,
+          "spread": 90.0
         }
       }
     },
@@ -153,7 +153,7 @@
           "spread": 0.0
         }
       },
-      "last_updated": "01 Feb 26 03:17"
+      "last_updated": "01 Feb 26 03:28"
     },
     {
       "id": "world_silver",
@@ -165,7 +165,7 @@
           "spread": 0.0
         }
       },
-      "last_updated": "01 Feb 26 03:17"
+      "last_updated": "01 Feb 26 03:28"
     }
   ]
 }
