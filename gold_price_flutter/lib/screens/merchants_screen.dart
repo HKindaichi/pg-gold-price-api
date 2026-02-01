@@ -51,13 +51,13 @@ class MerchantsScreen extends StatelessWidget {
                   children: [
                     const Expanded(child: SizedBox()), // Space for icon/name
                     SizedBox(
-                      width: 175, // Reduced width for mobile
+                      width: 190, // Increased width for larger font
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: const [
-                          SizedBox(width: 55, child: Text("Shop Sells", textAlign: TextAlign.right, style: TextStyle(color: Colors.grey, fontSize: 9))),
-                          SizedBox(width: 55, child: Text("Shop Buys", textAlign: TextAlign.right, style: TextStyle(color: Colors.grey, fontSize: 9))),
-                          SizedBox(width: 45, child: Text("Spread", textAlign: TextAlign.right, style: TextStyle(color: Colors.redAccent, fontSize: 9))),
+                          SizedBox(width: 60, child: Text("Shop Sells", textAlign: TextAlign.right, style: TextStyle(color: Colors.grey, fontSize: 10))),
+                          SizedBox(width: 60, child: Text("Shop Buys", textAlign: TextAlign.right, style: TextStyle(color: Colors.grey, fontSize: 10))),
+                          SizedBox(width: 50, child: Text("Spread", textAlign: TextAlign.right, style: TextStyle(color: Colors.redAccent, fontSize: 10))),
                           SizedBox(width: 18), // Space for arrow icon (16 + 2)
                         ],
                       ),
@@ -214,7 +214,7 @@ class MerchantsScreen extends StatelessWidget {
             children: [
               Text(
                 displayName,
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
               ),
               const SizedBox(height: 2),
               Container(
@@ -230,41 +230,41 @@ class MerchantsScreen extends StatelessWidget {
           )
         : Text(
             displayName,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             maxLines: 1,
             overflow: TextOverflow.visible,
           ),
       subtitle: Text(
         "Upd. $dateStr", 
-        style: const TextStyle(color: Colors.grey, fontSize: 9),
+        style: const TextStyle(color: Colors.grey, fontSize: 10),
       ),
       trailing: SizedBox(
-        width: 175, // Match the header width
+        width: 190, // Match the header width
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             SizedBox(
-              width: 55,
+              width: 60,
               child: Text(
                 record.sell.toStringAsFixed(2),
                 textAlign: TextAlign.right,
-                style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 14.5, fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
-              width: 55,
+              width: 60,
               child: Text(
                 record.buy.toStringAsFixed(2),
                 textAlign: TextAlign.right,
-                style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Colors.grey),
+                style: const TextStyle(fontSize: 14.5, fontWeight: FontWeight.bold, color: Colors.grey),
               ),
             ),
             SizedBox(
-              width: 45,
+              width: 50,
               child: Text(
                 record.spread.toStringAsFixed(2),
                 textAlign: TextAlign.right,
-                style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Colors.redAccent),
+                style: const TextStyle(fontSize: 14.5, fontWeight: FontWeight.bold, color: Colors.redAccent),
               ),
             ),
             const SizedBox(width: 2),

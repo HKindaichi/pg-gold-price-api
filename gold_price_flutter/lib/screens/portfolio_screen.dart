@@ -246,7 +246,7 @@ class PortfolioScreen extends StatelessWidget {
                         size: 20, // Reduced size
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    const SizedBox(width: 8),
                     Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -259,7 +259,7 @@ class PortfolioScreen extends StatelessWidget {
                               "${entry.weight}g   ${(entry.type == '999' || entry.type == '916') ? 'Gold ${entry.type}' : entry.type}",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold, 
-                                fontSize: 16,
+                                fontSize: 14.5,
                                 color: isSold ? Colors.grey : Colors.white,
                               ),
                               overflow: TextOverflow.ellipsis,
@@ -303,7 +303,7 @@ class PortfolioScreen extends StatelessWidget {
                       // 4. Buy Date (Below Purchase From)
                        Padding(
                          padding: const EdgeInsets.only(top: 2),
-                         child: Text("Buy date: $dateStr", style: const TextStyle(color: Colors.grey, fontSize: 10)),
+                         child: Text("Buy date: $dateStr", style: const TextStyle(color: Colors.grey, fontSize: 10), maxLines: 1, overflow: TextOverflow.ellipsis),
                        ),
                     ],
                   ),
@@ -334,9 +334,9 @@ class PortfolioScreen extends StatelessWidget {
                       ),
                   ],
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 0),
                 IconButton(
-                  icon: const Icon(Icons.delete_outline, color: Colors.grey, size: 20),
+                  icon: const Icon(Icons.delete_outline, color: Colors.grey, size: 18),
                   padding: EdgeInsets.zero,
                   constraints: const BoxConstraints(),
                   onPressed: () => _confirmDelete(context, provider, entry),

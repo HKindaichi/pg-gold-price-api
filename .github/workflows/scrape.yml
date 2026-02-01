@@ -4,7 +4,7 @@ on:
   push:
   workflow_dispatch:
   schedule:
-    - cron: '*/15 * * * *' # Every 15 minutes (Testing)
+    - cron: '0 */2 * * *' # Every 2 hours
 
 permissions:
   contents: write

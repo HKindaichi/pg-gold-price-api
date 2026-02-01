@@ -26,7 +26,7 @@ class _AddPortfolioEntryScreenState extends State<AddPortfolioEntryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add to Portfolio"),
+        title: const Text("Add to My Assets"),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -98,7 +98,7 @@ class _AddPortfolioEntryScreenState extends State<AddPortfolioEntryScreen> {
                     foregroundColor: Colors.black,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   ),
-                  child: const Text("Save to Portfolio", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  child: const Text("Save to My Assets", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
               ),
             ],
