@@ -297,8 +297,6 @@ class PortfolioScreen extends StatelessWidget {
                            child: Text(
                              entry.notes, 
                              style: const TextStyle(color: Colors.grey, fontSize: 11),
-                             maxLines: 1,
-                             overflow: TextOverflow.ellipsis,
                            ),
                          ),
 

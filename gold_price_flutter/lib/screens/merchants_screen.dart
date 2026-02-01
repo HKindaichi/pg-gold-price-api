@@ -23,7 +23,7 @@ class MerchantsScreen extends StatelessWidget {
 
           // Filter merchants that actually have data for the selected purity
           final merchants = provider.getMerchants().where((m) {
-            return provider.getLatestForMerchant(m, provider.selectedPurity) != null;
+            return provider.getLatestForMerchant(m, provider.merchantPurity) != null;
           }).toList();
 
           return Column(
@@ -38,8 +38,8 @@ class MerchantsScreen extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    _buildPurityTab(context, provider, "999 (24K)", "999"),
-                    _buildPurityTab(context, provider, "916 (22K)", "916"),
+                    _buildPurityTab(context, provider, "Gold 999 (24K)", "999"),
+                    _buildPurityTab(context, provider, "Gold 916 (22K)", "916"),
                     _buildPurityTab(context, provider, "Silver", "Silver"),
                   ],
                 ),
@@ -67,12 +67,12 @@ class MerchantsScreen extends StatelessWidget {
               ),
               Expanded(
                 child: merchants.isEmpty
-                    ? Center(child: Text("No merchants data for ${provider.selectedPurity}", style: TextStyle(color: Colors.white54)))
+                    ? Center(child: Text("No merchants data for ${provider.merchantPurity}", style: TextStyle(color: Colors.white54)))
                     : ListView.builder(
                         itemCount: merchants.length,
                         itemBuilder: (context, index) {
                           final merchant = merchants[index];
-                          final latest = provider.getLatestForMerchant(merchant, provider.selectedPurity);
+                          final latest = provider.getLatestForMerchant(merchant, provider.merchantPurity);
                           
                           // Should be non-null due to filter above, but safe check
                           if (latest == null) return const SizedBox.shrink();
@@ -89,10 +89,10 @@ class MerchantsScreen extends StatelessWidget {
   }
 
   Widget _buildPurityTab(BuildContext context, GoldProvider provider, String label, String value) {
-    bool isSelected = provider.selectedPurity == value;
+    bool isSelected = provider.merchantPurity == value;
     return Expanded(
       child: GestureDetector(
-        onTap: () => provider.setPurity(value),
+        onTap: () => provider.setMerchantPurity(value),
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
@@ -130,7 +130,7 @@ class MerchantsScreen extends StatelessWidget {
 
     // Mapping for theme colors to hide any remaining white gaps
     final Map<String, Color> merchantColors = {
-      'public_gold': Colors.black,
+      'public_gold': Colors.white,
       'miga_i': const Color(0xFFFFD100), // Maybank Yellow
       'cimb_e_gia': const Color(0xFFE21B1B), // CIMB Red
       'biga_i': const Color(0xFF006633), // Bank Islam Green
@@ -141,11 +141,11 @@ class MerchantsScreen extends StatelessWidget {
 
     // Mapping for display names
     final Map<String, String> merchantNames = {
-      'public_gold': 'PublicGold',
+      'public_gold': 'Public Gold',
       'miga_i': 'MIGA-i',
       'cimb_e_gia': 'e-GIA',
       'biga_i': 'BIGA-i',
-      'uob': 'UOB',
+      'uob': 'UOB-GSA',
       'maa_gold': 'MAA Gold',
       'gb_gold': 'GB Gold',
     };
@@ -159,7 +159,7 @@ class MerchantsScreen extends StatelessWidget {
     if (merchantId == 'cimb_e_gia') {
       logoScale = 1.7; // Even more zoom to kill that white ring
     } else if (merchantId == 'public_gold') {
-      logoScale = 1.3; // Slightly more for PG too
+      logoScale = 1.0; // Reset scale for the new ring logo
     }
     if (merchantId == 'miga_i') {
       logoScale = 1.2; // Tiny bit more for Maybank
@@ -207,12 +207,31 @@ class MerchantsScreen extends StatelessWidget {
               ),
             ),
       ),
-      title: Text(
-        displayName,
-        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
-        maxLines: 1,
-        overflow: TextOverflow.visible,
-      ),
+      title: merchantId == 'uob'
+        ? Row(
+            children: [
+              Text(
+                displayName,
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+              ),
+              const SizedBox(width: 6),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                decoration: BoxDecoration(
+                  color: Colors.redAccent.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(4),
+                  border: Border.all(color: Colors.redAccent.withOpacity(0.5)),
+                ),
+                child: const Text("Non-Syariah", style: TextStyle(color: Colors.redAccent, fontSize: 8, fontWeight: FontWeight.bold)),
+              ),
+            ],
+          )
+        : Text(
+            displayName,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+            maxLines: 1,
+            overflow: TextOverflow.visible,
+          ),
       subtitle: Text(
         "Upd. $dateStr", 
         style: const TextStyle(color: Colors.grey, fontSize: 9),

@@ -10,7 +10,8 @@ class GoldProvider with ChangeNotifier {
   String? _error;
 
   // UI State
-  String _selectedPurity = '999'; // '999', '916', 'Silver'
+  String _selectedPurity = '999'; // '999', '916', 'Silver' (Used for Dashboard)
+  String _merchantPurity = '999'; // Separate state for Merchants Screen
   String _selectedRange = '7D'; // '7D', '1M', '6M', '1Y'
   int _currentTabIndex = 0;
 
@@ -18,11 +19,17 @@ class GoldProvider with ChangeNotifier {
   bool get isLoading => _isLoading;
   String? get error => _error;
   String get selectedPurity => _selectedPurity;
+  String get merchantPurity => _merchantPurity;
   String get selectedRange => _selectedRange;
   int get currentTabIndex => _currentTabIndex;
 
   void setPurity(String purity) {
     _selectedPurity = purity;
+    notifyListeners();
+  }
+
+  void setMerchantPurity(String purity) {
+    _merchantPurity = purity;
     notifyListeners();
   }
 
