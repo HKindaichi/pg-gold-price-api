@@ -135,11 +135,11 @@ class PortfolioScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildSummaryItem("999 Gold", "${weight999.toStringAsFixed(2)}g", Colors.orangeAccent),
+              Expanded(child: _buildSummaryItem("999 Gold", "${weight999.toStringAsFixed(2)}g", Colors.orangeAccent)),
               Container(width: 1, height: 30, color: Colors.grey.withOpacity(0.2)),
-              _buildSummaryItem("916 Gold", "${weight916.toStringAsFixed(2)}g", Colors.yellowAccent),
+              Expanded(child: _buildSummaryItem("916 Gold", "${weight916.toStringAsFixed(2)}g", Colors.yellowAccent)),
               Container(width: 1, height: 30, color: Colors.grey.withOpacity(0.2)),
-              _buildSummaryItem("Silver", "${weightSilver.toStringAsFixed(2)}g", const Color(0xFF4DD0E1)),
+              Expanded(child: _buildSummaryItem("Silver", "${weightSilver.toStringAsFixed(2)}g", const Color(0xFF4DD0E1))),
             ],
           ),
           const Divider(height: 30, color: Colors.white10),
@@ -182,7 +182,10 @@ class PortfolioScreen extends StatelessWidget {
       children: [
         Text(label, style: const TextStyle(color: Colors.grey, fontSize: 12)),
         const SizedBox(height: 4),
-        Text(value, style: TextStyle(color: color, fontSize: 20, fontWeight: FontWeight.bold)),
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(value, style: TextStyle(color: color, fontSize: 20, fontWeight: FontWeight.bold)),
+        ),
       ],
     );
   }
@@ -251,14 +254,29 @@ class PortfolioScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // 1. Weight (Big & Clean)
-                      Text(
-                        "${entry.weight}g",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold, 
-                          fontSize: 16,
-                          color: isSold ? Colors.grey : Colors.white,
-                        ),
+                      // 1. Weight (Big & Clean) + SOLD Tag
+                      Row(
+                        children: [
+                          Text(
+                            "${entry.weight}g",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold, 
+                              fontSize: 16,
+                              color: isSold ? Colors.grey : Colors.white,
+                            ),
+                          ),
+                          if (isSold) ...[
+                            const SizedBox(width: 8),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                              decoration: BoxDecoration(
+                                color: Colors.grey.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: const Text("SOLD", style: TextStyle(color: Colors.grey, fontSize: 10, fontWeight: FontWeight.bold)),
+                            ),
+                          ],
+                        ],
                       ),
                       const SizedBox(height: 4),
                       
@@ -284,17 +302,6 @@ class PortfolioScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          if (isSold) ...[
-                            const SizedBox(width: 8),
-                            Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                              decoration: BoxDecoration(
-                                color: Colors.grey.withOpacity(0.2),
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                              child: const Text("SOLD", style: TextStyle(color: Colors.grey, fontSize: 10, fontWeight: FontWeight.bold)),
-                            ),
-                          ],
                         ],
                       ),
                       
@@ -311,7 +318,7 @@ class PortfolioScreen extends StatelessWidget {
                       // 4. Buy Date (Below Purchase From)
                        Padding(
                          padding: const EdgeInsets.only(top: 2),
-                         child: Text("Buy date: $dateStr", style: const TextStyle(color: Colors.grey, fontSize: 10), maxLines: 1, overflow: TextOverflow.ellipsis),
+                         child: Text("Buy date: $dateStr", style: const TextStyle(color: Colors.grey, fontSize: 10)),
                        ),
                     ],
                   ),
