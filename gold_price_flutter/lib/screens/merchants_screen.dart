@@ -126,6 +126,7 @@ class MerchantsScreen extends StatelessWidget {
       'uob': 'assets/logos/uob.png',
       'maa_gold': 'assets/logos/maa_gold.png',
       'gb_gold': 'assets/logos/gb_gold.png',
+      'bank_muamalat': 'assets/logos/bank_muamalat.png',
     };
 
     // Mapping for theme colors to hide any remaining white gaps
@@ -137,6 +138,7 @@ class MerchantsScreen extends StatelessWidget {
       'uob': const Color(0xFF0038A8), // UOB Blue
       'maa_gold': const Color(0xFFFFD700), // MAA Gold Yellow
       'gb_gold': const Color(0xFF4CAF50), // GB Gold Green
+      'bank_muamalat': const Color(0xFF003366), // Muamalat Navy Blue
     };
 
     // Mapping for display names
@@ -148,6 +150,7 @@ class MerchantsScreen extends StatelessWidget {
       'uob': 'UOB-GSA',
       'maa_gold': 'MAA Gold',
       'gb_gold': 'GB Gold',
+      'bank_muamalat': 'EasiGold',
     };
 
     final logoPath = merchantLogos[merchantId];
