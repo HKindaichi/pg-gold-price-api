@@ -128,6 +128,7 @@ class MerchantsScreen extends StatelessWidget {
       'gb_gold': 'assets/logos/gb_gold.png',
       'bank_muamalat': 'assets/logos/bank_muamalat.png',
       'maybank_silver': 'assets/logos/maybank.png',
+      'bsn': 'assets/logos/bsn.png',
     };
 
     // Mapping for theme colors to hide any remaining white gaps
@@ -154,6 +155,7 @@ class MerchantsScreen extends StatelessWidget {
       'gb_gold': 'GB Gold',
       'bank_muamalat': 'EasiGold',
       'maybank_silver': 'MSIA',
+      'bsn': 'BSN',
     };
 
     final logoPath = merchantLogos[merchantId];

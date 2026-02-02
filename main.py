@@ -16,6 +16,7 @@ from scrapers.bank_islam import BigaScraper
 from scrapers.maa_gold import MaaGoldScraper
 from scrapers.world_gold import WorldGoldScraper
 from scrapers.world_silver import WorldSilverScraper
+from scrapers.bsn import BsnScraper
 from scrapers.maybank_silver import MaybankSilverScraper
 from scrapers.bank_muamalat import BankMuamalatScraper
 
@@ -100,6 +101,7 @@ def main():
         MaybankSilverScraper(),
         WorldGoldScraper(),
         WorldSilverScraper(),
+        BsnScraper(),
     ]
 
     merchants = []
@@ -144,7 +146,7 @@ def main():
 
     # 5. Write to file
     write_output(payload)
-    print(f"✅ Wrote {OUTPUT_PATH} and {HISTORY_CSV_PATH} with {len(merchants)} merchants.")
+    print(f"[SUCCESS] Wrote {OUTPUT_PATH} and {HISTORY_CSV_PATH} with {len(merchants)} merchants.")
 
 if __name__ == "__main__":
     main()
