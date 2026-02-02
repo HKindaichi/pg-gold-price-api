@@ -35,45 +35,61 @@ class MaybankSilverScraper(GoldScraper):
             # It's likely a <p> or <div class="text_title"> or similar.
             # Based on MIGA-i structure, it's likely a <p> tag.
             
-            target_section = soup.find(lambda tag: tag.name == "p" and "Maybank Silver Investment Account" in tag.get_text())
+            # Specific Header Search to avoid Intro Text
+            # Intro text has "Rates for ...", Header has ONLY "Maybank Silver Investment Account"
+            # Using exact string match to differentiate.
+            
+            target_section = soup.find("p", class_="text-medium", string="Maybank Silver Investment Account")
             
             if not target_section:
-                # Try finding just by string matching in the whole soup if exact tag match fails
-                # The text in screenshot is "Maybank Silver Investment Account"
-                header_text = soup.find(string=lambda t: t and "Maybank Silver Investment Account" in t)
-                if header_text:
-                    target_section = header_text.parent
+                 # Fallback: try finding any P with exact text if class missing
+                 target_section = soup.find("p", string="Maybank Silver Investment Account")
             
             if target_section:
                 # Find the next table directly
                 table = target_section.find_next("table")
                 if table:
-                        # Parse rows. 
-                        # Header: Date, Selling (RM/g), Buying (RM/g)
+                        # Parsing Malformed HTML: The data cells might not be in a <tr>
+                        # Standard check
                         rows = table.find_all("tr")
+                        data_found = False
+                        
                         for row in rows:
                             cols = [c.get_text(strip=True) for c in row.find_all(["td", "th"])]
-                            print(f"DEBUG ROW: {cols}")
                             if len(cols) >= 3:
                                 col0 = cols[0]
                                 if "Date" in col0 or "Selling" in col0: 
-                                    print("Skipping header")
                                     continue
                                 
-                                # Data row: "02 Feb 2026", "14.55", "13.40"
+                                # Normal case
                                 try:
-                                    print(f"Parsing: {cols[1]}, {cols[2]}")
                                     price_sell = float(cols[1].replace(",", ""))
                                     price_buy = float(cols[2].replace(",", ""))
-                                    
                                     gold_items["Silver"] = {
                                         "sell": price_sell,
                                         "buy": price_buy,
                                         "spread": round(price_sell - price_buy, 2)
                                     }
-                                    break # Take first row
+                                    data_found = True
+                                    break
                                 except ValueError:
                                     continue
+                        
+                        # Fallback for malformed HTML (<td> not in <tr>)
+                        if not data_found:
+                            all_tds = table.find_all("td")
+                            # Expecting 3 tds: Date, Sell, Buy
+                            if len(all_tds) >= 3:
+                                try:
+                                    price_sell = float(all_tds[1].get_text(strip=True).replace(",", ""))
+                                    price_buy = float(all_tds[2].get_text(strip=True).replace(",", ""))
+                                    gold_items["Silver"] = {
+                                        "sell": price_sell,
+                                        "buy": price_buy,
+                                        "spread": round(price_sell - price_buy, 2)
+                                    }
+                                except Exception as e:
+                                    print(f"Maybank Silver: Malformed parse error - {e}")
                 
                 # Timestamp: "Effective on 02 Feb 2026 02:11 PM"
                 # Usually in a <p class="text-small"> after the table
