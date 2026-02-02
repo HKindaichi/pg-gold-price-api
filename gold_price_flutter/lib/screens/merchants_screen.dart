@@ -150,7 +150,7 @@ class MerchantsScreen extends StatelessWidget {
       'uob': 'UOB-GSA',
       'maa_gold': 'MAA Gold',
       'gb_gold': 'GB Gold',
-      'bank_muamalat': 'EasyGold',
+      'bank_muamalat': 'EasiGold',
     };
 
     final logoPath = merchantLogos[merchantId];
