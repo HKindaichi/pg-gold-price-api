@@ -16,6 +16,7 @@ from scrapers.bank_islam import BigaScraper
 from scrapers.maa_gold import MaaGoldScraper
 from scrapers.world_gold import WorldGoldScraper
 from scrapers.world_silver import WorldSilverScraper
+from scrapers.maybank_silver import MaybankSilverScraper
 from scrapers.bank_muamalat import BankMuamalatScraper
 
 # =========================
@@ -96,6 +97,7 @@ def main():
         BigaScraper(),
         MaaGoldScraper(),
         BankMuamalatScraper(),
+        MaybankSilverScraper(),
         WorldGoldScraper(),
         WorldSilverScraper(),
     ]

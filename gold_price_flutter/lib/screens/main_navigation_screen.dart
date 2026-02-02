@@ -4,6 +4,7 @@ import '../services/gold_provider.dart';
 import 'home_screen.dart'; // We will repurpose this as 'Live'
 import 'merchants_screen.dart';
 import 'portfolio_screen.dart';
+import 'settings_screen.dart';
 
 class MainNavigationScreen extends StatelessWidget {
   const MainNavigationScreen({super.key});
@@ -16,7 +17,7 @@ class MainNavigationScreen extends StatelessWidget {
       const HomeScreen(), // Live View
       const MerchantsScreen(),
       const PortfolioScreen(),
-      const Center(child: Text("Settings Coming Soon")),
+      const SettingsScreen(),
     ];
 
     return Scaffold(

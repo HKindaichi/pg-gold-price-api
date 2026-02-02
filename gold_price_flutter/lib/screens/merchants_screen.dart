@@ -127,6 +127,7 @@ class MerchantsScreen extends StatelessWidget {
       'maa_gold': 'assets/logos/maa_gold.png',
       'gb_gold': 'assets/logos/gb_gold.png',
       'bank_muamalat': 'assets/logos/bank_muamalat.png',
+      'maybank_silver': 'assets/logos/maybank.png',
     };
 
     // Mapping for theme colors to hide any remaining white gaps
@@ -139,6 +140,7 @@ class MerchantsScreen extends StatelessWidget {
       'maa_gold': const Color(0xFFFFD700), // MAA Gold Yellow
       'gb_gold': const Color(0xFF4CAF50), // GB Gold Green
       'bank_muamalat': const Color(0xFF003366), // Muamalat Navy Blue
+      'maybank_silver': const Color(0xFFFFD100), // MSIA Yellow
     };
 
     // Mapping for display names
@@ -151,6 +153,7 @@ class MerchantsScreen extends StatelessWidget {
       'maa_gold': 'MAA Gold',
       'gb_gold': 'GB Gold',
       'bank_muamalat': 'EasiGold',
+      'maybank_silver': 'MSIA',
     };
 
     final logoPath = merchantLogos[merchantId];
@@ -164,7 +167,7 @@ class MerchantsScreen extends StatelessWidget {
     } else if (merchantId == 'public_gold') {
       logoScale = 1.0; // Reset scale for the new ring logo
     }
-    if (merchantId == 'miga_i') {
+    if (merchantId == 'miga_i' || merchantId == 'maybank_silver') {
       logoScale = 1.2; // Tiny bit more for Maybank
     }
 
@@ -210,7 +213,7 @@ class MerchantsScreen extends StatelessWidget {
               ),
             ),
       ),
-      title: merchantId == 'uob'
+      title: (merchantId == 'uob' || merchantId == 'maybank_silver')
         ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
