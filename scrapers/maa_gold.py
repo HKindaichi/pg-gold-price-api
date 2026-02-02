@@ -54,7 +54,25 @@ class MaaGoldScraper(GoldScraper):
                                     "spread": round(price_sell - price_buy, 2)
                                 }
                             except ValueError:
-                                print(f"MAA Gold: Parsing error - {sell_text}, {buy_text}")
+                                print(f"MAA Gold: Parsing error 999 - {sell_text}, {buy_text}")
+
+                        elif "22K" in name_cell:
+                            # Sell Price (Col 1: We Sell)
+                            sell_text = cols[1].get_text(strip=True).replace("RM", "").replace(",", "").strip()
+                            # Buy Price (Col 2: We Buy)
+                            buy_text = cols[2].get_text(strip=True).replace("RM", "").replace(",", "").strip()
+                            
+                            try:
+                                price_sell = float(sell_text)
+                                price_buy = float(buy_text)
+                                
+                                gold_items["916"] = {
+                                    "sell": price_sell,
+                                    "buy": price_buy,
+                                    "spread": round(price_sell - price_buy, 2)
+                                }
+                            except ValueError:
+                                print(f"MAA Gold: Parsing error 916 - {sell_text}, {buy_text}")
 
             last_updated = None
             # No explicit date found in HTML dump, "GOLD PRICE TODAY" implies valid for today.
