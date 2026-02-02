@@ -1,19 +1,19 @@
 {
-  "updated_label": "Today 06:11",
+  "updated_label": "Today 09:01",
   "merchants": [
     {
       "id": "public_gold",
       "name": "Public Gold",
       "items": {
         "999": {
-          "sell": 675,
-          "buy": 614,
-          "spread": 61
+          "sell": 663,
+          "buy": 603,
+          "spread": 60
         },
         "916": {
-          "sell": 642,
-          "buy": 558,
-          "spread": 84
+          "sell": 630,
+          "buy": 548,
+          "spread": 82
         }
       },
       "last_updated": "02-Feb-2026"
@@ -46,55 +46,55 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 1G Palestine X Rahma Worldwide": {
-          "sell": 727.0,
-          "buy": 617.0,
-          "spread": 110.0
-        },
-        "Gold Bar 0.5G Raja Perlis": {
-          "sell": 370.0,
-          "buy": 308.0,
-          "spread": 62.0
-        },
-        "Gold Bar 1G Chinese New Year 2025": {
-          "sell": 707.0,
-          "buy": 617.0,
-          "spread": 90.0
-        },
-        "Gold Bar 1G Raja Perlis": {
-          "sell": 707.0,
-          "buy": 617.0,
-          "spread": 90.0
-        },
         "Gold Bar 1Kg": {
-          "sell": 665659.0,
-          "buy": 618784.0,
-          "spread": 46875.0
+          "sell": 652943.0,
+          "buy": 606958.0,
+          "spread": 45985.0
         },
         "Gold Bar 1G 2025": {
-          "sell": 692.0,
-          "buy": 617.0,
-          "spread": 75.0
-        },
-        "Pelbagai 1 Gram": {
-          "sell": 686.0,
-          "buy": 617.0,
-          "spread": 69.0
-        },
-        "Gold Bar 0.5G Klasik V3": {
-          "sell": 355.0,
-          "buy": 308.0,
-          "spread": 47.0
+          "sell": 679.0,
+          "buy": 605.0,
+          "spread": 74.0
         },
         "Pelbagai 0.5G": {
-          "sell": 348.0,
-          "buy": 309.0,
+          "sell": 342.0,
+          "buy": 303.0,
           "spread": 39.0
         },
+        "Gold Bar 1G Palestine X Rahma Worldwide": {
+          "sell": 714.0,
+          "buy": 605.0,
+          "spread": 109.0
+        },
+        "Pelbagai 1 Gram": {
+          "sell": 673.0,
+          "buy": 605.0,
+          "spread": 68.0
+        },
         "Gold Bar 0.5G 2026": {
-          "sell": 353.0,
-          "buy": 309.0,
+          "sell": 347.0,
+          "buy": 303.0,
           "spread": 44.0
+        },
+        "Gold Bar 1G Raja Perlis": {
+          "sell": 694.0,
+          "buy": 605.0,
+          "spread": 89.0
+        },
+        "Gold Bar 0.5G Klasik V3": {
+          "sell": 349.0,
+          "buy": 303.0,
+          "spread": 46.0
+        },
+        "Gold Bar 0.5G Raja Perlis": {
+          "sell": 364.0,
+          "buy": 303.0,
+          "spread": 61.0
+        },
+        "Gold Bar 1G Chinese New Year 2025": {
+          "sell": 694.0,
+          "buy": 605.0,
+          "spread": 89.0
         }
       }
     },
@@ -118,43 +118,31 @@
           "spread": 3500.0
         }
       },
-      "last_updated": "01/02/2026 08:00"
-    },
-    {
-      "id": "gb_gold",
-      "name": "GB Gold",
-      "items": {
-        "999": {
-          "sell": 667.0,
-          "buy": 623.0,
-          "spread": 44.0
-        }
-      },
-      "last_updated": "02-02-2026 06:00:02"
+      "last_updated": "02/02/2026 08:00"
     },
     {
       "id": "world_gold",
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 616.63,
-          "buy": 616.63,
+          "sell": 605.09,
+          "buy": 605.09,
           "spread": 0.0
         }
       },
-      "last_updated": "01 Feb 26 22:11"
+      "last_updated": "02 Feb 26 01:01"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 10.74,
-          "buy": 10.74,
+          "sell": 10.79,
+          "buy": 10.79,
           "spread": 0.0
         }
       },
-      "last_updated": "01 Feb 26 22:11"
+      "last_updated": "02 Feb 26 01:01"
     }
   ]
 }
