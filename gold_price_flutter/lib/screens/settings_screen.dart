@@ -1,12 +1,16 @@
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'disclaimer_screen.dart';
+import 'shariah_compliance_screen.dart';
+import '../services/theme_provider.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -20,6 +24,22 @@ class SettingsScreen extends StatelessWidget {
         children: [
           _buildSettingsTile(
             context,
+            icon: themeProvider.isDarkMode ? Icons.dark_mode_outlined : Icons.light_mode_outlined,
+            title: "Appearance",
+            subtitle: themeProvider.isDarkMode ? "Dark Mode" : "Light Mode",
+            trailing: Switch(
+              value: themeProvider.isDarkMode,
+              onChanged: (val) {
+                themeProvider.toggleTheme(val);
+              },
+              activeColor: const Color(0xFFfbbf24),
+            ),
+            onTap: () {
+              themeProvider.toggleTheme(!themeProvider.isDarkMode);
+            },
+          ),
+          _buildSettingsTile(
+            context,
             icon: Icons.gavel_outlined,
             title: "Disclaimers",
             subtitle: "Penafian / Disclaimer",
@@ -27,6 +47,18 @@ class SettingsScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const DisclaimerScreen()),
+              );
+            },
+          ),
+          _buildSettingsTile(
+            context,
+            icon: Icons.verified_user_outlined,
+            title: "Shariah Compliance",
+            subtitle: "Patuh Syariah & Tidak Patuh Syariah",
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ShariahComplianceScreen()),
               );
             },
           ),
@@ -59,12 +91,17 @@ class SettingsScreen extends StatelessWidget {
       {required IconData icon,
       required String title,
       required String subtitle,
+      Widget? trailing,
       required VoidCallback onTap}) {
+    final theme = Theme.of(context);
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
-        color: const Color(0xFF1e293b),
+        color: theme.cardColor,
         borderRadius: BorderRadius.circular(12),
+        boxShadow: theme.brightness == Brightness.light 
+          ? [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, 4))]
+          : null,
       ),
       child: ListTile(
         leading: Container(
@@ -77,7 +114,7 @@ class SettingsScreen extends StatelessWidget {
         ),
         title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
         subtitle: Text(subtitle, style: const TextStyle(fontSize: 12, color: Colors.grey)),
-        trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+        trailing: trailing ?? const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
         onTap: onTap,
       ),
     );

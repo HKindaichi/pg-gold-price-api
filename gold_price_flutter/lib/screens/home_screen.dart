@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:intl/intl.dart';
 import '../services/gold_provider.dart';
+import '../services/theme_provider.dart';
 import '../models/gold_price.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -27,6 +28,19 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         actions: [
+          Consumer<ThemeProvider>(
+            builder: (context, themeProvider, child) {
+              return IconButton(
+                icon: Icon(
+                  themeProvider.isDarkMode ? Icons.light_mode : Icons.dark_mode,
+                  color: const Color(0xFFfbbf24),
+                ),
+                onPressed: () {
+                  themeProvider.toggleTheme(!themeProvider.isDarkMode);
+                },
+              );
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.notifications_none, size: 28),
             onPressed: () {},
@@ -65,12 +79,16 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildPuritySelector(GoldProvider provider) {
+    final theme = Theme.of(context);
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20),
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-        color: const Color(0xFF1e293b),
+        color: theme.cardColor,
         borderRadius: BorderRadius.circular(12),
+        boxShadow: theme.brightness == Brightness.light 
+          ? [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, 4))]
+          : null,
       ),
       child: Row(
         children: [
@@ -84,20 +102,23 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildPurityTab(GoldProvider provider, String value, String label) {
     bool isSelected = provider.selectedPurity == value;
+    final theme = Theme.of(context);
     return Expanded(
       child: GestureDetector(
         onTap: () => provider.setPurity(value),
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
-            color: isSelected ? const Color(0xFF334155) : Colors.transparent,
+            color: isSelected ? (theme.brightness == Brightness.dark ? const Color(0xFF334155) : const Color(0xFFfbbf24)) : Colors.transparent,
             borderRadius: BorderRadius.circular(8),
           ),
           child: Text(
             label,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: isSelected ? Colors.white : Colors.grey,
+              color: isSelected 
+                ? (theme.brightness == Brightness.dark ? Colors.white : Colors.black) 
+                : (theme.brightness == Brightness.dark ? Colors.grey : Colors.black45),
               fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
             ),
           ),
@@ -107,28 +128,78 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildLargePriceDisplay(GoldRecord? latest) {
-    String purity = Provider.of<GoldProvider>(context, listen: false).selectedPurity;
+    final theme = Theme.of(context);
+    final provider = Provider.of<GoldProvider>(context, listen: false);
+    String purity = provider.selectedPurity;
     final String unit = (purity == '999' || purity == 'Silver') ? "Live Spot RM/g" : "RM/g";
     final String price = latest != null ? latest.sell.toStringAsFixed(2) : "--.--";
     final String date = latest != null ? DateFormat('HH:mm').format(latest.timestamp) : "--:--";
 
+    final double percentChange = provider.getPercentageChange();
+    final bool isPositive = percentChange >= 0;
+    final String percentText = "${isPositive ? '+' : ''}${percentChange.toStringAsFixed(2)}%";
+    final Color percentColor = isPositive ? Colors.greenAccent : Colors.redAccent;
+
+    String rangeText;
+    switch (provider.selectedRange) {
+      case '7D': rangeText = "7 days"; break;
+      case '1M': rangeText = "1 month"; break;
+      case '6M': rangeText = "6 months"; break;
+      case '1Y': rangeText = "1 year"; break;
+      default: rangeText = provider.selectedRange;
+    }
+
+    final Color priceColor = purity == 'Silver' 
+        ? const Color(0xFF4DD0E1) 
+        : (theme.brightness == Brightness.dark ? const Color(0xFFfbbf24) : Colors.orange[800]!);
+
+    final Color labelColor = theme.brightness == Brightness.dark ? Colors.grey : Colors.black54;
+
     return Column(
       children: [
-        Text(unit, style: const TextStyle(color: Colors.grey, fontSize: 16)),
+        Text(unit, style: TextStyle(color: labelColor, fontSize: 16)),
         Text(
           price,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 64,
             fontWeight: FontWeight.bold,
-            color: Color(0xFFfbbf24),
+            color: priceColor,
           ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Updated Today $date", style: const TextStyle(color: Colors.grey)),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              decoration: BoxDecoration(
+                color: percentColor.withOpacity(0.15),
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Text(
+                percentText,
+                style: TextStyle(
+                  color: theme.brightness == Brightness.dark 
+                    ? percentColor 
+                    : (isPositive ? Colors.green[700] : Colors.red[700]),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+            const SizedBox(width: 8),
+            Text(
+              "over the last $rangeText",
+              style: TextStyle(color: labelColor, fontSize: 13),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Updated Today $date", style: TextStyle(color: labelColor, fontSize: 12)),
             const SizedBox(width: 5),
-            const Icon(Icons.info_outline, size: 16, color: Colors.grey),
+            Icon(Icons.info_outline, size: 14, color: labelColor),
           ],
         ),
       ],
@@ -137,6 +208,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildRangeSelector(GoldProvider provider) {
     final ranges = ['7D', '1M', '6M', '1Y'];
+    final theme = Theme.of(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: ranges.map((r) {
@@ -147,13 +219,16 @@ class _HomeScreenState extends State<HomeScreen> {
             margin: const EdgeInsets.symmetric(horizontal: 5),
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
             decoration: BoxDecoration(
-              color: isSelected ? const Color(0xFFfbbf24) : const Color(0xFF1e293b),
+              color: isSelected ? const Color(0xFFfbbf24) : theme.cardColor,
               borderRadius: BorderRadius.circular(20),
+              boxShadow: theme.brightness == Brightness.light && !isSelected
+                ? [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 5, offset: const Offset(0, 2))]
+                : null,
             ),
             child: Text(
               r,
               style: TextStyle(
-                color: isSelected ? Colors.black : Colors.white,
+                color: isSelected ? Colors.black : (theme.brightness == Brightness.dark ? Colors.white : Colors.black87),
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -165,6 +240,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildChart(List<GoldRecord> history) {
     if (history.isEmpty) return const Center(child: Text("No Data"));
+
+    final provider = Provider.of<GoldProvider>(context, listen: false);
+    final String purity = provider.selectedPurity;
+    final Color mainColor = purity == 'Silver' ? const Color(0xFF4DD0E1) : const Color(0xFFfbbf24);
 
     final spots = history.asMap().entries.map((e) {
       return FlSpot(e.key.toDouble(), e.value.sell);
@@ -181,7 +260,7 @@ class _HomeScreenState extends State<HomeScreen> {
             LineChartBarData(
               spots: spots,
               isCurved: true,
-              color: const Color(0xFFfbbf24),
+              color: mainColor,
               barWidth: 3,
               isStrokeCapRound: true,
               dotData: FlDotData(show: false),
@@ -189,8 +268,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 show: true,
                 gradient: LinearGradient(
                   colors: [
-                    const Color(0xFFfbbf24).withOpacity(0.4),
-                    const Color(0xFFfbbf24).withOpacity(0.0),
+                    mainColor.withOpacity(0.4),
+                    mainColor.withOpacity(0.0),
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,

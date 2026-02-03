@@ -52,8 +52,8 @@ class PortfolioScreen extends StatelessWidget {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildOwnerSelector(provider),
-              _buildSummaryHeader(stats999, stats916, statsSilver, totalPL, totalAsset),
+              _buildOwnerSelector(context, provider),
+              _buildSummaryHeader(context, stats999, stats916, statsSilver, totalPL, totalAsset),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                 child: Text("Recent Entries", style: TextStyle(color: Colors.grey, fontSize: 14, fontWeight: FontWeight.bold)),
@@ -88,8 +88,9 @@ class PortfolioScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildOwnerSelector(PortfolioProvider provider) {
+  Widget _buildOwnerSelector(BuildContext context, PortfolioProvider provider) {
     final owners = provider.owners;
+    final theme = Theme.of(context);
     return SizedBox(
       height: 60,
       child: ListView.builder(
@@ -109,10 +110,10 @@ class PortfolioScreen extends StatelessWidget {
               },
               selectedColor: const Color(0xFFfbbf24),
               labelStyle: TextStyle(
-                color: isSelected ? Colors.black : Colors.white,
+                color: isSelected ? Colors.black : (theme.brightness == Brightness.dark ? Colors.white : Colors.black87),
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),
-              backgroundColor: const Color(0xFF1e293b),
+              backgroundColor: theme.cardColor,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             ),
           );
@@ -121,36 +122,40 @@ class PortfolioScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSummaryHeader(double weight999, double weight916, double weightSilver, double totalPL, double totalAsset) {
+  Widget _buildSummaryHeader(BuildContext context, double weight999, double weight916, double weightSilver, double totalPL, double totalAsset) {
+    final theme = Theme.of(context);
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: const Color(0xFF1e293b),
+        color: theme.cardColor,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.white.withOpacity(0.05)),
+        boxShadow: theme.brightness == Brightness.light 
+          ? [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, 4))]
+          : null,
+        border: Border.all(color: theme.brightness == Brightness.dark ? Colors.white.withOpacity(0.05) : Colors.transparent),
       ),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Expanded(child: _buildSummaryItem("999 Gold", "${weight999.toStringAsFixed(2)}g", Colors.orangeAccent)),
-              Container(width: 1, height: 30, color: Colors.grey.withOpacity(0.2)),
-              Expanded(child: _buildSummaryItem("916 Gold", "${weight916.toStringAsFixed(2)}g", Colors.yellowAccent)),
-              Container(width: 1, height: 30, color: Colors.grey.withOpacity(0.2)),
-              Expanded(child: _buildSummaryItem("Silver", "${weightSilver.toStringAsFixed(2)}g", const Color(0xFF4DD0E1))),
+            Expanded(child: _buildSummaryItem(context, "999 Gold", "${weight999.toStringAsFixed(2)}g", Colors.orangeAccent)),
+            Container(width: 1, height: 30, color: Colors.grey.withOpacity(0.2)),
+            Expanded(child: _buildSummaryItem(context, "916 Gold", "${weight916.toStringAsFixed(2)}g", theme.brightness == Brightness.dark ? Colors.yellowAccent : Colors.orange[800]!)),
+            Container(width: 1, height: 30, color: Colors.grey.withOpacity(0.2)),
+            Expanded(child: _buildSummaryItem(context, "Silver", "${weightSilver.toStringAsFixed(2)}g", const Color(0xFF4DD0E1))),
             ],
           ),
-          const Divider(height: 30, color: Colors.white10),
+          Divider(height: 30, color: theme.dividerColor),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text("Total Asset Value", style: TextStyle(color: Colors.grey, fontSize: 13)),
+              Text("Total Asset Value", style: TextStyle(color: theme.brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 13)),
               Text(
                 "RM ${totalAsset.toStringAsFixed(2)}",
-                style: const TextStyle(
-                  color: Colors.white,
+                style: TextStyle(
+                  color: theme.brightness == Brightness.dark ? Colors.white : Colors.black,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -161,11 +166,11 @@ class PortfolioScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text("Total Realized P/L", style: TextStyle(color: Colors.grey, fontSize: 13)),
+              Text("Total Realized P/L", style: TextStyle(color: theme.brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 13)),
               Text(
                 "${totalPL >= 0 ? '+' : ''}RM ${totalPL.toStringAsFixed(2)}",
                 style: TextStyle(
-                  color: totalPL >= 0 ? Colors.greenAccent : Colors.redAccent,
+                  color: totalPL >= 0 ? (theme.brightness == Brightness.dark ? Colors.greenAccent : Colors.green[700]) : Colors.redAccent,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -177,10 +182,12 @@ class PortfolioScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSummaryItem(String label, String value, Color color) {
+  Widget _buildSummaryItem(BuildContext context, String label, String value, Color color) {
+    final theme = Theme.of(context);
+    final Color labelColor = theme.brightness == Brightness.dark ? Colors.grey : Colors.black54;
     return Column(
       children: [
-        Text(label, style: const TextStyle(color: Colors.grey, fontSize: 12)),
+        Text(label, style: TextStyle(color: labelColor, fontSize: 12)),
         const SizedBox(height: 4),
         FittedBox(
           fit: BoxFit.scaleDown,
@@ -194,6 +201,8 @@ class PortfolioScreen extends StatelessWidget {
     final dateStr = DateFormat('d MMM yyyy').format(entry.date);
     final bool isSold = entry.sellPricePerGram != null;
     final double pl = isSold ? ((entry.sellPricePerGram! - entry.buyPricePerGram) * entry.weight) : 0.0;
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
     
     return Dismissible(
       key: Key(entry.id),
@@ -215,8 +224,12 @@ class PortfolioScreen extends StatelessWidget {
       },
       child: Card(
         margin: const EdgeInsets.only(bottom: 12),
+        elevation: isDark ? 0 : 2,
+        shadowColor: Colors.black.withOpacity(0.1),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        color: isSold ? Colors.black.withOpacity(0.3) : const Color(0xFF1e293b).withOpacity(0.5),
+        color: isSold 
+          ? (isDark ? Colors.black.withOpacity(0.3) : Colors.grey.withOpacity(0.1)) 
+          : theme.cardColor,
         child: InkWell(
           onTap: isSold ? null : () => _showSellDialog(context, entry, provider),
           borderRadius: BorderRadius.circular(16),
@@ -245,7 +258,9 @@ class PortfolioScreen extends StatelessWidget {
                             ? Colors.grey 
                             : (entry.type == '999' 
                                 ? Colors.orangeAccent 
-                                : (entry.type == '916' ? Colors.yellowAccent : Colors.blueGrey)),
+                                : (entry.type == '916' 
+                                    ? (isDark ? Colors.yellowAccent : Colors.orange[800]!) 
+                                    : Colors.blueGrey)),
                         size: 20, // Reduced size
                       ),
                     ),
@@ -262,7 +277,7 @@ class PortfolioScreen extends StatelessWidget {
                             style: TextStyle(
                               fontWeight: FontWeight.bold, 
                               fontSize: 16,
-                              color: isSold ? Colors.grey : Colors.white,
+                              color: isSold ? Colors.grey : (isDark ? Colors.white : Colors.black),
                             ),
                           ),
                           if (isSold) ...[
@@ -286,10 +301,10 @@ class PortfolioScreen extends StatelessWidget {
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                             decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.05),
+                              color: isDark ? Colors.white.withOpacity(0.05) : Colors.black.withOpacity(0.05),
                               borderRadius: BorderRadius.circular(4),
                             ),
-                            child: Text(entry.ownerName, style: const TextStyle(color: Colors.white70, fontSize: 10)),
+                            child: Text(entry.ownerName, style: TextStyle(color: isDark ? Colors.white70 : Colors.black54, fontSize: 10)),
                           ),
                           const SizedBox(width: 8),
                           Text(
@@ -297,7 +312,9 @@ class PortfolioScreen extends StatelessWidget {
                             style: TextStyle(
                               color: entry.type == '999' 
                                   ? Colors.orangeAccent 
-                                  : (entry.type == '916' ? Colors.yellowAccent : const Color(0xFF4DD0E1)), 
+                                  : (entry.type == '916' 
+                                      ? (isDark ? Colors.yellowAccent : Colors.orange[800]!) 
+                                      : const Color(0xFF4DD0E1)), 
                               fontSize: 11,
                               fontWeight: FontWeight.bold,
                             ),
@@ -318,7 +335,7 @@ class PortfolioScreen extends StatelessWidget {
                       // 4. Buy Date (Below Purchase From)
                        Padding(
                          padding: const EdgeInsets.only(top: 2),
-                         child: Text("Buy date: $dateStr", style: const TextStyle(color: Colors.grey, fontSize: 10)),
+                         child: Text("Buy date: $dateStr", style: TextStyle(color: isDark ? Colors.grey : Colors.black54, fontSize: 10)),
                        ),
                     ],
                   ),
@@ -337,7 +354,7 @@ class PortfolioScreen extends StatelessWidget {
                     ),
                     Text(
                       "@ RM ${entry.buyPricePerGram.toStringAsFixed(2)}/g",
-                      style: const TextStyle(color: Colors.grey, fontSize: 10),
+                      style: TextStyle(color: isDark ? Colors.grey : Colors.black54, fontSize: 10),
                     ),
                     if (isSold)
                       Padding(
@@ -359,7 +376,7 @@ class PortfolioScreen extends StatelessWidget {
               ],
             ),
             if (isSold) ...[
-              const Divider(height: 20, color: Colors.white10),
+              Divider(height: 20, color: theme.dividerColor),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -367,7 +384,7 @@ class PortfolioScreen extends StatelessWidget {
                   Text(
                     "${pl >= 0 ? '+' : ''}RM ${pl.toStringAsFixed(2)}",
                     style: TextStyle(
-                      color: pl >= 0 ? Colors.greenAccent : Colors.redAccent,
+                      color: pl >= 0 ? (isDark ? Colors.greenAccent : Colors.green[700]) : Colors.redAccent,
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
                     ),
@@ -386,13 +403,16 @@ class PortfolioScreen extends StatelessWidget {
 void _confirmDelete(BuildContext context, PortfolioProvider provider, dynamic entry) {
 showDialog(
   context: context,
-  builder: (context) => AlertDialog(
-    backgroundColor: const Color(0xFF1e293b),
-    title: const Text("Delete Entry?", style: TextStyle(color: Colors.white)),
-    content: const Text(
-      "Are you sure you want to delete this asset entry? This action cannot be undone.",
-      style: TextStyle(color: Colors.white70),
-    ),
+  builder: (context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    return AlertDialog(
+      backgroundColor: theme.cardColor,
+      title: Text("Delete Entry?", style: TextStyle(color: isDark ? Colors.white : Colors.black)),
+      content: Text(
+        "Are you sure you want to delete this asset entry? This action cannot be undone.",
+        style: TextStyle(color: isDark ? Colors.white70 : Colors.black87),
+      ),
     actions: [
       TextButton(
         onPressed: () => Navigator.pop(context),
@@ -409,7 +429,8 @@ showDialog(
         child: const Text("Delete", style: TextStyle(color: Colors.redAccent)),
       ),
     ],
-  ),
+  );
+},
 );
 }
   void _showSellDialog(BuildContext context, dynamic entry, PortfolioProvider provider) {
@@ -419,11 +440,14 @@ showDialog(
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      backgroundColor: const Color(0xFF0f172a),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
       builder: (context) {
         return StatefulBuilder(
           builder: (context, setState) {
+            final theme = Theme.of(context);
+            final isDark = theme.brightness == Brightness.dark;
+            
             double sellPrice = double.tryParse(priceController.text) ?? 0.0;
             double sellWeight = double.tryParse(weightController.text) ?? 0.0;
             
@@ -442,7 +466,7 @@ showDialog(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Sell Gold Entry", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  Text("Sell Gold Entry", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: isDark ? Colors.white : Colors.black)),
                   const SizedBox(height: 8),
                   Text("Bought at RM ${entry.buyPricePerGram.toStringAsFixed(2)}/g", style: const TextStyle(color: Colors.grey)),
                   const SizedBox(height: 20),
@@ -454,13 +478,14 @@ showDialog(
                         child: TextField(
                           controller: weightController,
                           keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                          autofocus: true,
                           style: const TextStyle(fontSize: 16),
                           onChanged: (val) => setState(() {}),
                           decoration: InputDecoration(
                             labelText: "Weight to Sell (g)",
                             filled: true,
-                            fillColor: const Color(0xFF1e293b),
-                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
+                            fillColor: theme.cardColor,
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: isDark ? BorderSide.none : BorderSide(color: Colors.grey.withOpacity(0.2))),
                           ),
                         ),
                       ),
@@ -471,7 +496,7 @@ showDialog(
                           const Text("Remaining", style: TextStyle(color: Colors.grey, fontSize: 10)),
                           Text(
                             "${remainingWeight.toStringAsFixed(2)}g", 
-                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
+                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: isDark ? Colors.white : Colors.black),
                           ),
                         ],
                       )
@@ -483,7 +508,6 @@ showDialog(
                   TextField(
                     controller: priceController,
                     keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                    autofocus: true,
                     style: const TextStyle(fontSize: 18),
                     onChanged: (val) => setState(() {}),
                     decoration: InputDecoration(
@@ -491,8 +515,8 @@ showDialog(
                       prefixText: "RM ",
                       suffixText: "/g",
                       filled: true,
-                      fillColor: const Color(0xFF1e293b),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
+                      fillColor: theme.cardColor,
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: isDark ? BorderSide.none : BorderSide(color: Colors.grey.withOpacity(0.2))),
                     ),
                   ),
                   
@@ -511,7 +535,7 @@ showDialog(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             const Text("Total Sale Value", style: TextStyle(color: Colors.grey)),
-                            Text("RM ${totalSaleValue.toStringAsFixed(2)}", style: const TextStyle(fontWeight: FontWeight.bold)),
+                            Text("RM ${totalSaleValue.toStringAsFixed(2)}", style: TextStyle(fontWeight: FontWeight.bold, color: isDark ? Colors.white : Colors.black)),
                           ],
                         ),
                         const SizedBox(height: 8),

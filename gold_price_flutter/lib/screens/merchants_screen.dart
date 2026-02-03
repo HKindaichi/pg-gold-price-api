@@ -33,8 +33,11 @@ class MerchantsScreen extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 padding: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF1e293b),
+                  color: Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(12),
+                  boxShadow: Theme.of(context).brightness == Brightness.light 
+                    ? [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, 4))]
+                    : null,
                 ),
                 child: Row(
                   children: [
@@ -54,11 +57,11 @@ class MerchantsScreen extends StatelessWidget {
                       width: 190, // Increased width for larger font
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
-                        children: const [
-                          SizedBox(width: 60, child: Text("Shop Sells", textAlign: TextAlign.right, style: TextStyle(color: Colors.grey, fontSize: 10))),
-                          SizedBox(width: 60, child: Text("Shop Buys", textAlign: TextAlign.right, style: TextStyle(color: Colors.grey, fontSize: 10))),
-                          SizedBox(width: 50, child: Text("Spread", textAlign: TextAlign.right, style: TextStyle(color: Colors.redAccent, fontSize: 10))),
-                          SizedBox(width: 18), // Space for arrow icon (16 + 2)
+                        children: [
+                          SizedBox(width: 60, child: Text("Shop Sells", textAlign: TextAlign.right, style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 10, fontWeight: FontWeight.w600))),
+                          SizedBox(width: 60, child: Text("Shop Buys", textAlign: TextAlign.right, style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 10, fontWeight: FontWeight.w600))),
+                          SizedBox(width: 50, child: Text("Spread", textAlign: TextAlign.right, style: TextStyle(color: Colors.redAccent.withOpacity(0.8), fontSize: 10, fontWeight: FontWeight.w600))),
+                          const SizedBox(width: 18), // Space for arrow icon (16 + 2)
                         ],
                       ),
                     ),
@@ -90,20 +93,21 @@ class MerchantsScreen extends StatelessWidget {
 
   Widget _buildPurityTab(BuildContext context, GoldProvider provider, String label, String value) {
     bool isSelected = provider.merchantPurity == value;
+    final theme = Theme.of(context);
     return Expanded(
       child: GestureDetector(
         onTap: () => provider.setMerchantPurity(value),
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
-            color: isSelected ? const Color(0xFF334155) : Colors.transparent,
+            color: isSelected ? (theme.brightness == Brightness.dark ? const Color(0xFF334155) : const Color(0xFFfbbf24)) : Colors.transparent,
             borderRadius: BorderRadius.circular(8),
           ),
           child: Text(
             label,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: isSelected ? Colors.white : Colors.grey,
+              color: isSelected ? (theme.brightness == Brightness.dark ? Colors.white : Colors.black) : (theme.brightness == Brightness.dark ? Colors.grey : Colors.black45),
               fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               fontSize: 13,
             ),
@@ -142,6 +146,7 @@ class MerchantsScreen extends StatelessWidget {
       'gb_gold': const Color(0xFF4CAF50), // GB Gold Green
       'bank_muamalat': const Color(0xFF003366), // Muamalat Navy Blue
       'maybank_silver': const Color(0xFFFFD100), // MSIA Yellow
+      'bsn': Colors.teal, // BSN Teal
     };
 
     // Mapping for display names
@@ -244,7 +249,7 @@ class MerchantsScreen extends StatelessWidget {
           ),
       subtitle: Text(
         "Upd. $dateStr", 
-        style: const TextStyle(color: Colors.grey, fontSize: 10),
+        style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 10),
       ),
       trailing: SizedBox(
         width: 190, // Match the header width
@@ -256,7 +261,7 @@ class MerchantsScreen extends StatelessWidget {
               child: Text(
                 record.sell.toStringAsFixed(2),
                 textAlign: TextAlign.right,
-                style: const TextStyle(fontSize: 14.5, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 14.5, fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black87),
               ),
             ),
             SizedBox(
@@ -264,7 +269,7 @@ class MerchantsScreen extends StatelessWidget {
               child: Text(
                 record.buy.toStringAsFixed(2),
                 textAlign: TextAlign.right,
-                style: const TextStyle(fontSize: 14.5, fontWeight: FontWeight.bold, color: Colors.grey),
+                style: TextStyle(fontSize: 14.5, fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54),
               ),
             ),
             SizedBox(

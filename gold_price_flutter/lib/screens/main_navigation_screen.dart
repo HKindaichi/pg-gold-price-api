@@ -26,9 +26,9 @@ class MainNavigationScreen extends StatelessWidget {
         currentIndex: provider.currentTabIndex,
         onTap: (index) => provider.setTabIndex(index),
         type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color(0xFF1e293b),
+        backgroundColor: Theme.of(context).cardColor,
         selectedItemColor: const Color(0xFFfbbf24),
-        unselectedItemColor: const Color(0xFF94a3b8),
+        unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.show_chart),

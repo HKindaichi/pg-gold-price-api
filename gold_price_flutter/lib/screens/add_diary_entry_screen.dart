@@ -98,19 +98,21 @@ class _AddDiaryEntryScreenState extends State<AddDiaryEntryScreen> {
 
   Widget _buildTypeChip(String type) {
     bool isSelected = _selectedType == type;
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
     return GestureDetector(
       onTap: () => setState(() => _selectedType = type),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFFfbbf24) : const Color(0xFF1e293b),
+          color: isSelected ? const Color(0xFFfbbf24) : theme.cardColor,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: isSelected ? const Color(0xFFfbbf24) : Colors.white.withOpacity(0.1)),
+          border: Border.all(color: isSelected ? const Color(0xFFfbbf24) : (isDark ? Colors.white.withOpacity(0.1) : Colors.grey.withOpacity(0.2))),
         ),
         child: Text(
           type,
           style: TextStyle(
-            color: isSelected ? Colors.black : Colors.white,
+            color: isSelected ? Colors.black : (isDark ? Colors.white : Colors.black87),
             fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
           ),
         ),
@@ -127,22 +129,27 @@ class _AddDiaryEntryScreenState extends State<AddDiaryEntryScreen> {
     int maxLines = 1,
     String? Function(String?)? validator,
   }) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: const TextStyle(color: Colors.grey, fontSize: 14)),
+        Text(label, style: TextStyle(color: isDark ? Colors.grey : Colors.black54, fontSize: 14, fontWeight: FontWeight.w600)),
         const SizedBox(height: 8),
         TextFormField(
           controller: controller,
           keyboardType: keyboardType,
           maxLines: maxLines,
           validator: validator,
+          style: TextStyle(color: isDark ? Colors.white : Colors.black87),
           decoration: InputDecoration(
             hintText: hint,
+            hintStyle: TextStyle(color: isDark ? Colors.white38 : Colors.black38),
             prefixIcon: Icon(icon, color: const Color(0xFFfbbf24)),
             filled: true,
-            fillColor: const Color(0xFF1e293b),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide.none),
+            fillColor: theme.cardColor,
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: isDark ? BorderSide.none : BorderSide(color: Colors.grey.withOpacity(0.2))),
+            enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: isDark ? BorderSide.none : BorderSide(color: Colors.grey.withOpacity(0.2))),
           ),
         ),
       ],
@@ -150,10 +157,12 @@ class _AddDiaryEntryScreenState extends State<AddDiaryEntryScreen> {
   }
 
   Widget _buildDatePicker() {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("Purchase Date", style: TextStyle(color: Colors.grey, fontSize: 14)),
+        Text("Purchase Date", style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 14, fontWeight: FontWeight.w600)),
         const SizedBox(height: 8),
         InkWell(
           onTap: () async {
@@ -168,14 +177,18 @@ class _AddDiaryEntryScreenState extends State<AddDiaryEntryScreen> {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             decoration: BoxDecoration(
-              color: const Color(0xFF1e293b),
+              color: theme.cardColor,
               borderRadius: BorderRadius.circular(16),
+              border: isDark ? null : Border.all(color: Colors.grey.withOpacity(0.2)),
             ),
             child: Row(
               children: [
                 const Icon(Icons.calendar_today, color: Color(0xFFfbbf24), size: 20),
                 const SizedBox(width: 12),
-                Text(DateFormat('d MMMM yyyy').format(_selectedDate)),
+                Text(
+                  DateFormat('d MMMM yyyy').format(_selectedDate),
+                  style: TextStyle(color: isDark ? Colors.white : Colors.black87),
+                ),
               ],
             ),
           ),

@@ -9,7 +9,7 @@ class DisclaimerScreen extends StatefulWidget {
 }
 
 class _DisclaimerScreenState extends State<DisclaimerScreen> {
-  bool isEnglish = false; // Default to BM as per "Penafian / Disclaimer" title ordering hint, or English? I'll default to BM since context is mixed.
+  bool isEnglish = true;
 
   final String titleBm = "Penafian";
   final String titleEn = "Disclaimer";
@@ -47,9 +47,9 @@ Gold and silver prices are subject to global market volatility and may fluctuate
                 });
               },
               borderRadius: BorderRadius.circular(8),
-              selectedColor: Colors.black, // Color(0xFFfbbf24) maybe better? using default theme handling
+              selectedColor: Colors.black,
               fillColor: const Color(0xFFfbbf24),
-              color: Colors.white,
+              color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black54,
               constraints: const BoxConstraints(minHeight: 30, minWidth: 40),
               children: const [
                 Text("BM", style: TextStyle(fontWeight: FontWeight.bold)),
@@ -66,22 +66,25 @@ Gold and silver prices are subject to global market volatility and may fluctuate
             Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: const Color(0xFF1e293b),
+                color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: Colors.white10),
+                boxShadow: Theme.of(context).brightness == Brightness.light 
+                  ? [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, 4))]
+                  : null,
+                border: Border.all(color: Theme.of(context).brightness == Brightness.dark ? Colors.white10 : Colors.transparent),
               ),
               child: Text(
                 isEnglish ? textEn : textBm,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 15, 
                   height: 1.6, 
-                  color: Colors.white
+                  color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black87
                 ),
                 textAlign: TextAlign.justify,
               ),
             ),
             const SizedBox(height: 20),
-            const Icon(Icons.gavel_rounded, color: Colors.white24, size: 48),
+            Icon(Icons.gavel_rounded, color: Theme.of(context).brightness == Brightness.dark ? Colors.white24 : Colors.black12, size: 48),
           ],
         ),
       ),

@@ -69,18 +69,22 @@ class MerchantDetailScreen extends StatelessWidget {
   }
 
   Widget _buildPriceItem(BuildContext context, String label, double value, Color color) {
+    final theme = Theme.of(context);
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.03),
+        color: theme.cardColor,
         borderRadius: BorderRadius.circular(15),
+        boxShadow: theme.brightness == Brightness.light 
+          ? [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, 4))]
+          : null,
         border: Border.all(color: color.withOpacity(0.3)),
       ),
       child: Column(
         children: [
           Text(
             label,
-            style: TextStyle(color: Colors.grey[400], fontSize: 11),
+            style: TextStyle(color: theme.brightness == Brightness.dark ? Colors.grey[400] : Colors.black54, fontSize: 11, fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 5),
           Text(
@@ -106,26 +110,23 @@ class MerchantDetailScreen extends StatelessWidget {
       return FlSpot(e.key.toDouble(), e.value.spread);
     }).toList();
 
+    final theme = Theme.of(context);
     return Container(
       height: 300,
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
+        color: theme.cardColor,
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            blurRadius: 10,
-            offset: const Offset(0, 5),
-          )
-        ],
+        boxShadow: theme.brightness == Brightness.light 
+          ? [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, 4))]
+          : [BoxShadow(color: Colors.black.withOpacity(0.3), blurRadius: 10, offset: const Offset(0, 5))],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             "Spread History (Last 10 updates)",
-            style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
+            style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 20),
           Expanded(
@@ -135,7 +136,7 @@ class MerchantDetailScreen extends StatelessWidget {
                   show: true,
                   drawVerticalLine: false,
                   getDrawingHorizontalLine: (value) => FlLine(
-                    color: Colors.white.withOpacity(0.05),
+                    color: Theme.of(context).dividerColor.withOpacity(0.1),
                     strokeWidth: 1,
                   ),
                 ),
@@ -151,7 +152,7 @@ class MerchantDetailScreen extends StatelessWidget {
                       getTitlesWidget: (value, meta) {
                         return Text(
                           value.toStringAsFixed(1),
-                          style: const TextStyle(color: Colors.redAccent, fontSize: 10),
+                          style: TextStyle(color: Colors.redAccent, fontSize: 10, fontWeight: Theme.of(context).brightness == Brightness.light ? FontWeight.bold : FontWeight.normal),
                         );
                       },
                     ),
@@ -216,12 +217,12 @@ class MerchantDetailScreen extends StatelessWidget {
             },
             children: [
               TableRow(
-                decoration: BoxDecoration(color: Colors.white.withOpacity(0.05)),
-                children: const [
-                  Padding(padding: EdgeInsets.all(10), child: Text("Date", style: TextStyle(color: Colors.grey, fontSize: 12))),
-                  Padding(padding: EdgeInsets.all(10), child: Text("Sell", style: TextStyle(color: Colors.grey, fontSize: 12))),
-                  Padding(padding: EdgeInsets.all(10), child: Text("Buy", style: TextStyle(color: Colors.grey, fontSize: 12))),
-                  Padding(padding: EdgeInsets.all(10), child: Text("Spr.", style: TextStyle(color: Colors.redAccent, fontSize: 12))),
+                decoration: BoxDecoration(color: Theme.of(context).dividerColor.withOpacity(0.05)),
+                children: [
+                  Padding(padding: const EdgeInsets.all(10), child: Text("Date", style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 12, fontWeight: FontWeight.bold))),
+                  Padding(padding: const EdgeInsets.all(10), child: Text("Sell", style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 12, fontWeight: FontWeight.bold))),
+                  Padding(padding: const EdgeInsets.all(10), child: Text("Buy", style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 12, fontWeight: FontWeight.bold))),
+                  const Padding(padding: EdgeInsets.all(10), child: Text("Spr.", style: TextStyle(color: Colors.redAccent, fontSize: 12, fontWeight: FontWeight.bold))),
                 ],
               ),
               ...displayHistory.map((record) => TableRow(
@@ -236,7 +237,7 @@ class MerchantDetailScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10),
-                    child: Text(record.buy.toStringAsFixed(2), style: const TextStyle(fontSize: 11, color: Colors.grey)),
+                    child: Text(record.buy.toStringAsFixed(2), style: TextStyle(fontSize: 11, color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontWeight: FontWeight.w600)),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10),

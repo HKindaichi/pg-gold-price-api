@@ -52,7 +52,7 @@ class DiaryScreen extends StatelessWidget {
 
           return Column(
             children: [
-              _buildSummaryHeader(totalWeight999, totalWeight916),
+              _buildSummaryHeader(context, totalWeight999, totalWeight916),
               Expanded(
                 child: ListView.builder(
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -83,30 +83,35 @@ class DiaryScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSummaryHeader(double weight999, double weight916) {
+  Widget _buildSummaryHeader(BuildContext context, double weight999, double weight916) {
+    final theme = Theme.of(context);
     return Container(
       margin: const EdgeInsets.all(16),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: const Color(0xFF1e293b),
+        color: theme.cardColor,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.white.withOpacity(0.05)),
+        boxShadow: theme.brightness == Brightness.light 
+          ? [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, 4))]
+          : null,
+        border: Border.all(color: theme.brightness == Brightness.dark ? Colors.white.withOpacity(0.05) : Colors.transparent),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _buildSummaryItem("999 Gold", "${weight999.toStringAsFixed(2)}g", Colors.orangeAccent),
+          _buildSummaryItem(context, "999 Gold", "${weight999.toStringAsFixed(2)}g", Colors.orangeAccent),
           Container(width: 1, height: 40, color: Colors.grey.withOpacity(0.2)),
-          _buildSummaryItem("916 Gold", "${weight916.toStringAsFixed(2)}g", Colors.yellowAccent),
+          _buildSummaryItem(context, "916 Gold", "${weight916.toStringAsFixed(2)}g", Theme.of(context).brightness == Brightness.dark ? Colors.yellowAccent : Colors.orange[800]!),
         ],
       ),
     );
   }
 
-  Widget _buildSummaryItem(String label, String value, Color color) {
+  Widget _buildSummaryItem(BuildContext context, String label, String value, Color color) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Column(
       children: [
-        Text(label, style: const TextStyle(color: Colors.grey, fontSize: 12)),
+        Text(label, style: TextStyle(color: isDark ? Colors.grey : Colors.black54, fontSize: 12, fontWeight: FontWeight.w600)),
         const SizedBox(height: 4),
         Text(value, style: TextStyle(color: color, fontSize: 20, fontWeight: FontWeight.bold)),
       ],
@@ -136,19 +141,25 @@ class DiaryScreen extends StatelessWidget {
       },
       child: Card(
         margin: const EdgeInsets.only(bottom: 12),
+        elevation: Theme.of(context).brightness == Brightness.dark ? 0 : 2,
+        shadowColor: Colors.black.withOpacity(0.1),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        color: const Color(0xFF1e293b).withOpacity(0.5),
+        color: Theme.of(context).cardColor,
         child: ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           leading: Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: entry.type == '999' ? Colors.orangeAccent.withOpacity(0.1) : Colors.yellowAccent.withOpacity(0.1),
+              color: entry.type == '999' 
+                ? Colors.orangeAccent.withOpacity(0.1) 
+                : (Theme.of(context).brightness == Brightness.dark ? Colors.yellowAccent.withOpacity(0.1) : Colors.orange[800]!.withOpacity(0.1)),
               shape: BoxShape.circle,
             ),
             child: Icon(
               Icons.savings, 
-              color: entry.type == '999' ? Colors.orangeAccent : Colors.yellowAccent,
+              color: entry.type == '999' 
+                ? Colors.orangeAccent 
+                : (Theme.of(context).brightness == Brightness.dark ? Colors.yellowAccent : Colors.orange[800]!),
               size: 24,
             ),
           ),
@@ -156,7 +167,7 @@ class DiaryScreen extends StatelessWidget {
             children: [
               Text(
                 "${entry.weight}g ${entry.type}",
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black87),
               ),
               const Spacer(),
               Text(
@@ -169,12 +180,12 @@ class DiaryScreen extends StatelessWidget {
             padding: const EdgeInsets.only(top: 4.0),
             child: Row(
               children: [
-                Text(dateStr, style: const TextStyle(color: Colors.grey, fontSize: 12)),
+                Text(dateStr, style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 12)),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
                     entry.notes, 
-                    style: const TextStyle(color: Colors.grey, fontSize: 12),
+                    style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 12),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),

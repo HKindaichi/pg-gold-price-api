@@ -160,4 +160,15 @@ class GoldProvider with ChangeNotifier {
     final targetPurity = purity ?? _selectedPurity;
     return _history.where((r) => r.merchant == merchant && r.item == targetPurity).toList();
   }
+
+  double getPercentageChange() {
+    final history = getHistoryForDashboard();
+    if (history.length < 2) return 0.0;
+    
+    final first = history.first.sell;
+    final last = history.last.sell;
+    
+    if (first == 0) return 0.0;
+    return ((last - first) / first) * 100;
+  }
 }
