@@ -1,22 +1,22 @@
 {
-  "updated_label": "Today 22:36",
+  "updated_label": "Today 00:38",
   "merchants": [
     {
       "id": "public_gold",
       "name": "Public Gold",
       "items": {
         "999": {
-          "sell": 676,
-          "buy": 615,
-          "spread": 61
+          "sell": 682,
+          "buy": 620,
+          "spread": 62
         },
         "916": {
-          "sell": 643,
-          "buy": 559,
+          "sell": 644,
+          "buy": 560,
           "spread": 84
         }
       },
-      "last_updated": "03-Feb-2026"
+      "last_updated": "04-Feb-2026"
     },
     {
       "id": "miga_i",
@@ -46,55 +46,55 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 1G 2025": {
-          "sell": 692.0,
-          "buy": 617.0,
-          "spread": 75.0
-        },
-        "Gold Bar 0.5G Raja Perlis": {
-          "sell": 371.0,
-          "buy": 309.0,
-          "spread": 62.0
-        },
-        "Gold Bar 0.5G 2026": {
-          "sell": 353.0,
-          "buy": 309.0,
-          "spread": 44.0
-        },
-        "Gold Bar 0.5G Klasik V3": {
-          "sell": 356.0,
-          "buy": 309.0,
-          "spread": 47.0
-        },
-        "Gold Bar 1G Chinese New Year 2025": {
-          "sell": 707.0,
-          "buy": 617.0,
-          "spread": 90.0
-        },
-        "Gold Bar 1G Palestine X Rahma Worldwide": {
-          "sell": 727.0,
-          "buy": 617.0,
-          "spread": 110.0
-        },
         "Pelbagai 0.5G": {
-          "sell": 348.0,
-          "buy": 309.0,
-          "spread": 39.0
+          "sell": 351.0,
+          "buy": 311.0,
+          "spread": 40.0
         },
         "Gold Bar 1G Raja Perlis": {
-          "sell": 707.0,
-          "buy": 617.0,
-          "spread": 90.0
+          "sell": 714.0,
+          "buy": 623.0,
+          "spread": 91.0
+        },
+        "Gold Bar 0.5G 2026": {
+          "sell": 356.0,
+          "buy": 311.0,
+          "spread": 45.0
         },
         "Pelbagai 1 Gram": {
-          "sell": 686.0,
-          "buy": 617.0,
+          "sell": 693.0,
+          "buy": 624.0,
           "spread": 69.0
         },
+        "Gold Bar 1G Palestine X Rahma Worldwide": {
+          "sell": 734.0,
+          "buy": 623.0,
+          "spread": 111.0
+        },
         "Gold Bar 1Kg": {
-          "sell": 665701.0,
-          "buy": 618823.0,
-          "spread": 46878.0
+          "sell": 672283.0,
+          "buy": 624944.0,
+          "spread": 47339.0
+        },
+        "Gold Bar 1G 2025": {
+          "sell": 699.0,
+          "buy": 623.0,
+          "spread": 76.0
+        },
+        "Gold Bar 0.5G Raja Perlis": {
+          "sell": 374.0,
+          "buy": 312.0,
+          "spread": 62.0
+        },
+        "Gold Bar 1G Chinese New Year 2025": {
+          "sell": 714.0,
+          "buy": 623.0,
+          "spread": 91.0
+        },
+        "Gold Bar 0.5G Klasik V3": {
+          "sell": 359.0,
+          "buy": 312.0,
+          "spread": 47.0
         }
       }
     },
@@ -125,12 +125,12 @@
       "name": "GB Gold",
       "items": {
         "999": {
-          "sell": 667.0,
-          "buy": 623.0,
-          "spread": 44.0
+          "sell": 674.0,
+          "buy": 629.0,
+          "spread": 45.0
         }
       },
-      "last_updated": "03-02-2026 22:30:02"
+      "last_updated": "04-02-2026 00:30:02"
     },
     {
       "id": "maa_gold",
@@ -176,24 +176,24 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 619.74,
-          "buy": 619.74,
+          "sell": 629.85,
+          "buy": 629.85,
           "spread": 0.0
         }
       },
-      "last_updated": "03 Feb 26 14:36"
+      "last_updated": "03 Feb 26 16:38"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 10.99,
-          "buy": 10.99,
+          "sell": 11.17,
+          "buy": 11.17,
           "spread": 0.0
         }
       },
-      "last_updated": "03 Feb 26 14:36"
+      "last_updated": "03 Feb 26 16:38"
     },
     {
       "id": "bsn",
