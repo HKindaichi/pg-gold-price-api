@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import '../services/gold_provider.dart';
 import '../models/gold_price.dart';
 
-class MerchantDetailScreen extends StatelessWidget {
+class MerchantDetailScreen extends StatefulWidget {
   final String merchantId;
   final String merchantName;
 
@@ -16,10 +16,17 @@ class MerchantDetailScreen extends StatelessWidget {
   });
 
   @override
+  State<MerchantDetailScreen> createState() => _MerchantDetailScreenState();
+}
+
+class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
+  String _selectedType = 'spread'; // 'sell', 'buy', 'spread'
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(merchantName.replaceAll('_', ' ').replaceAll('-', ' ').toUpperCase()),
+        title: Text(widget.merchantName.replaceAll('_', ' ').replaceAll('-', ' ').toUpperCase()),
       ),
       body: Consumer<GoldProvider>(
         builder: (context, provider, child) {
@@ -31,12 +38,12 @@ class MerchantDetailScreen extends StatelessWidget {
             return Center(child: Text("Error: ${provider.error}"));
           }
 
-          final latest = provider.getLatestForMerchant(merchantId, provider.merchantPurity);
+          final latest = provider.getLatestForMerchant(widget.merchantId, provider.merchantPurity);
           if (latest == null) {
             return const Center(child: Text("No data available for this merchant."));
           }
 
-          final history = provider.getHistoryForMerchant(merchantId, provider.merchantPurity);
+          final history = provider.getHistoryForMerchant(widget.merchantId, provider.merchantPurity);
 
           return SingleChildScrollView(
             padding: const EdgeInsets.all(20),
@@ -57,60 +64,125 @@ class MerchantDetailScreen extends StatelessWidget {
 
   Widget _buildPriceCards(BuildContext context, GoldProvider provider, GoldRecord latest) {
     final purity = provider.merchantPurity;
+    final theme = Theme.of(context);
     return Row(
       children: [
-        Expanded(child: _buildPriceItem(context, "Sell ($purity)", latest.sell, Theme.of(context).primaryColor)),
+        Expanded(
+          child: _buildPriceItem(
+            context, 
+            "Sell ($purity)", 
+            latest.sell, 
+            theme.primaryColor,
+            'sell',
+          ),
+        ),
         const SizedBox(width: 10),
-        Expanded(child: _buildPriceItem(context, "Buy ($purity)", latest.buy, Theme.of(context).primaryColor)),
+        Expanded(
+          child: _buildPriceItem(
+            context, 
+            "Buy ($purity)", 
+            latest.buy, 
+            theme.primaryColor,
+            'buy',
+          ),
+        ),
         const SizedBox(width: 10),
-        Expanded(child: _buildPriceItem(context, "Spread", latest.spread, Colors.redAccent)),
+        Expanded(
+          child: _buildPriceItem(
+            context, 
+            "Spread", 
+            latest.spread, 
+            Colors.redAccent,
+            'spread',
+          ),
+        ),
       ],
     );
   }
 
-  Widget _buildPriceItem(BuildContext context, String label, double value, Color color) {
+  Widget _buildPriceItem(BuildContext context, String label, double value, Color color, String type) {
     final theme = Theme.of(context);
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: theme.cardColor,
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: theme.brightness == Brightness.light 
-          ? [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, 4))]
-          : null,
-        border: Border.all(color: color.withOpacity(0.3)),
-      ),
-      child: Column(
-        children: [
-          Text(
-            label,
-            style: TextStyle(color: theme.brightness == Brightness.dark ? Colors.grey[400] : Colors.black54, fontSize: 11, fontWeight: FontWeight.w600),
+    final bool isSelected = _selectedType == type;
+
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedType = type;
+        });
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: isSelected 
+              ? color.withOpacity(theme.brightness == Brightness.dark ? 0.15 : 0.1) 
+              : theme.cardColor,
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: theme.brightness == Brightness.light 
+            ? [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, 4))]
+            : null,
+          border: Border.all(
+            color: isSelected ? color : color.withOpacity(0.3),
+            width: isSelected ? 2 : 1,
           ),
-          const SizedBox(height: 5),
-          Text(
-            value.toStringAsFixed(2),
-            style: TextStyle(
-              color: color,
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
+        ),
+        child: Column(
+          children: [
+            Text(
+              label,
+              style: TextStyle(
+                color: theme.brightness == Brightness.dark ? Colors.grey[400] : Colors.black54, 
+                fontSize: 11, 
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.w600,
+              ),
             ),
-            textAlign: TextAlign.center,
-          ),
-        ],
+            const SizedBox(height: 5),
+            Text(
+              value.toStringAsFixed(2),
+              style: TextStyle(
+                color: color,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildChartCard(BuildContext context, List<GoldRecord> history) {
-    // Limit to latest 10 entries for spread visualization
+    // Limit to latest 10 entries for visualization
     final displayHistory = history.length > 10 ? history.sublist(history.length - 10) : history;
     displayHistory.sort((a, b) => a.timestamp.compareTo(b.timestamp));
 
-    final spotsSpread = displayHistory.asMap().entries.map((e) {
-      return FlSpot(e.key.toDouble(), e.value.spread);
+    final spots = displayHistory.asMap().entries.map((e) {
+      double value;
+      if (_selectedType == 'sell') {
+        value = e.value.sell;
+      } else if (_selectedType == 'buy') {
+        value = e.value.buy;
+      } else {
+        value = e.value.spread;
+      }
+      return FlSpot(e.key.toDouble(), value);
     }).toList();
 
     final theme = Theme.of(context);
+    String title;
+    Color chartColor;
+    if (_selectedType == 'sell') {
+      title = "Sell History (Last 10 updates)";
+      chartColor = theme.primaryColor;
+    } else if (_selectedType == 'buy') {
+      title = "Buy History (Last 10 updates)";
+      chartColor = theme.primaryColor;
+    } else {
+      title = "Spread History (Last 10 updates)";
+      chartColor = Colors.redAccent;
+    }
+
     return Container(
       height: 300,
       padding: const EdgeInsets.all(15),
@@ -125,8 +197,8 @@ class MerchantDetailScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Spread History (Last 10 updates)",
-            style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontWeight: FontWeight.bold),
+            title,
+            style: TextStyle(color: theme.brightness == Brightness.dark ? Colors.grey : Colors.black54, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 20),
           Expanded(
@@ -136,23 +208,27 @@ class MerchantDetailScreen extends StatelessWidget {
                   show: true,
                   drawVerticalLine: false,
                   getDrawingHorizontalLine: (value) => FlLine(
-                    color: Theme.of(context).dividerColor.withOpacity(0.1),
+                    color: theme.dividerColor.withOpacity(0.1),
                     strokeWidth: 1,
                   ),
                 ),
                 titlesData: FlTitlesData(
                   show: true,
-                  rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                  topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                  bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                  rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                  topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                  bottomTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
                   leftTitles: AxisTitles(
                     sideTitles: SideTitles(
                       showTitles: true,
-                      reservedSize: 40,
+                      reservedSize: 45,
                       getTitlesWidget: (value, meta) {
                         return Text(
                           value.toStringAsFixed(1),
-                          style: TextStyle(color: Colors.redAccent, fontSize: 10, fontWeight: Theme.of(context).brightness == Brightness.light ? FontWeight.bold : FontWeight.normal),
+                          style: TextStyle(
+                            color: chartColor, 
+                            fontSize: 9, 
+                            fontWeight: theme.brightness == Brightness.light ? FontWeight.bold : FontWeight.normal,
+                          ),
                         );
                       },
                     ),
@@ -161,18 +237,18 @@ class MerchantDetailScreen extends StatelessWidget {
                 borderData: FlBorderData(show: false),
                 lineBarsData: [
                   LineChartBarData(
-                    spots: spotsSpread,
+                    spots: spots,
                     isCurved: true,
-                    color: Colors.redAccent,
+                    color: chartColor,
                     barWidth: 3,
                     isStrokeCapRound: true,
-                    dotData: FlDotData(show: true),
+                    dotData: const FlDotData(show: true),
                     belowBarData: BarAreaData(
                       show: true,
                       gradient: LinearGradient(
                         colors: [
-                          Colors.redAccent.withOpacity(0.2),
-                          Colors.redAccent.withOpacity(0.0),
+                          chartColor.withOpacity(0.2),
+                          chartColor.withOpacity(0.0),
                         ],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
@@ -193,9 +269,11 @@ class MerchantDetailScreen extends StatelessWidget {
     final displayHistory = history.length > 10 ? history.sublist(history.length - 10) : history;
     displayHistory.sort((a, b) => b.timestamp.compareTo(a.timestamp)); // Latest first
 
+    final theme = Theme.of(context);
+
     return Container(
       decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
+        color: theme.cardColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
@@ -217,11 +295,11 @@ class MerchantDetailScreen extends StatelessWidget {
             },
             children: [
               TableRow(
-                decoration: BoxDecoration(color: Theme.of(context).dividerColor.withOpacity(0.05)),
+                decoration: BoxDecoration(color: theme.dividerColor.withOpacity(0.05)),
                 children: [
-                  Padding(padding: const EdgeInsets.all(10), child: Text("Date", style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 12, fontWeight: FontWeight.bold))),
-                  Padding(padding: const EdgeInsets.all(10), child: Text("Sell", style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 12, fontWeight: FontWeight.bold))),
-                  Padding(padding: const EdgeInsets.all(10), child: Text("Buy", style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 12, fontWeight: FontWeight.bold))),
+                  Padding(padding: const EdgeInsets.all(10), child: Text("Date", style: TextStyle(color: theme.brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 12, fontWeight: FontWeight.bold))),
+                  Padding(padding: const EdgeInsets.all(10), child: Text("Sell", style: TextStyle(color: theme.brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 12, fontWeight: FontWeight.bold))),
+                  Padding(padding: const EdgeInsets.all(10), child: Text("Buy", style: TextStyle(color: theme.brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 12, fontWeight: FontWeight.bold))),
                   const Padding(padding: EdgeInsets.all(10), child: Text("Spr.", style: TextStyle(color: Colors.redAccent, fontSize: 12, fontWeight: FontWeight.bold))),
                 ],
               ),
@@ -237,7 +315,7 @@ class MerchantDetailScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10),
-                    child: Text(record.buy.toStringAsFixed(2), style: TextStyle(fontSize: 11, color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontWeight: FontWeight.w600)),
+                    child: Text(record.buy.toStringAsFixed(2), style: TextStyle(fontSize: 11, color: theme.brightness == Brightness.dark ? Colors.grey : Colors.black54, fontWeight: FontWeight.w600)),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10),
