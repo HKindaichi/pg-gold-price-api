@@ -4,6 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:intl/intl.dart';
 import '../services/gold_provider.dart';
 import '../models/gold_price.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MerchantDetailScreen extends StatefulWidget {
   final String merchantId;
@@ -70,6 +71,9 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
                 _buildChartCard(context, history),
                 const SizedBox(height: 30),
                 _buildHistoryTable(context, history),
+                const SizedBox(height: 40),
+                _buildSourceLink(context),
+                const SizedBox(height: 20),
               ],
             ),
           );
@@ -371,6 +375,61 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
             ],
           ),
         ],
+      ),
+    );
+  }
+  Widget _buildSourceLink(BuildContext context) {
+    final Map<String, String> merchantUrls = {
+      'public_gold': 'https://publicgold.com.my/',
+      'miga_i': 'https://www.maybank2u.com.my/',
+      'cimb_e_gia': 'https://www.cimb.com.my/',
+      'kab_gold': 'https://kabgold.my/',
+      'uob': 'https://www.uob.com.my/',
+      'gb_gold': 'https://gbgold.com.my/',
+      'biga_i': 'https://www.bankislam.com/',
+      'maa_gold': 'https://maagold.com/',
+      'bank_muamalat': 'https://www.muamalat.com.my/',
+      'maybank_silver': 'https://www.maybank2u.com.my/',
+      'mygold_i': 'https://www.bsn.com.my/page/BSNMyGoldAccount-i',
+    };
+
+    final url = merchantUrls[widget.merchantId];
+    if (url == null) return const SizedBox.shrink();
+
+    return Center(
+      child: InkWell(
+        onTap: () async {
+          final uri = Uri.parse(url);
+          if (await canLaunchUrl(uri)) {
+            await launchUrl(uri, mode: LaunchMode.externalApplication);
+          }
+        },
+        borderRadius: BorderRadius.circular(10),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "Source from:",
+                style: TextStyle(
+                  color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54,
+                  fontSize: 12,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                url.replaceFirst('https://', '').replaceFirst('www.', '').split('/')[0],
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
