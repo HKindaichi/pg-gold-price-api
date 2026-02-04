@@ -63,14 +63,14 @@ class MerchantsScreen extends StatelessWidget {
                   children: [
                     const Expanded(child: SizedBox()),
                     SizedBox(
-                      width: 195, // Width to match tile price section
+                      width: 172, // Reduced from 195 to give more space to name
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          SizedBox(width: 65, child: Text("Shop Sells", textAlign: TextAlign.right, style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 10, fontWeight: FontWeight.w600))),
-                          SizedBox(width: 65, child: Text("Shop Buys", textAlign: TextAlign.right, style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 10, fontWeight: FontWeight.w600))),
-                          SizedBox(width: 45, child: Text("Spread", textAlign: TextAlign.right, style: TextStyle(color: Colors.redAccent.withOpacity(0.8), fontSize: 10, fontWeight: FontWeight.w600))),
-                          const SizedBox(width: 20), // Chevron space
+                          SizedBox(width: 58, child: Text("Shop Sells", textAlign: TextAlign.right, style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 9, fontWeight: FontWeight.w600))),
+                          SizedBox(width: 58, child: Text("Shop Buys", textAlign: TextAlign.right, style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 9, fontWeight: FontWeight.w600))),
+                          SizedBox(width: 42, child: Text("Spread", textAlign: TextAlign.right, style: TextStyle(color: Colors.redAccent.withOpacity(0.8), fontSize: 9, fontWeight: FontWeight.w600))),
+                          const SizedBox(width: 14), // Reduced Chevron space
                         ],
                       ),
                     ),
@@ -266,9 +266,9 @@ class MerchantsScreen extends StatelessWidget {
                     children: [
                       Text(
                         displayName,
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                        maxLines: 1,
-                        overflow: TextOverflow.visible,
+                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14), // Slightly smaller font
+                        maxLines: 2, // Allow 2 lines for long names
+                        overflow: TextOverflow.ellipsis,
                       ),
                       if (isSyariah)
                         Padding(
@@ -306,12 +306,12 @@ class MerchantsScreen extends StatelessWidget {
                 ),
                 // Prices Section
                 SizedBox(
-                  width: 195, // Increased and matched with header
+                  width: 172, // Matched with header
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       SizedBox(
-                        width: 65,
+                        width: 58,
                         child: Text(
                           record.sell.toStringAsFixed(2),
                           textAlign: TextAlign.right,
@@ -319,7 +319,7 @@ class MerchantsScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        width: 65,
+                        width: 58,
                         child: Text(
                           record.buy.toStringAsFixed(2),
                           textAlign: TextAlign.right,
@@ -327,15 +327,15 @@ class MerchantsScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        width: 45,
+                        width: 42,
                         child: Text(
                           record.spread.toStringAsFixed(2),
                           textAlign: TextAlign.right,
                           style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.redAccent),
                         ),
                       ),
-                      const SizedBox(width: 4),
-                      const Icon(Icons.chevron_right, color: Colors.grey, size: 16),
+                      const SizedBox(width: 2),
+                      const Icon(Icons.chevron_right, color: Colors.grey, size: 12), // Smaller chevron
                     ],
                   ),
                 ),
