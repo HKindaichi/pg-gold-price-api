@@ -153,8 +153,8 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
   }
 
   Widget _buildChartCard(BuildContext context, List<GoldRecord> history) {
-    // Limit to latest 10 entries for visualization
-    final displayHistory = history.length > 10 ? history.sublist(history.length - 10) : history;
+    // Limit to latest 50 entries for visualization
+    final displayHistory = history.length > 50 ? history.sublist(history.length - 50) : history;
     displayHistory.sort((a, b) => a.timestamp.compareTo(b.timestamp));
 
     final spots = displayHistory.asMap().entries.map((e) {
@@ -173,18 +173,18 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
     String title;
     Color chartColor;
     if (_selectedType == 'sell') {
-      title = "Sell History (Last 10 updates)";
+      title = "Sell History (Last 50 updates)";
       chartColor = theme.primaryColor;
     } else if (_selectedType == 'buy') {
-      title = "Buy History (Last 10 updates)";
+      title = "Buy History (Last 50 updates)";
       chartColor = theme.primaryColor;
     } else {
-      title = "Spread History (Last 10 updates)";
+      title = "Spread History (Last 50 updates)";
       chartColor = Colors.redAccent;
     }
 
     return Container(
-      height: 300,
+      height: 320,
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
         color: theme.cardColor,
@@ -216,7 +216,30 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
                   show: true,
                   rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
                   topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                  bottomTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                  bottomTitles: AxisTitles(
+                    sideTitles: SideTitles(
+                      showTitles: true,
+                      reservedSize: 30,
+                      interval: 10, // Show a label every 10 points
+                      getTitlesWidget: (value, meta) {
+                        final index = value.toInt();
+                        if (index >= 0 && index < displayHistory.length) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Text(
+                              DateFormat('dd/MM').format(displayHistory[index].timestamp),
+                              style: TextStyle(
+                                color: theme.brightness == Brightness.dark ? Colors.grey : Colors.black54, 
+                                fontSize: 8,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          );
+                        }
+                        return const SizedBox.shrink();
+                      },
+                    ),
+                  ),
                   leftTitles: AxisTitles(
                     sideTitles: SideTitles(
                       showTitles: true,
@@ -265,8 +288,8 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
   }
 
   Widget _buildHistoryTable(BuildContext context, List<GoldRecord> history) {
-    // Show only last 10 entries
-    final displayHistory = history.length > 10 ? history.sublist(history.length - 10) : history;
+    // Show only last 50 entries
+    final displayHistory = history.length > 50 ? history.sublist(history.length - 50) : history;
     displayHistory.sort((a, b) => b.timestamp.compareTo(a.timestamp)); // Latest first
 
     final theme = Theme.of(context);
@@ -282,7 +305,7 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
           const Padding(
             padding: EdgeInsets.all(15.0),
             child: Text(
-              "Last 10 Updates",
+              "Last 50 Updates",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
           ),
