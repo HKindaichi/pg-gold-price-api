@@ -92,8 +92,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       child: Row(
         children: [
-          _buildPurityTab(provider, '999', 'Gold 999 (24K)'),
-          _buildPurityTab(provider, '916', 'Gold 916 (22K)'),
+          _buildPurityTab(provider, '999', 'Gold 999'),
+          _buildPurityTab(provider, '916', 'Gold 916'),
           _buildPurityTab(provider, 'Silver', 'Silver'),
         ],
       ),

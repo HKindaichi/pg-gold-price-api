@@ -41,8 +41,8 @@ class MerchantsScreen extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    _buildPurityTab(context, provider, "Gold 999 (24K)", "999"),
-                    _buildPurityTab(context, provider, "Gold 916 (22K)", "916"),
+                    _buildPurityTab(context, provider, "Gold 999", "999"),
+                    _buildPurityTab(context, provider, "Gold 916", "916"),
                     _buildPurityTab(context, provider, "Silver", "Silver"),
                   ],
                 ),
