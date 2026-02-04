@@ -196,7 +196,7 @@ class MerchantsScreen extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       decoration: BoxDecoration(
         color: isWatched 
-            ? (appTheme.brightness == Brightness.dark ? const Color(0xFF423B25) : const Color(0xFFFFF9E6))
+            ? (appTheme.brightness == Brightness.dark ? Colors.amber.withOpacity(0.08) : const Color(0xFFFFFDF5))
             : appTheme.cardColor,
         borderRadius: BorderRadius.circular(16),
         boxShadow: appTheme.brightness == Brightness.light 
