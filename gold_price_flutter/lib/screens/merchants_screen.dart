@@ -246,17 +246,15 @@ class MerchantsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      Text(
+                        displayName,
+                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 4),
                       Row(
                         children: [
-                          Flexible(
-                            child: Text(
-                              displayName,
-                              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          const SizedBox(width: 4),
                           if (isSyariah)
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
@@ -277,12 +275,12 @@ class MerchantsScreen extends StatelessWidget {
                               ),
                               child: const Text("Non-Syariah", style: TextStyle(color: Colors.redAccent, fontSize: 7, fontWeight: FontWeight.bold)),
                             ),
+                          if (isSyariah || isNonSyariah) const SizedBox(width: 6),
+                          Text(
+                            "Upd. $dateStr", 
+                            style: TextStyle(color: appTheme.brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 10),
+                          ),
                         ],
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        "Upd. $dateStr", 
-                        style: TextStyle(color: appTheme.brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 10),
                       ),
                     ],
                   ),
