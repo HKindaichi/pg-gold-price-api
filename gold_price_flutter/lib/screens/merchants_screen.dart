@@ -26,6 +26,15 @@ class MerchantsScreen extends StatelessWidget {
             return provider.getLatestForMerchant(m, provider.merchantPurity) != null;
           }).toList();
 
+          // Sort watchlist to the top
+          merchants.sort((a, b) {
+            bool aWatched = provider.isWatched(a);
+            bool bWatched = provider.isWatched(b);
+            if (aWatched && !bWatched) return -1;
+            if (!aWatched && bWatched) return 1;
+            return 0; // Keep original relative order
+          });
+
           return Column(
             children: [
               // Purity Selector (Reused style from HomeScreen)
@@ -180,15 +189,27 @@ class MerchantsScreen extends StatelessWidget {
 
     final appTheme = Theme.of(context);
 
+    final provider = Provider.of<GoldProvider>(context, listen: false);
+    bool isWatched = provider.isWatched(merchantId);
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       decoration: BoxDecoration(
-        color: appTheme.cardColor,
+        color: isWatched 
+            ? (appTheme.brightness == Brightness.dark ? const Color(0xFF423B25) : const Color(0xFFFFF9E6))
+            : appTheme.cardColor,
         borderRadius: BorderRadius.circular(16),
         boxShadow: appTheme.brightness == Brightness.light 
-          ? [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, 4))]
+          ? [BoxShadow(
+              color: isWatched ? Colors.amber.withOpacity(0.2) : Colors.black.withOpacity(0.05), 
+              blurRadius: 10, 
+              offset: const Offset(0, 4)
+            )]
           : null,
-        border: Border.all(color: appTheme.dividerColor.withOpacity(0.05)),
+        border: Border.all(
+          color: isWatched ? Colors.amber.withOpacity(0.5) : appTheme.dividerColor.withOpacity(0.05),
+          width: isWatched ? 1.5 : 1,
+        ),
       ),
       child: Material(
         color: Colors.transparent,
@@ -246,11 +267,21 @@ class MerchantsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(
-                        displayName,
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                      Row(
+                        children: [
+                          Flexible(
+                            child: Text(
+                              displayName,
+                              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          if (isWatched) ...[
+                            const SizedBox(width: 4),
+                            const Icon(Icons.star, color: Colors.amber, size: 14),
+                          ],
+                        ],
                       ),
                       if (isSyariah)
                         Padding(

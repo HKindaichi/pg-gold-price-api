@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/gold_price.dart';
 import 'data_service.dart';
 
@@ -14,6 +15,7 @@ class GoldProvider with ChangeNotifier {
   String _merchantPurity = '999'; // Separate state for Merchants Screen
   String _selectedRange = '7D'; // '7D', '1M', '6M', '1Y'
   int _currentTabIndex = 0;
+  List<String> _watchlist = [];
 
   List<GoldRecord> get history => _history;
   bool get isLoading => _isLoading;
@@ -22,6 +24,7 @@ class GoldProvider with ChangeNotifier {
   String get merchantPurity => _merchantPurity;
   String get selectedRange => _selectedRange;
   int get currentTabIndex => _currentTabIndex;
+  List<String> get watchlist => _watchlist;
 
   void setPurity(String purity) {
     _selectedPurity = purity;
@@ -43,10 +46,34 @@ class GoldProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  bool isWatched(String merchantId) {
+    return _watchlist.contains(merchantId);
+  }
+
+  Future<void> toggleWatchlist(String merchantId) async {
+    if (_watchlist.contains(merchantId)) {
+      _watchlist.remove(merchantId);
+    } else {
+      _watchlist.add(merchantId);
+    }
+    notifyListeners();
+    
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList('merchant_watchlist', _watchlist);
+  }
+
+  Future<void> _loadWatchlist() async {
+    final prefs = await SharedPreferences.getInstance();
+    _watchlist = prefs.getStringList('merchant_watchlist') ?? [];
+    notifyListeners();
+  }
+
   Future<void> loadData() async {
     _isLoading = true;
     _error = null;
     notifyListeners();
+
+    await _loadWatchlist();
 
     try {
       _history = await _service.fetchGoldHistory();

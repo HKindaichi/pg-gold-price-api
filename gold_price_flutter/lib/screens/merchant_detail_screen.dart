@@ -27,6 +27,22 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.merchantName.replaceAll('_', ' ').replaceAll('-', ' ').toUpperCase()),
+        actions: [
+          Consumer<GoldProvider>(
+            builder: (context, provider, child) {
+              final isWatched = provider.isWatched(widget.merchantId);
+              return IconButton(
+                iconSize: 28,
+                icon: Icon(
+                  isWatched ? Icons.star : Icons.star_border,
+                  color: isWatched ? Colors.amber : null,
+                ),
+                onPressed: () => provider.toggleWatchlist(widget.merchantId),
+              );
+            },
+          ),
+          const SizedBox(width: 8),
+        ],
       ),
       body: Consumer<GoldProvider>(
         builder: (context, provider, child) {
