@@ -63,14 +63,14 @@ class MerchantsScreen extends StatelessWidget {
                   children: [
                     const Expanded(child: SizedBox()),
                     SizedBox(
-                      width: 172, // Reduced from 195 to give more space to name
+                      width: 180, // Slightly increased from 172 to give more breathing room
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          SizedBox(width: 58, child: Text("Shop Sells", textAlign: TextAlign.right, style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 9, fontWeight: FontWeight.w600))),
-                          SizedBox(width: 58, child: Text("Shop Buys", textAlign: TextAlign.right, style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 9, fontWeight: FontWeight.w600))),
-                          SizedBox(width: 42, child: Text("Spread", textAlign: TextAlign.right, style: TextStyle(color: Colors.redAccent.withOpacity(0.8), fontSize: 9, fontWeight: FontWeight.w600))),
-                          const SizedBox(width: 14), // Reduced Chevron space
+                          SizedBox(width: 60, child: Text("Shop Sells", textAlign: TextAlign.right, style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 9, fontWeight: FontWeight.w600))),
+                          SizedBox(width: 60, child: Text("Shop Buys", textAlign: TextAlign.right, style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 9, fontWeight: FontWeight.w600))),
+                          SizedBox(width: 48, child: Text("Spread", textAlign: TextAlign.right, style: TextStyle(color: Colors.redAccent.withOpacity(0.8), fontSize: 9, fontWeight: FontWeight.w600))),
+                          const SizedBox(width: 12), // Adjusted Chevron space
                         ],
                       ),
                     ),
@@ -306,12 +306,12 @@ class MerchantsScreen extends StatelessWidget {
                 ),
                 // Prices Section
                 SizedBox(
-                  width: 172, // Matched with header
+                  width: 180, // Matched with header
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       SizedBox(
-                        width: 58,
+                        width: 60,
                         child: Text(
                           record.sell.toStringAsFixed(2),
                           textAlign: TextAlign.right,
@@ -319,7 +319,7 @@ class MerchantsScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        width: 58,
+                        width: 60,
                         child: Text(
                           record.buy.toStringAsFixed(2),
                           textAlign: TextAlign.right,
@@ -327,7 +327,7 @@ class MerchantsScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        width: 42,
+                        width: 48,
                         child: Text(
                           record.spread.toStringAsFixed(2),
                           textAlign: TextAlign.right,
@@ -335,7 +335,7 @@ class MerchantsScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 2),
-                      const Icon(Icons.chevron_right, color: Colors.grey, size: 12), // Smaller chevron
+                      const Icon(Icons.chevron_right, color: Colors.grey, size: 12),
                     ],
                   ),
                 ),
