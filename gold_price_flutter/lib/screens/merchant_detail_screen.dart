@@ -153,9 +153,15 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
   }
 
   Widget _buildChartCard(BuildContext context, List<GoldRecord> history) {
-    // Limit to latest 50 entries for visualization
-    final displayHistory = history.length > 50 ? history.sublist(history.length - 50) : history;
-    displayHistory.sort((a, b) => a.timestamp.compareTo(b.timestamp));
+    // 1. Sort all available history by date (newest first) to accurately pick the latest 50
+    final allSorted = List<GoldRecord>.from(history);
+    allSorted.sort((a, b) => b.timestamp.compareTo(a.timestamp));
+    
+    // 2. Take the 50 newest records
+    final newest50 = allSorted.take(50).toList();
+
+    // 3. Reverse them so they go oldest -> newest for the chart (left -> right)
+    final displayHistory = newest50.reversed.toList();
 
     final spots = displayHistory.asMap().entries.map((e) {
       double value;
