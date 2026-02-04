@@ -176,7 +176,7 @@ class GoldProvider with ChangeNotifier {
   List<String> getMerchants() {
     return _history
         .map((r) => r.merchant)
-        .where((m) => m != 'world_gold' && m != 'world_silver')
+        .where((m) => m != 'world_gold' && m != 'world_silver' && m != 'bsn')
         .toSet()
         .toList();
   }
