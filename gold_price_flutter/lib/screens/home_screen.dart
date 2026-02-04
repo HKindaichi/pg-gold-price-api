@@ -159,7 +159,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Column(
       children: [
-        // Text(unit, style: TextStyle(color: labelColor, fontSize: 16)),
         Text(
           price,
           style: TextStyle(
@@ -168,18 +167,21 @@ class _HomeScreenState extends State<HomeScreen> {
             color: priceColor,
           ),
         ),
-        if (purity == '999' || purity == 'Silver')
-          Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
-            child: Text(
-              "${purity == 'Silver' ? 'XAG/USD' : 'XAU/USD'} Global Spot USD $usdPrice / oz",
-              style: TextStyle(
-                color: labelColor,
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
+        SizedBox(
+          height: 30, // Fixed height to keep spacing consistent
+          child: (purity == '999' || purity == 'Silver')
+            ? Center(
+                child: Text(
+                  "${purity == 'Silver' ? 'XAG/USD' : 'XAU/USD'} Global Spot USD $usdPrice / oz",
+                  style: TextStyle(
+                    color: labelColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              )
+            : const SizedBox.shrink(),
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
