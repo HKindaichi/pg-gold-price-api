@@ -159,6 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Column(
       children: [
+        Text("RM/gram", style: TextStyle(color: labelColor, fontSize: 16)),
         Text(
           price,
           style: TextStyle(
