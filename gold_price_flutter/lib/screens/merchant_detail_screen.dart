@@ -67,13 +67,12 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
             child: Column(
               children: [
                 _buildPriceCards(context, provider, latest),
-                const SizedBox(height: 30),
+                const SizedBox(height: 15),
+                _buildSourceLink(context),
+                const SizedBox(height: 15),
                 _buildChartCard(context, history),
                 const SizedBox(height: 30),
                 _buildHistoryTable(context, history),
-                const SizedBox(height: 40),
-                _buildSourceLink(context),
-                const SizedBox(height: 20),
               ],
             ),
           );
