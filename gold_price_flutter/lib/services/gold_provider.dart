@@ -89,6 +89,13 @@ class GoldProvider with ChangeNotifier {
     return records.last;
   }
 
+  GoldRecord? getLatestUSDPrice() {
+    String merchant = _selectedPurity == 'Silver' ? 'world_silver' : 'world_gold';
+    var records = _history.where((r) => r.merchant == merchant && r.item.trim() == 'USD/oz').toList();
+    if (records.isEmpty) return null;
+    return records.last;
+  }
+
   List<GoldRecord> getHistoryForDashboard() {
     List<GoldRecord> source;
     if (_selectedPurity == '999') {

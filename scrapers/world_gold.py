@@ -60,6 +60,11 @@ class WorldGoldScraper(GoldScraper):
                 "sell": round(myr_per_g, 2),
                 "buy": round(myr_per_g, 2),
                 "spread": 0.0,
+            },
+            "USD/oz": {
+                "sell": round(xau_usd, 2),
+                "buy": round(xau_usd, 2),
+                "spread": 0.0,
             }
         }
 

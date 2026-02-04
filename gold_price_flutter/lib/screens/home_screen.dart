@@ -134,6 +134,9 @@ class _HomeScreenState extends State<HomeScreen> {
     final String unit = (purity == '999' || purity == 'Silver') ? "Live Spot RM/g" : "RM/g";
     final String price = latest != null ? latest.sell.toStringAsFixed(2) : "--.--";
     final String date = latest != null ? DateFormat('HH:mm').format(latest.timestamp) : "--:--";
+    
+    final usdRecord = provider.getLatestUSDPrice();
+    final String usdPrice = usdRecord != null ? "\$${NumberFormat("#,##0.00").format(usdRecord.sell)}" : "--.--";
 
     final double percentChange = provider.getPercentageChange();
     final bool isPositive = percentChange >= 0;
@@ -166,6 +169,18 @@ class _HomeScreenState extends State<HomeScreen> {
             color: priceColor,
           ),
         ),
+        if (purity == '999' || purity == 'Silver')
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: Text(
+              "Global Spot USD $usdPrice / oz",
+              style: TextStyle(
+                color: labelColor,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

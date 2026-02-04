@@ -58,6 +58,11 @@ class WorldSilverScraper(GoldScraper):
                 "sell": round(myr_per_g, 2),
                 "buy": round(myr_per_g, 2),
                 "spread": 0.0,
+            },
+            "USD/oz": {
+                "sell": round(xag_usd, 2),
+                "buy": round(xag_usd, 2),
+                "spread": 0.0,
             }
         }
 

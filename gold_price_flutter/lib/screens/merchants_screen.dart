@@ -133,6 +133,7 @@ class MerchantsScreen extends StatelessWidget {
       'bank_muamalat': 'assets/logos/bank_muamalat.png',
       'maybank_silver': 'assets/logos/maybank.png',
       'bsn': 'assets/logos/bsn.png',
+      'mygold_i': 'assets/logos/bsn.png',
     };
 
     // Mapping for theme colors to hide any remaining white gaps
@@ -147,6 +148,7 @@ class MerchantsScreen extends StatelessWidget {
       'bank_muamalat': const Color(0xFF003366), // Muamalat Navy Blue
       'maybank_silver': const Color(0xFFFFD100), // MSIA Yellow
       'bsn': Colors.teal, // BSN Teal
+      'mygold_i': Colors.teal,
     };
 
     // Mapping for display names
@@ -160,7 +162,8 @@ class MerchantsScreen extends StatelessWidget {
       'gb_gold': 'GB Gold',
       'bank_muamalat': 'EasiGold',
       'maybank_silver': 'MSIA',
-      'bsn': 'BSN',
+      'bsn': 'MyGold-i',
+      'mygold_i': 'MyGold-i',
     };
 
     final logoPath = merchantLogos[merchantId];
@@ -220,7 +223,7 @@ class MerchantsScreen extends StatelessWidget {
               ),
             ),
       ),
-      title: (merchantId == 'uob' || merchantId == 'maybank_silver')
+      title: (merchantId == 'uob' || merchantId == 'maybank_silver' || merchantId == 'cimb_e_gia')
         ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,

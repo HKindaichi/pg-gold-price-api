@@ -6,7 +6,7 @@ from .base import GoldScraper
 
 class BsnScraper(GoldScraper):
     def get_name(self) -> str:
-        return "BSN"
+        return "MyGold-i"
 
     def scrape(self) -> tuple[dict, str | None]:
         url = "https://www.bsn.com.my/page/BSNMyGoldAccount-i"
