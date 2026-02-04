@@ -173,7 +173,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
             child: Text(
-              "Global Spot USD $usdPrice / oz",
+              "${purity == 'Silver' ? 'XAG/USD' : 'XAU/USD'} Global Spot USD $usdPrice / oz",
               style: TextStyle(
                 color: labelColor,
                 fontSize: 14,
