@@ -267,21 +267,11 @@ class MerchantsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Row(
-                        children: [
-                          Flexible(
-                            child: Text(
-                              displayName,
-                              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          if (isWatched) ...[
-                            const SizedBox(width: 4),
-                            const Icon(Icons.star, color: Colors.amber, size: 14),
-                          ],
-                        ],
+                      Text(
+                        displayName,
+                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                        maxLines: 1,
+                        overflow: TextOverflow.visible,
                       ),
                       if (isSyariah)
                         Padding(
