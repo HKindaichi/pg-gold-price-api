@@ -252,35 +252,36 @@ class MerchantsScreen extends StatelessWidget {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      const SizedBox(height: 4),
-                      Row(
-                        children: [
-                          if (isSyariah)
-                            Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
-                              decoration: BoxDecoration(
-                                color: Colors.teal.withOpacity(0.2),
-                                borderRadius: BorderRadius.circular(4),
-                                border: Border.all(color: Colors.teal.withOpacity(0.5)),
-                              ),
-                              child: const Text("Syariah", style: TextStyle(color: Colors.teal, fontSize: 7, fontWeight: FontWeight.bold)),
-                            )
-                          else if (isNonSyariah)
-                            Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
-                              decoration: BoxDecoration(
-                                color: Colors.redAccent.withOpacity(0.2),
-                                borderRadius: BorderRadius.circular(4),
-                                border: Border.all(color: Colors.redAccent.withOpacity(0.5)),
-                              ),
-                              child: const Text("Non-Syariah", style: TextStyle(color: Colors.redAccent, fontSize: 7, fontWeight: FontWeight.bold)),
+                      if (isSyariah)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4.0),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+                            decoration: BoxDecoration(
+                              color: Colors.teal.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(4),
+                              border: Border.all(color: Colors.teal.withOpacity(0.5)),
                             ),
-                          if (isSyariah || isNonSyariah) const SizedBox(width: 6),
-                          Text(
-                            "Upd. $dateStr", 
-                            style: TextStyle(color: appTheme.brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 10),
+                            child: const Text("Syariah", style: TextStyle(color: Colors.teal, fontSize: 7, fontWeight: FontWeight.bold)),
                           ),
-                        ],
+                        )
+                      else if (isNonSyariah)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4.0),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+                            decoration: BoxDecoration(
+                              color: Colors.redAccent.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(4),
+                              border: Border.all(color: Colors.redAccent.withOpacity(0.5)),
+                            ),
+                            child: const Text("Non-Syariah", style: TextStyle(color: Colors.redAccent, fontSize: 7, fontWeight: FontWeight.bold)),
+                          ),
+                        ),
+                      const SizedBox(height: 4),
+                      Text(
+                        "Upd. $dateStr", 
+                        style: TextStyle(color: appTheme.brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 10),
                       ),
                     ],
                   ),
