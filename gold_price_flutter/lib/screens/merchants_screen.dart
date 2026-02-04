@@ -54,14 +54,14 @@ class MerchantsScreen extends StatelessWidget {
                   children: [
                     const Expanded(child: SizedBox()), // Space for icon/name
                     SizedBox(
-                      width: 190, // Increased width for larger font
+                      width: 175, // Reduced from 190 to fix overflow
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          SizedBox(width: 60, child: Text("Shop Sells", textAlign: TextAlign.right, style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 10, fontWeight: FontWeight.w600))),
-                          SizedBox(width: 60, child: Text("Shop Buys", textAlign: TextAlign.right, style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 10, fontWeight: FontWeight.w600))),
-                          SizedBox(width: 50, child: Text("Spread", textAlign: TextAlign.right, style: TextStyle(color: Colors.redAccent.withOpacity(0.8), fontSize: 10, fontWeight: FontWeight.w600))),
-                          const SizedBox(width: 18), // Space for arrow icon (16 + 2)
+                          SizedBox(width: 55, child: Text("Sells", textAlign: TextAlign.right, style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 10, fontWeight: FontWeight.w600))),
+                          SizedBox(width: 55, child: Text("Buys", textAlign: TextAlign.right, style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 10, fontWeight: FontWeight.w600))),
+                          SizedBox(width: 45, child: Text("Spread", textAlign: TextAlign.right, style: TextStyle(color: Colors.redAccent.withOpacity(0.8), fontSize: 10, fontWeight: FontWeight.w600))),
+                          const SizedBox(width: 20), // chevron space
                         ],
                       ),
                     ),
@@ -288,32 +288,32 @@ class MerchantsScreen extends StatelessWidget {
                 ),
                 // Prices Section
                 SizedBox(
-                  width: 180,
+                  width: 175, // Reduced from 180 to fix overflow
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       SizedBox(
-                        width: 60,
+                        width: 55,
                         child: Text(
                           record.sell.toStringAsFixed(2),
                           textAlign: TextAlign.right,
-                          style: TextStyle(fontSize: 14.5, fontWeight: FontWeight.bold, color: appTheme.brightness == Brightness.dark ? Colors.white : Colors.black87),
+                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: appTheme.brightness == Brightness.dark ? Colors.white : Colors.black87),
                         ),
                       ),
                       SizedBox(
-                        width: 60,
+                        width: 55,
                         child: Text(
                           record.buy.toStringAsFixed(2),
                           textAlign: TextAlign.right,
-                          style: TextStyle(fontSize: 14.5, fontWeight: FontWeight.bold, color: appTheme.brightness == Brightness.dark ? Colors.grey : Colors.black54),
+                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: appTheme.brightness == Brightness.dark ? Colors.grey : Colors.black54),
                         ),
                       ),
                       SizedBox(
-                        width: 50,
+                        width: 45,
                         child: Text(
                           record.spread.toStringAsFixed(2),
                           textAlign: TextAlign.right,
-                          style: const TextStyle(fontSize: 14.5, fontWeight: FontWeight.bold, color: Colors.redAccent),
+                          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.redAccent),
                         ),
                       ),
                       const SizedBox(width: 4),
