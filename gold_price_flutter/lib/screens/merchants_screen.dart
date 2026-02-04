@@ -49,19 +49,19 @@ class MerchantsScreen extends StatelessWidget {
               ),
 
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 10), // Matches card margin (16) + card padding (12)
                 child: Row(
                   children: [
-                    const Expanded(child: SizedBox()), // Space for icon/name
+                    const Expanded(child: SizedBox()),
                     SizedBox(
-                      width: 175, // Reduced from 190 to fix overflow
+                      width: 195, // Width to match tile price section
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          SizedBox(width: 55, child: Text("Sells", textAlign: TextAlign.right, style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 10, fontWeight: FontWeight.w600))),
-                          SizedBox(width: 55, child: Text("Buys", textAlign: TextAlign.right, style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 10, fontWeight: FontWeight.w600))),
+                          SizedBox(width: 65, child: Text("Shop Sells", textAlign: TextAlign.right, style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 10, fontWeight: FontWeight.w600))),
+                          SizedBox(width: 65, child: Text("Shop Buys", textAlign: TextAlign.right, style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 10, fontWeight: FontWeight.w600))),
                           SizedBox(width: 45, child: Text("Spread", textAlign: TextAlign.right, style: TextStyle(color: Colors.redAccent.withOpacity(0.8), fontSize: 10, fontWeight: FontWeight.w600))),
-                          const SizedBox(width: 20), // chevron space
+                          const SizedBox(width: 20), // Chevron space
                         ],
                       ),
                     ),
@@ -288,12 +288,12 @@ class MerchantsScreen extends StatelessWidget {
                 ),
                 // Prices Section
                 SizedBox(
-                  width: 175, // Reduced from 180 to fix overflow
+                  width: 195, // Increased and matched with header
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       SizedBox(
-                        width: 55,
+                        width: 65,
                         child: Text(
                           record.sell.toStringAsFixed(2),
                           textAlign: TextAlign.right,
@@ -301,7 +301,7 @@ class MerchantsScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        width: 55,
+                        width: 65,
                         child: Text(
                           record.buy.toStringAsFixed(2),
                           textAlign: TextAlign.right,
