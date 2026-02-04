@@ -136,18 +136,18 @@ class MerchantsScreen extends StatelessWidget {
       'mygold_i': 'assets/logos/bsn.png',
     };
 
-    // Mapping for theme colors to hide any remaining white gaps
+    // Mapping for theme colors
     final Map<String, Color> merchantColors = {
       'public_gold': Colors.white,
-      'miga_i': const Color(0xFFFFD100), // Maybank Yellow
-      'cimb_e_gia': const Color(0xFFE21B1B), // CIMB Red
-      'biga_i': const Color(0xFF006633), // Bank Islam Green
-      'uob': const Color(0xFF0038A8), // UOB Blue
-      'maa_gold': const Color(0xFFFFD700), // MAA Gold Yellow
-      'gb_gold': const Color(0xFF4CAF50), // GB Gold Green
-      'bank_muamalat': const Color(0xFF003366), // Muamalat Navy Blue
-      'maybank_silver': const Color(0xFFFFD100), // MSIA Yellow
-      'bsn': Colors.teal, // BSN Teal
+      'miga_i': const Color(0xFFFFD100), 
+      'cimb_e_gia': const Color(0xFFE21B1B), 
+      'biga_i': const Color(0xFF006633), 
+      'uob': const Color(0xFF0038A8), 
+      'maa_gold': const Color(0xFFFFD700), 
+      'gb_gold': const Color(0xFF4CAF50), 
+      'bank_muamalat': const Color(0xFF003366), 
+      'maybank_silver': const Color(0xFFFFD100), 
+      'bsn': Colors.teal, 
       'mygold_i': Colors.teal,
     };
 
@@ -170,122 +170,161 @@ class MerchantsScreen extends StatelessWidget {
     final themeColor = merchantColors[merchantId] ?? Colors.white.withOpacity(0.1);
     final displayName = merchantNames[merchantId] ?? record.merchant.replaceAll('_', ' ').replaceAll('-', ' ').toUpperCase();
     
-    // Custom zoom for specific logos that have thicker white borders
     double logoScale = 1.15;
-    if (merchantId == 'cimb_e_gia') {
-      logoScale = 1.7; // Even more zoom to kill that white ring
-    } else if (merchantId == 'public_gold') {
-      logoScale = 1.0; // Reset scale for the new ring logo
-    }
-    if (merchantId == 'miga_i' || merchantId == 'maybank_silver') {
-      logoScale = 1.2; // Tiny bit more for Maybank
-    }
+    if (merchantId == 'cimb_e_gia') logoScale = 1.7;
+    else if (merchantId == 'public_gold') logoScale = 1.0;
+    if (merchantId == 'miga_i' || merchantId == 'maybank_silver') logoScale = 1.2;
 
-    return ListTile(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 12), // Tighter padding
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => MerchantDetailScreen(
-              merchantId: record.merchant, 
-              merchantName: displayName,
-            ),
-          ),
-        );
-      },
-      leading: Container(
-        width: 32, // Slightly smaller
-        height: 32,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: themeColor, // Background color matching the bank
-        ),
-        clipBehavior: Clip.antiAlias, 
-        child: logoPath != null 
-          ? Transform.scale(
-              scale: logoScale, // Dynamic scale based on merchant
-              child: Image.asset(
-                logoPath, 
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) => Center(
-                  child: Text(
-                    record.merchant[0].toUpperCase(),
-                    style: const TextStyle(color: Color(0xFFfbbf24), fontSize: 12),
+    bool isNonSyariah = (merchantId == 'uob' || merchantId == 'maybank_silver' || merchantId == 'cimb_e_gia');
+    bool isSyariah = (merchantId == 'public_gold' || merchantId == 'miga_i' || merchantId == 'biga_i' || merchantId == 'bank_muamalat' || merchantId == 'bsn' || merchantId == 'mygold_i');
+
+    final appTheme = Theme.of(context);
+
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      decoration: BoxDecoration(
+        color: appTheme.cardColor,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: appTheme.brightness == Brightness.light 
+          ? [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, 4))]
+          : null,
+        border: Border.all(color: appTheme.dividerColor.withOpacity(0.05)),
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(16),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MerchantDetailScreen(
+                  merchantId: record.merchant, 
+                  merchantName: displayName,
+                ),
+              ),
+            );
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+            child: Row(
+              children: [
+                // Logo Section
+                Container(
+                  width: 36,
+                  height: 36,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: themeColor,
+                  ),
+                  clipBehavior: Clip.antiAlias, 
+                  child: logoPath != null 
+                    ? Transform.scale(
+                        scale: logoScale,
+                        child: Image.asset(
+                          logoPath, 
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) => Center(
+                            child: Text(
+                              record.merchant[0].toUpperCase(),
+                              style: const TextStyle(color: Color(0xFFfbbf24), fontSize: 14),
+                            ),
+                          ),
+                        ),
+                      )
+                    : Center(
+                        child: Text(
+                          record.merchant[0].toUpperCase(),
+                          style: const TextStyle(color: Color(0xFFfbbf24), fontSize: 14),
+                        ),
+                      ),
+                ),
+                const SizedBox(width: 12),
+                // Info Section
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        children: [
+                          Flexible(
+                            child: Text(
+                              displayName,
+                              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          const SizedBox(width: 4),
+                          if (isSyariah)
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+                              decoration: BoxDecoration(
+                                color: Colors.teal.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(4),
+                                border: Border.all(color: Colors.teal.withOpacity(0.5)),
+                              ),
+                              child: const Text("Syariah", style: TextStyle(color: Colors.teal, fontSize: 7, fontWeight: FontWeight.bold)),
+                            )
+                          else if (isNonSyariah)
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+                              decoration: BoxDecoration(
+                                color: Colors.redAccent.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(4),
+                                border: Border.all(color: Colors.redAccent.withOpacity(0.5)),
+                              ),
+                              child: const Text("Non-Syariah", style: TextStyle(color: Colors.redAccent, fontSize: 7, fontWeight: FontWeight.bold)),
+                            ),
+                        ],
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        "Upd. $dateStr", 
+                        style: TextStyle(color: appTheme.brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 10),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-            )
-          : Center(
-              child: Text(
-                record.merchant[0].toUpperCase(),
-                style: const TextStyle(color: Color(0xFFfbbf24), fontSize: 12),
-              ),
-            ),
-      ),
-      title: (merchantId == 'uob' || merchantId == 'maybank_silver' || merchantId == 'cimb_e_gia')
-        ? Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                displayName,
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-              ),
-              const SizedBox(height: 2),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
-                decoration: BoxDecoration(
-                  color: Colors.redAccent.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(4),
-                  border: Border.all(color: Colors.redAccent.withOpacity(0.5)),
+                // Prices Section
+                SizedBox(
+                  width: 180,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      SizedBox(
+                        width: 60,
+                        child: Text(
+                          record.sell.toStringAsFixed(2),
+                          textAlign: TextAlign.right,
+                          style: TextStyle(fontSize: 14.5, fontWeight: FontWeight.bold, color: appTheme.brightness == Brightness.dark ? Colors.white : Colors.black87),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 60,
+                        child: Text(
+                          record.buy.toStringAsFixed(2),
+                          textAlign: TextAlign.right,
+                          style: TextStyle(fontSize: 14.5, fontWeight: FontWeight.bold, color: appTheme.brightness == Brightness.dark ? Colors.grey : Colors.black54),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 50,
+                        child: Text(
+                          record.spread.toStringAsFixed(2),
+                          textAlign: TextAlign.right,
+                          style: const TextStyle(fontSize: 14.5, fontWeight: FontWeight.bold, color: Colors.redAccent),
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      const Icon(Icons.chevron_right, color: Colors.grey, size: 16),
+                    ],
+                  ),
                 ),
-                child: const Text("Non-Syariah", style: TextStyle(color: Colors.redAccent, fontSize: 7, fontWeight: FontWeight.bold)),
-              ),
-            ],
-          )
-        : Text(
-            displayName,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-            maxLines: 1,
-            overflow: TextOverflow.visible,
+              ],
+            ),
           ),
-      subtitle: Text(
-        "Upd. $dateStr", 
-        style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 10),
-      ),
-      trailing: SizedBox(
-        width: 190, // Match the header width
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            SizedBox(
-              width: 60,
-              child: Text(
-                record.sell.toStringAsFixed(2),
-                textAlign: TextAlign.right,
-                style: TextStyle(fontSize: 14.5, fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black87),
-              ),
-            ),
-            SizedBox(
-              width: 60,
-              child: Text(
-                record.buy.toStringAsFixed(2),
-                textAlign: TextAlign.right,
-                style: TextStyle(fontSize: 14.5, fontWeight: FontWeight.bold, color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54),
-              ),
-            ),
-            SizedBox(
-              width: 50,
-              child: Text(
-                record.spread.toStringAsFixed(2),
-                textAlign: TextAlign.right,
-                style: const TextStyle(fontSize: 14.5, fontWeight: FontWeight.bold, color: Colors.redAccent),
-              ),
-            ),
-            const SizedBox(width: 2),
-            const Icon(Icons.chevron_right, color: Colors.grey, size: 16),
-          ],
         ),
       ),
     );
