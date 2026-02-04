@@ -131,7 +131,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final theme = Theme.of(context);
     final provider = Provider.of<GoldProvider>(context, listen: false);
     String purity = provider.selectedPurity;
-    final String unit = (purity == '999' || purity == 'Silver') ? "Live Spot RM/g" : "RM/g";
     final String price = latest != null ? latest.sell.toStringAsFixed(2) : "--.--";
     final String date = latest != null ? DateFormat('HH:mm').format(latest.timestamp) : "--:--";
     
@@ -160,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Column(
       children: [
-        Text(unit, style: TextStyle(color: labelColor, fontSize: 16)),
+        // Text(unit, style: TextStyle(color: labelColor, fontSize: 16)),
         Text(
           price,
           style: TextStyle(
