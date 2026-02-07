@@ -1537,3 +1537,5 @@ timestamp,merchant,item,sell,buy,spread
 2026-02-07 11:57:23,world_silver,Silver,9.9,9.9,0.0
 2026-02-07 11:57:23,world_silver,USD/oz,78.02,78.02,0.0
 2026-02-07 16:16:24,kab_gold,Gold Bar 1Kg,675702.0,628124.0,47578.0
+2026-02-08 00:15:13,public_gold,999,686.0,624.0,62
+2026-02-08 00:15:13,public_gold,916,652.0,567.0,85
