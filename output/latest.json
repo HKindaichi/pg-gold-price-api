@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 18:13",
+  "updated_label": "Today 20:21",
   "merchants": [
     {
       "id": "public_gold",
@@ -19,18 +19,6 @@
       "last_updated": "08-Feb-2026"
     },
     {
-      "id": "miga_i",
-      "name": "MIGA-i",
-      "items": {
-        "999": {
-          "sell": 639.57,
-          "buy": 594.28,
-          "spread": 45.29
-        }
-      },
-      "last_updated": "06 Feb 2026 08:59:05"
-    },
-    {
       "id": "cimb_e_gia",
       "name": "CIMB e-GIA",
       "items": {
@@ -46,25 +34,25 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Pelbagai 1 Gram": {
-          "sell": 696.0,
-          "buy": 626.0,
-          "spread": 70.0
-        },
         "Gold Bar 1G 2025": {
           "sell": 702.0,
           "buy": 626.0,
           "spread": 76.0
         },
-        "Gold Bar 1G Palestine X Rahma Worldwide": {
-          "sell": 737.0,
-          "buy": 626.0,
-          "spread": 111.0
-        },
         "Gold Bar 0.5G Klasik V3": {
           "sell": 361.0,
           "buy": 313.0,
           "spread": 48.0
+        },
+        "Pelbagai 1 Gram": {
+          "sell": 696.0,
+          "buy": 626.0,
+          "spread": 70.0
+        },
+        "Gold Bar 1Kg": {
+          "sell": 675702.0,
+          "buy": 628124.0,
+          "spread": 47578.0
         },
         "Pelbagai 0.5G": {
           "sell": 353.0,
@@ -81,20 +69,20 @@
           "buy": 313.0,
           "spread": 63.0
         },
-        "Gold Bar 0.5G 2026": {
-          "sell": 358.0,
-          "buy": 313.0,
-          "spread": 45.0
-        },
-        "Gold Bar 1Kg": {
-          "sell": 675702.0,
-          "buy": 628124.0,
-          "spread": 47578.0
-        },
         "Gold Bar 1G Chinese New Year 2025": {
           "sell": 717.0,
           "buy": 626.0,
           "spread": 91.0
+        },
+        "Gold Bar 1G Palestine X Rahma Worldwide": {
+          "sell": 737.0,
+          "buy": 626.0,
+          "spread": 111.0
+        },
+        "Gold Bar 0.5G 2026": {
+          "sell": 358.0,
+          "buy": 313.0,
+          "spread": 45.0
         }
       }
     },
@@ -130,7 +118,7 @@
           "spread": 45.0
         }
       },
-      "last_updated": "08-02-2026 18:00:02"
+      "last_updated": "08-02-2026 20:15:01"
     },
     {
       "id": "maa_gold",
@@ -160,18 +148,6 @@
       }
     },
     {
-      "id": "maybank_silver",
-      "name": "Maybank Silver",
-      "items": {
-        "Silver": {
-          "sell": 9.77,
-          "buy": 9.0,
-          "spread": 0.77
-        }
-      },
-      "last_updated": "06 Feb 2026 06:03 PM"
-    },
-    {
       "id": "world_gold",
       "name": "World Gold",
       "items": {
@@ -186,7 +162,7 @@
           "spread": 0.0
         }
       },
-      "last_updated": "08 Feb 26 10:13"
+      "last_updated": "08 Feb 26 12:21"
     },
     {
       "id": "world_silver",
@@ -203,7 +179,7 @@
           "spread": 0.0
         }
       },
-      "last_updated": "08 Feb 26 10:13"
+      "last_updated": "08 Feb 26 12:21"
     },
     {
       "id": "mygold_i",
