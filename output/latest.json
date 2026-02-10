@@ -1,13 +1,13 @@
 {
-  "updated_label": "Today 20:42",
+  "updated_label": "Today 21:09",
   "merchants": [
     {
       "id": "public_gold",
       "name": "Public Gold",
       "items": {
         "999": {
-          "sell": 695,
-          "buy": 632,
+          "sell": 689,
+          "buy": 626,
           "spread": 63
         },
         "916": {
@@ -34,54 +34,54 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 0.5G Raja Perlis": {
-          "sell": 378.0,
-          "buy": 315.0,
-          "spread": 63.0
-        },
-        "Gold Bar 0.5G Klasik V3": {
-          "sell": 363.0,
-          "buy": 315.0,
-          "spread": 48.0
-        },
-        "Gold Bar 1G Raja Perlis": {
-          "sell": 722.0,
-          "buy": 630.0,
-          "spread": 92.0
-        },
-        "Gold Bar 1G 2025": {
-          "sell": 707.0,
-          "buy": 630.0,
-          "spread": 77.0
-        },
-        "Gold Bar 1G Palestine X Rahma Worldwide": {
-          "sell": 742.0,
-          "buy": 630.0,
-          "spread": 112.0
-        },
         "Gold Bar 1Kg": {
-          "sell": 680590.0,
-          "buy": 632670.0,
-          "spread": 47920.0
-        },
-        "Gold Bar 1G Chinese New Year 2025": {
-          "sell": 722.0,
-          "buy": 630.0,
-          "spread": 92.0
-        },
-        "Pelbagai 1 Gram": {
-          "sell": 701.0,
-          "buy": 631.0,
-          "spread": 70.0
+          "sell": 678812.0,
+          "buy": 631016.0,
+          "spread": 47796.0
         },
         "Gold Bar 0.5G 2026": {
-          "sell": 361.0,
-          "buy": 316.0,
+          "sell": 360.0,
+          "buy": 315.0,
           "spread": 45.0
         },
+        "Gold Bar 0.5G Klasik V3": {
+          "sell": 362.0,
+          "buy": 314.0,
+          "spread": 48.0
+        },
+        "Gold Bar 1G 2025": {
+          "sell": 706.0,
+          "buy": 630.0,
+          "spread": 76.0
+        },
+        "Pelbagai 1 Gram": {
+          "sell": 699.0,
+          "buy": 629.0,
+          "spread": 70.0
+        },
+        "Gold Bar 0.5G Raja Perlis": {
+          "sell": 377.0,
+          "buy": 314.0,
+          "spread": 63.0
+        },
+        "Gold Bar 1G Palestine X Rahma Worldwide": {
+          "sell": 741.0,
+          "buy": 630.0,
+          "spread": 111.0
+        },
+        "Gold Bar 1G Chinese New Year 2025": {
+          "sell": 721.0,
+          "buy": 630.0,
+          "spread": 91.0
+        },
+        "Gold Bar 1G Raja Perlis": {
+          "sell": 721.0,
+          "buy": 630.0,
+          "spread": 91.0
+        },
         "Pelbagai 0.5G": {
-          "sell": 356.0,
-          "buy": 316.0,
+          "sell": 355.0,
+          "buy": 315.0,
           "spread": 40.0
         }
       }
@@ -113,12 +113,12 @@
       "name": "GB Gold",
       "items": {
         "999": {
-          "sell": 682.0,
-          "buy": 637.0,
+          "sell": 680.0,
+          "buy": 635.0,
           "spread": 45.0
         }
       },
-      "last_updated": "10-02-2026 20:30:02"
+      "last_updated": "10-02-2026 21:00:02"
     },
     {
       "id": "maa_gold",
@@ -152,34 +152,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 636.21,
-          "buy": 636.21,
+          "sell": 635.17,
+          "buy": 635.17,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 5043.58,
-          "buy": 5043.58,
+          "sell": 5035.31,
+          "buy": 5035.31,
           "spread": 0.0
         }
       },
-      "last_updated": "10 Feb 26 12:42"
+      "last_updated": "10 Feb 26 13:09"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 10.34,
-          "buy": 10.34,
+          "sell": 10.33,
+          "buy": 10.33,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 82.01,
-          "buy": 82.01,
+          "sell": 81.92,
+          "buy": 81.92,
           "spread": 0.0
         }
       },
-      "last_updated": "10 Feb 26 12:42"
+      "last_updated": "10 Feb 26 13:09"
     },
     {
       "id": "mygold_i",
