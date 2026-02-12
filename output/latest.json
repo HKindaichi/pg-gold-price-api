@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 09:01",
+  "updated_label": "Today 10:03",
   "merchants": [
     {
       "id": "public_gold",
@@ -23,78 +23,78 @@
       "name": "MIGA-i",
       "items": {
         "999": {
-          "sell": 674.07,
-          "buy": 628.83,
-          "spread": 45.24
+          "sell": 669.76,
+          "buy": 625.24,
+          "spread": 44.52
         }
       },
-      "last_updated": "11 Feb 2026 09:38:23"
+      "last_updated": "12 Feb 2026 09:05:54"
     },
     {
       "id": "cimb_e_gia",
       "name": "CIMB e-GIA",
       "items": {
         "999": {
-          "sell": 666.8,
-          "buy": 606.8,
-          "spread": 60.0
+          "sell": 638.2,
+          "buy": 631.1,
+          "spread": 7.1
         }
       },
-      "last_updated": "5:10 pm, 11 Feb 2026, Wednesday"
+      "last_updated": "9:10 am, 12 Feb 2026, Thursday"
     },
     {
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
+        "Gold Bar 0.5G 2026": {
+          "sell": 360.0,
+          "buy": 315.0,
+          "spread": 45.0
+        },
+        "Pelbagai 1 Gram": {
+          "sell": 700.0,
+          "buy": 630.0,
+          "spread": 70.0
+        },
         "Gold Bar 0.5G Klasik V3": {
           "sell": 363.0,
           "buy": 315.0,
           "spread": 48.0
         },
-        "Gold Bar 0.5G 2026": {
-          "sell": 361.0,
-          "buy": 316.0,
-          "spread": 45.0
+        "Gold Bar 1G Raja Perlis": {
+          "sell": 721.0,
+          "buy": 630.0,
+          "spread": 91.0
+        },
+        "Pelbagai 0.5G": {
+          "sell": 355.0,
+          "buy": 315.0,
+          "spread": 40.0
+        },
+        "Gold Bar 0.5G Chinese New Year 2026": {
+          "sell": 365.0,
+          "buy": 315.0,
+          "spread": 50.0
         },
         "Gold Bar 0.5G Raja Perlis": {
           "sell": 378.0,
           "buy": 315.0,
           "spread": 63.0
         },
-        "Pelbagai 1 Gram": {
-          "sell": 701.0,
-          "buy": 631.0,
-          "spread": 70.0
+        "Gold Bar 1G Palestine X Rahma Worldwide": {
+          "sell": 741.0,
+          "buy": 630.0,
+          "spread": 111.0
         },
         "Gold Bar 1G Chinese New Year 2026": {
-          "sell": 711.0,
-          "buy": 631.0,
+          "sell": 710.0,
+          "buy": 630.0,
           "spread": 80.0
         },
-        "Gold Bar 0.5G Chinese New Year 2026": {
-          "sell": 366.0,
-          "buy": 316.0,
-          "spread": 50.0
-        },
-        "Gold Bar 1G Palestine X Rahma Worldwide": {
-          "sell": 742.0,
-          "buy": 630.0,
-          "spread": 112.0
-        },
         "Gold Bar 1Kg": {
-          "sell": 680558.0,
-          "buy": 632640.0,
-          "spread": 47918.0
-        },
-        "Pelbagai 0.5G": {
-          "sell": 356.0,
-          "buy": 316.0,
-          "spread": 40.0
-        },
-        "Gold Bar 1G Raja Perlis": {
-          "sell": 722.0,
-          "buy": 630.0,
-          "spread": 92.0
+          "sell": 679546.0,
+          "buy": 631699.0,
+          "spread": 47847.0
         }
       }
     },
@@ -103,46 +103,34 @@
       "name": "UOB",
       "items": {
         "Gold Savings Account (1 Gm)": {
-          "sell": 642.3,
-          "buy": 637.3,
+          "sell": 638.8,
+          "buy": 633.8,
           "spread": 5.0
         },
         "999": {
-          "sell": 642.3,
-          "buy": 637.3,
+          "sell": 638.8,
+          "buy": 633.8,
           "spread": 5.0
         },
         "Premier Gold Account (1 Kilo)": {
-          "sell": 641900.0,
-          "buy": 637500.0,
+          "sell": 638500.0,
+          "buy": 634100.0,
           "spread": 4400.0
         }
       },
-      "last_updated": "11/02/2026 15:08"
+      "last_updated": "12/02/2026 09:28"
     },
     {
       "id": "gb_gold",
       "name": "GB Gold",
       "items": {
         "999": {
-          "sell": 684.0,
-          "buy": 639.0,
+          "sell": 681.0,
+          "buy": 636.0,
           "spread": 45.0
         }
       },
-      "last_updated": "12-02-2026 02:15:02"
-    },
-    {
-      "id": "biga_i",
-      "name": "BIGA-i",
-      "items": {
-        "999": {
-          "sell": 658.34,
-          "buy": 636.74,
-          "spread": 21.6
-        }
-      },
-      "last_updated": "11 February 2026; 9:00am"
+      "last_updated": "12-02-2026 10:00:02"
     },
     {
       "id": "maa_gold",
@@ -165,9 +153,9 @@
       "name": "Bank Muamalat",
       "items": {
         "999": {
-          "sell": 643.429,
-          "buy": 638.871,
-          "spread": 4.56
+          "sell": 643.266,
+          "buy": 638.763,
+          "spread": 4.5
         }
       }
     },
@@ -177,54 +165,54 @@
       "items": {
         "Silver": {
           "sell": 10.81,
-          "buy": 9.96,
-          "spread": 0.85
+          "buy": 9.93,
+          "spread": 0.88
         }
       },
-      "last_updated": "11 Feb 2026 05:14 PM"
+      "last_updated": "12 Feb 2026 09:52 AM"
     },
     {
       "id": "world_gold",
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 636.6,
-          "buy": 636.6,
+          "sell": 637.53,
+          "buy": 637.53,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 5061.45,
-          "buy": 5061.45,
+          "sell": 5069.48,
+          "buy": 5069.48,
           "spread": 0.0
         }
       },
-      "last_updated": "12 Feb 26 01:01"
+      "last_updated": "12 Feb 26 02:03"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 10.35,
-          "buy": 10.35,
+          "sell": 10.44,
+          "buy": 10.44,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 82.28,
-          "buy": 82.28,
+          "sell": 83.06,
+          "buy": 83.06,
           "spread": 0.0
         }
       },
-      "last_updated": "12 Feb 26 01:01"
+      "last_updated": "12 Feb 26 02:03"
     },
     {
       "id": "mygold_i",
       "name": "MyGold-i",
       "items": {
         "999": {
-          "sell": 671.45,
-          "buy": 635.11,
-          "spread": 36.34
+          "sell": 668.72,
+          "buy": 632.44,
+          "spread": 36.28
         }
       }
     }
