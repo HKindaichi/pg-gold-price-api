@@ -2338,3 +2338,5 @@ timestamp,merchant,item,sell,buy,spread
 2026-02-14 11:59:04,world_gold,USD/oz,5043.11,5043.11,0.0
 2026-02-14 11:59:04,world_silver,Silver,9.73,9.73,0.0
 2026-02-14 11:59:04,world_silver,USD/oz,77.43,77.43,0.0
+2026-02-15 00:15:01,public_gold,999,689.0,626.0,63
+2026-02-15 00:15:01,public_gold,916,655.0,569.0,86
