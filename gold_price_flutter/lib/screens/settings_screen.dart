@@ -42,6 +42,7 @@ class SettingsScreen extends StatelessWidget {
             context,
             icon: Icons.gavel_outlined,
             title: "Disclaimers",
+            subtitle: "Penafian",
             onTap: () {
               Navigator.push(
                 context,
