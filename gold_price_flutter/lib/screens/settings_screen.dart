@@ -42,7 +42,6 @@ class SettingsScreen extends StatelessWidget {
             context,
             icon: Icons.gavel_outlined,
             title: "Disclaimers",
-            subtitle: "Penafian / Disclaimer",
             onTap: () {
               Navigator.push(
                 context,
@@ -54,7 +53,7 @@ class SettingsScreen extends StatelessWidget {
             context,
             icon: Icons.verified_user_outlined,
             title: "Shariah Compliance",
-            subtitle: "Patuh Syariah & Tidak Patuh Syariah",
+            subtitle: "Pematuhan Syariah",
             onTap: () {
               Navigator.push(
                 context,
@@ -90,7 +89,7 @@ class SettingsScreen extends StatelessWidget {
   Widget _buildSettingsTile(BuildContext context,
       {required IconData icon,
       required String title,
-      required String subtitle,
+      String? subtitle,
       Widget? trailing,
       required VoidCallback onTap}) {
     final theme = Theme.of(context);
@@ -113,7 +112,7 @@ class SettingsScreen extends StatelessWidget {
           child: Icon(icon, color: const Color(0xFFfbbf24)),
         ),
         title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: Text(subtitle, style: const TextStyle(fontSize: 12, color: Colors.grey)),
+        subtitle: subtitle != null ? Text(subtitle, style: const TextStyle(fontSize: 12, color: Colors.grey)) : null,
         trailing: trailing ?? const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
         onTap: onTap,
       ),
