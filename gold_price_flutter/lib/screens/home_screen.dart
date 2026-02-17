@@ -5,6 +5,8 @@ import 'package:intl/intl.dart';
 import '../services/gold_provider.dart';
 import '../services/theme_provider.dart';
 import '../models/gold_price.dart';
+import 'price_alert_screen.dart';
+import 'merchant_list_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -42,8 +44,13 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
           IconButton(
-            icon: const Icon(Icons.notifications_none, size: 28),
-            onPressed: () {},
+            icon: const Icon(Icons.notifications_outlined, size: 28),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const PriceAlertScreen()),
+              );
+            },
           ),
           const SizedBox(width: 10),
         ],
