@@ -391,6 +391,7 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
       'maybank_silver': 'https://www.maybank2u.com.my/',
       'mygold_i': 'https://www.bsn.com.my/page/BSNMyGoldAccount-i',
       'pbb': 'https://www.pbebank.com/en/rates-charges/gold-investment-account/',
+      'rhb': 'https://www.rhbgroup.com/treasury-rates/precious-metal-exchange/index.html',
     };
 
     final url = merchantUrls[widget.merchantId];
