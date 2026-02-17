@@ -387,7 +387,7 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
       'gb_gold': 'https://gbgold.com.my/',
       'biga_i': 'https://www.bankislam.com/',
       'maa_gold': 'https://maagold.com/',
-      'muamalat': 'https://www.muamalat.com.my/',
+      'easigold': 'https://www.muamalat.com.my/',
       'maybank_silver': 'https://www.maybank2u.com.my/',
       'mygold_i': 'https://www.bsn.com.my/page/BSNMyGoldAccount-i',
       'pbb': 'https://www.pbebank.com/en/rates-charges/gold-investment-account/',
