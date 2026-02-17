@@ -41,10 +41,6 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-          IconButton(
-            icon: const Icon(Icons.notifications_none, size: 28),
-            onPressed: () {},
-          ),
           const SizedBox(width: 10),
         ],
       ),
