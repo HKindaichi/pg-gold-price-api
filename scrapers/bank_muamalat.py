@@ -7,7 +7,7 @@ from curl_cffi import requests
 
 class BankMuamalatScraper(GoldScraper):
     def get_name(self) -> str:
-        return "Bank Muamalat"
+        return "Muamalat"
 
     def scrape(self) -> tuple[dict, str | None]:
         # Target URL from user screenshot

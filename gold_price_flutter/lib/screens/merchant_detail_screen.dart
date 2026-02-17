@@ -182,16 +182,16 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
     // 3. Reverse them so they go oldest -> newest for the chart (left -> right)
     final displayHistory = newest50.reversed.toList();
 
-    final spots = displayHistory.map((e) {
+    final spots = displayHistory.asMap().entries.map((e) {
       double value;
       if (_selectedType == 'sell') {
-        value = e.sell;
+        value = e.value.sell;
       } else if (_selectedType == 'buy') {
-        value = e.buy;
+        value = e.value.buy;
       } else {
-        value = e.spread;
+        value = e.value.spread;
       }
-      return FlSpot(e.timestamp.millisecondsSinceEpoch.toDouble(), value);
+      return FlSpot(e.key.toDouble(), value);
     }).toList();
 
     final theme = Theme.of(context);
@@ -229,8 +229,6 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
           Expanded(
             child: LineChart(
               LineChartData(
-                minX: displayHistory.isEmpty ? 0 : displayHistory.first.timestamp.millisecondsSinceEpoch.toDouble(),
-                maxX: displayHistory.isEmpty ? 0 : displayHistory.last.timestamp.millisecondsSinceEpoch.toDouble(),
                 gridData: FlGridData(
                   show: true,
                   drawVerticalLine: false,
@@ -247,22 +245,23 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
                     sideTitles: SideTitles(
                       showTitles: true,
                       reservedSize: 30,
-                      interval: (displayHistory.isEmpty || displayHistory.length < 2) 
-                          ? 1 
-                          : (displayHistory.last.timestamp.difference(displayHistory.first.timestamp).inMilliseconds / 4), // 4 labels
+                      interval: 10, // Show a label every 10 points
                       getTitlesWidget: (value, meta) {
-                        final date = DateTime.fromMillisecondsSinceEpoch(value.toInt());
-                        return Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: Text(
-                            DateFormat('dd/MM').format(date),
-                            style: TextStyle(
-                              color: theme.brightness == Brightness.dark ? Colors.grey : Colors.black54, 
-                              fontSize: 8,
-                              fontWeight: FontWeight.w500,
+                        final index = value.toInt();
+                        if (index >= 0 && index < displayHistory.length) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Text(
+                              DateFormat('dd/MM').format(displayHistory[index].timestamp),
+                              style: TextStyle(
+                                color: theme.brightness == Brightness.dark ? Colors.grey : Colors.black54, 
+                                fontSize: 8,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                        );
+                          );
+                        }
+                        return const SizedBox.shrink();
                       },
                     ),
                   ),
@@ -287,11 +286,11 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
                 lineBarsData: [
                   LineChartBarData(
                     spots: spots,
-                    isCurved: displayHistory.length > 2,
+                    isCurved: true,
                     color: chartColor,
                     barWidth: 3,
                     isStrokeCapRound: true,
-                    dotData: FlDotData(show: displayHistory.length < 15),
+                    dotData: const FlDotData(show: true),
                     belowBarData: BarAreaData(
                       show: true,
                       gradient: LinearGradient(
@@ -388,10 +387,10 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
       'gb_gold': 'https://gbgold.com.my/',
       'biga_i': 'https://www.bankislam.com/',
       'maa_gold': 'https://maagold.com/',
-      'bank_muamalat': 'https://www.muamalat.com.my/',
+      'muamalat': 'https://www.muamalat.com.my/',
       'maybank_silver': 'https://www.maybank2u.com.my/',
       'mygold_i': 'https://www.bsn.com.my/page/BSNMyGoldAccount-i',
-      'public_bank': 'https://www.pbebank.com/en/rates-charges/gold-investment-account/',
+      'pbb': 'https://www.pbebank.com/en/rates-charges/gold-investment-account/',
     };
 
     final url = merchantUrls[widget.merchantId];

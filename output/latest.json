@@ -161,8 +161,8 @@
       }
     },
     {
-      "id": "bank_muamalat",
-      "name": "Bank Muamalat",
+      "id": "muamalat",
+      "name": "Muamalat",
       "items": {
         "999": {
           "sell": 630.998,
@@ -229,8 +229,8 @@
       }
     },
     {
-      "id": "public_bank",
-      "name": "Public Bank",
+      "id": "pbb",
+      "name": "PBB",
       "items": {
         "999": {
           "sell": 644.93,

@@ -139,7 +139,7 @@ class MerchantsScreen extends StatelessWidget {
       'uob': 'assets/logos/uob.png',
       'maa_gold': 'assets/logos/maa_gold.png',
       'gb_gold': 'assets/logos/gb_gold.png',
-      'bank_muamalat': 'assets/logos/bank_muamalat.png',
+      'muamalat': 'assets/logos/muamalat_premium.png',
       'maybank_silver': 'assets/logos/maybank.png',
       'mygold_i': 'assets/logos/bsn_premium.png',
       'pbb': 'assets/logos/public_bank.png',
@@ -154,7 +154,7 @@ class MerchantsScreen extends StatelessWidget {
       'uob': const Color(0xFF0038A8), 
       'maa_gold': const Color(0xFFFFD700), 
       'gb_gold': const Color(0xFF4CAF50), 
-      'bank_muamalat': const Color(0xFF003366), 
+      'muamalat': const Color(0xFF003366), 
       'maybank_silver': const Color(0xFFFFD100), 
       'mygold_i': Colors.teal,
       'pbb': const Color(0xFFE31E24), // Public Bank Red
@@ -169,7 +169,7 @@ class MerchantsScreen extends StatelessWidget {
       'uob': 'UOB-GSA',
       'maa_gold': 'MAA Gold',
       'gb_gold': 'GB Gold',
-      'bank_muamalat': 'EasiGold',
+      'muamalat': 'Muamalat',
       'maybank_silver': 'MSIA',
       'mygold_i': 'MyGold-i',
       'pbb': 'PBB',
@@ -185,7 +185,7 @@ class MerchantsScreen extends StatelessWidget {
     if (merchantId == 'miga_i' || merchantId == 'maybank_silver') logoScale = 1.2;
 
     bool isNonSyariah = (merchantId == 'uob' || merchantId == 'maybank_silver' || merchantId == 'cimb_e_gia' || merchantId == 'pbb');
-    bool isSyariah = (merchantId == 'public_gold' || merchantId == 'miga_i' || merchantId == 'biga_i' || merchantId == 'bank_muamalat' || merchantId == 'mygold_i');
+    bool isSyariah = (merchantId == 'public_gold' || merchantId == 'miga_i' || merchantId == 'biga_i' || merchantId == 'muamalat' || merchantId == 'mygold_i');
 
     final appTheme = Theme.of(context);
 
