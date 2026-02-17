@@ -313,13 +313,13 @@ packages:
     source: hosted
     version: "2.1.2"
   path_provider_android:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: path_provider_android
-      sha256: f2c65e21139ce2c3dad46922be8272bb5963516045659e71bb16e151c93b580e
+      sha256: e595b98692943b4881b219f0a9e3945118d3c16bd7e2813f98ec6e532d905f72
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.22"
+    version: "2.2.1"
   path_provider_foundation:
     dependency: transitive
     description:
@@ -393,13 +393,13 @@ packages:
     source: hosted
     version: "2.2.2"
   shared_preferences_android:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: shared_preferences_android
-      sha256: cbc40be9be1c5af4dab4d6e0de4d5d3729e6f3d65b89d21e1815d57705644a6f
+      sha256: "8568a389334b6e83415b6aae55378e158fbc2314e074983362d20c562780fb06"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.20"
+    version: "2.2.1"
   shared_preferences_foundation:
     dependency: transitive
     description:
@@ -510,13 +510,13 @@ packages:
     source: hosted
     version: "6.2.5"
   url_launcher_android:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: url_launcher_android
-      sha256: "767344bf3063897b5cf0db830e94f904528e6dd50a6dfaf839f0abf509009611"
+      sha256: "31222ffb0063171b526d3e569079cf1f8b294075ba323443fdc690842bfd4def"
       url: "https://pub.dev"
     source: hosted
-    version: "6.3.28"
+    version: "6.2.0"
   url_launcher_ios:
     dependency: transitive
     description:

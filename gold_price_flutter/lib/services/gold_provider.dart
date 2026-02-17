@@ -74,7 +74,6 @@ class GoldProvider with ChangeNotifier {
     notifyListeners();
 
     await _loadWatchlist();
-    await _loadWatchlist();
 
     try {
       _history = await _service.fetchGoldHistory();

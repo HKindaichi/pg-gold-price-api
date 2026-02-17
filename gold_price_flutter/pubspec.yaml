@@ -46,6 +46,11 @@ dependencies:
   csv: ^6.0.0
   google_fonts: ^8.0.0
 
+dependency_overrides:
+  path_provider_android: 2.2.1
+  shared_preferences_android: 2.2.1
+  url_launcher_android: 6.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
