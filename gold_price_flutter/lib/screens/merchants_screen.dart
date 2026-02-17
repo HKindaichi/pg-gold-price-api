@@ -180,7 +180,7 @@ class MerchantsScreen extends StatelessWidget {
     final displayName = merchantNames[merchantId] ?? record.merchant.replaceAll('_', ' ').replaceAll('-', ' ').toUpperCase();
     
     double logoScale = 1.15;
-    if (merchantId == 'cimb_e_gia') logoScale = 1.7;
+    if (merchantId == 'cimb_e_gia') logoScale = 1.15;
     else if (merchantId == 'public_gold') logoScale = 1.0;
     if (merchantId == 'miga_i' || merchantId == 'maybank_silver') logoScale = 1.2;
 

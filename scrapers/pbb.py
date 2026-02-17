@@ -5,7 +5,7 @@ from .base import GoldScraper
 
 class PbbScraper(GoldScraper):
     def get_name(self) -> str:
-        return "Public Bank"
+        return "PBB"
 
     def scrape(self) -> tuple[dict, str | None]:
         url = "https://www.pbebank.com/en/rates-charges/gold-investment-account/"
