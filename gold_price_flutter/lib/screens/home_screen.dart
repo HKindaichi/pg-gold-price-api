@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import '../services/gold_provider.dart';
 import '../services/theme_provider.dart';
 import '../models/gold_price.dart';
+import 'merchant_list_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
