@@ -130,17 +130,20 @@ class SettingsScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Sebarang pertanyaan atau cadangan boleh diajukan kepada:", style: TextStyle(fontSize: 14)),
-            SizedBox(height: 10),
+            Text("Sebarang pertanyaan atau cadangan boleh diajukan kepada:", style: TextStyle(fontSize: 14, color: Colors.white70)),
+            SizedBox(height: 15),
             Row(
               children: [
                 Icon(Icons.email, color: Color(0xFFfbbf24), size: 20),
                 SizedBox(width: 10),
-                Text("support@easigoldtracker.com", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+                Expanded(
+                  child: SelectableText(
+                    "tandemcode.my@gmail.com", 
+                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 16)
+                  ),
+                ),
               ],
             ),
-            SizedBox(height: 5),
-            Text("(Dummy Email - For Demo)", style: TextStyle(fontSize: 10, color: Colors.grey)),
           ],
         ),
         actions: [
