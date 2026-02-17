@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
 import '../models/gold_price.dart';
-import '../models/price_alert.dart';
 import 'data_service.dart';
-import 'notification_service.dart';
 
 class GoldProvider with ChangeNotifier {
   final DataService _service = DataService();
@@ -200,99 +197,14 @@ class GoldProvider with ChangeNotifier {
     return _history.where((r) => r.merchant == merchant && r.item == targetPurity).toList();
   }
 
-  // Alerts
-  List<PriceAlert> _alerts = [];
-  List<PriceAlert> get alerts => _alerts;
-
-  final NotificationService _notificationService = NotificationService();
-
-  Future<void> _loadAlerts() async {
-    final prefs = await SharedPreferences.getInstance();
-    final String? alertsJson = prefs.getString('price_alerts');
-    if (alertsJson != null) {
-      final List<dynamic> decoded = jsonDecode(alertsJson);
-      _alerts = decoded.map((e) => PriceAlert.fromJson(e)).toList();
-    }
-  }
-
-  Future<void> _saveAlerts() async {
-    final prefs = await SharedPreferences.getInstance();
-    final String encoded = jsonEncode(_alerts.map((e) => e.toJson()).toList());
-    await prefs.setString('price_alerts', encoded);
-    notifyListeners();
-  }
-
-  Future<void> addAlert(PriceAlert alert) async {
-    _alerts.add(alert);
-    await _saveAlerts();
-  }
-
-  Future<void> removeAlert(String id) async {
-    _alerts.removeWhere((a) => a.id == id);
-    await _saveAlerts();
-  }
-
-  Future<void> toggleAlert(String id) async {
-    final index = _alerts.indexWhere((a) => a.id == id);
-    if (index != -1) {
-      final alert = _alerts[index];
-      _alerts[index] = PriceAlert(
-        id: alert.id,
-        merchantId: alert.merchantId,
-        itemType: alert.itemType,
-        targetPrice: alert.targetPrice,
-        condition: alert.condition,
-        isActive: !alert.isActive,
-      );
-      await _saveAlerts();
-    }
-  }
-
-  void checkAlerts() async {
-    if (_alerts.isEmpty) return;
+  double getPercentageChange() {
+    final history = getHistoryForDashboard();
+    if (history.length < 2) return 0.0;
     
-    // Initialize notification service if not already
-    // Ideally call this once in main, but safe here too
-    await _notificationService.init();
-
-    for (var alert in _alerts) {
-      if (!alert.isActive) continue;
-
-      // Find current price
-      GoldRecord? record = getLatestForMerchant(alert.merchantId, alert.itemType);
-      
-      // Special handling for '916' if not directly available (calculated)
-      if (record == null && alert.itemType == '916' && alert.merchantId == 'world_gold') {
-         // Re-use logic from getLatestForDashboard
-         var r999 = getLatestForMerchant('world_gold', '999');
-         if (r999 != null) {
-             record = GoldRecord(
-                 timestamp: r999.timestamp,
-                 merchant: r999.merchant,
-                 item: '916',
-                 sell: r999.sell * 0.916,
-                 buy: r999.buy * 0.916,
-                 spread: r999.spread * 0.916 
-             );
-         }
-      }
-
-      if (record != null) {
-        bool triggered = false;
-        double currentPrice = record.sell; // Use Sell price (what user buys at) usually
-
-        if (alert.condition == 'above' && currentPrice > alert.targetPrice) {
-          triggered = true;
-        } else if (alert.condition == 'below' && currentPrice < alert.targetPrice) {
-          triggered = true;
-        }
-
-        if (triggered) {
-          final merchantName = record.merchant.toUpperCase().replaceAll('_', ' ');
-          final body = "Price reached! $merchantName ${alert.itemType} is now RM${currentPrice.toStringAsFixed(2)}";
-          await _notificationService.showPriceAlert("Price Alert: ${alert.condition.toUpperCase()} RM${alert.targetPrice}", body);
-        }
-      }
-    }
+    final first = history.first.sell;
+    final last = history.last.sell;
+    
+    if (first == 0) return 0.0;
+    return ((last - first) / first) * 100;
   }
 }
