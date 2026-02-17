@@ -143,6 +143,7 @@ class MerchantsScreen extends StatelessWidget {
       'maybank_silver': 'assets/logos/maybank.png',
       'mygold_i': 'assets/logos/bsn_premium.png',
       'pbb': 'assets/logos/public_bank.png',
+      'rhb': 'assets/logos/rhb_premium.png',
     };
 
     // Mapping for theme colors
@@ -158,6 +159,7 @@ class MerchantsScreen extends StatelessWidget {
       'maybank_silver': const Color(0xFFFFD100), 
       'mygold_i': Colors.teal,
       'pbb': const Color(0xFFE31E24), // Public Bank Red
+      'rhb': const Color(0xFF0067B1), // RHB Blue
     };
 
     // Mapping for display names
@@ -173,6 +175,7 @@ class MerchantsScreen extends StatelessWidget {
       'maybank_silver': 'MSIA',
       'mygold_i': 'MyGold-i',
       'pbb': 'PBB',
+      'rhb': 'RHB',
     };
 
     final logoPath = merchantLogos[merchantId];
@@ -183,8 +186,9 @@ class MerchantsScreen extends StatelessWidget {
     if (merchantId == 'cimb_e_gia') logoScale = 1.15;
     else if (merchantId == 'public_gold') logoScale = 1.0;
     if (merchantId == 'miga_i' || merchantId == 'maybank_silver') logoScale = 1.2;
+    if (merchantId == 'rhb') logoScale = 1.15;
 
-    bool isNonSyariah = (merchantId == 'uob' || merchantId == 'maybank_silver' || merchantId == 'cimb_e_gia' || merchantId == 'pbb');
+    bool isNonSyariah = (merchantId == 'uob' || merchantId == 'maybank_silver' || merchantId == 'cimb_e_gia' || merchantId == 'pbb' || merchantId == 'rhb');
     bool isSyariah = (merchantId == 'public_gold' || merchantId == 'miga_i' || merchantId == 'biga_i' || merchantId == 'easigold' || merchantId == 'mygold_i');
 
     final appTheme = Theme.of(context);
