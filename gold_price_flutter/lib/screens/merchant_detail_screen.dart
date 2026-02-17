@@ -182,16 +182,16 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
     // 3. Reverse them so they go oldest -> newest for the chart (left -> right)
     final displayHistory = newest50.reversed.toList();
 
-    final spots = displayHistory.asMap().entries.map((e) {
+    final spots = displayHistory.map((e) {
       double value;
       if (_selectedType == 'sell') {
-        value = e.value.sell;
+        value = e.sell;
       } else if (_selectedType == 'buy') {
-        value = e.value.buy;
+        value = e.buy;
       } else {
-        value = e.value.spread;
+        value = e.spread;
       }
-      return FlSpot(e.key.toDouble(), value);
+      return FlSpot(e.timestamp.millisecondsSinceEpoch.toDouble(), value);
     }).toList();
 
     final theme = Theme.of(context);
@@ -229,6 +229,8 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
           Expanded(
             child: LineChart(
               LineChartData(
+                minX: displayHistory.isEmpty ? 0 : displayHistory.first.timestamp.millisecondsSinceEpoch.toDouble(),
+                maxX: displayHistory.isEmpty ? 0 : displayHistory.last.timestamp.millisecondsSinceEpoch.toDouble(),
                 gridData: FlGridData(
                   show: true,
                   drawVerticalLine: false,
@@ -245,23 +247,22 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
                     sideTitles: SideTitles(
                       showTitles: true,
                       reservedSize: 30,
-                      interval: 10, // Show a label every 10 points
+                      interval: (displayHistory.isEmpty || displayHistory.length < 2) 
+                          ? 1 
+                          : (displayHistory.last.timestamp.difference(displayHistory.first.timestamp).inMilliseconds / 4), // 4 labels
                       getTitlesWidget: (value, meta) {
-                        final index = value.toInt();
-                        if (index >= 0 && index < displayHistory.length) {
-                          return Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Text(
-                              DateFormat('dd/MM').format(displayHistory[index].timestamp),
-                              style: TextStyle(
-                                color: theme.brightness == Brightness.dark ? Colors.grey : Colors.black54, 
-                                fontSize: 8,
-                                fontWeight: FontWeight.w500,
-                              ),
+                        final date = DateTime.fromMillisecondsSinceEpoch(value.toInt());
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Text(
+                            DateFormat('dd/MM').format(date),
+                            style: TextStyle(
+                              color: theme.brightness == Brightness.dark ? Colors.grey : Colors.black54, 
+                              fontSize: 8,
+                              fontWeight: FontWeight.w500,
                             ),
-                          );
-                        }
-                        return const SizedBox.shrink();
+                          ),
+                        );
                       },
                     ),
                   ),
@@ -286,11 +287,11 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
                 lineBarsData: [
                   LineChartBarData(
                     spots: spots,
-                    isCurved: true,
+                    isCurved: displayHistory.length > 2,
                     color: chartColor,
                     barWidth: 3,
                     isStrokeCapRound: true,
-                    dotData: const FlDotData(show: true),
+                    dotData: FlDotData(show: displayHistory.length < 15),
                     belowBarData: BarAreaData(
                       show: true,
                       gradient: LinearGradient(

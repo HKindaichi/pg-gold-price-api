@@ -73,3 +73,9 @@ class WorldGoldScraper(GoldScraper):
         last_updated = datetime.now().strftime("%d %b %y %H:%M")
 
         return items, last_updated
+
+if __name__ == "__main__":
+    scraper = WorldGoldScraper()
+    items, updated = scraper.scrape()
+    print(f"Items: {items}")
+    print(f"Updated: {updated}")

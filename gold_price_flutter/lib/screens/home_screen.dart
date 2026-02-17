@@ -256,31 +256,51 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildChart(List<GoldRecord> history) {
-    if (history.isEmpty) return const Center(child: Text("No Data"));
+    if (history.isEmpty) return const Center(child: Text("No Data", style: TextStyle(color: Colors.white54)));
 
     final provider = Provider.of<GoldProvider>(context, listen: false);
     final String purity = provider.selectedPurity;
     final Color mainColor = purity == 'Silver' ? const Color(0xFF4DD0E1) : const Color(0xFFfbbf24);
 
-    final spots = history.asMap().entries.map((e) {
-      return FlSpot(e.key.toDouble(), e.value.sell);
+    // Calculate range boundaries for X axis
+    final now = DateTime.now();
+    DateTime threshold;
+    switch (provider.selectedRange) {
+      case '7D': threshold = now.subtract(const Duration(days: 7)); break;
+      case '1M': threshold = now.subtract(const Duration(days: 30)); break;
+      case '6M': threshold = now.subtract(const Duration(days: 180)); break;
+      case '1Y': threshold = now.subtract(const Duration(days: 365)); break;
+      default: threshold = now.subtract(const Duration(days: 7));
+    }
+
+    final double minX = threshold.millisecondsSinceEpoch.toDouble();
+    final double maxX = now.millisecondsSinceEpoch.toDouble();
+
+    // Map history to spots using timestamp for X
+    final spots = history.map((e) {
+      return FlSpot(e.timestamp.millisecondsSinceEpoch.toDouble(), e.sell);
     }).toList();
+
+    // Ensure spots are sorted by X (time) for fl_chart
+    spots.sort((a, b) => a.x.compareTo(b.x));
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 0),
       child: LineChart(
         LineChartData(
-          gridData: FlGridData(show: false),
-          titlesData: FlTitlesData(show: false),
+          minX: minX,
+          maxX: maxX,
+          gridData: const FlGridData(show: false),
+          titlesData: const FlTitlesData(show: false),
           borderData: FlBorderData(show: false),
           lineBarsData: [
             LineChartBarData(
               spots: spots,
-              isCurved: true,
+              isCurved: history.length > 2, // Only curve if we have enough points
               color: mainColor,
               barWidth: 3,
               isStrokeCapRound: true,
-              dotData: FlDotData(show: false),
+              dotData: FlDotData(show: history.length < 10), // Show dots if few points
               belowBarData: BarAreaData(
                 show: true,
                 gradient: LinearGradient(
