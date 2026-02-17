@@ -130,7 +130,7 @@ class SettingsScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Sebarang pertanyaan atau cadangan boleh diajukan kepada:", style: TextStyle(fontSize: 14, color: Colors.white70)),
+            Text("Any inquiries or suggestions can be directed to:", style: TextStyle(fontSize: 14, color: Colors.white70)),
             SizedBox(height: 15),
             Row(
               children: [
@@ -149,7 +149,7 @@ class SettingsScreen extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text("Tutup", style: TextStyle(color: Color(0xFFfbbf24))),
+            child: const Text("Close", style: TextStyle(color: Color(0xFFfbbf24))),
           ),
         ],
       ),
