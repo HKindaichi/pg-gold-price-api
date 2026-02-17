@@ -390,6 +390,7 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
       'bank_muamalat': 'https://www.muamalat.com.my/',
       'maybank_silver': 'https://www.maybank2u.com.my/',
       'mygold_i': 'https://www.bsn.com.my/page/BSNMyGoldAccount-i',
+      'public_bank': 'https://www.pbebank.com/en/rates-charges/gold-investment-account/',
     };
 
     final url = merchantUrls[widget.merchantId];

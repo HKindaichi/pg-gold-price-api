@@ -63,7 +63,7 @@ class MerchantsScreen extends StatelessWidget {
                   children: [
                     const Expanded(child: SizedBox()),
                     SizedBox(
-                      width: 180, // Slightly increased from 172 to give more breathing room
+                      width: 185, // Increased from 180 to prevent overflow (children total 182)
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -142,6 +142,7 @@ class MerchantsScreen extends StatelessWidget {
       'bank_muamalat': 'assets/logos/bank_muamalat.png',
       'maybank_silver': 'assets/logos/maybank.png',
       'mygold_i': 'assets/logos/bsn.png',
+      'public_bank': 'assets/logos/public_bank.png',
     };
 
     // Mapping for theme colors
@@ -156,6 +157,7 @@ class MerchantsScreen extends StatelessWidget {
       'bank_muamalat': const Color(0xFF003366), 
       'maybank_silver': const Color(0xFFFFD100), 
       'mygold_i': Colors.teal,
+      'public_bank': const Color(0xFFE31E24), // Public Bank Red
     };
 
     // Mapping for display names
@@ -170,6 +172,7 @@ class MerchantsScreen extends StatelessWidget {
       'bank_muamalat': 'EasiGold',
       'maybank_silver': 'MSIA',
       'mygold_i': 'MyGold-i',
+      'public_bank': 'Public Bank',
     };
 
     final logoPath = merchantLogos[merchantId];
@@ -181,7 +184,7 @@ class MerchantsScreen extends StatelessWidget {
     else if (merchantId == 'public_gold') logoScale = 1.0;
     if (merchantId == 'miga_i' || merchantId == 'maybank_silver') logoScale = 1.2;
 
-    bool isNonSyariah = (merchantId == 'uob' || merchantId == 'maybank_silver' || merchantId == 'cimb_e_gia');
+    bool isNonSyariah = (merchantId == 'uob' || merchantId == 'maybank_silver' || merchantId == 'cimb_e_gia' || merchantId == 'public_bank');
     bool isSyariah = (merchantId == 'public_gold' || merchantId == 'miga_i' || merchantId == 'biga_i' || merchantId == 'bank_muamalat' || merchantId == 'mygold_i');
 
     final appTheme = Theme.of(context);
@@ -306,7 +309,7 @@ class MerchantsScreen extends StatelessWidget {
                 ),
                 // Prices Section
                 SizedBox(
-                  width: 180, // Matched with header
+                  width: 185, // Matched with header
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [

@@ -19,6 +19,7 @@ from scrapers.world_silver import WorldSilverScraper
 from scrapers.bsn import BsnScraper
 from scrapers.maybank_silver import MaybankSilverScraper
 from scrapers.bank_muamalat import BankMuamalatScraper
+from scrapers.pbb import PbbScraper
 
 # =========================
 # Config
@@ -102,6 +103,7 @@ def main():
         WorldGoldScraper(),
         WorldSilverScraper(),
         BsnScraper(),
+        PbbScraper(),
     ]
 
     merchants = []
