@@ -134,7 +134,7 @@ class MerchantsScreen extends StatelessWidget {
     final Map<String, String> merchantLogos = {
       'public_gold': 'assets/logos/public_gold.png',
       'miga_i': 'assets/logos/maybank.png',
-      'cimb_e_gia': 'assets/logos/cimb.png',
+      'cimb_e_gia': 'assets/logos/cimb_premium.png',
       'biga_i': 'assets/logos/bank_islam.png',
       'uob': 'assets/logos/uob.png',
       'maa_gold': 'assets/logos/maa_gold.png',
