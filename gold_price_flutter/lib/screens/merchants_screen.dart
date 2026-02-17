@@ -159,7 +159,7 @@ class MerchantsScreen extends StatelessWidget {
       'maybank_silver': const Color(0xFFFFD100), 
       'mygold_i': Colors.teal,
       'pbb': const Color(0xFFE31E24), // Public Bank Red
-      'rhb': const Color(0xFF0067B1), // RHB Blue
+      'rhb': const Color(0xFF5DBCD2), // RHB Light Blue
     };
 
     // Mapping for display names
