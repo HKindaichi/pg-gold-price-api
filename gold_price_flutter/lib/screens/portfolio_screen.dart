@@ -243,13 +243,12 @@ class PortfolioScreen extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(8), // Reduced padding
                       decoration: BoxDecoration(
-                        color: isSold 
                             ? Colors.grey.withOpacity(0.1)
                             : (entry.type == '999' 
                                 ? Colors.orangeAccent.withOpacity(0.1) 
                                 : (entry.type == '916' 
                                     ? Colors.yellowAccent.withOpacity(0.1) 
-                                    : Colors.blueGrey.withOpacity(0.1))),
+                                    : const Color(0xFF4DD0E1).withOpacity(0.1))), // Matching Cyan color
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
@@ -260,7 +259,7 @@ class PortfolioScreen extends StatelessWidget {
                                 ? Colors.orangeAccent 
                                 : (entry.type == '916' 
                                     ? (isDark ? Colors.yellowAccent : Colors.orange[800]!) 
-                                    : Colors.blueGrey)),
+                                    : const Color(0xFF4DD0E1))),
                         size: 20, // Reduced size
                       ),
                     ),

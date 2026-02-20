@@ -73,9 +73,8 @@ class GoldProvider with ChangeNotifier {
     _error = null;
     notifyListeners();
 
-    await _loadWatchlist();
-
     try {
+      await _loadWatchlist();
       _history = await _service.fetchGoldHistory();
       _history.sort((a, b) => a.timestamp.compareTo(b.timestamp));
     } catch (e) {
