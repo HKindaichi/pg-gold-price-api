@@ -277,7 +277,13 @@ class PortfolioScreen extends StatelessWidget {
                             style: TextStyle(
                               fontWeight: FontWeight.bold, 
                               fontSize: 16,
-                              color: isSold ? Colors.grey : (isDark ? Colors.white : Colors.black),
+                              color: isSold 
+                                  ? Colors.grey 
+                                  : (entry.type == '999' 
+                                      ? Colors.orangeAccent 
+                                      : (entry.type == '916' 
+                                          ? (isDark ? Colors.yellowAccent : Colors.orange[800]!) 
+                                          : const Color(0xFF4DD0E1))),
                             ),
                           ),
                           if (isSold) ...[
@@ -335,7 +341,11 @@ class PortfolioScreen extends StatelessWidget {
                       // 4. Buy Date (Below Purchase From)
                        Padding(
                          padding: const EdgeInsets.only(top: 2),
-                         child: Text("Buy date: $dateStr", style: TextStyle(color: isDark ? Colors.grey : Colors.black54, fontSize: 10)),
+                         child: FittedBox(
+                           fit: BoxFit.scaleDown,
+                           alignment: Alignment.centerLeft,
+                           child: Text("Buy date: $dateStr", maxLines: 1, style: TextStyle(color: isDark ? Colors.grey : Colors.black54, fontSize: 10)),
+                         ),
                        ),
                     ],
                   ),
@@ -347,9 +357,8 @@ class PortfolioScreen extends StatelessWidget {
                     Text(
                       "RM ${entry.totalBuyPrice.toStringAsFixed(2)}",
                       style: TextStyle(
-                        fontWeight: FontWeight.bold, 
                         fontSize: 15, 
-                        color: isSold ? Colors.grey : const Color(0xFFfbbf24),
+                        color: isSold ? Colors.grey : (isDark ? Colors.white : Colors.black),
                       ),
                     ),
                     Text(
