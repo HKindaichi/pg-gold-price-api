@@ -279,6 +279,7 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 0),
       child: ClipRect(
         child: LineChart(
+          key: ValueKey(purity),
           LineChartData(
             clipData: const FlClipData.all(),
             gridData: const FlGridData(show: false),
