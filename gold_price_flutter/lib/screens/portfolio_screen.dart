@@ -243,6 +243,7 @@ class PortfolioScreen extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(8), // Reduced padding
                       decoration: BoxDecoration(
+                        color: isSold 
                             ? Colors.grey.withOpacity(0.1)
                             : (entry.type == '999' 
                                 ? Colors.orangeAccent.withOpacity(0.1) 

@@ -188,8 +188,8 @@ class MerchantsScreen extends StatelessWidget {
     if (merchantId == 'miga_i' || merchantId == 'maybank_silver') logoScale = 1.2;
     if (merchantId == 'rhb') logoScale = 1.15;
 
-    bool isNonSyariah = (merchantId == 'uob' || merchantId == 'maybank_silver' || merchantId == 'cimb_e_gia' || merchantId == 'pbb' || merchantId == 'rhb');
-    bool isSyariah = (merchantId == 'public_gold' || merchantId == 'miga_i' || merchantId == 'biga_i' || merchantId == 'easigold' || merchantId == 'mygold_i');
+    bool isNonShariah = (merchantId == 'uob' || merchantId == 'maybank_silver' || merchantId == 'cimb_e_gia' || merchantId == 'pbb' || merchantId == 'rhb');
+    bool isShariah = (merchantId == 'public_gold' || merchantId == 'miga_i' || merchantId == 'biga_i' || merchantId == 'easigold' || merchantId == 'mygold_i');
 
     final appTheme = Theme.of(context);
 
@@ -277,7 +277,7 @@ class MerchantsScreen extends StatelessWidget {
                         maxLines: 2, // Allow 2 lines for long names
                         overflow: TextOverflow.ellipsis,
                       ),
-                      if (isSyariah)
+                      if (isShariah)
                         Padding(
                           padding: const EdgeInsets.only(top: 4.0),
                           child: Container(
@@ -287,10 +287,10 @@ class MerchantsScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(4),
                               border: Border.all(color: Colors.teal.withOpacity(0.5)),
                             ),
-                            child: const Text("Syariah", style: TextStyle(color: Colors.teal, fontSize: 7, fontWeight: FontWeight.bold)),
+                            child: const Text("Shariah", style: TextStyle(color: Colors.teal, fontSize: 7, fontWeight: FontWeight.bold)),
                           ),
                         )
-                      else if (isNonSyariah)
+                      else if (isNonShariah)
                         Padding(
                           padding: const EdgeInsets.only(top: 4.0),
                           child: Container(
@@ -300,7 +300,7 @@ class MerchantsScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(4),
                               border: Border.all(color: Colors.redAccent.withOpacity(0.5)),
                             ),
-                            child: const Text("Non-Syariah", style: TextStyle(color: Colors.redAccent, fontSize: 7, fontWeight: FontWeight.bold)),
+                            child: const Text("Non-Shariah", style: TextStyle(color: Colors.redAccent, fontSize: 7, fontWeight: FontWeight.bold)),
                           ),
                         ),
                       const SizedBox(height: 4),

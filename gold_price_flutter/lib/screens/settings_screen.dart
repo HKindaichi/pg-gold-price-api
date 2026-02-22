@@ -54,7 +54,7 @@ class SettingsScreen extends StatelessWidget {
             context,
             icon: Icons.verified_user_outlined,
             title: "Shariah Compliance",
-            subtitle: "Pematuhan Syariah",
+            subtitle: "Pematuhan Shariah",
             onTap: () {
               Navigator.push(
                 context,

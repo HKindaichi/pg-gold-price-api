@@ -10,10 +10,10 @@ class ShariahComplianceScreen extends StatefulWidget {
 class _ShariahComplianceScreenState extends State<ShariahComplianceScreen> {
   bool isEnglish = true;
 
-  final String titleBm = "Pematuhan Syariah";
+  final String titleBm = "Pematuhan Shariah";
   final String titleEn = "Shariah Compliance";
 
-  final String textBm = """Aplikasi ini memaparkan penanda Patuh Syariah atau Tidak Patuh Syariah berdasarkan maklumat awam yang diperoleh daripada sumber rasmi, kenyataan pihak merchant, serta rujukan umum yang tersedia pada masa paparan.
+  final String textBm = """Aplikasi ini memaparkan penanda Patuh Shariah atau Tidak Patuh Shariah berdasarkan maklumat awam yang diperoleh daripada sumber rasmi, kenyataan pihak merchant, serta rujukan umum yang tersedia pada masa paparan.
 
 Bagi umat Islam, adalah menjadi kewajipan untuk memastikan setiap urusan pelaburan dan transaksi adalah selaras dengan prinsip syariah serta bebas daripada unsur yang dilarang, termasuk tetapi tidak terhad kepada riba (faedah), gharar (ketidaktentuan), dan maisir (spekulasi/perjudian).
 
