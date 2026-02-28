@@ -157,24 +157,36 @@ class _HomeScreenState extends State<HomeScreen> {
     return Column(
       children: [
         Text("RM/gram", style: TextStyle(color: labelColor, fontSize: 16)),
-        Text(
-          price,
-          style: TextStyle(
-            fontSize: 64,
-            fontWeight: FontWeight.bold,
-            color: priceColor,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              price,
+              style: TextStyle(
+                fontSize: 64,
+                fontWeight: FontWeight.bold,
+                color: priceColor,
+              ),
+            ),
           ),
         ),
         SizedBox(
           height: 30, // Fixed height to keep spacing consistent
           child: (purity == '999' || purity == 'Silver')
             ? Center(
-                child: Text(
-                  "${purity == 'Silver' ? 'XAG/USD' : 'XAU/USD'} Global Spot USD $usdPrice / oz",
-                  style: TextStyle(
-                    color: labelColor,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      "${purity == 'Silver' ? 'XAG/USD' : 'XAU/USD'} Global Spot USD $usdPrice / oz",
+                      style: TextStyle(
+                        color: labelColor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ),
                 ),
               )
@@ -265,9 +277,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 0),
-      child: LineChart(
-        LineChartData(
-          gridData: const FlGridData(show: false),
+      child: ClipRect(
+        child: LineChart(
+          key: ValueKey(purity),
+          LineChartData(
+            clipData: const FlClipData.all(),
+            gridData: const FlGridData(show: false),
           titlesData: const FlTitlesData(show: false),
           borderData: FlBorderData(show: false),
           lineBarsData: [
@@ -292,6 +307,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
+      ),
       ),
     );
   }

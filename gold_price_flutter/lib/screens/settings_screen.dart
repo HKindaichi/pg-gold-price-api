@@ -77,7 +77,7 @@ class SettingsScreen extends StatelessWidget {
             padding: EdgeInsets.only(top: 40, bottom: 20),
             child: Center(
               child: Text(
-                "Version 1.0.6 (Beta)",
+                "Version 1.0.0",
                 style: TextStyle(color: Colors.white24),
               ),
             ),
