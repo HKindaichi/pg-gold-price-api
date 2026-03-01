@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 07:53",
+  "updated_label": "Today 09:06",
   "merchants": [
     {
       "id": "public_gold",
@@ -46,50 +46,50 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 0.5G Raja Perlis": {
-          "sell": 397.0,
+        "Gold Bar 0.5G Chinese New Year 2026": {
+          "sell": 385.0,
           "buy": 333.0,
-          "spread": 64.0
-        },
-        "Gold Bar 1G Chinese New Year 2026": {
-          "sell": 749.0,
-          "buy": 666.0,
-          "spread": 83.0
-        },
-        "Gold Bar 0.5G Klasik V3": {
-          "sell": 382.0,
-          "buy": 333.0,
-          "spread": 49.0
+          "spread": 52.0
         },
         "Pelbagai 0.5G": {
           "sell": 375.0,
           "buy": 333.0,
           "spread": 42.0
         },
-        "Gold Bar 1G Raja Perlis": {
-          "sell": 760.0,
-          "buy": 665.0,
-          "spread": 95.0
-        },
-        "Gold Bar 0.5G Chinese New Year 2026": {
-          "sell": 385.0,
+        "Gold Bar 0.5G 2026": {
+          "sell": 380.0,
           "buy": 333.0,
-          "spread": 52.0
-        },
-        "Gold Bar 1Kg": {
-          "sell": 717908.0,
-          "buy": 667375.0,
-          "spread": 50533.0
+          "spread": 47.0
         },
         "Pelbagai 1 Gram": {
           "sell": 739.0,
           "buy": 666.0,
           "spread": 73.0
         },
-        "Gold Bar 0.5G 2026": {
-          "sell": 380.0,
+        "Gold Bar 1G Raja Perlis": {
+          "sell": 760.0,
+          "buy": 665.0,
+          "spread": 95.0
+        },
+        "Gold Bar 1Kg": {
+          "sell": 717908.0,
+          "buy": 667375.0,
+          "spread": 50533.0
+        },
+        "Gold Bar 1G Chinese New Year 2026": {
+          "sell": 749.0,
+          "buy": 666.0,
+          "spread": 83.0
+        },
+        "Gold Bar 0.5G Raja Perlis": {
+          "sell": 397.0,
           "buy": 333.0,
-          "spread": 47.0
+          "spread": 64.0
+        },
+        "Gold Bar 0.5G Klasik V3": {
+          "sell": 382.0,
+          "buy": 333.0,
+          "spread": 49.0
         }
       }
     },
@@ -113,7 +113,7 @@
           "spread": 4400.0
         }
       },
-      "last_updated": "28/02/2026 08:00"
+      "last_updated": "01/03/2026 08:00"
     },
     {
       "id": "gb_gold",
@@ -125,7 +125,19 @@
           "spread": 47.0
         }
       },
-      "last_updated": "01-03-2026 07:45:02"
+      "last_updated": "01-03-2026 09:00:02"
+    },
+    {
+      "id": "biga_i",
+      "name": "BIGA-i",
+      "items": {
+        "999": {
+          "sell": 668.03,
+          "buy": 645.87,
+          "spread": 22.16
+        }
+      },
+      "last_updated": "27 February 2026; 9:00am"
     },
     {
       "id": "maa_gold",
@@ -181,7 +193,7 @@
           "spread": 0.0
         }
       },
-      "last_updated": "28 Feb 26 23:53"
+      "last_updated": "01 Mar 26 01:06"
     },
     {
       "id": "world_silver",
@@ -198,7 +210,7 @@
           "spread": 0.0
         }
       },
-      "last_updated": "28 Feb 26 23:53"
+      "last_updated": "01 Mar 26 01:06"
     },
     {
       "id": "mygold_i",
