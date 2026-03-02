@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 14:41",
+  "updated_label": "Today 14:55",
   "merchants": [
     {
       "id": "public_gold",
@@ -46,45 +46,45 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 0.5G Chinese New Year 2026": {
-          "sell": 388.0,
-          "buy": 336.0,
-          "spread": 52.0
+        "Gold Bar 1G Raja Perlis": {
+          "sell": 766.0,
+          "buy": 670.0,
+          "spread": 96.0
+        },
+        "Gold Bar 1Kg": {
+          "sell": 723861.0,
+          "buy": 672912.0,
+          "spread": 50949.0
         },
         "Gold Bar 1G Chinese New Year 2026": {
-          "sell": 756.0,
-          "buy": 672.0,
+          "sell": 755.0,
+          "buy": 671.0,
           "spread": 84.0
+        },
+        "Gold Bar 0.5G Raja Perlis": {
+          "sell": 400.0,
+          "buy": 335.0,
+          "spread": 65.0
+        },
+        "Gold Bar 0.5G Klasik V3": {
+          "sell": 385.0,
+          "buy": 335.0,
+          "spread": 50.0
         },
         "Pelbagai 0.5G": {
           "sell": 378.0,
           "buy": 336.0,
           "spread": 42.0
         },
+        "Gold Bar 0.5G Chinese New Year 2026": {
+          "sell": 388.0,
+          "buy": 336.0,
+          "spread": 52.0
+        },
         "Pelbagai 1 Gram": {
-          "sell": 746.0,
-          "buy": 672.0,
-          "spread": 74.0
-        },
-        "Gold Bar 0.5G Raja Perlis": {
-          "sell": 401.0,
-          "buy": 336.0,
-          "spread": 65.0
-        },
-        "Gold Bar 1G Raja Perlis": {
-          "sell": 767.0,
+          "sell": 745.0,
           "buy": 671.0,
-          "spread": 96.0
-        },
-        "Gold Bar 0.5G Klasik V3": {
-          "sell": 386.0,
-          "buy": 336.0,
-          "spread": 50.0
-        },
-        "Gold Bar 1Kg": {
-          "sell": 724553.0,
-          "buy": 673555.0,
-          "spread": 50998.0
+          "spread": 74.0
         },
         "Gold Bar 0.5G 2026": {
           "sell": 383.0,
@@ -120,12 +120,24 @@
       "name": "GB Gold",
       "items": {
         "999": {
-          "sell": 726.0,
-          "buy": 678.0,
+          "sell": 725.0,
+          "buy": 677.0,
           "spread": 48.0
         }
       },
-      "last_updated": "02-03-2026 14:30:02"
+      "last_updated": "02-03-2026 14:45:02"
+    },
+    {
+      "id": "biga_i",
+      "name": "BIGA-i",
+      "items": {
+        "999": {
+          "sell": 693.79,
+          "buy": 671.9,
+          "spread": 21.89
+        }
+      },
+      "last_updated": "2 March 2026; 9:00am"
     },
     {
       "id": "maa_gold",
@@ -171,34 +183,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 677.99,
-          "buy": 677.99,
+          "sell": 677.51,
+          "buy": 677.51,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 5379.12,
-          "buy": 5379.12,
+          "sell": 5375.06,
+          "buy": 5375.06,
           "spread": 0.0
         }
       },
-      "last_updated": "02 Mar 26 06:40"
+      "last_updated": "02 Mar 26 06:55"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 11.97,
-          "buy": 11.97,
+          "sell": 11.99,
+          "buy": 11.99,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 94.97,
-          "buy": 94.97,
+          "sell": 95.12,
+          "buy": 95.12,
           "spread": 0.0
         }
       },
-      "last_updated": "02 Mar 26 06:40"
+      "last_updated": "02 Mar 26 06:55"
     },
     {
       "id": "mygold_i",
@@ -228,13 +240,13 @@
       "name": "RHB",
       "items": {
         "999": {
-          "sell": 676.074,
-          "buy": 669.0776,
-          "spread": 7.0
+          "sell": 681.2939,
+          "buy": 674.3889,
+          "spread": 6.9
         },
         "Silver": {
-          "sell": 12.1443,
-          "buy": 11.4768,
+          "sell": 12.2901,
+          "buy": 11.6221,
           "spread": 0.67
         }
       }
