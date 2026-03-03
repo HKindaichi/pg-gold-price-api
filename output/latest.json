@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 20:29",
+  "updated_label": "Today 20:54",
   "merchants": [
     {
       "id": "public_gold",
@@ -11,9 +11,9 @@
           "spread": 65
         },
         "916": {
-          "sell": 673,
-          "buy": 585,
-          "spread": 88
+          "sell": 681,
+          "buy": 592,
+          "spread": 89
         }
       },
       "last_updated": "03-Mar-2026"
@@ -46,49 +46,49 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Pelbagai 1 Gram": {
-          "sell": 725.0,
-          "buy": 653.0,
-          "spread": 72.0
-        },
-        "Gold Bar 1G Chinese New Year 2026": {
-          "sell": 735.0,
-          "buy": 653.0,
-          "spread": 82.0
-        },
         "Gold Bar 0.5G Chinese New Year 2026": {
-          "sell": 378.0,
-          "buy": 327.0,
+          "sell": 379.0,
+          "buy": 328.0,
           "spread": 51.0
         },
-        "Pelbagai 0.5G": {
-          "sell": 368.0,
-          "buy": 327.0,
-          "spread": 41.0
-        },
-        "Gold Bar 1Kg": {
-          "sell": 704361.0,
-          "buy": 654777.0,
-          "spread": 49584.0
-        },
-        "Gold Bar 0.5G Raja Perlis": {
-          "sell": 390.0,
-          "buy": 326.0,
-          "spread": 64.0
-        },
         "Gold Bar 1G Raja Perlis": {
-          "sell": 747.0,
-          "buy": 653.0,
+          "sell": 748.0,
+          "buy": 654.0,
           "spread": 94.0
         },
+        "Pelbagai 0.5G": {
+          "sell": 369.0,
+          "buy": 328.0,
+          "spread": 41.0
+        },
         "Gold Bar 0.5G 2026": {
-          "sell": 373.0,
-          "buy": 327.0,
+          "sell": 374.0,
+          "buy": 328.0,
           "spread": 46.0
         },
+        "Gold Bar 1G Chinese New Year 2026": {
+          "sell": 737.0,
+          "buy": 655.0,
+          "spread": 82.0
+        },
+        "Pelbagai 1 Gram": {
+          "sell": 727.0,
+          "buy": 655.0,
+          "spread": 72.0
+        },
+        "Gold Bar 1Kg": {
+          "sell": 706171.0,
+          "buy": 656460.0,
+          "spread": 49711.0
+        },
+        "Gold Bar 0.5G Raja Perlis": {
+          "sell": 391.0,
+          "buy": 327.0,
+          "spread": 64.0
+        },
         "Gold Bar 0.5G Klasik V3": {
-          "sell": 375.0,
-          "buy": 326.0,
+          "sell": 376.0,
+          "buy": 327.0,
           "spread": 49.0
         }
       }
@@ -120,12 +120,12 @@
       "name": "GB Gold",
       "items": {
         "999": {
-          "sell": 706.0,
-          "buy": 659.0,
+          "sell": 708.0,
+          "buy": 661.0,
           "spread": 47.0
         }
       },
-      "last_updated": "03-03-2026 20:15:02"
+      "last_updated": "03-03-2026 20:45:02"
     },
     {
       "id": "maa_gold",
@@ -171,34 +171,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 659.91,
-          "buy": 659.91,
+          "sell": 660.05,
+          "buy": 660.05,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 5201.61,
-          "buy": 5201.61,
+          "sell": 5202.71,
+          "buy": 5202.71,
           "spread": 0.0
         }
       },
-      "last_updated": "03 Mar 26 12:28"
+      "last_updated": "03 Mar 26 12:54"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 10.41,
-          "buy": 10.41,
+          "sell": 10.52,
+          "buy": 10.52,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 82.03,
-          "buy": 82.03,
+          "sell": 82.9,
+          "buy": 82.9,
           "spread": 0.0
         }
       },
-      "last_updated": "03 Mar 26 12:28"
+      "last_updated": "03 Mar 26 12:54"
     },
     {
       "id": "mygold_i",
@@ -221,7 +221,7 @@
           "spread": 26.57
         }
       },
-      "last_updated": "03 March 2026 08:00 PM"
+      "last_updated": "03 March 2026 08:30 PM"
     },
     {
       "id": "rhb",
