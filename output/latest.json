@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 02:31",
+  "updated_label": "Today 04:12",
   "merchants": [
     {
       "id": "public_gold",
@@ -46,35 +46,25 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Pelbagai 0.5G": {
-          "sell": 367.0,
+        "Gold Bar 0.5G Chinese New Year 2026": {
+          "sell": 377.0,
           "buy": 326.0,
-          "spread": 41.0
+          "spread": 51.0
         },
         "Gold Bar 0.5G Raja Perlis": {
           "sell": 390.0,
           "buy": 326.0,
           "spread": 64.0
         },
-        "Gold Bar 1G Chinese New Year 2026": {
-          "sell": 735.0,
+        "Pelbagai 1 Gram": {
+          "sell": 725.0,
           "buy": 653.0,
-          "spread": 82.0
-        },
-        "Gold Bar 0.5G Chinese New Year 2026": {
-          "sell": 377.0,
-          "buy": 326.0,
-          "spread": 51.0
+          "spread": 72.0
         },
         "Gold Bar 0.5G 2026": {
           "sell": 372.0,
           "buy": 326.0,
           "spread": 46.0
-        },
-        "Pelbagai 1 Gram": {
-          "sell": 725.0,
-          "buy": 653.0,
-          "spread": 72.0
         },
         "Gold Bar 1G Raja Perlis": {
           "sell": 746.0,
@@ -85,6 +75,16 @@
           "sell": 703871.0,
           "buy": 654321.0,
           "spread": 49550.0
+        },
+        "Gold Bar 1G Chinese New Year 2026": {
+          "sell": 735.0,
+          "buy": 653.0,
+          "spread": 82.0
+        },
+        "Pelbagai 0.5G": {
+          "sell": 367.0,
+          "buy": 326.0,
+          "spread": 41.0
         }
       }
     },
@@ -120,7 +120,7 @@
           "spread": 47.0
         }
       },
-      "last_updated": "08-03-2026 02:30:02"
+      "last_updated": "08-03-2026 04:00:02"
     },
     {
       "id": "maa_gold",
@@ -176,7 +176,7 @@
           "spread": 0.0
         }
       },
-      "last_updated": "07 Mar 26 18:31"
+      "last_updated": "07 Mar 26 20:11"
     },
     {
       "id": "world_silver",
@@ -193,7 +193,7 @@
           "spread": 0.0
         }
       },
-      "last_updated": "07 Mar 26 18:31"
+      "last_updated": "07 Mar 26 20:11"
     },
     {
       "id": "mygold_i",
