@@ -1,22 +1,22 @@
 {
-  "updated_label": "Today 22:34",
+  "updated_label": "Today 00:24",
   "merchants": [
     {
       "id": "public_gold",
       "name": "Public Gold",
       "items": {
         "999": {
-          "sell": 705,
-          "buy": 641,
-          "spread": 64
+          "sell": 696,
+          "buy": 633,
+          "spread": 63
         },
         "916": {
-          "sell": 670,
-          "buy": 582,
-          "spread": 88
+          "sell": 662,
+          "buy": 575,
+          "spread": 87
         }
       },
-      "last_updated": "13-Mar-2026"
+      "last_updated": "14-Mar-2026"
     },
     {
       "id": "miga_i",
@@ -46,45 +46,45 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 0.5G Raya 2026": {
-          "sell": 370.0,
-          "buy": 320.0,
-          "spread": 50.0
-        },
-        "Gold Bar 0.5G Chinese New Year 2026": {
-          "sell": 370.0,
-          "buy": 320.0,
-          "spread": 50.0
-        },
         "Pelbagai 1 Gram": {
-          "sell": 710.0,
-          "buy": 639.0,
-          "spread": 71.0
-        },
-        "Pelbagai 0.5G": {
-          "sell": 360.0,
-          "buy": 320.0,
-          "spread": 40.0
-        },
-        "Gold Bar 1G Raya 2026": {
-          "sell": 720.0,
-          "buy": 639.0,
-          "spread": 81.0
-        },
-        "Gold Bar 1G Chinese New Year 2026": {
-          "sell": 720.0,
-          "buy": 639.0,
-          "spread": 81.0
+          "sell": 701.0,
+          "buy": 631.0,
+          "spread": 70.0
         },
         "Gold Bar 0.25G Raya 2026": {
           "sell": 210.0,
           "buy": 192.0,
           "spread": 18.0
         },
+        "Pelbagai 0.5G": {
+          "sell": 356.0,
+          "buy": 316.0,
+          "spread": 40.0
+        },
+        "Gold Bar 1G Chinese New Year 2026": {
+          "sell": 711.0,
+          "buy": 631.0,
+          "spread": 80.0
+        },
         "Gold Bar 0.5G 2026": {
-          "sell": 365.0,
-          "buy": 320.0,
+          "sell": 361.0,
+          "buy": 316.0,
           "spread": 45.0
+        },
+        "Gold Bar 0.5G Raya 2026": {
+          "sell": 366.0,
+          "buy": 316.0,
+          "spread": 50.0
+        },
+        "Gold Bar 1G Raya 2026": {
+          "sell": 711.0,
+          "buy": 631.0,
+          "spread": 80.0
+        },
+        "Gold Bar 0.5G Chinese New Year 2026": {
+          "sell": 366.0,
+          "buy": 316.0,
+          "spread": 50.0
         }
       }
     },
@@ -115,12 +115,12 @@
       "name": "GB Gold",
       "items": {
         "999": {
-          "sell": 691.0,
-          "buy": 645.0,
-          "spread": 46.0
+          "sell": 682.0,
+          "buy": 637.0,
+          "spread": 45.0
         }
       },
-      "last_updated": "13-03-2026 22:30:02"
+      "last_updated": "14-03-2026 00:15:02"
     },
     {
       "id": "maa_gold",
@@ -166,34 +166,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 643.82,
-          "buy": 643.82,
+          "sell": 637.15,
+          "buy": 637.15,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 5084.43,
-          "buy": 5084.43,
+          "sell": 5031.74,
+          "buy": 5031.74,
           "spread": 0.0
         }
       },
-      "last_updated": "13 Mar 26 14:34"
+      "last_updated": "13 Mar 26 16:24"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 10.41,
-          "buy": 10.41,
+          "sell": 10.15,
+          "buy": 10.15,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 82.19,
-          "buy": 82.19,
+          "sell": 80.13,
+          "buy": 80.13,
           "spread": 0.0
         }
       },
-      "last_updated": "13 Mar 26 14:34"
+      "last_updated": "13 Mar 26 16:24"
     },
     {
       "id": "mygold_i",
@@ -216,7 +216,7 @@
           "spread": 25.36
         }
       },
-      "last_updated": "13 March 2026 10:00 PM"
+      "last_updated": "14 March 2026 12:01 AM"
     },
     {
       "id": "rhb",
