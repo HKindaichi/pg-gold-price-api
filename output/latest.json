@@ -1,19 +1,19 @@
 {
-  "updated_label": "Today 00:28",
+  "updated_label": "Today 02:30",
   "merchants": [
     {
       "id": "public_gold",
       "name": "Public Gold",
       "items": {
         "999": {
-          "sell": 627,
-          "buy": 570,
+          "sell": 632,
+          "buy": 575,
           "spread": 57
         },
         "916": {
-          "sell": 596,
-          "buy": 518,
-          "spread": 78
+          "sell": 601,
+          "buy": 522,
+          "spread": 79
         }
       },
       "last_updated": "21-Mar-2026"
@@ -46,81 +46,59 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
+        "Gold Bar 0.5G Chinese New Year 2026": {
+          "sell": 334.0,
+          "buy": 287.0,
+          "spread": 47.0
+        },
         "Gold Bar 0.25G Raya 2026": {
           "sell": 210.0,
           "buy": 192.0,
           "spread": 18.0
         },
-        "Pelbagai 0.5G": {
-          "sell": 326.0,
-          "buy": 289.0,
-          "spread": 37.0
-        },
-        "Gold Bar 0.5G 2026": {
-          "sell": 331.0,
-          "buy": 289.0,
-          "spread": 42.0
-        },
-        "Gold Bar 0.5G Chinese New Year 2026": {
-          "sell": 336.0,
-          "buy": 289.0,
-          "spread": 47.0
-        },
         "Pelbagai 1 Gram": {
-          "sell": 641.0,
-          "buy": 576.0,
+          "sell": 638.0,
+          "buy": 573.0,
           "spread": 65.0
         },
         "Gold Bar 0.5G Raya 2026": {
-          "sell": 336.0,
-          "buy": 289.0,
+          "sell": 334.0,
+          "buy": 287.0,
           "spread": 47.0
         },
         "Gold Bar 1G Chinese New Year 2026": {
-          "sell": 651.0,
-          "buy": 576.0,
+          "sell": 648.0,
+          "buy": 573.0,
           "spread": 75.0
+        },
+        "Pelbagai 0.5G": {
+          "sell": 324.0,
+          "buy": 287.0,
+          "spread": 37.0
         },
         "Gold Bar 1G Raya 2026": {
-          "sell": 651.0,
-          "buy": 576.0,
+          "sell": 648.0,
+          "buy": 573.0,
           "spread": 75.0
+        },
+        "Gold Bar 0.5G 2026": {
+          "sell": 329.0,
+          "buy": 287.0,
+          "spread": 42.0
         }
       }
-    },
-    {
-      "id": "uob",
-      "name": "UOB",
-      "items": {
-        "Gold Savings Account (1 Gm)": {
-          "sell": 604.2,
-          "buy": 599.2,
-          "spread": 5.0
-        },
-        "999": {
-          "sell": 604.2,
-          "buy": 599.2,
-          "spread": 5.0
-        },
-        "Premier Gold Account (1 Kilo)": {
-          "sell": 604000.0,
-          "buy": 599600.0,
-          "spread": 4400.0
-        }
-      },
-      "last_updated": "20/03/2026 09:29"
     },
     {
       "id": "gb_gold",
       "name": "GB Gold",
       "items": {
         "999": {
-          "sell": 623.0,
-          "buy": 582.0,
+          "sell": 619.0,
+          "buy": 578.0,
           "spread": 41.0
         }
       },
-      "last_updated": "21-03-2026 00:15:02"
+      "last_updated": "21-03-2026 02:30:02"
     },
     {
       "id": "biga_i",
@@ -178,34 +156,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 580.73,
-          "buy": 580.73,
+          "sell": 577.06,
+          "buy": 577.06,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4585.04,
-          "buy": 4585.04,
+          "sell": 4556.07,
+          "buy": 4556.07,
           "spread": 0.0
         }
       },
-      "last_updated": "20 Mar 26 16:28"
+      "last_updated": "20 Mar 26 18:30"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 8.85,
-          "buy": 8.85,
+          "sell": 8.77,
+          "buy": 8.77,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 69.89,
-          "buy": 69.89,
+          "sell": 69.23,
+          "buy": 69.23,
           "spread": 0.0
         }
       },
-      "last_updated": "20 Mar 26 16:28"
+      "last_updated": "20 Mar 26 18:30"
     },
     {
       "id": "mygold_i",
