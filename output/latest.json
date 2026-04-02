@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 14:57",
+  "updated_label": "Today 15:10",
   "merchants": [
     {
       "id": "public_gold",
@@ -46,45 +46,45 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
+        "Gold Bar 0.5G Chinese New Year 2026": {
+          "sell": 344.0,
+          "buy": 296.0,
+          "spread": 48.0
+        },
+        "Pelbagai 1 Gram": {
+          "sell": 657.0,
+          "buy": 591.0,
+          "spread": 66.0
+        },
+        "Gold Bar 1G Chinese New Year 2026": {
+          "sell": 667.0,
+          "buy": 591.0,
+          "spread": 76.0
+        },
         "Gold Bar 0.25G Raya 2026": {
           "sell": 195.0,
           "buy": 178.0,
           "spread": 17.0
         },
         "Gold Bar 1G Raya 2026": {
-          "sell": 665.0,
-          "buy": 589.0,
+          "sell": 667.0,
+          "buy": 591.0,
           "spread": 76.0
-        },
-        "Gold Bar 0.5G Chinese New Year 2026": {
-          "sell": 343.0,
-          "buy": 295.0,
-          "spread": 48.0
-        },
-        "Gold Bar 0.5G 2026": {
-          "sell": 338.0,
-          "buy": 295.0,
-          "spread": 43.0
-        },
-        "Pelbagai 1 Gram": {
-          "sell": 655.0,
-          "buy": 589.0,
-          "spread": 66.0
-        },
-        "Pelbagai 0.5G": {
-          "sell": 333.0,
-          "buy": 295.0,
-          "spread": 38.0
         },
         "Gold Bar 0.5G Raya 2026": {
-          "sell": 343.0,
-          "buy": 295.0,
+          "sell": 344.0,
+          "buy": 296.0,
           "spread": 48.0
         },
-        "Gold Bar 1G Chinese New Year 2026": {
-          "sell": 665.0,
-          "buy": 589.0,
-          "spread": 76.0
+        "Pelbagai 0.5G": {
+          "sell": 334.0,
+          "buy": 296.0,
+          "spread": 38.0
+        },
+        "Gold Bar 0.5G 2026": {
+          "sell": 339.0,
+          "buy": 296.0,
+          "spread": 43.0
         }
       }
     },
@@ -115,12 +115,12 @@
       "name": "GB Gold",
       "items": {
         "999": {
-          "sell": 637.0,
-          "buy": 595.0,
+          "sell": 639.0,
+          "buy": 597.0,
           "spread": 42.0
         }
       },
-      "last_updated": "02-04-2026 14:45:02"
+      "last_updated": "02-04-2026 15:00:02"
     },
     {
       "id": "biga_i",
