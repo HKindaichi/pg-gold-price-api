@@ -6515,10 +6515,7 @@ timestamp,merchant,item,sell,buy,spread
 2026-04-04 00:25:49,public_gold,916,627.0,545.0,82
 2026-04-04 12:04:46,kab_gold,Gold Bar 1G Custom Spm 2025,691.0,603.0,88.0
 2026-04-04 14:44:03,kab_gold,Gold Bar 0.5G Custom Spm 2025,360.0,301.0,59.0
-<<<<<<< HEAD
 2026-04-05 12:01:39,world_gold,999,606.06,606.06,0.0
 2026-04-05 12:01:39,world_gold,USD/oz,4676.42,4676.42,0.0
 2026-04-05 12:01:39,world_silver,Silver,9.46,9.46,0.0
 2026-04-05 12:01:39,world_silver,USD/oz,73.02,73.02,0.0
-=======
->>>>>>> e6bfb853f081416d63c5a5c0b5c4a36b641cdf5b
