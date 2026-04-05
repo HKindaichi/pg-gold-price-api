@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "updated_label": "Today 12:01",
+=======
+  "updated_label": "Today 18:21",
+>>>>>>> e6bfb853f081416d63c5a5c0b5c4a36b641cdf5b
   "merchants": [
     {
       "id": "public_gold",
@@ -46,12 +50,26 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
+<<<<<<< HEAD
         "Gold Bar 0.5G Custom Spm 2025": {
           "sell": 360.0,
           "buy": 301.0,
           "spread": 59.0
         },
         "Gold Bar 0.5G Raya 2026": {
+=======
+        "Gold Bar 1G Raya 2026": {
+          "sell": 681.0,
+          "buy": 603.0,
+          "spread": 78.0
+        },
+        "Gold Bar 0.5G 2026": {
+          "sell": 345.0,
+          "buy": 301.0,
+          "spread": 44.0
+        },
+        "Gold Bar 0.5G Chinese New Year 2026": {
+>>>>>>> e6bfb853f081416d63c5a5c0b5c4a36b641cdf5b
           "sell": 350.0,
           "buy": 301.0,
           "spread": 49.0
@@ -65,6 +83,7 @@
           "sell": 691.0,
           "buy": 603.0,
           "spread": 88.0
+<<<<<<< HEAD
         },
         "Gold Bar 0.5G Chinese New Year 2026": {
           "sell": 350.0,
@@ -75,16 +94,30 @@
           "sell": 345.0,
           "buy": 301.0,
           "spread": 44.0
+=======
+>>>>>>> e6bfb853f081416d63c5a5c0b5c4a36b641cdf5b
         },
         "Gold Bar 1G Chinese New Year 2026": {
           "sell": 681.0,
           "buy": 603.0,
           "spread": 78.0
         },
+<<<<<<< HEAD
         "Gold Bar 1G Raya 2026": {
           "sell": 681.0,
           "buy": 603.0,
           "spread": 78.0
+=======
+        "Gold Bar 0.5G Custom Spm 2025": {
+          "sell": 360.0,
+          "buy": 301.0,
+          "spread": 59.0
+        },
+        "Gold Bar 0.5G Raya 2026": {
+          "sell": 350.0,
+          "buy": 301.0,
+          "spread": 49.0
+>>>>>>> e6bfb853f081416d63c5a5c0b5c4a36b641cdf5b
         }
       }
     },
@@ -120,6 +153,7 @@
           "spread": 43.0
         }
       },
+<<<<<<< HEAD
       "last_updated": "05-04-2026 12:00:02"
     },
     {
@@ -133,6 +167,9 @@
         }
       },
       "last_updated": "3 April 2026; 9:00am"
+=======
+      "last_updated": "05-04-2026 18:15:02"
+>>>>>>> e6bfb853f081416d63c5a5c0b5c4a36b641cdf5b
     },
     {
       "id": "maa_gold",
@@ -172,6 +209,7 @@
         }
       },
       "last_updated": "03 Apr 2026 05:49 PM"
+<<<<<<< HEAD
     },
     {
       "id": "world_gold",
@@ -206,6 +244,8 @@
         }
       },
       "last_updated": "05 Apr 26 12:01"
+=======
+>>>>>>> e6bfb853f081416d63c5a5c0b5c4a36b641cdf5b
     },
     {
       "id": "mygold_i",
