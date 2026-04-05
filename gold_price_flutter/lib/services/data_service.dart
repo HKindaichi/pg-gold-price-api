@@ -1,5 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'package:csv/csv.dart';
+import 'package:flutter/foundation.dart'; // Added for kDebugMode
 import '../models/gold_price.dart';
 
 class DataService {
@@ -8,8 +9,15 @@ class DataService {
 
   Future<List<GoldRecord>> fetchGoldHistory() async {
     try {
-      print("Fetching data from: $DATA_URL");
-      final uri = Uri.parse("$DATA_URL?v=${DateTime.now().millisecondsSinceEpoch}");
+      String url = DATA_URL;
+      if (kDebugMode) {
+        // 10.0.2.2 is the localhost for Android Emulator
+        url = "http://10.0.2.2:5000/history.csv";
+        print("🛠️ DEBUG MODE: Using local data server");
+      }
+      
+      print("Fetching data from: $url");
+      final uri = Uri.parse("$url?v=${DateTime.now().millisecondsSinceEpoch}");
       final response = await http.get(uri);
       print("Response status: ${response.statusCode}");
       

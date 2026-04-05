@@ -6,6 +6,7 @@ class PortfolioEntry {
   final double weight;
   final double buyPricePerGram;
   final double? sellPricePerGram; // Null if not sold yet
+  final DateTime? sellDate; // Date when the asset was sold
   final String type; // 999, 916, Silver
   final DateTime date;
   final String notes;
@@ -16,6 +17,7 @@ class PortfolioEntry {
     required this.weight,
     required this.buyPricePerGram,
     this.sellPricePerGram,
+    this.sellDate,
     required this.type,
     required this.date,
     required this.notes,
@@ -31,6 +33,7 @@ class PortfolioEntry {
       'weight': weight,
       'buyPricePerGram': buyPricePerGram,
       'sellPricePerGram': sellPricePerGram,
+      'sellDate': sellDate?.toIso8601String(),
       'type': type,
       'date': date.toIso8601String(),
       'notes': notes,
@@ -46,6 +49,7 @@ class PortfolioEntry {
       sellPricePerGram: map['sellPricePerGram'] != null 
           ? (map['sellPricePerGram'] as num).toDouble() 
           : (map['sellPrice'] != null ? (map['sellPrice'] as num).toDouble() : null),
+      sellDate: map['sellDate'] != null ? DateTime.parse(map['sellDate']) : null,
       type: map['type'],
       date: DateTime.parse(map['date']),
       notes: map['notes'] ?? '',

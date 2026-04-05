@@ -1,59 +1,57 @@
 import re
-import requests
+import time
+import random
+from curl_cffi import requests
 from bs4 import BeautifulSoup
 from scrapers.base import GoldScraper
 from utils.common import safe_float
 
-XAU_USD_URL = "https://www.investing.com/currencies/xau-usd"
-USD_MYR_URL = "https://www.investing.com/currencies/usd-myr"
+GOLD_URL = "https://finance.yahoo.com/quote/GC=F"
+USD_MYR_URL = "https://finance.yahoo.com/quote/USDMYR=X"
 
 class WorldGoldScraper(GoldScraper):
     def get_name(self) -> str:
         return "World Gold"
 
-    def _get_price(self, url: str) -> float:
+    def _get_price_yahoo(self, url: str) -> float:
         try:
-            r = requests.get(
-                url,
-                timeout=25,
-                headers={
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-                    "Accept-Language": "en-US,en;q=0.9",
-                },
-            )
+            # Random delay to look more human
+            sleep_time = random.uniform(3, 7)
+            print(f"World Gold: Sleeping for {sleep_time:.2f}s before request...")
+            time.sleep(sleep_time)
+
+            r = requests.get(url, impersonate="chrome110", timeout=30)
             r.raise_for_status()
-            html = r.text
             
-            # Common patterns on Investing.com for price
-            # <span class="text-2xl" data-test="instrument-price-last">4,865.35</span>
-            # or in a JS object
-            m = re.search(r'data-test="instrument-price-last"[^>]*>([\d,.]+)<', html)
+            # Yahoo Finance uses <fin-streamer data-field="regularMarketPrice" ... value="2400.00">
+            # Using regex for better stability against minor HTML changes
+            m = re.search(r'data-field="regularMarketPrice"[^>]*value="([\d,.]+)"', r.text)
             if m:
                 return safe_float(m.group(1))
             
-            # Fallback regex for numbers near the title
-            m = re.search(r'last_last">([\d,.]+)<', html)
-            if m:
-                return safe_float(m.group(1))
+            # Fallback if value attribute is missing
+            soup = BeautifulSoup(r.text, 'html.parser')
+            el = soup.find('fin-streamer', {'data-field': 'regularMarketPrice'})
+            if el and el.get('value'):
+                return safe_float(el.get('value'))
                 
             return 0.0
         except Exception as e:
-            print(f"Error scraping {url}: {e}")
+            print(f"World Gold: Error scraping {url}: {e}")
             return 0.0
 
     def scrape(self) -> tuple[dict, str | None]:
-        xau_usd = self._get_price(XAU_USD_URL)
-        usd_myr = self._get_price(USD_MYR_URL)
+        gold_usd = self._get_price_yahoo(GOLD_URL)
+        usd_myr = self._get_price_yahoo(USD_MYR_URL)
 
         if usd_myr == 0.0:
-            usd_myr = 4.40  # Reasonable fallback for early 2026 scenario
+            usd_myr = 4.40  # Fallback
 
-        if xau_usd == 0.0:
+        if gold_usd == 0.0:
             return {}, None
 
-        # Convert USD/oz to MYR/g
         # 1 oz = 31.1035 grams
-        myr_per_g = (xau_usd / 31.1035) * usd_myr
+        myr_per_g = (gold_usd / 31.1035) * usd_myr
 
         items = {
             "999": {
@@ -62,13 +60,12 @@ class WorldGoldScraper(GoldScraper):
                 "spread": 0.0,
             },
             "USD/oz": {
-                "sell": round(xau_usd, 2),
-                "buy": round(xau_usd, 2),
+                "sell": round(gold_usd, 2),
+                "buy": round(gold_usd, 2),
                 "spread": 0.0,
             }
         }
 
-        # Last updated from system time since it's "Live"
         from datetime import datetime
         last_updated = datetime.now().strftime("%d %b %y %H:%M")
 

@@ -47,28 +47,37 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Consumer<GoldProvider>(
         builder: (context, provider, child) {
-          if (provider.isLoading) {
+          if (provider.isLoading && provider.history.isEmpty) {
             return const Center(child: CircularProgressIndicator());
           }
 
           final latest = provider.getLatestForDashboard();
           final history = provider.getHistoryForDashboard();
 
-          return Column(
-            children: [
-              _buildPuritySelector(provider),
-              const SizedBox(height: 40),
-              _buildLargePriceDisplay(latest),
-              const SizedBox(height: 40),
-              _buildRangeSelector(provider),
-              const SizedBox(height: 20),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: _buildChart(history),
-                ),
+          return RefreshIndicator(
+            onRefresh: () => provider.loadData(),
+            color: const Color(0xFFfbbf24),
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Column(
+                children: [
+                  const SizedBox(height: 10),
+                  _buildPuritySelector(provider),
+                  const SizedBox(height: 40),
+                  _buildLargePriceDisplay(latest),
+                  const SizedBox(height: 40),
+                  _buildRangeSelector(provider),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    height: 300,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: _buildChart(history),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           );
         },
       ),

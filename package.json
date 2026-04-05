@@ -4,7 +4,8 @@
     "description": "Mobile wrapper for Gold Price Tracker",
     "scripts": {
         "build": "echo 'No build step needed for vanilla HTML/JS'",
-        "start": "npx serve www"
+        "start": "npx serve www",
+        "serve-data": "npx serve output -p 5000 --cors"
     },
     "dependencies": {
         "@capacitor/android": "^5.0.0",

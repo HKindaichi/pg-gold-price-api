@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/portfolio_entry.dart';
+import 'gold_provider.dart';
 import 'dart:convert';
 
 class PortfolioProvider with ChangeNotifier {
@@ -22,16 +23,25 @@ class PortfolioProvider with ChangeNotifier {
   }
 
   List<String> get owners {
-    final list = _entries.map((e) => e.ownerName).toSet().toList();
-    list.sort();
+    final List<String> list = [];
+    for (var e in _entries) {
+      if (!list.contains(e.ownerName)) {
+        list.add(e.ownerName);
+      }
+    }
     return ["All", ...list];
   }
 
   List<PortfolioEntry> get filteredEntries {
+    // Create a copy to avoid mutating the original _entries list sorting order
+    List<PortfolioEntry> listToDisplay = List.from(_entries);
+    
     if (_selectedOwner == "All") {
-      return _entries..sort((a, b) => b.date.compareTo(a.date));
+      return listToDisplay..sort((a, b) => b.date.compareTo(a.date));
     }
-    return _entries.where((e) => e.ownerName == _selectedOwner).toList()
+    return listToDisplay
+        .where((e) => e.ownerName == _selectedOwner)
+        .toList()
       ..sort((a, b) => b.date.compareTo(a.date));
   }
 
@@ -61,8 +71,23 @@ class PortfolioProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> updateEntry(PortfolioEntry entry) async {
+    final index = _entries.indexWhere((e) => e.id == entry.id);
+    if (index != -1) {
+      _entries[index] = entry;
+      notifyListeners();
+      await _saveToPrefs();
+    }
+  }
+
   Future<void> deleteEntry(String id) async {
     _entries.removeWhere((entry) => entry.id == id);
+    await _saveToPrefs();
+    notifyListeners();
+  }
+
+  Future<void> deleteOwnerRecords(String ownerName) async {
+    _entries.removeWhere((entry) => entry.ownerName == ownerName);
     await _saveToPrefs();
     notifyListeners();
   }
@@ -83,6 +108,7 @@ class PortfolioProvider with ChangeNotifier {
           weight: entry.weight,
           buyPricePerGram: entry.buyPricePerGram,
           sellPricePerGram: sellPricePerGram,
+          sellDate: DateTime.now(),
           type: entry.type,
           date: entry.date,
           notes: entry.notes,
@@ -109,6 +135,7 @@ class PortfolioProvider with ChangeNotifier {
           weight: weightToSell,
           buyPricePerGram: entry.buyPricePerGram,
           sellPricePerGram: sellPricePerGram,
+          sellDate: DateTime.now(),
           type: entry.type,
           date: entry.date, // Keep original buy date for records
           notes: "${entry.notes} (Partial Sell)",
@@ -154,14 +181,57 @@ class PortfolioProvider with ChangeNotifier {
     });
   }
 
-  double calculateTotalAsset({String? owner}) {
+  double calculateTotalAsset({String? owner, String? type}) {
     List<PortfolioEntry> list = owner == null || owner == "All" 
         ? _entries 
         : _entries.where((e) => e.ownerName == owner).toList();
     
+    if (type != null) {
+      list = list.where((e) => e.type == type).toList();
+    }
+
     // Total Asset = Purchase rate * weight of unsold gold
     return list
         .where((e) => e.sellPricePerGram == null)
         .fold(0.0, (sum, e) => sum + (e.buyPricePerGram * e.weight));
+  }
+
+  double getLatestPrice(String type, GoldProvider goldProvider) {
+    if (type == '999') {
+      var records = goldProvider.history.where((r) => r.merchant == 'world_gold' && r.item == '999').toList();
+      if (records.isNotEmpty) return records.last.sell;
+    } else if (type == '916') {
+      var records = goldProvider.history.where((r) => r.merchant == 'world_gold' && r.item == '999').toList();
+      if (records.isNotEmpty) return records.last.sell * 0.916;
+    } else if (type == 'Silver') {
+      var records = goldProvider.history.where((r) => r.merchant == 'world_silver' && r.item == 'Silver').toList();
+      if (records.isNotEmpty) return records.last.sell;
+    }
+    return 0.0;
+  }
+
+  double calculateCurrentMarketValue(GoldProvider goldProvider, {String? owner}) {
+    List<PortfolioEntry> list = owner == null || owner == "All" 
+        ? _entries 
+        : _entries.where((e) => e.ownerName == owner).toList();
+    
+    return list
+        .where((e) => e.sellPricePerGram == null)
+        .fold(0.0, (sum, e) {
+          final currentPrice = getLatestPrice(e.type, goldProvider);
+          return sum + (currentPrice * e.weight);
+        });
+  }
+
+  double calculateTotalUnrealizedPL(GoldProvider goldProvider, {String? owner}) {
+    List<PortfolioEntry> list = owner == null || owner == "All" 
+        ? _entries 
+        : _entries.where((e) => e.ownerName == owner).toList();
+
+    return list.where((e) => e.sellPricePerGram == null).fold(0.0, (sum, e) {
+      final currentPrice = getLatestPrice(e.type, goldProvider);
+      if (currentPrice == 0) return sum;
+      return sum + ((currentPrice - e.buyPricePerGram) * e.weight);
+    });
   }
 }
