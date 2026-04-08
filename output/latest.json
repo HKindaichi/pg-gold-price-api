@@ -1,19 +1,19 @@
 {
-  "updated_label": "Today 06:26",
+  "updated_label": "Today 09:10",
   "merchants": [
     {
       "id": "public_gold",
       "name": "Public Gold",
       "items": {
         "999": {
-          "sell": 668,
-          "buy": 607,
-          "spread": 61
+          "sell": 679,
+          "buy": 617,
+          "spread": 62
         },
         "916": {
-          "sell": 627,
-          "buy": 545,
-          "spread": 82
+          "sell": 646,
+          "buy": 562,
+          "spread": 84
         }
       },
       "last_updated": "08-Apr-2026"
@@ -23,12 +23,12 @@
       "name": "MIGA-i",
       "items": {
         "999": {
-          "sell": 626.55,
-          "buy": 594.99,
-          "spread": 31.56
+          "sell": 645.29,
+          "buy": 613.52,
+          "spread": 31.77
         }
       },
-      "last_updated": "07 Apr 2026 09:00:28"
+      "last_updated": "08 Apr 2026 08:41:18"
     },
     {
       "id": "cimb_e_gia",
@@ -46,45 +46,45 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 1G Raja Perlis": {
-          "sell": 698.0,
-          "buy": 609.0,
-          "spread": 89.0
+        "Gold Bar 0.5G Chinese New Year 2026": {
+          "sell": 356.0,
+          "buy": 307.0,
+          "spread": 49.0
         },
-        "Gold Bar 0.5G Raja Perlis": {
-          "sell": 366.0,
-          "buy": 304.0,
-          "spread": 62.0
+        "Gold Bar 1G Chinese New Year 2026": {
+          "sell": 692.0,
+          "buy": 614.0,
+          "spread": 78.0
         },
         "Gold Bar 0.25G Raya 2026": {
           "sell": 195.0,
           "buy": 178.0,
           "spread": 17.0
         },
-        "Gold Bar 0.5G Custom Spm 2025": {
-          "sell": 363.0,
-          "buy": 304.0,
-          "spread": 59.0
-        },
-        "Gold Bar 1G Chinese New Year 2026": {
-          "sell": 686.0,
-          "buy": 608.0,
-          "spread": 78.0
+        "Gold Bar 0.5G Raja Perlis": {
+          "sell": 368.0,
+          "buy": 306.0,
+          "spread": 62.0
         },
         "Gold Bar 0.5G 2026": {
-          "sell": 348.0,
-          "buy": 304.0,
+          "sell": 351.0,
+          "buy": 307.0,
           "spread": 44.0
         },
         "Gold Bar 1G Custom Spm 2025": {
-          "sell": 696.0,
-          "buy": 608.0,
+          "sell": 702.0,
+          "buy": 614.0,
           "spread": 88.0
         },
-        "Gold Bar 0.5G Chinese New Year 2026": {
-          "sell": 353.0,
-          "buy": 304.0,
-          "spread": 49.0
+        "Gold Bar 1G Raja Perlis": {
+          "sell": 703.0,
+          "buy": 613.0,
+          "spread": 90.0
+        },
+        "Gold Bar 0.5G Custom Spm 2025": {
+          "sell": 366.0,
+          "buy": 307.0,
+          "spread": 59.0
         }
       }
     },
@@ -115,12 +115,24 @@
       "name": "GB Gold",
       "items": {
         "999": {
-          "sell": 658.0,
-          "buy": 614.0,
+          "sell": 663.0,
+          "buy": 619.0,
           "spread": 44.0
         }
       },
-      "last_updated": "08-04-2026 06:15:02"
+      "last_updated": "08-04-2026 09:00:02"
+    },
+    {
+      "id": "biga_i",
+      "name": "BIGA-i",
+      "items": {
+        "999": {
+          "sell": 600.98,
+          "buy": 622.06,
+          "spread": -21.08
+        }
+      },
+      "last_updated": "7 April 2026; 9:00am"
     },
     {
       "id": "maa_gold",
@@ -154,12 +166,12 @@
       "name": "Maybank Silver",
       "items": {
         "Silver": {
-          "sell": 9.76,
-          "buy": 9.0,
-          "spread": 0.76
+          "sell": 10.27,
+          "buy": 9.45,
+          "spread": 0.82
         }
       },
-      "last_updated": "07 Apr 2026 05:04 PM"
+      "last_updated": "08 Apr 2026 09:01 AM"
     },
     {
       "id": "mygold_i",
@@ -177,12 +189,12 @@
       "name": "PBB",
       "items": {
         "999": {
-          "sell": 615.72,
-          "buy": 592.11,
-          "spread": 23.61
+          "sell": 634.1,
+          "buy": 609.74,
+          "spread": 24.36
         }
       },
-      "last_updated": "08 April 2026 06:00 AM"
+      "last_updated": "08 April 2026 09:00 AM"
     },
     {
       "id": "rhb",
