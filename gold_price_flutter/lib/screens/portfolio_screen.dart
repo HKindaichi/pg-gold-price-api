@@ -330,7 +330,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                         style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                       ),
                       Text(
-                        "@ ${NumberFormat("#,###").format(entry.buyPricePerGram)}",
+                        "@ RM ${NumberFormat("#,###").format(entry.buyPricePerGram)}",
                         style: const TextStyle(color: Colors.grey, fontSize: 11),
                       ),
                     ],

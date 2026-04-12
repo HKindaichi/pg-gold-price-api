@@ -79,7 +79,7 @@ class SoldHistoryScreen extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Text(NumberFormat("#,###").format(entry.totalBuyPrice), style: const TextStyle(fontSize: 15)),
-                                  Text("@ ${NumberFormat("#,###").format(entry.buyPricePerGram)}", style: const TextStyle(color: Colors.grey, fontSize: 10)),
+                                  Text("@ RM ${NumberFormat("#,###").format(entry.buyPricePerGram)}", style: const TextStyle(color: Colors.grey, fontSize: 10)),
                                 ],
                               ),
                             ),
