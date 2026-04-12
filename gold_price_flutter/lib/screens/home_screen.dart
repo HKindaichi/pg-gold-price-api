@@ -105,13 +105,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: _buildChart(history),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 10),
-                    child: Text(
-                      "v1.0.4-RECOVERY",
-                      style: TextStyle(color: Colors.grey, fontSize: 10),
-                    ),
-                  ),
                 ],
               ),
             ),
@@ -174,8 +167,22 @@ class _HomeScreenState extends State<HomeScreen> {
     final theme = Theme.of(context);
     final provider = Provider.of<GoldProvider>(context, listen: false);
     String purity = provider.selectedPurity;
-    final String price = latest != null ? latest.sell.toStringAsFixed(2) : "--.--";
-    final String date = latest != null ? DateFormat('HH:mm').format(latest.timestamp) : "--:--";
+    final String price = latest != null ? NumberFormat("#,##0.00").format(latest.sell) : "--.--";
+    
+    String dateStr = "--:--";
+    if (latest != null) {
+      final now = DateTime.now();
+      final isToday = latest.timestamp.year == now.year && 
+                      latest.timestamp.month == now.month && 
+                      latest.timestamp.day == now.day;
+      
+      final String timeStr = DateFormat('HH:mm').format(latest.timestamp);
+      if (isToday) {
+        dateStr = "Today $timeStr";
+      } else {
+        dateStr = "${DateFormat('d MMM').format(latest.timestamp)} $timeStr";
+      }
+    }
     
     final usdRecord = provider.getLatestUSDPrice();
     final String usdPrice = usdRecord != null ? "\$${NumberFormat("#,##0.00").format(usdRecord.sell)}" : "--.--";
@@ -269,7 +276,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Updated Today $date", style: TextStyle(color: labelColor, fontSize: 12)),
+            Text("Updated: $dateStr", style: TextStyle(color: labelColor, fontSize: 12)),
             const SizedBox(width: 5),
             Icon(Icons.info_outline, size: 14, color: labelColor),
           ],
@@ -321,39 +328,50 @@ class _HomeScreenState extends State<HomeScreen> {
       return FlSpot(e.key.toDouble(), e.value.sell);
     }).toList();
 
+    final double minPrice = spots.map((s) => s.y).reduce((a, b) => a < b ? a : b);
+    final double maxPrice = spots.map((s) => s.y).reduce((a, b) => a > b ? a : b);
+    final double range = maxPrice - minPrice;
+    
+    // Increased headroom for tooltip (30% padding at top)
+    final double topPadding = range == 0 ? 5.0 : range * 0.3;
+    final double bottomPadding = range == 0 ? 2.0 : range * 0.1;
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 0),
+      padding: const EdgeInsets.only(top: 50, bottom: 40), // More top space for tooltips
       child: ClipRect(
         child: LineChart(
           key: ValueKey(purity),
           LineChartData(
-            clipData: const FlClipData.all(),
+            // Set range with generous padding
+            minY: minPrice - bottomPadding,
+            maxY: maxPrice + topPadding,
+            clipData: const FlClipData.none(), // Important: don't clip tooltips
             gridData: const FlGridData(show: false),
-          titlesData: const FlTitlesData(show: false),
-          borderData: FlBorderData(show: false),
-          lineBarsData: [
-            LineChartBarData(
-              spots: spots,
-              isCurved: true,
-              color: mainColor,
-              barWidth: 3,
-              isStrokeCapRound: true,
-              dotData: const FlDotData(show: false),
-              belowBarData: BarAreaData(
-                show: true,
-                gradient: LinearGradient(
-                  colors: [
-                    mainColor.withOpacity(0.4),
-                    mainColor.withOpacity(0.0),
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
+            titlesData: const FlTitlesData(show: false),
+            borderData: FlBorderData(show: false),
+            lineBarsData: [
+              LineChartBarData(
+                spots: spots,
+                isCurved: true,
+                color: mainColor,
+                barWidth: 3,
+                isStrokeCapRound: true,
+                dotData: const FlDotData(show: false),
+                belowBarData: BarAreaData(
+                  show: true,
+                  gradient: LinearGradient(
+                    colors: [
+                      mainColor.withOpacity(0.4),
+                      mainColor.withOpacity(0.0),
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
       ),
     );
   }

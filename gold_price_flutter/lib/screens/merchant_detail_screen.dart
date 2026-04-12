@@ -157,7 +157,7 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
             ),
             const SizedBox(height: 5),
             Text(
-              value.toStringAsFixed(2),
+              NumberFormat("#,##0.00").format(value),
               style: TextStyle(
                 color: color,
                 fontSize: 15,
@@ -359,15 +359,15 @@ class _MerchantDetailScreenState extends State<MerchantDetailScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10),
-                    child: Text(record.sell.toStringAsFixed(2), style: const TextStyle(fontSize: 11)),
+                    child: Text(NumberFormat("#,##0.00").format(record.sell), style: const TextStyle(fontSize: 11)),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10),
-                    child: Text(record.buy.toStringAsFixed(2), style: TextStyle(fontSize: 11, color: theme.brightness == Brightness.dark ? Colors.grey : Colors.black54, fontWeight: FontWeight.w600)),
+                    child: Text(NumberFormat("#,##0.00").format(record.buy), style: TextStyle(fontSize: 11, color: theme.brightness == Brightness.dark ? Colors.grey : Colors.black54, fontWeight: FontWeight.w600)),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10),
-                    child: Text(record.spread.toStringAsFixed(2), style: const TextStyle(fontSize: 11, color: Colors.redAccent)),
+                    child: Text(NumberFormat("#,##0.00").format(record.spread), style: const TextStyle(fontSize: 11, color: Colors.redAccent)),
                   ),
                 ],
               )),

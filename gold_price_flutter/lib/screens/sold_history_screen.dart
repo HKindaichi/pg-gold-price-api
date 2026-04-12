@@ -78,8 +78,8 @@ class SoldHistoryScreen extends StatelessWidget {
                               flex: 2,
                               child: Column(
                                 children: [
-                                  Text(entry.totalBuyPrice.toStringAsFixed(0), style: const TextStyle(fontSize: 15)),
-                                  Text("@ ${entry.buyPricePerGram.toStringAsFixed(0)}", style: const TextStyle(color: Colors.grey, fontSize: 10)),
+                                  Text(NumberFormat("#,###").format(entry.totalBuyPrice), style: const TextStyle(fontSize: 15)),
+                                  Text("@ ${NumberFormat("#,###").format(entry.buyPricePerGram)}", style: const TextStyle(color: Colors.grey, fontSize: 10)),
                                 ],
                               ),
                             ),
@@ -90,11 +90,11 @@ class SoldHistoryScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Text(
-                                    "RM ${(entry.sellPricePerGram! * entry.weight).toStringAsFixed(2)}",
+                                    "RM ${NumberFormat("#,##0.00").format(entry.sellPricePerGram! * entry.weight)}",
                                     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                                   ),
                                   Text(
-                                    "${profit >= 0 ? '+' : ''}RM ${profit.toStringAsFixed(2)} (${profitPercent.toStringAsFixed(1)}%)",
+                                    "${profit >= 0 ? '+' : ''}RM ${NumberFormat("#,##0.00").format(profit)} (${profitPercent.toStringAsFixed(1)}%)",
                                     style: TextStyle(
                                       color: profit >= 0 ? Colors.greenAccent : Colors.redAccent,
                                       fontSize: 11,
@@ -162,8 +162,8 @@ class SoldHistoryScreen extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text("Delete '$owner'?"),
-        content: Text("This will permanently remove ALL active assets and sold history for $owner. This action cannot be undone."),
+        title: Text("Clear Sold History for '$owner'?"),
+        content: Text("This will permanently remove ONLY the sold history for $owner. Your active assets in 'My Assets' will remain safe."),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
@@ -171,16 +171,13 @@ class SoldHistoryScreen extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              portfolio.deleteOwnerRecords(owner);
-              if (portfolio.selectedOwner == owner) {
-                portfolio.setSelectedOwner("All");
-              }
+              portfolio.deleteOwnerSoldHistory(owner);
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text("All records for $owner deleted")),
+                SnackBar(content: Text("Sold history for $owner cleared")),
               );
             },
-            child: const Text("DELETE ALL", style: TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold)),
+            child: const Text("CLEAR HISTORY", style: TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold)),
           ),
         ],
       ),
@@ -216,7 +213,7 @@ class SoldHistoryScreen extends StatelessWidget {
               const Text("Total Realized Profit", style: TextStyle(color: Colors.grey, fontSize: 13)),
               const SizedBox(height: 4),
               Text(
-                "RM ${totalProfit.toStringAsFixed(2)}",
+                "RM ${NumberFormat("#,##0.00").format(totalProfit)}",
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,

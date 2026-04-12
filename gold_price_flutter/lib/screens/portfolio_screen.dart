@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import '../services/portfolio_provider.dart';
 import '../services/gold_provider.dart';
+import '../models/portfolio_entry.dart';
 import 'add_portfolio_entry_screen.dart';
 import 'sold_history_screen.dart';
 
@@ -125,7 +126,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
               const Text("Live Portfolio Value", style: TextStyle(color: Colors.grey, fontSize: 13)),
               const SizedBox(height: 4),
               Text(
-                "RM ${currentVal.toStringAsFixed(2)}",
+                "RM ${NumberFormat("#,##0.00").format(currentVal)}",
                 style: const TextStyle(
                   fontSize: 34,
                   fontWeight: FontWeight.bold,
@@ -150,7 +151,10 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                                   children: [
                                     const Text("Gold", style: TextStyle(color: Colors.grey, fontSize: 13, fontWeight: FontWeight.bold)),
                                     const SizedBox(height: 4),
-                                    Text("${goldWeight.toStringAsFixed(1)}g", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                                    FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      child: Text("${goldWeight.toStringAsFixed(1)}g", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -167,7 +171,10 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                                   children: [
                                     const Text("Silver", style: TextStyle(color: Colors.grey, fontSize: 13, fontWeight: FontWeight.bold)),
                                     const SizedBox(height: 4),
-                                    Text("${silverWeight.toStringAsFixed(1)}g", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                                    FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      child: Text("${silverWeight.toStringAsFixed(1)}g", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -178,7 +185,10 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                             children: [
                               const Text("Gold Owned", style: TextStyle(color: Colors.grey, fontSize: 13, fontWeight: FontWeight.bold)),
                               const SizedBox(height: 4),
-                              Text("${goldWeight.toStringAsFixed(1)}g", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text("${goldWeight.toStringAsFixed(1)}g", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                              ),
                             ],
                           ),
                     ),
@@ -202,10 +212,10 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "${unrealizedPL >= 0 ? '+' : ''}RM ${unrealizedPL.toStringAsFixed(2)}",
+                                "${unrealizedPL >= 0 ? '+' : ''}RM ${NumberFormat("#,##0.00").format(unrealizedPL)}",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold, 
-                                  fontSize: 16, 
+                                  fontSize: 15, 
                                   color: unrealizedPL >= 0 ? Colors.greenAccent : Colors.redAccent
                                 )
                               ),
@@ -316,11 +326,11 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                   child: Column(
                     children: [
                       Text(
-                        entry.totalBuyPrice.toStringAsFixed(0),
+                        "RM ${NumberFormat("#,###").format(entry.totalBuyPrice)}",
                         style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                       ),
                       Text(
-                        "@ ${entry.buyPricePerGram.toStringAsFixed(0)}",
+                        "@ ${NumberFormat("#,###").format(entry.buyPricePerGram)}",
                         style: const TextStyle(color: Colors.grey, fontSize: 11),
                       ),
                     ],
@@ -333,7 +343,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        "RM ${currentVal.toStringAsFixed(2)}",
+                        "RM ${NumberFormat("#,##0.00").format(currentVal)}",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 17,
@@ -481,7 +491,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "${entry.weight}g ${entry.type}",
+                      "${entry.weight}g (${entry.type})",
                       style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                     ),
                     Row(
@@ -534,8 +544,8 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _buildSheetStat("Buy Price", "RM ${entry.totalBuyPrice.toStringAsFixed(2)}"),
-                _buildSheetStat("Current Value", "RM ${currentVal.toStringAsFixed(2)}", 
+                _buildSheetStat("Buy Price", "RM ${NumberFormat("#,##0.00").format(entry.totalBuyPrice)}"),
+                _buildSheetStat("Current Value", "RM ${NumberFormat("#,##0.00").format(currentVal)}", 
                   color: profit >= 0 ? Colors.greenAccent : Colors.redAccent),
               ],
             ),
@@ -562,26 +572,18 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                 const SizedBox(width: 16),
                 Expanded(
                   child: ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AddPortfolioEntryScreen(
-                            entry: entry,
-                            initialShowSellDialog: true,
-                          ),
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.sell_outlined),
-                    label: const Text("SELL", style: TextStyle(fontWeight: FontWeight.bold)),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFfbbf24),
-                      foregroundColor: Colors.black,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    ),
+                      onPressed: () {
+                        Navigator.pop(context); // Close action sheet
+                        _showSellDialog(context, entry); // Show sell dialog directly
+                      },
+                      icon: const Icon(Icons.sell_outlined),
+                      label: const Text("SELL", style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFfbbf24),
+                        foregroundColor: Colors.black,
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      ),
                   ),
                 ),
               ],
@@ -590,6 +592,146 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  void _showSellDialog(BuildContext context, PortfolioEntry entry) {
+    final priceController = TextEditingController();
+    final weightController = TextEditingController(text: entry.weight.toString());
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            double sellPrice = double.tryParse(priceController.text) ?? 0.0;
+            double sellWeight = double.tryParse(weightController.text) ?? 0.0;
+            double realizedPL = (sellPrice - entry.buyPricePerGram) * sellWeight;
+            bool isValid = sellPrice > 0 && sellWeight > 0 && sellWeight <= entry.weight;
+
+            return Container(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom + 24,
+                left: 24,
+                right: 24,
+                top: 24,
+              ),
+              decoration: BoxDecoration(
+                color: isDark ? const Color(0xFF1e293b) : Colors.white,
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Sell Asset", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 20),
+                  _buildBoxedTextField(
+                    controller: weightController,
+                    label: "Weight to sell (g)",
+                    hint: "Max ${entry.weight}",
+                    onChanged: (_) => setState(() {}),
+                  ),
+                  const SizedBox(height: 16),
+                  _buildBoxedTextField(
+                    controller: priceController,
+                    label: "Sell Price (RM/g)",
+                    hint: "e.g. 460",
+                    onChanged: (_) => setState(() {}),
+                  ),
+                  const SizedBox(height: 20),
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.05),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text("Realized Profit", style: TextStyle(color: Colors.grey)),
+                        Text(
+                          "RM ${NumberFormat("#,##0.00").format(realizedPL)}",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: realizedPL >= 0 ? Colors.greenAccent : Colors.redAccent,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: const Text("BACK", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        flex: 2,
+                        child: SizedBox(
+                          height: 50,
+                          child: ElevatedButton(
+                            onPressed: !isValid ? null : () {
+                              Provider.of<PortfolioProvider>(context, listen: false).sellEntry(entry.id, sellPrice, sellWeight);
+                              Navigator.pop(context); // Close bottom sheet
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFFfbbf24),
+                              foregroundColor: Colors.black,
+                              disabledBackgroundColor: Colors.grey.withOpacity(0.1),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            ),
+                            child: const Text("Confirm Sell", style: TextStyle(fontWeight: FontWeight.bold)),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Widget _buildBoxedTextField({
+    required TextEditingController controller,
+    required String label,
+    required String hint,
+    required Function(String) onChanged,
+  }) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: const TextStyle(color: Colors.grey, fontSize: 12, fontWeight: FontWeight.bold)),
+        const SizedBox(height: 6),
+        TextField(
+          controller: controller,
+          keyboardType: const TextInputType.numberWithOptions(decimal: true),
+          onChanged: onChanged,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+          decoration: InputDecoration(
+            hintText: hint,
+            filled: true,
+            fillColor: isDark ? Colors.white.withOpacity(0.05) : Colors.grey.withOpacity(0.05),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: Colors.grey.withOpacity(0.2))),
+            enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: Colors.grey.withOpacity(0.2))),
+            focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Color(0xFFfbbf24))),
+          ),
+        ),
+      ],
     );
   }
 

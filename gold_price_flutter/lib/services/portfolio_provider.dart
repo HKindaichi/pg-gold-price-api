@@ -92,6 +92,12 @@ class PortfolioProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> deleteOwnerSoldHistory(String ownerName) async {
+    _entries.removeWhere((entry) => entry.ownerName == ownerName && entry.sellPricePerGram != null);
+    await _saveToPrefs();
+    notifyListeners();
+  }
+
   Future<void> sellEntry(String id, double sellPricePerGram, double weightToSell) async {
     final index = _entries.indexWhere((e) => e.id == id);
     if (index != -1) {

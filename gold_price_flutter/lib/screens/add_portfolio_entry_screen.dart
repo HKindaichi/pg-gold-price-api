@@ -7,8 +7,7 @@ import '../services/portfolio_provider.dart';
 
 class AddPortfolioEntryScreen extends StatefulWidget {
   final PortfolioEntry? entry;
-  final bool initialShowSellDialog;
-  const AddPortfolioEntryScreen({super.key, this.entry, this.initialShowSellDialog = false});
+  const AddPortfolioEntryScreen({super.key, this.entry});
 
   @override
   State<AddPortfolioEntryScreen> createState() => _AddPortfolioEntryScreenState();
@@ -35,12 +34,6 @@ class _AddPortfolioEntryScreenState extends State<AddPortfolioEntryScreen> {
     _notesController = TextEditingController(text: widget.entry?.notes ?? "");
     _selectedType = widget.entry?.type ?? '999';
     _selectedDate = widget.entry?.date ?? DateTime.now();
-
-    if (widget.initialShowSellDialog && isEdit) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _showSellDialog();
-      });
-    }
   }
 
   @override
@@ -129,23 +122,7 @@ class _AddPortfolioEntryScreenState extends State<AddPortfolioEntryScreen> {
                   child: Text(isEdit ? "Update Asset" : "Save to My Assets", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
               ),
-              if (isEdit) ...[
-                const SizedBox(height: 10),
-                SizedBox(
-                  width: double.infinity,
-                  height: 56,
-                  child: OutlinedButton.icon(
-                    onPressed: _showSellDialog,
-                    icon: const Icon(Icons.sell_outlined),
-                    label: const Text("Sell this Asset", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: const Color(0xFFfbbf24),
-                      side: const BorderSide(color: Color(0xFFfbbf24)),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                    ),
-                  ),
-                ),
-              ],
+              // Removed "Sell this Asset" button as requested
             ],
           ),
         ),
@@ -278,80 +255,6 @@ class _AddPortfolioEntryScreenState extends State<AddPortfolioEntryScreen> {
     );
   }
 
-  void _showSellDialog() {
-    final priceController = TextEditingController();
-    final weightController = TextEditingController(text: widget.entry!.weight.toString());
-    
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-      builder: (context) {
-        return StatefulBuilder(
-          builder: (context, setState) {
-            double sellPrice = double.tryParse(priceController.text) ?? 0.0;
-            double sellWeight = double.tryParse(weightController.text) ?? 0.0;
-            double realizedPL = (sellPrice - widget.entry!.buyPricePerGram) * sellWeight;
-
-            return Padding(
-              padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom, left: 24, right: 24, top: 24),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text("Sell Asset", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 20),
-                  TextField(
-                    controller: weightController,
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(labelText: "Weight to sell (g)"),
-                    onChanged: (_) => setState(() {}),
-                  ),
-                  const SizedBox(height: 12),
-                  TextField(
-                    controller: priceController,
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(labelText: "Sell Price (RM/g)"),
-                    onChanged: (_) => setState(() {}),
-                  ),
-                  const SizedBox(height: 20),
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(color: Colors.grey.withOpacity(0.1), borderRadius: BorderRadius.circular(12)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text("Realized Profit"),
-                        Text(
-                          "RM ${realizedPL.toStringAsFixed(2)}",
-                          style: TextStyle(fontWeight: FontWeight.bold, color: realizedPL >= 0 ? Colors.green : Colors.red),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Provider.of<PortfolioProvider>(context, listen: false).sellEntry(widget.entry!.id, sellPrice, sellWeight);
-                        Navigator.pop(context); // Close bottom sheet
-                        Navigator.pop(context); // Close edit screen
-                      },
-                      style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFfbbf24), foregroundColor: Colors.black),
-                      child: const Text("Confirm Sale", style: TextStyle(fontWeight: FontWeight.bold)),
-                    ),
-                  ),
-                  const SizedBox(height: 40),
-                ],
-              ),
-            );
-          },
-        );
-      },
-    );
-  }
 
   void _saveEntry() {
     if (_formKey.currentState!.validate()) {
