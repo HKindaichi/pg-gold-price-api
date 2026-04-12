@@ -58,7 +58,7 @@ class _AddPortfolioEntryScreenState extends State<AddPortfolioEntryScreen> {
         ],
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
         child: Form(
           key: _formKey,
           child: Column(
@@ -72,9 +72,9 @@ class _AddPortfolioEntryScreenState extends State<AddPortfolioEntryScreen> {
                 maxLength: 15,
                 validator: (value) => (value == null || value.isEmpty) ? "Required" : null,
               ),
-              const SizedBox(height: 24),
-              Text("Type", style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 14, fontWeight: FontWeight.w600)),
-              const SizedBox(height: 8),
+              const SizedBox(height: 16),
+              Text("Type", style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 13, fontWeight: FontWeight.w600)),
+              const SizedBox(height: 6),
               Row(
                 children: [
                   _buildTypeChip('999'),
@@ -84,7 +84,7 @@ class _AddPortfolioEntryScreenState extends State<AddPortfolioEntryScreen> {
                   _buildTypeChip('Silver'),
                 ],
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 12),
               _buildTextField(
                 controller: _weightController,
                 label: "Weight (grams)",
@@ -94,7 +94,7 @@ class _AddPortfolioEntryScreenState extends State<AddPortfolioEntryScreen> {
                 maxLength: 9,
                 validator: (value) => (value == null || value.isEmpty) ? "Required" : null,
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 10),
               _buildTextField(
                 controller: _priceController,
                 label: "Buy Price (RM / gram)",
@@ -104,9 +104,9 @@ class _AddPortfolioEntryScreenState extends State<AddPortfolioEntryScreen> {
                 maxLength: 8,
                 validator: (value) => (value == null || value.isEmpty) ? "Required" : null,
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 10),
               _buildDatePicker(),
-              const SizedBox(height: 16),
+              const SizedBox(height: 10),
               _buildTextField(
                 controller: _notesController,
                 label: "Notes",
@@ -115,7 +115,7 @@ class _AddPortfolioEntryScreenState extends State<AddPortfolioEntryScreen> {
                 maxLength: 30,
                 maxLines: 2, // Reduced from 3
               ),
-              const SizedBox(height: 20), // Reduced from 40
+              const SizedBox(height: 10),
               SizedBox(
                 width: double.infinity,
                 height: 56,
@@ -130,7 +130,7 @@ class _AddPortfolioEntryScreenState extends State<AddPortfolioEntryScreen> {
                 ),
               ),
               if (isEdit) ...[
-                const SizedBox(height: 16),
+                const SizedBox(height: 10),
                 SizedBox(
                   width: double.infinity,
                   height: 56,
@@ -192,8 +192,8 @@ class _AddPortfolioEntryScreenState extends State<AddPortfolioEntryScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: TextStyle(color: isDark ? Colors.grey : Colors.black54, fontSize: 14, fontWeight: FontWeight.w600)),
-        const SizedBox(height: 8),
+        Text(label, style: TextStyle(color: isDark ? Colors.grey : Colors.black54, fontSize: 13, fontWeight: FontWeight.w600)),
+        const SizedBox(height: 6),
         TextFormField(
           controller: controller,
           keyboardType: keyboardType,
@@ -222,8 +222,8 @@ class _AddPortfolioEntryScreenState extends State<AddPortfolioEntryScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Purchase Date", style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 14, fontWeight: FontWeight.w600)),
-        const SizedBox(height: 8),
+        Text("Purchase Date", style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.black54, fontSize: 13, fontWeight: FontWeight.w600)),
+        const SizedBox(height: 6),
         InkWell(
           onTap: () async {
             final picked = await showDatePicker(

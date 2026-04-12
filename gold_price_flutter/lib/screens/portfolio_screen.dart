@@ -460,7 +460,12 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
       context: context,
       backgroundColor: Colors.transparent,
       builder: (context) => Container(
-        padding: const EdgeInsets.all(24),
+        padding: EdgeInsets.only(
+          left: 24,
+          right: 24,
+          top: 24,
+          bottom: MediaQuery.of(context).padding.bottom + 24,
+        ),
         decoration: BoxDecoration(
           color: isDark ? const Color(0xFF1e293b) : Colors.white,
           borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
@@ -479,9 +484,15 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                       "${entry.weight}g ${entry.type}",
                       style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                     ),
-                    Text(
-                      DateFormat('d MMMM yyyy').format(entry.date),
-                      style: const TextStyle(color: Colors.grey, fontSize: 13),
+                    Row(
+                      children: [
+                        const Icon(Icons.person_outline, size: 14, color: Colors.grey),
+                        const SizedBox(width: 4),
+                        Text(
+                          entry.ownerName,
+                          style: const TextStyle(color: Colors.grey, fontSize: 13),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -500,6 +511,24 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                   ),
                 ),
               ],
+            ),
+            const SizedBox(height: 20),
+            // Info Bar
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                children: [
+                  _buildDetailRow("Purchase Date", DateFormat('d MMMM yyyy').format(entry.date)),
+                  if (entry.notes.isNotEmpty) ...[
+                    const Divider(height: 16),
+                    _buildDetailRow("Notes", entry.notes),
+                  ],
+                ],
+              ),
             ),
             const SizedBox(height: 24),
             Row(
@@ -561,6 +590,16 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildDetailRow(String label, String value) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(label, style: const TextStyle(color: Colors.grey, fontSize: 13)),
+        Text(value, style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14)),
+      ],
     );
   }
 

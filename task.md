@@ -1,0 +1,9 @@
+- [x] Create `merge_latest_data.py` logic
+- [x] Fix data parsing issues (quotes/headers)
+- [x] Cleanup `history.csv` from corruption and redundant headers
+- [x] Merge latest USD data (XAU/XAG) into history
+- [x] Optimize "Add New Asset" screen layout (Fit one page)
+- [x] Adjust "Asset Details" action sheet (Bottom spacing fix)
+- [x] Add Purchase Date and Notes to Asset Details view
+- [x] Verify data logic for 7D graph
+- [/] Build APK v1.0.4-RECOVERY (In Progress)
