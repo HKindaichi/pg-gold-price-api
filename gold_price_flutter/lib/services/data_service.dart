@@ -28,24 +28,30 @@ class DataService {
 
         List<List<dynamic>> rows = const CsvToListConverter().convert(
           cleanCsv, 
-          shouldParseNumbers: false // Parse manually in model for safety
+          eol: '\n', // Standard GitHub EOL
+          shouldParseNumbers: false 
         );
 
-        if (rows.isEmpty) return [];
+        if (rows.isEmpty) {
+           throw Exception('Fail CSV kosong atau gagal diproses');
+        }
 
         // Remove header if it exists
-        if (rows.first.isNotEmpty && rows.first[0].toString() == 'timestamp') {
+        if (rows.first.isNotEmpty && rows.first[0].toString().contains('timestamp')) {
           rows.removeAt(0);
         }
 
-        return rows.map((row) => GoldRecord.fromCsv(row)).toList();
+        final data = rows.map((row) => GoldRecord.fromCsv(row)).toList();
+        if (data.isEmpty) {
+          throw Exception('Tiada data sah dijumpai selepas parsing');
+        }
+        return data;
       } else {
-        throw Exception('Failed to load data: ${response.statusCode}');
+        throw Exception('Server ralat: ${response.statusCode}');
       }
     } catch (e) {
       print("Error fetching data: $e");
-      // Return empty list on error for now, or rethrow
-      return [];
+      rethrow; // Lepaskan ralat supaya GoldProvider tahu!
     }
   }
 }
