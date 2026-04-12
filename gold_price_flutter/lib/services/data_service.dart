@@ -28,7 +28,6 @@ class DataService {
 
         List<List<dynamic>> rows = const CsvToListConverter().convert(
           cleanCsv, 
-          eol: '\n', 
           shouldParseNumbers: false // Parse manually in model for safety
         );
 

@@ -19,13 +19,15 @@ class GoldRecord {
     // Expected format: timestamp, merchant, item, sell, buy, spread
     // 2026-01-31 09:31:14,public_gold,999,652.06,600.0,52.06
     
+    DateTime? parsedDate = DateTime.tryParse(row[0].toString());
+    
     return GoldRecord(
-      timestamp: DateTime.parse(row[0].toString()),
-      merchant: row[1].toString(),
-      item: row[2].toString(),
-      sell: double.tryParse(row[3].toString()) ?? 0.0,
-      buy: double.tryParse(row[4].toString()) ?? 0.0,
-      spread: double.tryParse(row[5].toString()) ?? 0.0,
+      timestamp: parsedDate ?? DateTime.now(),
+      merchant: row.length > 1 ? row[1].toString() : 'unknown',
+      item: row.length > 2 ? row[2].toString() : 'unknown',
+      sell: row.length > 3 ? (double.tryParse(row[3].toString()) ?? 0.0) : 0.0,
+      buy: row.length > 4 ? (double.tryParse(row[4].toString()) ?? 0.0) : 0.0,
+      spread: row.length > 5 ? (double.tryParse(row[5].toString()) ?? 0.0) : 0.0,
     );
   }
 
