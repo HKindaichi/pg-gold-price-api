@@ -64,12 +64,16 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                 ),
               ],
             ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _navigateToAddEntry(context),
-        backgroundColor: const Color(0xFFfbbf24),
-        foregroundColor: Colors.black,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        child: const Icon(Icons.add, size: 32),
+      floatingActionButton: SizedBox(
+        width: 48,
+        height: 48,
+        child: FloatingActionButton(
+          onPressed: () => _navigateToAddEntry(context),
+          backgroundColor: const Color(0xFFfbbf24),
+          foregroundColor: Colors.black,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          child: const Icon(Icons.add, size: 24),
+        ),
       ),
     );
   }
@@ -279,10 +283,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
         final profitPercent = entry.totalBuyPrice > 0 ? (profit / entry.totalBuyPrice) * 100 : 0.0;
 
         return InkWell(
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => AddPortfolioEntryScreen(entry: entry)),
-          ),
+          onTap: () => _showAssetActionSheet(context, entry, gold),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 4),
             child: Row(
@@ -444,6 +445,133 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  void _showAssetActionSheet(BuildContext context, dynamic entry, GoldProvider gold) {
+    final portfolio = Provider.of<PortfolioProvider>(context, listen: false);
+    final currentPrice = portfolio.getLatestPrice(entry.type, gold);
+    final currentVal = currentPrice * entry.weight;
+    final profit = currentVal - entry.totalBuyPrice;
+    final profitPercent = entry.totalBuyPrice > 0 ? (profit / entry.totalBuyPrice) * 100 : 0.0;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          color: isDark ? const Color(0xFF1e293b) : Colors.white,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "${entry.weight}g ${entry.type}",
+                      style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      DateFormat('d MMMM yyyy').format(entry.date),
+                      style: const TextStyle(color: Colors.grey, fontSize: 13),
+                    ),
+                  ],
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: (profit >= 0 ? Colors.green : Colors.red).withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    "${profit >= 0 ? '+' : ''}${profitPercent.toStringAsFixed(1)}%",
+                    style: TextStyle(
+                      color: profit >= 0 ? Colors.greenAccent : Colors.redAccent,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildSheetStat("Buy Price", "RM ${entry.totalBuyPrice.toStringAsFixed(2)}"),
+                _buildSheetStat("Current Value", "RM ${currentVal.toStringAsFixed(2)}", 
+                  color: profit >= 0 ? Colors.greenAccent : Colors.redAccent),
+              ],
+            ),
+            const SizedBox(height: 32),
+            Row(
+              children: [
+                Expanded(
+                  child: OutlinedButton.icon(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AddPortfolioEntryScreen(entry: entry)),
+                      );
+                    },
+                    icon: const Icon(Icons.edit_outlined),
+                    label: const Text("EDIT", style: TextStyle(fontWeight: FontWeight.bold)),
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AddPortfolioEntryScreen(
+                            entry: entry,
+                            initialShowSellDialog: true,
+                          ),
+                        ),
+                      );
+                    },
+                    icon: const Icon(Icons.sell_outlined),
+                    label: const Text("SELL", style: TextStyle(fontWeight: FontWeight.bold)),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFfbbf24),
+                      foregroundColor: Colors.black,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSheetStat(String label, String value, {Color? color}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: const TextStyle(color: Colors.grey, fontSize: 12)),
+        const SizedBox(height: 4),
+        Text(value, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: color)),
+      ],
     );
   }
 }

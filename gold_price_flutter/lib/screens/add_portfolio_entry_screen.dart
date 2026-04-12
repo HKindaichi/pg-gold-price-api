@@ -7,7 +7,8 @@ import '../services/portfolio_provider.dart';
 
 class AddPortfolioEntryScreen extends StatefulWidget {
   final PortfolioEntry? entry;
-  const AddPortfolioEntryScreen({super.key, this.entry});
+  final bool initialShowSellDialog;
+  const AddPortfolioEntryScreen({super.key, this.entry, this.initialShowSellDialog = false});
 
   @override
   State<AddPortfolioEntryScreen> createState() => _AddPortfolioEntryScreenState();
@@ -34,6 +35,12 @@ class _AddPortfolioEntryScreenState extends State<AddPortfolioEntryScreen> {
     _notesController = TextEditingController(text: widget.entry?.notes ?? "");
     _selectedType = widget.entry?.type ?? '999';
     _selectedDate = widget.entry?.date ?? DateTime.now();
+
+    if (widget.initialShowSellDialog && isEdit) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _showSellDialog();
+      });
+    }
   }
 
   @override
