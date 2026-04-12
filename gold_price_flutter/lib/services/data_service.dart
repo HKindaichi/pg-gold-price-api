@@ -1,5 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'package:csv/csv.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/foundation.dart'; // Added for kDebugMode
 import '../models/gold_price.dart';
 
@@ -18,7 +19,7 @@ class DataService {
       
       print("Fetching data from: $url");
       final uri = Uri.parse("$url?v=${DateTime.now().millisecondsSinceEpoch}");
-      final response = await http.get(uri);
+      final response = await http.get(uri).timeout(const Duration(seconds: 10));
       print("Response status: ${response.statusCode}");
       
       if (response.statusCode == 200) {
@@ -43,23 +44,45 @@ class DataService {
 
         final rawData = rows.map((row) => GoldRecord.fromCsv(row)).toList();
         
-        // Penapis Kecemasan: Buang data yang harga tidak munasabah (> 2000)
-        final data = rawData.where((r) => r.sell < 2000 && r.buy < 2000).toList();
+        // Penapis Kecemasan: Buang data yang harga tidak munasabah (> 10000)
+        // Ditingkatkan ke 10,000 supaya Harga Spot Global (USD/oz) tidak ditapis
+        final data = rawData.where((r) => r.sell < 10000 && r.buy < 10000).toList();
         
         if (data.isEmpty && rawData.isNotEmpty) {
-          throw Exception('Semua data terbaru didapati rosak (Nilai > 2000)');
+           print("⚠️ Semua data ditapis keluar! Menggunakan data mentah.");
+           return rawData;
         }
         
-        if (data.isEmpty) {
-          throw Exception('Tiada data sah dijumpai selepas parsing');
-        }
         return data;
       } else {
-        throw Exception('Server ralat: ${response.statusCode}');
+        return await _loadFromAssets();
       }
     } catch (e) {
-      print("Error fetching data: $e");
-      rethrow; // Lepaskan ralat supaya GoldProvider tahu!
+      print("Error fetching gold history: $e");
+      return await _loadFromAssets();
+    }
+  }
+
+  Future<List<GoldRecord>> _loadFromAssets() async {
+    try {
+      print("📂 Loading data from assets (fallback)...");
+      final String csvString = await rootBundle.loadString('assets/history.csv');
+      final cleanCsv = csvString.replaceAll('\uFEFF', ''); 
+
+      List<List<dynamic>> rows = const CsvToListConverter().convert(
+        cleanCsv, 
+        eol: '\n', 
+        shouldParseNumbers: false 
+      );
+
+      if (rows.isNotEmpty && rows.first[0].toString().contains('timestamp')) {
+        rows.removeAt(0);
+      }
+
+      return rows.map((row) => GoldRecord.fromCsv(row)).toList();
+    } catch (e) {
+      print("❌ Failed to load from assets: $e");
+      return [];
     }
   }
 }

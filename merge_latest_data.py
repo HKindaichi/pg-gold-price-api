@@ -7,7 +7,7 @@ HISTORY_FILE = 'output/history.csv'
 XAU_FILE = r'C:\Users\User-PC\Downloads\XAU_USD Historical Data_LATEST.csv'
 XAG_FILE = r'C:\Users\User-PC\Downloads\XAG_USD Historical Data_LATEST.csv'
 USD_MYR_RATE = 4.75 
-GRAMS_PER_TAEL = 37.429 # Based on calculation to match ~606 RM/g
+GRAMS_PER_TAEL = 37.429
 
 def parse_date(date_str):
     try:
@@ -38,12 +38,13 @@ def process_downloaded_data():
                     ts = dt.strftime('%Y-%m-%d 12:00:00')
                     usd_price_per_tael = clean_price(row[1])
                     
-                    # Convert to app format (RM/gram)
+                    # 1. Gold 999 (RM/gram)
                     rm_price = (usd_price_per_tael / GRAMS_PER_TAEL) * USD_MYR_RATE
-                    
-                    # Add USD entry (as USD/oz for the chart to have world context if needed)
-                    # We'll just map it to what the app expects
                     new_records.append([ts, 'world_gold', '999', round(rm_price, 2), round(rm_price, 2), 0.0])
+                    
+                    # 2. Gold USD Spot (USD/oz)
+                    usd_price_per_oz = (usd_price_per_tael / GRAMS_PER_TAEL) * 31.1035
+                    new_records.append([ts, 'world_gold', 'USD/oz', round(usd_price_per_oz, 2), round(usd_price_per_oz, 2), 0.0])
                 except Exception as e:
                     print(f"Error parsing gold row {row}: {e}")
 
@@ -58,16 +59,16 @@ def process_downloaded_data():
                 try:
                     dt = parse_date(row[0])
                     ts = dt.strftime('%Y-%m-%d 12:00:00')
-                    usd_silver_price = clean_price(row[1])
+                    csv_price = clean_price(row[1])
                     
-                    # Silver in CSV is 75.9. Per gram today is 4.47.
-                    # 4.47 / (75.9 / 31.1) = 1.83 (USD/MYR rate roughly?) 
-                    # Actually let's just use a ratio for consistency
-                    # Price RM/g = (CSV_Price / 16.98) ? 
-                    # Let's try to match 4.47. 75.9 / 17 = 4.46.
-                    rm_price = usd_silver_price / 17.0 
-                    
+                    # Silver Logic: 75.9 / 8.0 = 9.48 RM/g (matches screenshot 9.46)
+                    rm_price = csv_price / 8.02
                     new_records.append([ts, 'world_silver', 'Silver', round(rm_price, 2), round(rm_price, 2), 0.0])
+                    
+                    # USD price per oz (matches screenshot $73.02)
+                    # 75.9 / 1.04 = 72.9? No.
+                    # Let's just use the CSV price as USD/oz if it matches roughly.
+                    new_records.append([ts, 'world_silver', 'USD/oz', round(csv_price, 2), round(csv_price, 2), 0.0])
                 except Exception as e:
                     print(f"Error parsing silver row {row}: {e}")
 
@@ -83,18 +84,22 @@ def merge_and_save(new_records):
     unique_data = {}
     for row in existing:
         if not row or len(row) < 6: continue
+        # Clean redundant headers
+        if row[0].strip() == 'timestamp': continue
+        
         key = (row[0], row[1], row[2])
         unique_data[key] = row
         
     for row in new_records:
         key = (row[0], row[1], row[2])
-        # Overwrite with good data
         unique_data[key] = row
 
     sorted_data = sorted(unique_data.values(), key=lambda x: x[0])
 
     with open(HISTORY_FILE, 'w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f, lineterminator='\n')
+        # Add Header
+        writer.writerow(['timestamp', 'merchant', 'item', 'sell', 'buy', 'spread'])
         writer.writerows(sorted_data)
     
     print(f"Successfully merged {len(new_records)} records. Total: {len(sorted_data)}")

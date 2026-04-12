@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const Padding(
                     padding: EdgeInsets.only(bottom: 10),
                     child: Text(
-                      "v1.0.2-RECOVERY",
+                      "v1.0.4-RECOVERY",
                       style: TextStyle(color: Colors.grey, fontSize: 10),
                     ),
                   ),
