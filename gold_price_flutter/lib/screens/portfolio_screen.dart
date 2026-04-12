@@ -614,7 +614,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
 
             return Container(
               padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom + 24,
+                bottom: MediaQuery.of(context).viewInsets.bottom + MediaQuery.of(context).padding.bottom + 32,
                 left: 24,
                 right: 24,
                 top: 24,
@@ -689,7 +689,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                               disabledBackgroundColor: Colors.grey.withOpacity(0.1),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                             ),
-                            child: const Text("Confirm Sell", style: TextStyle(fontWeight: FontWeight.bold)),
+                            child: const Text("CONFIRM SELL", style: TextStyle(fontWeight: FontWeight.bold)),
                           ),
                         ),
                       ),
