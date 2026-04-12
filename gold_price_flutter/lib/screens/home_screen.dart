@@ -105,6 +105,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: _buildChart(history),
                     ),
                   ),
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: Text(
+                      "v1.0.2-RECOVERY",
+                      style: TextStyle(color: Colors.grey, fontSize: 10),
+                    ),
+                  ),
                 ],
               ),
             ),
