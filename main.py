@@ -81,6 +81,13 @@ def write_output(payload: dict):
                     if last_sell == sell and last_buy == buy:
                         # Exact same price as last record, SKIP
                         continue
+                    
+                    # BIJAK System: Check for unrealistic jumps (> 50%)
+                    if last_sell > 0:
+                        change_percent = abs(sell - last_sell) / last_sell
+                        if change_percent > 0.5:
+                            print(f"WARNING: Unrealistic price jump detected for {m_id} {item_key} ({change_percent:.1%}). SKIPPING to prevent data corruption.")
+                            continue
                 
                 # If new or changed, write it
                 f.write(f"{timestamp},{m_id},{item_key},{sell},{buy},{spread}\n")

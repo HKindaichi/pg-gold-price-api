@@ -47,7 +47,9 @@ class WorldGoldScraper(GoldScraper):
         if usd_myr == 0.0:
             usd_myr = 4.40  # Fallback
 
-        if gold_usd == 0.0:
+        if gold_usd == 0.0 or gold_usd > 4000.0: # Sanity check: Gold shouldn't be > $4000/oz suddenly
+            if gold_usd > 4000.0:
+                print(f"World Gold: Ignoring unrealistic price ${gold_usd}")
             return {}, None
 
         # 1 oz = 31.1035 grams
