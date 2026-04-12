@@ -41,7 +41,15 @@ class DataService {
           rows.removeAt(0);
         }
 
-        final data = rows.map((row) => GoldRecord.fromCsv(row)).toList();
+        final rawData = rows.map((row) => GoldRecord.fromCsv(row)).toList();
+        
+        // Penapis Kecemasan: Buang data yang harga tidak munasabah (> 2000)
+        final data = rawData.where((r) => r.sell < 2000 && r.buy < 2000).toList();
+        
+        if (data.isEmpty && rawData.isNotEmpty) {
+          throw Exception('Semua data terbaru didapati rosak (Nilai > 2000)');
+        }
+        
         if (data.isEmpty) {
           throw Exception('Tiada data sah dijumpai selepas parsing');
         }
