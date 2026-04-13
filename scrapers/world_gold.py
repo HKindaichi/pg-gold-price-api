@@ -1,54 +1,47 @@
-import re
+import json
 import time
 import random
 from curl_cffi import requests
-from bs4 import BeautifulSoup
 from scrapers.base import GoldScraper
 from utils.common import safe_float
 
-GOLD_URL = "https://finance.yahoo.com/quote/GC=F"
-USD_MYR_URL = "https://finance.yahoo.com/quote/USDMYR=X"
+API_URL = "https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1m&range=1d"
 
 class WorldGoldScraper(GoldScraper):
     def get_name(self) -> str:
         return "World Gold"
 
-    def _get_price_yahoo(self, url: str) -> float:
+    def _get_price_api(self, symbol: str) -> float:
         try:
-            # Random delay to look more human
-            sleep_time = random.uniform(3, 7)
-            print(f"World Gold: Sleeping for {sleep_time:.2f}s before request...")
-            time.sleep(sleep_time)
-
-            r = requests.get(url, impersonate="chrome110", timeout=30)
-            r.raise_for_status()
+            url = API_URL.format(symbol=symbol)
+            headers = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+            }
+            # Random delay
+            time.sleep(random.uniform(1, 3))
             
-            # Yahoo Finance uses <fin-streamer data-field="regularMarketPrice" ... value="2400.00">
-            # Using regex for better stability against minor HTML changes
-            m = re.search(r'data-field="regularMarketPrice"[^>]*value="([\d,.]+)"', r.text)
-            if m:
-                return safe_float(m.group(1))
+            r = requests.get(url, impersonate="chrome120", headers=headers, timeout=30)
+            if r.status_code != 200:
+                print(f"World Gold API: Status {r.status_code} for {symbol}")
+                return 0.0
             
-            # Fallback if value attribute is missing
-            soup = BeautifulSoup(r.text, 'html.parser')
-            el = soup.find('fin-streamer', {'data-field': 'regularMarketPrice'})
-            if el and el.get('value'):
-                return safe_float(el.get('value'))
-                
-            return 0.0
+            data = r.json()
+            price = data["chart"]["result"][0]["meta"]["regularMarketPrice"]
+            print(f"World Gold API: Found {symbol} = {price}")
+            return float(price)
         except Exception as e:
-            print(f"World Gold: Error scraping {url}: {e}")
+            print(f"World Gold API: Error fetching {symbol}: {e}")
             return 0.0
 
     def scrape(self) -> tuple[dict, str | None]:
-        gold_usd = self._get_price_yahoo(GOLD_URL)
-        usd_myr = self._get_price_yahoo(USD_MYR_URL)
+        gold_usd = self._get_price_api("GC=F")
+        usd_myr = self._get_price_api("USDMYR=X")
 
         if usd_myr == 0.0:
             usd_myr = 4.40  # Fallback
 
-        if gold_usd == 0.0 or gold_usd > 4000.0: # Sanity check: Gold shouldn't be > $4000/oz suddenly
-            if gold_usd > 4000.0:
+        if gold_usd == 0.0 or gold_usd > 6000.0: # Sanity check: Gold shouldn't be > $6000/oz suddenly
+            if gold_usd > 6000.0:
                 print(f"World Gold: Ignoring unrealistic price ${gold_usd}")
             return {}, None
 
@@ -72,9 +65,3 @@ class WorldGoldScraper(GoldScraper):
         last_updated = datetime.now().strftime("%d %b %y %H:%M")
 
         return items, last_updated
-
-if __name__ == "__main__":
-    scraper = WorldGoldScraper()
-    items, updated = scraper.scrape()
-    print(f"Items: {items}")
-    print(f"Updated: {updated}")
