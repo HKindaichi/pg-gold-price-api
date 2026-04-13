@@ -1,9 +1,5 @@
 {
-<<<<<<< Updated upstream
-  "updated_label": "Today 12:35",
-=======
-  "updated_label": "Today 13:50",
->>>>>>> Stashed changes
+  "updated_label": "Today 14:08",
   "merchants": [
     {
       "id": "public_gold",
@@ -39,95 +35,56 @@
       "name": "CIMB e-GIA",
       "items": {
         "999": {
-<<<<<<< Updated upstream
-          "sell": 605.7,
-          "buy": 598.6,
-          "spread": 7.1
-        }
-      },
-      "last_updated": "12:10 pm, 13 Apr 2026, Monday"
-=======
           "sell": 604.7,
           "buy": 597.6,
           "spread": 7.1
         }
       },
       "last_updated": "1:10 pm, 13 Apr 2026, Monday"
->>>>>>> Stashed changes
     },
     {
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
+        "Gold Bar 0.5G Raja Perlis": {
+          "sell": 360.0,
+          "buy": 299.0,
+          "spread": 61.0
+        },
+        "Gold Bar 1G Raja Perlis": {
+          "sell": 687.0,
+          "buy": 599.0,
+          "spread": 88.0
+        },
+        "Gold Bar 0.5G Custom Spm 2025": {
+          "sell": 358.0,
+          "buy": 299.0,
+          "spread": 59.0
+        },
+        "Gold Bar 1G Chinese New Year 2026": {
+          "sell": 676.0,
+          "buy": 599.0,
+          "spread": 77.0
+        },
+        "Gold Bar 1G Custom Spm 2025": {
+          "sell": 686.0,
+          "buy": 599.0,
+          "spread": 87.0
+        },
         "Gold Bar 0.25G Raya 2026": {
           "sell": 195.0,
           "buy": 178.0,
           "spread": 17.0
         },
         "Gold Bar 0.5G Chinese New Year 2026": {
-          "sell": 347.0,
+          "sell": 348.0,
           "buy": 299.0,
-          "spread": 48.0
-<<<<<<< Updated upstream
-        },
-        "Gold Bar 1G Chinese New Year 2026": {
-          "sell": 673.0,
-          "buy": 596.0,
-=======
-        },
-        "Gold Bar 1G Custom Spm 2025": {
-          "sell": 684.0,
-          "buy": 597.0,
-          "spread": 87.0
-        },
-        "Gold Bar 0.5G Custom Spm 2025": {
-          "sell": 357.0,
-          "buy": 299.0,
-          "spread": 58.0
-        },
-        "Gold Bar 1G Raja Perlis": {
-          "sell": 686.0,
-          "buy": 598.0,
-          "spread": 88.0
-        },
-        "Gold Bar 0.5G Raja Perlis": {
-          "sell": 360.0,
-          "buy": 299.0,
-          "spread": 61.0
-        },
-        "Gold Bar 1G Chinese New Year 2026": {
-          "sell": 674.0,
-          "buy": 597.0,
->>>>>>> Stashed changes
-          "spread": 77.0
+          "spread": 49.0
         },
         "Gold Bar 0.5G 2026": {
-          "sell": 342.0,
+          "sell": 343.0,
           "buy": 299.0,
-          "spread": 43.0
-<<<<<<< Updated upstream
-        },
-        "Gold Bar 0.5G Raja Perlis": {
-          "sell": 359.0,
-          "buy": 298.0,
-          "spread": 61.0
-        },
-        "Gold Bar 1G Raja Perlis": {
-          "sell": 684.0,
-          "buy": 596.0,
-          "spread": 88.0
-        },
-        "Gold Bar 0.5G Custom Spm 2025": {
-          "sell": 357.0,
-          "buy": 299.0,
-          "spread": 58.0
-        },
-        "Gold Bar 1G Custom Spm 2025": {
-          "sell": 683.0,
-          "buy": 596.0,
-          "spread": 87.0
-=======
->>>>>>> Stashed changes
+          "spread": 44.0
         }
       }
     },
@@ -136,24 +93,6 @@
       "name": "UOB",
       "items": {
         "Gold Savings Account (1 Gm)": {
-<<<<<<< Updated upstream
-          "sell": 606.1,
-          "buy": 601.1,
-          "spread": 5.0
-        },
-        "999": {
-          "sell": 606.1,
-          "buy": 601.1,
-          "spread": 5.0
-        },
-        "Premier Gold Account (1 Kilo)": {
-          "sell": 605800.0,
-          "buy": 601400.0,
-          "spread": 4400.0
-        }
-      },
-      "last_updated": "13/04/2026 11:52"
-=======
           "sell": 604.8,
           "buy": 599.8,
           "spread": 5.0
@@ -170,28 +109,18 @@
         }
       },
       "last_updated": "13/04/2026 12:48"
->>>>>>> Stashed changes
     },
     {
       "id": "gb_gold",
       "name": "GB Gold",
       "items": {
         "999": {
-<<<<<<< Updated upstream
-          "sell": 644.0,
-          "buy": 601.0,
+          "sell": 647.0,
+          "buy": 604.0,
           "spread": 43.0
         }
       },
-      "last_updated": "13-04-2026 12:30:02"
-=======
-          "sell": 646.0,
-          "buy": 603.0,
-          "spread": 43.0
-        }
-      },
-      "last_updated": "13-04-2026 13:45:02"
->>>>>>> Stashed changes
+      "last_updated": "13-04-2026 14:00:02"
     },
     {
       "id": "biga_i",
@@ -237,63 +166,46 @@
       "name": "Maybank Silver",
       "items": {
         "Silver": {
-          "sell": 9.86,
-          "buy": 9.04,
-          "spread": 0.82
+          "sell": 9.94,
+          "buy": 9.15,
+          "spread": 0.79
         }
       },
-      "last_updated": "13 Apr 2026 10:25 AM"
-<<<<<<< Updated upstream
-=======
+      "last_updated": "13 Apr 2026 02:07 PM"
     },
     {
       "id": "world_gold",
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 605.99,
-          "buy": 605.99,
+          "sell": 606.72,
+          "buy": 606.72,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4744.7,
-          "buy": 4744.7,
+          "sell": 4750.4,
+          "buy": 4750.4,
           "spread": 0.0
         }
       },
-      "last_updated": "13 Apr 26 13:50"
->>>>>>> Stashed changes
+      "last_updated": "13 Apr 26 06:08"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-<<<<<<< Updated upstream
-          "sell": 1488398.92,
-          "buy": 1488398.92,
+          "sell": 9.54,
+          "buy": 9.54,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 6803.75,
-          "buy": 6803.75,
+          "sell": 74.72,
+          "buy": 74.72,
           "spread": 0.0
         }
       },
-      "last_updated": "13 Apr 26 04:35"
-=======
-          "sell": 9.53,
-          "buy": 9.53,
-          "spread": 0.0
-        },
-        "USD/oz": {
-          "sell": 74.6,
-          "buy": 74.6,
-          "spread": 0.0
-        }
-      },
-      "last_updated": "13 Apr 26 13:50"
->>>>>>> Stashed changes
+      "last_updated": "13 Apr 26 06:08"
     },
     {
       "id": "mygold_i",
@@ -316,11 +228,7 @@
           "spread": 23.74
         }
       },
-<<<<<<< Updated upstream
-      "last_updated": "13 April 2026 12:00 PM"
-=======
       "last_updated": "13 April 2026 01:30 PM"
->>>>>>> Stashed changes
     },
     {
       "id": "rhb",
