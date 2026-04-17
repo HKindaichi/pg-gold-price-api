@@ -8174,3 +8174,10 @@ timestamp,merchant,item,sell,buy,spread
 2026-04-17 18:13:34,world_gold,USD/oz,4812.0,4812.0,0.0
 2026-04-17 18:13:34,world_silver,Silver,10.11,10.11,0.0
 2026-04-17 18:13:34,world_silver,USD/oz,79.62,79.62,0.0
+2026-04-17 19:28:01,kab_gold,Gold Bar 1G Raja Perlis,692.0,603.0,89.0
+2026-04-17 19:28:01,kab_gold,Gold Bar 0.5G Raja Perlis,363.0,302.0,61.0
+2026-04-17 19:28:01,gb_gold,999,652.0,609.0,43.0
+2026-04-17 19:28:01,world_gold,999,610.62,610.62,0.0
+2026-04-17 19:28:01,world_gold,USD/oz,4808.8,4808.8,0.0
+2026-04-17 19:28:01,world_silver,Silver,10.07,10.07,0.0
+2026-04-17 19:28:01,world_silver,USD/oz,79.29,79.29,0.0
