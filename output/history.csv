@@ -8282,3 +8282,16 @@ timestamp,merchant,item,sell,buy,spread
 2026-04-18 13:00:22,world_gold,USD/oz,4879.6,4879.6,0.0
 2026-04-18 13:00:22,world_silver,Silver,10.39,10.39,0.0
 2026-04-18 13:00:22,world_silver,USD/oz,81.84,81.84,0.0
+2026-04-20 06:24:10,public_gold,999,661.0,601.0,60
+2026-04-20 06:24:10,kab_gold,Gold Bar 0.5G 2026,345.0,301.0,44.0
+2026-04-20 06:24:10,kab_gold,Gold Bar 1G Custom Spm 2025,691.0,603.0,88.0
+2026-04-20 06:24:10,kab_gold,Gold Bar 0.5G Raja Perlis,363.0,302.0,61.0
+2026-04-20 06:24:10,kab_gold,Gold Bar 0.5G Custom Spm 2025,360.0,301.0,59.0
+2026-04-20 06:24:10,kab_gold,Gold Bar 1G Chinese New Year 2026,681.0,603.0,78.0
+2026-04-20 06:24:10,kab_gold,Gold Bar 1G Raja Perlis,692.0,603.0,89.0
+2026-04-20 06:24:10,kab_gold,Gold Bar 0.5G Chinese New Year 2026,350.0,301.0,49.0
+2026-04-20 06:24:10,gb_gold,999,652.0,609.0,43.0
+2026-04-20 06:24:10,world_gold,999,610.76,610.76,0.0
+2026-04-20 06:24:10,world_gold,USD/oz,4809.3,4809.3,0.0
+2026-04-20 06:24:10,world_silver,Silver,10.1,10.1,0.0
+2026-04-20 06:24:10,world_silver,USD/oz,79.53,79.53,0.0
