@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 21:51",
+  "updated_label": "Today 23:31",
   "merchants": [
     {
       "id": "public_gold",
@@ -46,40 +46,40 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 0.5G Raja Perlis": {
-          "sell": 344.0,
-          "buy": 284.0,
-          "spread": 60.0
-        },
-        "Gold Bar 0.5G Chinese New Year 2026": {
-          "sell": 331.0,
-          "buy": 284.0,
-          "spread": 47.0
-        },
-        "Gold Bar 0.5G Klasik V3": {
-          "sell": 329.0,
-          "buy": 284.0,
-          "spread": 45.0
-        },
-        "Gold Bar 1G Raja Perlis": {
-          "sell": 654.0,
-          "buy": 568.0,
-          "spread": 86.0
+        "Gold Bar 1G Chinese New Year 2026": {
+          "sell": 647.0,
+          "buy": 572.0,
+          "spread": 75.0
         },
         "Gold Bar 0.5G 2026": {
-          "sell": 326.0,
-          "buy": 284.0,
+          "sell": 328.0,
+          "buy": 286.0,
           "spread": 42.0
         },
-        "Gold Bar 1G Chinese New Year 2026": {
-          "sell": 643.0,
-          "buy": 569.0,
-          "spread": 74.0
+        "Gold Bar 0.5G Chinese New Year 2026": {
+          "sell": 333.0,
+          "buy": 286.0,
+          "spread": 47.0
+        },
+        "Gold Bar 1G Raja Perlis": {
+          "sell": 658.0,
+          "buy": 572.0,
+          "spread": 86.0
+        },
+        "Gold Bar 0.5G Klasik V3": {
+          "sell": 331.0,
+          "buy": 286.0,
+          "spread": 45.0
+        },
+        "Gold Bar 0.5G Raja Perlis": {
+          "sell": 346.0,
+          "buy": 286.0,
+          "spread": 60.0
         },
         "Gold Bar 1Kg": {
-          "sell": 613389.0,
-          "buy": 570173.0,
-          "spread": 43216.0
+          "sell": 617244.0,
+          "buy": 573758.0,
+          "spread": 43486.0
         },
         "Gold Bar 0.25G Raya 2026": {
           "sell": 195.0,
@@ -115,12 +115,40 @@
       "name": "GB Gold",
       "items": {
         "999": {
-          "sell": 615.0,
-          "buy": 574.0,
+          "sell": 619.0,
+          "buy": 578.0,
           "spread": 41.0
         }
       },
-      "last_updated": "29-04-2026 21:45:02"
+      "last_updated": "29-04-2026 23:30:02"
+    },
+    {
+      "id": "biga_i",
+      "name": "BIGA-i",
+      "items": {
+        "999": {
+          "sell": 584.44,
+          "buy": 604.75,
+          "spread": -20.31
+        }
+      },
+      "last_updated": "29 April 2026; 9:00am"
+    },
+    {
+      "id": "maa_gold",
+      "name": "MAA Gold",
+      "items": {
+        "999": {
+          "sell": 614.0,
+          "buy": 558.0,
+          "spread": 56.0
+        },
+        "916": {
+          "sell": 569.0,
+          "buy": 508.0,
+          "spread": 61.0
+        }
+      }
     },
     {
       "id": "easigold",
@@ -150,34 +178,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 575.68,
-          "buy": 575.68,
+          "sell": 578.46,
+          "buy": 578.46,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4533.1,
-          "buy": 4533.1,
+          "sell": 4555.0,
+          "buy": 4555.0,
           "spread": 0.0
         }
       },
-      "last_updated": "29 Apr 26 13:51"
+      "last_updated": "29 Apr 26 15:31"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 9.13,
-          "buy": 9.13,
+          "sell": 9.15,
+          "buy": 9.15,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 71.86,
-          "buy": 71.86,
+          "sell": 72.05,
+          "buy": 72.05,
           "spread": 0.0
         }
       },
-      "last_updated": "29 Apr 26 13:51"
+      "last_updated": "29 Apr 26 15:31"
     },
     {
       "id": "mygold_i",
@@ -200,7 +228,7 @@
           "spread": 22.89
         }
       },
-      "last_updated": "29 April 2026 09:30 PM"
+      "last_updated": "29 April 2026 11:00 PM"
     },
     {
       "id": "rhb",
