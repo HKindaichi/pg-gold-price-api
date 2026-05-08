@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 15:27",
+  "updated_label": "Today 16:05",
   "merchants": [
     {
       "id": "public_gold",
@@ -46,12 +46,22 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
+        "Gold Bar 1G Custom Selamat": {
+          "sell": 674.0,
+          "buy": 588.0,
+          "spread": 86.0
+        },
+        "Gold Bar 0.5G 2026": {
+          "sell": 337.0,
+          "buy": 294.0,
+          "spread": 43.0
+        },
         "Gold Bar 0.25G Raya 2026": {
           "sell": 195.0,
           "buy": 178.0,
           "spread": 17.0
         },
-        "Gold Bar 0.5G Custom Hari Pekerja 2026": {
+        "Gold Bar 0.5G Chinese New Year 2026": {
           "sell": 342.0,
           "buy": 294.0,
           "spread": 48.0
@@ -61,35 +71,25 @@
           "buy": 294.0,
           "spread": 48.0
         },
-        "Gold Bar 0.5G 2026": {
-          "sell": 337.0,
-          "buy": 294.0,
-          "spread": 43.0
-        },
-        "Gold Bar 1G Custom Selamat": {
-          "sell": 675.0,
-          "buy": 589.0,
-          "spread": 86.0
-        },
-        "Gold Bar 0.5G Chinese New Year 2026": {
-          "sell": 342.0,
-          "buy": 294.0,
-          "spread": 48.0
-        },
-        "Gold Bar 1G Custom Hari Pekerja 2026": {
-          "sell": 665.0,
-          "buy": 589.0,
-          "spread": 76.0
-        },
-        "Gold Bar 1G Chinese New Year 2026": {
-          "sell": 665.0,
-          "buy": 589.0,
-          "spread": 76.0
-        },
         "Gold Bar 0.5G Custom Selamat": {
           "sell": 352.0,
           "buy": 294.0,
           "spread": 58.0
+        },
+        "Gold Bar 0.5G Custom Hari Pekerja 2026": {
+          "sell": 342.0,
+          "buy": 294.0,
+          "spread": 48.0
+        },
+        "Gold Bar 1G Chinese New Year 2026": {
+          "sell": 664.0,
+          "buy": 588.0,
+          "spread": 76.0
+        },
+        "Gold Bar 1G Custom Hari Pekerja 2026": {
+          "sell": 664.0,
+          "buy": 588.0,
+          "spread": 76.0
         }
       }
     },
@@ -98,34 +98,46 @@
       "name": "UOB",
       "items": {
         "Gold Savings Account (1 Gm)": {
-          "sell": 596.9,
-          "buy": 591.9,
+          "sell": 596.7,
+          "buy": 591.7,
           "spread": 5.0
         },
         "999": {
-          "sell": 596.9,
-          "buy": 591.9,
+          "sell": 596.7,
+          "buy": 591.7,
           "spread": 5.0
         },
         "Premier Gold Account (1 Kilo)": {
-          "sell": 596700.0,
-          "buy": 592300.0,
+          "sell": 596400.0,
+          "buy": 592000.0,
           "spread": 4400.0
         }
       },
-      "last_updated": "08/05/2026 15:24"
+      "last_updated": "08/05/2026 15:44"
     },
     {
       "id": "gb_gold",
       "name": "GB Gold",
       "items": {
         "999": {
-          "sell": 636.0,
-          "buy": 594.0,
+          "sell": 635.0,
+          "buy": 593.0,
           "spread": 42.0
         }
       },
-      "last_updated": "08-05-2026 15:15:02"
+      "last_updated": "08-05-2026 16:00:02"
+    },
+    {
+      "id": "biga_i",
+      "name": "BIGA-i",
+      "items": {
+        "999": {
+          "sell": 595.12,
+          "buy": 615.65,
+          "spread": -20.53
+        }
+      },
+      "last_updated": "8 May 2026; 9:00am"
     },
     {
       "id": "maa_gold",
@@ -164,41 +176,41 @@
           "spread": 0.83
         }
       },
-      "last_updated": "08 May 2026 02:28 PM"
+      "last_updated": "08 May 2026 03:34 PM"
     },
     {
       "id": "world_gold",
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 595.0,
-          "buy": 595.0,
+          "sell": 594.74,
+          "buy": 594.74,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4722.3,
-          "buy": 4722.3,
+          "sell": 4719.0,
+          "buy": 4719.0,
           "spread": 0.0
         }
       },
-      "last_updated": "08 May 26 07:27"
+      "last_updated": "08 May 26 08:05"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 10.12,
-          "buy": 10.12,
+          "sell": 10.13,
+          "buy": 10.13,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 80.36,
-          "buy": 80.36,
+          "sell": 80.38,
+          "buy": 80.38,
           "spread": 0.0
         }
       },
-      "last_updated": "08 May 26 07:27"
+      "last_updated": "08 May 26 08:05"
     },
     {
       "id": "mygold_i",
@@ -221,20 +233,20 @@
           "spread": 23.45
         }
       },
-      "last_updated": "08 May 2026 03:00 PM"
+      "last_updated": "08 May 2026 03:30 PM"
     },
     {
       "id": "rhb",
       "name": "RHB",
       "items": {
         "999": {
-          "sell": 610.6066,
-          "buy": 580.7081,
-          "spread": 29.9
+          "sell": 608.6216,
+          "buy": 578.7776,
+          "spread": 29.84
         },
         "Silver": {
-          "sell": 10.472,
-          "buy": 9.8099,
+          "sell": 10.4027,
+          "buy": 9.7418,
           "spread": 0.66
         }
       }
