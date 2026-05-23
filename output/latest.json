@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 01:52",
+  "updated_label": "Today 02:53",
   "merchants": [
     {
       "id": "public_gold",
@@ -46,37 +46,12 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 0.25G Raya 2026": {
-          "sell": 195.0,
-          "buy": 178.0,
-          "spread": 17.0
+        "Gold Bar 0.5G Selamat Hari Guru 2026": {
+          "sell": 333.0,
+          "buy": 286.0,
+          "spread": 47.0
         },
         "Gold Bar 0.5G Custom Hari Pekerja 2026": {
-          "sell": 333.0,
-          "buy": 286.0,
-          "spread": 47.0
-        },
-        "Gold Bar 0.5G Chinese New Year 2026": {
-          "sell": 333.0,
-          "buy": 286.0,
-          "spread": 47.0
-        },
-        "Gold Bar 1G Custom Hari Pekerja 2026": {
-          "sell": 647.0,
-          "buy": 572.0,
-          "spread": 75.0
-        },
-        "Gold Bar 0.5G 2026": {
-          "sell": 328.0,
-          "buy": 286.0,
-          "spread": 42.0
-        },
-        "Gold Bar 1G Custom Selamat": {
-          "sell": 657.0,
-          "buy": 572.0,
-          "spread": 85.0
-        },
-        "Gold Bar 0.5G Selamat Hari Guru 2026": {
           "sell": 333.0,
           "buy": 286.0,
           "spread": 47.0
@@ -90,6 +65,31 @@
           "sell": 647.0,
           "buy": 572.0,
           "spread": 75.0
+        },
+        "Gold Bar 1G Custom Hari Pekerja 2026": {
+          "sell": 647.0,
+          "buy": 572.0,
+          "spread": 75.0
+        },
+        "Gold Bar 0.5G 2026": {
+          "sell": 328.0,
+          "buy": 286.0,
+          "spread": 42.0
+        },
+        "Gold Bar 0.5G Chinese New Year 2026": {
+          "sell": 333.0,
+          "buy": 286.0,
+          "spread": 47.0
+        },
+        "Gold Bar 1G Custom Selamat": {
+          "sell": 657.0,
+          "buy": 572.0,
+          "spread": 85.0
+        },
+        "Gold Bar 0.25G Raya 2026": {
+          "sell": 195.0,
+          "buy": 178.0,
+          "spread": 17.0
         }
       }
     },
@@ -125,7 +125,7 @@
           "spread": 41.0
         }
       },
-      "last_updated": "24-05-2026 01:45:02"
+      "last_updated": "24-05-2026 02:45:02"
     },
     {
       "id": "maa_gold",
@@ -181,7 +181,7 @@
           "spread": 0.0
         }
       },
-      "last_updated": "23 May 26 17:52"
+      "last_updated": "23 May 26 18:53"
     },
     {
       "id": "world_silver",
@@ -198,7 +198,7 @@
           "spread": 0.0
         }
       },
-      "last_updated": "23 May 26 17:52"
+      "last_updated": "23 May 26 18:53"
     },
     {
       "id": "mygold_i",
