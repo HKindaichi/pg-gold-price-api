@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 11:36",
+  "updated_label": "Today 14:44",
   "merchants": [
     {
       "id": "public_gold",
@@ -46,50 +46,50 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 0.5G Selamat Hari Guru 2026": {
-          "sell": 332.0,
-          "buy": 285.0,
-          "spread": 47.0
-        },
         "Gold Bar 0.5G Chinese New Year 2026": {
-          "sell": 332.0,
-          "buy": 285.0,
+          "sell": 331.0,
+          "buy": 284.0,
           "spread": 47.0
         },
-        "Gold Bar 0.5G Custom Hari Pekerja 2026": {
-          "sell": 332.0,
-          "buy": 285.0,
-          "spread": 47.0
-        },
-        "Gold Bar 1G Chinese New Year 2026": {
-          "sell": 645.0,
-          "buy": 571.0,
+        "Gold Bar 1G Masjidil Haram 2026": {
+          "sell": 642.0,
+          "buy": 568.0,
           "spread": 74.0
+        },
+        "Gold Bar 1G Custom Selamat": {
+          "sell": 652.0,
+          "buy": 568.0,
+          "spread": 84.0
+        },
+        "Gold Bar 0.5G Custom Selamat": {
+          "sell": 341.0,
+          "buy": 284.0,
+          "spread": 57.0
         },
         "Gold Bar 0.25G Raya 2026": {
           "sell": 195.0,
           "buy": 178.0,
           "spread": 17.0
         },
-        "Gold Bar 0.5G Custom Selamat": {
-          "sell": 342.0,
-          "buy": 285.0,
-          "spread": 57.0
+        "Gold Bar 1G Chinese New Year 2026": {
+          "sell": 642.0,
+          "buy": 568.0,
+          "spread": 74.0
+        },
+        "Gold Bar 0.5G Selamat Hari Guru 2026": {
+          "sell": 331.0,
+          "buy": 284.0,
+          "spread": 47.0
         },
         "Gold Bar 1G Custom Hari Pekerja 2026": {
-          "sell": 645.0,
-          "buy": 571.0,
+          "sell": 642.0,
+          "buy": 568.0,
           "spread": 74.0
         },
-        "Gold Bar 1G Custom Selamat": {
-          "sell": 655.0,
-          "buy": 571.0,
-          "spread": 84.0
-        },
-        "Gold Bar 1G Masjidil Haram 2026": {
-          "sell": 645.0,
-          "buy": 571.0,
-          "spread": 74.0
+        "Gold Bar 0.5G Custom Hari Pekerja 2026": {
+          "sell": 331.0,
+          "buy": 284.0,
+          "spread": 47.0
         }
       }
     },
@@ -120,12 +120,12 @@
       "name": "GB Gold",
       "items": {
         "999": {
-          "sell": 617.0,
-          "buy": 576.0,
+          "sell": 614.0,
+          "buy": 573.0,
           "spread": 41.0
         }
       },
-      "last_updated": "27-05-2026 11:30:01"
+      "last_updated": "27-05-2026 14:30:02"
     },
     {
       "id": "maa_gold",
@@ -171,34 +171,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 573.72,
-          "buy": 573.72,
+          "sell": 570.73,
+          "buy": 570.73,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4506.8,
-          "buy": 4506.8,
+          "sell": 4483.3,
+          "buy": 4483.3,
           "spread": 0.0
         }
       },
-      "last_updated": "27 May 26 03:36"
+      "last_updated": "27 May 26 06:43"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 9.82,
-          "buy": 9.82,
+          "sell": 9.58,
+          "buy": 9.58,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 77.12,
-          "buy": 77.12,
+          "sell": 75.28,
+          "buy": 75.28,
           "spread": 0.0
         }
       },
-      "last_updated": "27 May 26 03:36"
+      "last_updated": "27 May 26 06:43"
     },
     {
       "id": "mygold_i",
@@ -228,14 +228,14 @@
       "name": "RHB",
       "items": {
         "999": {
-          "sell": 588.9243,
-          "buy": 558.4551,
+          "sell": 588.013,
+          "buy": 557.5447,
           "spread": 30.47
         },
         "Silver": {
-          "sell": 10.1038,
-          "buy": 9.4293,
-          "spread": 0.67
+          "sell": 9.9863,
+          "buy": 9.3061,
+          "spread": 0.68
         }
       }
     }
