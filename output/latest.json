@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 22:16",
+  "updated_label": "Today 23:36",
   "merchants": [
     {
       "id": "public_gold",
@@ -46,50 +46,50 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 1G Masjidil Haram 2026": {
-          "sell": 637.0,
-          "buy": 563.0,
-          "spread": 74.0
-        },
-        "Gold Bar 1G Custom Hari Pekerja 2026": {
-          "sell": 637.0,
-          "buy": 563.0,
-          "spread": 74.0
-        },
-        "Gold Bar 0.5G Selamat Hari Guru 2026": {
-          "sell": 329.0,
-          "buy": 282.0,
-          "spread": 47.0
-        },
-        "Gold Bar 1G Custom Selamat": {
-          "sell": 647.0,
-          "buy": 563.0,
-          "spread": 84.0
+        "Gold Bar 0.5G Custom Selamat": {
+          "sell": 338.0,
+          "buy": 281.0,
+          "spread": 57.0
         },
         "Gold Bar 1G Chinese New Year 2026": {
-          "sell": 637.0,
-          "buy": 563.0,
+          "sell": 635.0,
+          "buy": 561.0,
           "spread": 74.0
         },
         "Gold Bar 0.5G Custom Hari Pekerja 2026": {
-          "sell": 329.0,
-          "buy": 282.0,
+          "sell": 328.0,
+          "buy": 281.0,
           "spread": 47.0
         },
-        "Gold Bar 0.5G Custom Selamat": {
-          "sell": 339.0,
-          "buy": 282.0,
-          "spread": 57.0
+        "Gold Bar 1G Custom Selamat": {
+          "sell": 645.0,
+          "buy": 561.0,
+          "spread": 84.0
+        },
+        "Gold Bar 0.5G Chinese New Year 2026": {
+          "sell": 328.0,
+          "buy": 281.0,
+          "spread": 47.0
+        },
+        "Gold Bar 0.5G Selamat Hari Guru 2026": {
+          "sell": 328.0,
+          "buy": 281.0,
+          "spread": 47.0
         },
         "Gold Bar 0.25G Raya 2026": {
           "sell": 195.0,
           "buy": 178.0,
           "spread": 17.0
         },
-        "Gold Bar 0.5G Chinese New Year 2026": {
-          "sell": 329.0,
-          "buy": 282.0,
-          "spread": 47.0
+        "Gold Bar 1G Masjidil Haram 2026": {
+          "sell": 635.0,
+          "buy": 561.0,
+          "spread": 74.0
+        },
+        "Gold Bar 1G Custom Hari Pekerja 2026": {
+          "sell": 635.0,
+          "buy": 561.0,
+          "spread": 74.0
         }
       }
     },
@@ -120,12 +120,12 @@
       "name": "GB Gold",
       "items": {
         "999": {
-          "sell": 609.0,
-          "buy": 569.0,
+          "sell": 607.0,
+          "buy": 567.0,
           "spread": 40.0
         }
       },
-      "last_updated": "27-05-2026 22:15:02"
+      "last_updated": "27-05-2026 23:30:02"
     },
     {
       "id": "maa_gold",
@@ -171,34 +171,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 569.2,
-          "buy": 569.2,
+          "sell": 568.39,
+          "buy": 568.39,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4470.7,
-          "buy": 4470.7,
+          "sell": 4464.4,
+          "buy": 4464.4,
           "spread": 0.0
         }
       },
-      "last_updated": "27 May 26 14:16"
+      "last_updated": "27 May 26 15:36"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 9.54,
-          "buy": 9.54,
+          "sell": 9.51,
+          "buy": 9.51,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 74.92,
-          "buy": 74.92,
+          "sell": 74.72,
+          "buy": 74.72,
           "spread": 0.0
         }
       },
-      "last_updated": "27 May 26 14:16"
+      "last_updated": "27 May 26 15:36"
     },
     {
       "id": "mygold_i",
