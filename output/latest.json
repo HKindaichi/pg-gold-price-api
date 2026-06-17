@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 06:28",
+  "updated_label": "Today 07:56",
   "merchants": [
     {
       "id": "public_gold",
@@ -31,27 +31,34 @@
       "last_updated": "16 Jun 2026 09:22:28"
     },
     {
+      "id": "cimb_e_gia",
+      "name": "CIMB e-GIA",
+      "items": {
+        "999": {
+          "sell": 597.5,
+          "buy": 537.5,
+          "spread": 60.0
+        }
+      },
+      "last_updated": "5:10 pm, 16 Jun 2026, Tuesday"
+    },
+    {
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 0.5G Selamat Hari Guru 2026": {
-          "sell": 323.0,
-          "buy": 277.0,
-          "spread": 46.0
-        },
-        "Gold Bar 0.5G World Cup 2026": {
-          "sell": 323.0,
-          "buy": 277.0,
-          "spread": 46.0
-        },
-        "Gold Bar 0.5G Custom Selamat": {
-          "sell": 333.0,
-          "buy": 277.0,
-          "spread": 56.0
+        "Gold Bar 1G Chinese New Year 2026": {
+          "sell": 627.0,
+          "buy": 554.0,
+          "spread": 73.0
         },
         "Gold Bar 0.5G Chinese New Year 2026": {
-          "sell": 323.0,
-          "buy": 277.0,
+          "sell": 324.0,
+          "buy": 278.0,
+          "spread": 46.0
+        },
+        "Gold Bar 0.5G Selamat Hari Guru 2026": {
+          "sell": 324.0,
+          "buy": 278.0,
           "spread": 46.0
         },
         "Gold Bar 0.25G Raya 2026": {
@@ -59,24 +66,29 @@
           "buy": 178.0,
           "spread": 17.0
         },
+        "Gold Bar 1G World Cup 2026": {
+          "sell": 627.0,
+          "buy": 554.0,
+          "spread": 73.0
+        },
+        "Gold Bar 0.5G World Cup 2026": {
+          "sell": 324.0,
+          "buy": 278.0,
+          "spread": 46.0
+        },
         "Gold Bar 1G Custom Selamat": {
-          "sell": 636.0,
-          "buy": 553.0,
+          "sell": 637.0,
+          "buy": 554.0,
           "spread": 83.0
         },
-        "Gold Bar 1G World Cup 2026": {
-          "sell": 626.0,
-          "buy": 553.0,
-          "spread": 73.0
+        "Gold Bar 0.5G Custom Selamat": {
+          "sell": 334.0,
+          "buy": 278.0,
+          "spread": 56.0
         },
         "Gold Bar 1G Masjidil Haram 2026": {
-          "sell": 626.0,
-          "buy": 553.0,
-          "spread": 73.0
-        },
-        "Gold Bar 1G Chinese New Year 2026": {
-          "sell": 626.0,
-          "buy": 553.0,
+          "sell": 627.0,
+          "buy": 554.0,
           "spread": 73.0
         }
       }
@@ -108,12 +120,12 @@
       "name": "GB Gold",
       "items": {
         "999": {
-          "sell": 598.0,
-          "buy": 558.0,
+          "sell": 599.0,
+          "buy": 559.0,
           "spread": 40.0
         }
       },
-      "last_updated": "18-06-2026 06:15:02"
+      "last_updated": "18-06-2026 07:45:01"
     },
     {
       "id": "maa_gold",
@@ -159,34 +171,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 560.27,
-          "buy": 560.27,
+          "sell": 561.57,
+          "buy": 561.57,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4286.9,
-          "buy": 4286.9,
+          "sell": 4296.9,
+          "buy": 4296.9,
           "spread": 0.0
         }
       },
-      "last_updated": "17 Jun 26 22:28"
+      "last_updated": "17 Jun 26 23:56"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 8.89,
-          "buy": 8.89,
+          "sell": 8.93,
+          "buy": 8.93,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 68.05,
-          "buy": 68.05,
+          "sell": 68.36,
+          "buy": 68.36,
           "spread": 0.0
         }
       },
-      "last_updated": "17 Jun 26 22:28"
+      "last_updated": "17 Jun 26 23:56"
     },
     {
       "id": "mygold_i",
@@ -209,7 +221,7 @@
           "spread": 22.07
         }
       },
-      "last_updated": "18 June 2026 06:00 AM"
+      "last_updated": "18 June 2026 07:30 AM"
     },
     {
       "id": "rhb",
