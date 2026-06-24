@@ -1,18 +1,18 @@
 {
-  "updated_label": "Today 01:24",
+  "updated_label": "Today 03:07",
   "merchants": [
     {
       "id": "public_gold",
       "name": "Public Gold",
       "items": {
         "999": {
-          "sell": 581,
-          "buy": 528,
-          "spread": 53
+          "sell": 576,
+          "buy": 524,
+          "spread": 52
         },
         "916": {
-          "sell": 552,
-          "buy": 480,
+          "sell": 548,
+          "buy": 476,
           "spread": 72
         }
       },
@@ -46,50 +46,50 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
+        "Gold Bar 1G Custom Selamat": {
+          "sell": 605.0,
+          "buy": 525.0,
+          "spread": 80.0
+        },
         "Gold Bar 0.5G Selamat Hari Guru 2026": {
-          "sell": 309.0,
-          "buy": 264.0,
+          "sell": 308.0,
+          "buy": 263.0,
           "spread": 45.0
         },
         "Gold Bar 1G Masjidil Haram 2026": {
-          "sell": 599.0,
-          "buy": 529.0,
+          "sell": 595.0,
+          "buy": 525.0,
           "spread": 70.0
+        },
+        "Gold Bar 0.5G World Cup 2026": {
+          "sell": 308.0,
+          "buy": 263.0,
+          "spread": 45.0
         },
         "Gold Bar 0.25G Raya 2026": {
           "sell": 195.0,
           "buy": 178.0,
           "spread": 17.0
         },
+        "Gold Bar 1G Chinese New Year 2026": {
+          "sell": 595.0,
+          "buy": 525.0,
+          "spread": 70.0
+        },
         "Gold Bar 1G World Cup 2026": {
-          "sell": 599.0,
-          "buy": 529.0,
+          "sell": 595.0,
+          "buy": 525.0,
           "spread": 70.0
         },
         "Gold Bar 0.5G Chinese New Year 2026": {
-          "sell": 309.0,
-          "buy": 264.0,
+          "sell": 308.0,
+          "buy": 263.0,
           "spread": 45.0
         },
         "Gold Bar 0.5G Custom Selamat": {
-          "sell": 319.0,
-          "buy": 264.0,
+          "sell": 318.0,
+          "buy": 263.0,
           "spread": 55.0
-        },
-        "Gold Bar 1G Custom Selamat": {
-          "sell": 609.0,
-          "buy": 529.0,
-          "spread": 80.0
-        },
-        "Gold Bar 1G Chinese New Year 2026": {
-          "sell": 599.0,
-          "buy": 529.0,
-          "spread": 70.0
-        },
-        "Gold Bar 0.5G World Cup 2026": {
-          "sell": 309.0,
-          "buy": 264.0,
-          "spread": 45.0
         }
       }
     },
@@ -120,12 +120,24 @@
       "name": "GB Gold",
       "items": {
         "999": {
-          "sell": 571.0,
-          "buy": 533.0,
+          "sell": 568.0,
+          "buy": 530.0,
           "spread": 38.0
         }
       },
-      "last_updated": "25-06-2026 01:15:02"
+      "last_updated": "25-06-2026 03:00:01"
+    },
+    {
+      "id": "biga_i",
+      "name": "BIGA-i",
+      "items": {
+        "999": {
+          "sell": 544.39,
+          "buy": 564.74,
+          "spread": -20.35
+        }
+      },
+      "last_updated": "24 June 2026; 9:00am"
     },
     {
       "id": "maa_gold",
@@ -171,34 +183,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 534.99,
-          "buy": 534.99,
+          "sell": 531.81,
+          "buy": 531.81,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4024.2,
-          "buy": 4024.2,
+          "sell": 4000.3,
+          "buy": 4000.3,
           "spread": 0.0
         }
       },
-      "last_updated": "24 Jun 26 17:24"
+      "last_updated": "24 Jun 26 19:07"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 7.79,
-          "buy": 7.79,
+          "sell": 7.57,
+          "buy": 7.57,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 58.59,
-          "buy": 58.59,
+          "sell": 56.93,
+          "buy": 56.93,
           "spread": 0.0
         }
       },
-      "last_updated": "24 Jun 26 17:24"
+      "last_updated": "24 Jun 26 19:07"
     },
     {
       "id": "mygold_i",
