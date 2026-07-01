@@ -1,19 +1,19 @@
 {
-  "updated_label": "Today 21:30",
+  "updated_label": "Today 22:30",
   "merchants": [
     {
       "id": "public_gold",
       "name": "Public Gold",
       "items": {
         "999": {
-          "sell": 576,
-          "buy": 524,
-          "spread": 52
+          "sell": 585,
+          "buy": 532,
+          "spread": 53
         },
         "916": {
-          "sell": 548,
-          "buy": 476,
-          "spread": 72
+          "sell": 556,
+          "buy": 483,
+          "spread": 73
         }
       },
       "last_updated": "01-July-2026"
@@ -46,40 +46,40 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 1G World Cup 2026": {
-          "sell": 598.0,
-          "buy": 528.0,
-          "spread": 70.0
-        },
         "Gold Bar 0.5G World Cup 2026": {
-          "sell": 309.0,
-          "buy": 264.0,
+          "sell": 313.0,
+          "buy": 268.0,
           "spread": 45.0
         },
-        "Gold Bar 0.5G Klasik V3": {
-          "sell": 296.0,
-          "buy": 264.0,
-          "spread": 32.0
-        },
         "Gold Bar 1Kg": {
-          "sell": 568946.0,
-          "buy": 528841.0,
-          "spread": 40105.0
+          "sell": 577700.0,
+          "buy": 536982.0,
+          "spread": 40718.0
         },
-        "Gold Bar 1G Raja Perlis": {
-          "sell": 589.0,
-          "buy": 527.0,
-          "spread": 62.0
-        },
-        "Gold Bar 0.5G Raja Perlis": {
-          "sell": 301.0,
-          "buy": 264.0,
-          "spread": 37.0
+        "Gold Bar 0.5G Klasik V3": {
+          "sell": 300.0,
+          "buy": 267.0,
+          "spread": 33.0
         },
         "Gold Bar 1G Maal Hijrah 1448H": {
+          "sell": 607.0,
+          "buy": 536.0,
+          "spread": 71.0
+        },
+        "Gold Bar 1G Raja Perlis": {
           "sell": 598.0,
-          "buy": 528.0,
-          "spread": 70.0
+          "buy": 536.0,
+          "spread": 62.0
+        },
+        "Gold Bar 1G World Cup 2026": {
+          "sell": 607.0,
+          "buy": 536.0,
+          "spread": 71.0
+        },
+        "Gold Bar 0.5G Raja Perlis": {
+          "sell": 305.0,
+          "buy": 267.0,
+          "spread": 38.0
         }
       }
     },
@@ -110,24 +110,12 @@
       "name": "GB Gold",
       "items": {
         "999": {
-          "sell": 569.0,
-          "buy": 533.0,
-          "spread": 36.0
+          "sell": 578.0,
+          "buy": 541.0,
+          "spread": 37.0
         }
       },
-      "last_updated": "01-07-2026 21:30:02"
-    },
-    {
-      "id": "biga_i",
-      "name": "BIGA-i",
-      "items": {
-        "999": {
-          "sell": 522.52,
-          "buy": 547.86,
-          "spread": -25.34
-        }
-      },
-      "last_updated": "1 July 2026; 9:00am"
+      "last_updated": "01-07-2026 22:30:02"
     },
     {
       "id": "maa_gold",
@@ -173,34 +161,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 531.64,
-          "buy": 531.64,
+          "sell": 541.4,
+          "buy": 541.4,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4041.0,
-          "buy": 4041.0,
+          "sell": 4115.2,
+          "buy": 4115.2,
           "spread": 0.0
         }
       },
-      "last_updated": "01 Jul 26 13:30"
+      "last_updated": "01 Jul 26 14:30"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 7.76,
-          "buy": 7.76,
+          "sell": 8.06,
+          "buy": 8.06,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 59.02,
-          "buy": 59.02,
+          "sell": 61.25,
+          "buy": 61.25,
           "spread": 0.0
         }
       },
-      "last_updated": "01 Jul 26 13:30"
+      "last_updated": "01 Jul 26 14:30"
     },
     {
       "id": "mygold_i",
@@ -223,7 +211,7 @@
           "spread": 20.65
         }
       },
-      "last_updated": "01 July 2026 09:00 PM"
+      "last_updated": "01 July 2026 10:00 PM"
     },
     {
       "id": "rhb",
