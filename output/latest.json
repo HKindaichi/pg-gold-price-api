@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 16:59",
+  "updated_label": "Today 19:24",
   "merchants": [
     {
       "id": "public_gold",
@@ -35,51 +35,51 @@
       "name": "CIMB e-GIA",
       "items": {
         "999": {
-          "sell": 550.0,
-          "buy": 540.9,
-          "spread": 9.1
+          "sell": 577.1,
+          "buy": 517.1,
+          "spread": 60.0
         }
       },
-      "last_updated": "4:10 pm, 3 Jul 2026, Friday"
+      "last_updated": "5:10 pm, 3 Jul 2026, Friday"
     },
     {
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 1G World Cup 2026": {
-          "sell": 614.0,
-          "buy": 542.0,
-          "spread": 72.0
+        "Gold Bar 0.5G Raja Perlis": {
+          "sell": 305.0,
+          "buy": 272.0,
+          "spread": 33.0
         },
         "Gold Bar 1G Maal Hijrah 1448H": {
-          "sell": 614.0,
-          "buy": 542.0,
+          "sell": 615.0,
+          "buy": 543.0,
+          "spread": 72.0
+        },
+        "Gold Bar 0.5G Klasik V3": {
+          "sell": 305.0,
+          "buy": 272.0,
+          "spread": 33.0
+        },
+        "Gold Bar 1Kg": {
+          "sell": 585944.0,
+          "buy": 544649.0,
+          "spread": 41295.0
+        },
+        "Gold Bar 1G Raja Perlis": {
+          "sell": 601.0,
+          "buy": 543.0,
+          "spread": 58.0
+        },
+        "Gold Bar 1G World Cup 2026": {
+          "sell": 615.0,
+          "buy": 543.0,
           "spread": 72.0
         },
         "Gold Bar 0.5G World Cup 2026": {
           "sell": 317.0,
           "buy": 271.0,
           "spread": 46.0
-        },
-        "Gold Bar 0.5G Klasik V3": {
-          "sell": 304.0,
-          "buy": 271.0,
-          "spread": 33.0
-        },
-        "Gold Bar 1G Raja Perlis": {
-          "sell": 600.0,
-          "buy": 542.0,
-          "spread": 58.0
-        },
-        "Gold Bar 1Kg": {
-          "sell": 584634.0,
-          "buy": 543431.0,
-          "spread": 41203.0
-        },
-        "Gold Bar 0.5G Raja Perlis": {
-          "sell": 304.0,
-          "buy": 271.0,
-          "spread": 33.0
         }
       }
     },
@@ -110,12 +110,12 @@
       "name": "GB Gold",
       "items": {
         "999": {
-          "sell": 585.0,
-          "buy": 547.0,
+          "sell": 586.0,
+          "buy": 548.0,
           "spread": 38.0
         }
       },
-      "last_updated": "03-07-2026 16:45:02"
+      "last_updated": "03-07-2026 19:15:02"
     },
     {
       "id": "maa_gold",
@@ -161,34 +161,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 548.15,
-          "buy": 548.15,
+          "sell": 548.65,
+          "buy": 548.65,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4192.1,
-          "buy": 4192.1,
+          "sell": 4193.9,
+          "buy": 4193.9,
           "spread": 0.0
         }
       },
-      "last_updated": "03 Jul 26 08:58"
+      "last_updated": "03 Jul 26 11:23"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 8.25,
-          "buy": 8.25,
+          "sell": 8.23,
+          "buy": 8.23,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 63.1,
-          "buy": 63.1,
+          "sell": 62.91,
+          "buy": 62.91,
           "spread": 0.0
         }
       },
-      "last_updated": "03 Jul 26 08:58"
+      "last_updated": "03 Jul 26 11:23"
     },
     {
       "id": "mygold_i",
@@ -211,20 +211,20 @@
           "spread": 21.56
         }
       },
-      "last_updated": "03 July 2026 04:30 PM"
+      "last_updated": "03 July 2026 07:00 PM"
     },
     {
       "id": "rhb",
       "name": "RHB",
       "items": {
         "999": {
-          "sell": 561.6333,
-          "buy": 531.921,
+          "sell": 562.2459,
+          "buy": 532.5381,
           "spread": 29.71
         },
         "Silver": {
-          "sell": 8.549,
-          "buy": 7.8893,
+          "sell": 8.5284,
+          "buy": 7.8714,
           "spread": 0.66
         }
       }
