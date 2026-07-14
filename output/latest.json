@@ -1,19 +1,19 @@
 {
-  "updated_label": "Today 20:04",
+  "updated_label": "Today 21:29",
   "merchants": [
     {
       "id": "public_gold",
       "name": "Public Gold",
       "items": {
         "999": {
-          "sell": 571,
-          "buy": 519,
-          "spread": 52
+          "sell": 584,
+          "buy": 531,
+          "spread": 53
         },
         "916": {
-          "sell": 543,
-          "buy": 472,
-          "spread": 71
+          "sell": 555,
+          "buy": 482,
+          "spread": 73
         }
       },
       "last_updated": "14-July-2026"
@@ -46,40 +46,40 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 0.5G World Cup 2026": {
-          "sell": 307.0,
-          "buy": 262.0,
-          "spread": 45.0
-        },
-        "Gold Bar 0.5G Klasik V3": {
-          "sell": 295.0,
-          "buy": 263.0,
-          "spread": 32.0
-        },
-        "Gold Bar 1Kg": {
-          "sell": 566156.0,
-          "buy": 526246.0,
-          "spread": 39910.0
+        "Gold Bar 0.5G Raja Perlis": {
+          "sell": 298.0,
+          "buy": 265.0,
+          "spread": 33.0
         },
         "Gold Bar 1G Raja Perlis": {
-          "sell": 581.0,
-          "buy": 525.0,
-          "spread": 56.0
+          "sell": 587.0,
+          "buy": 530.0,
+          "spread": 57.0
+        },
+        "Gold Bar 0.5G World Cup 2026": {
+          "sell": 310.0,
+          "buy": 265.0,
+          "spread": 45.0
         },
         "Gold Bar 1G World Cup 2026": {
-          "sell": 595.0,
-          "buy": 525.0,
-          "spread": 70.0
+          "sell": 601.0,
+          "buy": 530.0,
+          "spread": 71.0
         },
         "Gold Bar 1G Maal Hijrah 1448H": {
-          "sell": 595.0,
-          "buy": 525.0,
-          "spread": 70.0
+          "sell": 601.0,
+          "buy": 530.0,
+          "spread": 71.0
         },
-        "Gold Bar 0.5G Raja Perlis": {
-          "sell": 295.0,
-          "buy": 263.0,
-          "spread": 32.0
+        "Gold Bar 1Kg": {
+          "sell": 572003.0,
+          "buy": 531684.0,
+          "spread": 40319.0
+        },
+        "Gold Bar 0.5G Klasik V3": {
+          "sell": 298.0,
+          "buy": 265.0,
+          "spread": 33.0
         }
       }
     },
@@ -110,12 +110,24 @@
       "name": "GB Gold",
       "items": {
         "999": {
-          "sell": 566.0,
-          "buy": 530.0,
-          "spread": 36.0
+          "sell": 572.0,
+          "buy": 535.0,
+          "spread": 37.0
         }
       },
-      "last_updated": "14-07-2026 20:00:02"
+      "last_updated": "14-07-2026 21:15:01"
+    },
+    {
+      "id": "biga_i",
+      "name": "BIGA-i",
+      "items": {
+        "999": {
+          "sell": 523.69,
+          "buy": 548.82,
+          "spread": -25.13
+        }
+      },
+      "last_updated": "14 July 2026; 9:00am"
     },
     {
       "id": "maa_gold",
@@ -161,34 +173,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 528.93,
-          "buy": 528.93,
+          "sell": 535.49,
+          "buy": 535.49,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4036.7,
-          "buy": 4036.7,
+          "sell": 4086.3,
+          "buy": 4086.3,
           "spread": 0.0
         }
       },
-      "last_updated": "14 Jul 26 12:04"
+      "last_updated": "14 Jul 26 13:28"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 7.65,
-          "buy": 7.65,
+          "sell": 7.79,
+          "buy": 7.79,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 58.38,
-          "buy": 58.38,
+          "sell": 59.47,
+          "buy": 59.47,
           "spread": 0.0
         }
       },
-      "last_updated": "14 Jul 26 12:04"
+      "last_updated": "14 Jul 26 13:29"
     },
     {
       "id": "mygold_i",
@@ -211,7 +223,7 @@
           "spread": 20.7
         }
       },
-      "last_updated": "14 July 2026 07:30 PM"
+      "last_updated": "14 July 2026 09:00 PM"
     },
     {
       "id": "rhb",
