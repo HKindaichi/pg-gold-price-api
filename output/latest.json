@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 12:21",
+  "updated_label": "Today 14:34",
   "merchants": [
     {
       "id": "public_gold",
@@ -46,14 +46,24 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 1G Maal Hijrah 1448H": {
-          "sell": 593.0,
-          "buy": 523.0,
+        "Gold Bar 1Kg": {
+          "sell": 563110.0,
+          "buy": 523413.0,
+          "spread": 39697.0
+        },
+        "Gold Bar 1G World Cup 2026": {
+          "sell": 592.0,
+          "buy": 522.0,
           "spread": 70.0
         },
+        "Gold Bar 0.5G Raja Perlis": {
+          "sell": 293.0,
+          "buy": 261.0,
+          "spread": 32.0
+        },
         "Gold Bar 1G Raja Perlis": {
-          "sell": 579.0,
-          "buy": 523.0,
+          "sell": 578.0,
+          "buy": 522.0,
           "spread": 56.0
         },
         "Gold Bar 0.5G World Cup 2026": {
@@ -66,20 +76,10 @@
           "buy": 261.0,
           "spread": 32.0
         },
-        "Gold Bar 1G World Cup 2026": {
-          "sell": 593.0,
-          "buy": 523.0,
+        "Gold Bar 1G Maal Hijrah 1448H": {
+          "sell": 592.0,
+          "buy": 522.0,
           "spread": 70.0
-        },
-        "Gold Bar 1Kg": {
-          "sell": 563823.0,
-          "buy": 524076.0,
-          "spread": 39747.0
-        },
-        "Gold Bar 0.5G Raja Perlis": {
-          "sell": 293.0,
-          "buy": 261.0,
-          "spread": 32.0
         }
       }
     },
@@ -110,24 +110,12 @@
       "name": "GB Gold",
       "items": {
         "999": {
-          "sell": 564.0,
-          "buy": 528.0,
+          "sell": 563.0,
+          "buy": 527.0,
           "spread": 36.0
         }
       },
-      "last_updated": "15-07-2026 12:15:02"
-    },
-    {
-      "id": "biga_i",
-      "name": "BIGA-i",
-      "items": {
-        "999": {
-          "sell": 529.49,
-          "buy": 554.72,
-          "spread": -25.23
-        }
-      },
-      "last_updated": "15 July 2026; 9:00am"
+      "last_updated": "15-07-2026 14:30:02"
     },
     {
       "id": "maa_gold",
@@ -161,46 +149,46 @@
       "name": "Maybank Silver",
       "items": {
         "Silver": {
-          "sell": 8.01,
-          "buy": 7.38,
+          "sell": 7.95,
+          "buy": 7.32,
           "spread": 0.63
         }
       },
-      "last_updated": "15 Jul 2026 10:39 AM"
+      "last_updated": "15 Jul 2026 02:29 PM"
     },
     {
       "id": "world_gold",
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 528.24,
-          "buy": 528.24,
+          "sell": 527.38,
+          "buy": 527.38,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4038.9,
-          "buy": 4038.9,
+          "sell": 4031.3,
+          "buy": 4031.3,
           "spread": 0.0
         }
       },
-      "last_updated": "15 Jul 26 04:20"
+      "last_updated": "15 Jul 26 06:34"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 7.69,
-          "buy": 7.69,
+          "sell": 7.65,
+          "buy": 7.65,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 58.77,
-          "buy": 58.77,
+          "sell": 58.48,
+          "buy": 58.48,
           "spread": 0.0
         }
       },
-      "last_updated": "15 Jul 26 04:20"
+      "last_updated": "15 Jul 26 06:34"
     },
     {
       "id": "mygold_i",
@@ -223,20 +211,20 @@
           "spread": 20.68
         }
       },
-      "last_updated": "15 July 2026 12:00 PM"
+      "last_updated": "15 July 2026 02:00 PM"
     },
     {
       "id": "rhb",
       "name": "RHB",
       "items": {
         "999": {
-          "sell": 542.3107,
-          "buy": 512.6421,
-          "spread": 29.67
+          "sell": 542.3002,
+          "buy": 512.4302,
+          "spread": 29.87
         },
         "Silver": {
-          "sell": 7.9646,
-          "buy": 7.3063,
+          "sell": 7.9731,
+          "buy": 7.3129,
           "spread": 0.66
         }
       }
