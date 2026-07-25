@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 22:27",
+  "updated_label": "Today 23:36",
   "merchants": [
     {
       "id": "public_gold",
@@ -46,15 +46,10 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 1G V2.0": {
-          "sell": 591.0,
-          "buy": 530.0,
-          "spread": 61.0
-        },
-        "Gold Bar 1Kg": {
-          "sell": 572056.0,
-          "buy": 537451.0,
-          "spread": 34605.0
+        "Gold Bar 0.5G Klasik V3": {
+          "sell": 298.0,
+          "buy": 265.0,
+          "spread": 33.0
         },
         "Gold Bar 5G V2.0": {
           "sell": 2914.0,
@@ -66,12 +61,12 @@
           "buy": 530.0,
           "spread": 71.0
         },
-        "Gold Bar 0.5G Raja Perlis": {
-          "sell": 298.0,
-          "buy": 265.0,
-          "spread": 33.0
+        "Gold Bar 1G V2.0": {
+          "sell": 591.0,
+          "buy": 530.0,
+          "spread": 61.0
         },
-        "Gold Bar 0.5G Klasik V3": {
+        "Gold Bar 0.5G Raja Perlis": {
           "sell": 298.0,
           "buy": 265.0,
           "spread": 33.0
@@ -80,6 +75,11 @@
           "sell": 587.0,
           "buy": 530.0,
           "spread": 57.0
+        },
+        "Gold Bar 1Kg": {
+          "sell": 572056.0,
+          "buy": 537451.0,
+          "spread": 34605.0
         }
       }
     },
@@ -115,7 +115,7 @@
           "spread": 37.0
         }
       },
-      "last_updated": "25-07-2026 22:15:02"
+      "last_updated": "25-07-2026 23:30:01"
     },
     {
       "id": "maa_gold",
@@ -171,7 +171,7 @@
           "spread": 0.0
         }
       },
-      "last_updated": "25 Jul 26 14:26"
+      "last_updated": "25 Jul 26 15:35"
     },
     {
       "id": "world_silver",
@@ -188,7 +188,7 @@
           "spread": 0.0
         }
       },
-      "last_updated": "25 Jul 26 14:26"
+      "last_updated": "25 Jul 26 15:35"
     },
     {
       "id": "mygold_i",
