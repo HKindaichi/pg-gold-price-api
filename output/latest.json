@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 21:59",
+  "updated_label": "Today 22:44",
   "merchants": [
     {
       "id": "public_gold",
@@ -11,8 +11,8 @@
           "spread": 52
         },
         "916": {
-          "sell": 553,
-          "buy": 481,
+          "sell": 548,
+          "buy": 476,
           "spread": 72
         }
       },
@@ -46,65 +46,65 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 1G Maal Hijrah 1448H": {
-          "sell": 595.0,
-          "buy": 525.0,
-          "spread": 70.0
-        },
-        "Gold Bar 5G V2.0": {
-          "sell": 2884.0,
-          "buy": 2624.0,
-          "spread": 260.0
+        "Gold Bar 1G V2.0": {
+          "sell": 586.0,
+          "buy": 526.0,
+          "spread": 60.0
         },
         "Gold Coin 1 Dinar V2.0": {
-          "sell": 2453.0,
-          "buy": 2230.0,
+          "sell": 2459.0,
+          "buy": 2236.0,
           "spread": 223.0
-        },
-        "Gold Coin 5 Dinar V2.0": {
-          "sell": 12211.0,
-          "buy": 11155.0,
-          "spread": 1056.0
-        },
-        "Gold Bar 0.5G V2.0": {
-          "sell": 319.0,
-          "buy": 263.0,
-          "spread": 56.0
-        },
-        "Gold Bar 50G V2.0": {
-          "sell": 28591.0,
-          "buy": 26410.0,
-          "spread": 2181.0
-        },
-        "Gold Coin 10 Dinar V2.0": {
-          "sell": 24565.0,
-          "buy": 22440.0,
-          "spread": 2125.0
-        },
-        "Gold Bar 10G V2.0": {
-          "sell": 5762.0,
-          "buy": 5247.0,
-          "spread": 515.0
         },
         "Gold Bar 0.2G V2.0": {
           "sell": 156.0,
           "buy": 105.0,
           "spread": 51.0
         },
-        "Gold Bar 100G V2.0": {
-          "sell": 56907.0,
-          "buy": 52858.0,
-          "spread": 4049.0
-        },
-        "Gold Bar 1G V2.0": {
-          "sell": 585.0,
-          "buy": 525.0,
-          "spread": 60.0
-        },
         "Gold Coin 0.5 Dinar V2.0": {
-          "sell": 1231.0,
-          "buy": 1115.0,
+          "sell": 1234.0,
+          "buy": 1118.0,
           "spread": 116.0
+        },
+        "Gold Bar 10G V2.0": {
+          "sell": 5777.0,
+          "buy": 5261.0,
+          "spread": 516.0
+        },
+        "Gold Bar 5G V2.0": {
+          "sell": 2891.0,
+          "buy": 2630.0,
+          "spread": 261.0
+        },
+        "Gold Bar 50G V2.0": {
+          "sell": 28664.0,
+          "buy": 26477.0,
+          "spread": 2187.0
+        },
+        "Gold Bar 1G Maal Hijrah 1448H": {
+          "sell": 596.0,
+          "buy": 526.0,
+          "spread": 70.0
+        },
+        "Gold Coin 10 Dinar V2.0": {
+          "sell": 24627.0,
+          "buy": 22497.0,
+          "spread": 2130.0
+        },
+        "Gold Bar 0.5G V2.0": {
+          "sell": 319.0,
+          "buy": 263.0,
+          "spread": 56.0
+        },
+        "Gold Coin 5 Dinar V2.0": {
+          "sell": 12242.0,
+          "buy": 11183.0,
+          "spread": 1059.0
+        },
+        "Gold Bar 100G V2.0": {
+          "sell": 57052.0,
+          "buy": 52993.0,
+          "spread": 4059.0
         }
       }
     },
@@ -174,34 +174,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 535.5,
-          "buy": 535.5,
+          "sell": 537.77,
+          "buy": 537.77,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4079.3,
-          "buy": 4079.3,
+          "sell": 4096.6,
+          "buy": 4096.6,
           "spread": 0.0
         }
       },
-      "last_updated": "31 Jul 26 13:59"
+      "last_updated": "31 Jul 26 14:44"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 7.53,
-          "buy": 7.53,
+          "sell": 7.56,
+          "buy": 7.56,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 57.37,
-          "buy": 57.37,
+          "sell": 57.59,
+          "buy": 57.59,
           "spread": 0.0
         }
       },
-      "last_updated": "31 Jul 26 13:59"
+      "last_updated": "31 Jul 26 14:44"
     },
     {
       "id": "mygold_i",
@@ -224,7 +224,7 @@
           "spread": 21.07
         }
       },
-      "last_updated": "31 July 2026 09:30 PM"
+      "last_updated": "31 July 2026 10:00 PM"
     },
     {
       "id": "rhb",
