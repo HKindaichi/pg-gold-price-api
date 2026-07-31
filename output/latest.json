@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 02:03",
+  "updated_label": "Today 03:21",
   "merchants": [
     {
       "id": "public_gold",
@@ -46,65 +46,65 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Coin 10 Dinar V2.0": {
-          "sell": 24717.0,
-          "buy": 22579.0,
-          "spread": 2138.0
+        "Gold Bar 100G V2.0": {
+          "sell": 57184.0,
+          "buy": 53116.0,
+          "spread": 4068.0
         },
-        "Gold Bar 10G V2.0": {
-          "sell": 5798.0,
-          "buy": 5280.0,
-          "spread": 518.0
-        },
-        "Gold Bar 50G V2.0": {
-          "sell": 28768.0,
-          "buy": 26573.0,
-          "spread": 2195.0
-        },
-        "Gold Coin 0.5 Dinar V2.0": {
-          "sell": 1239.0,
-          "buy": 1122.0,
-          "spread": 117.0
-        },
-        "Gold Coin 5 Dinar V2.0": {
-          "sell": 12286.0,
-          "buy": 11223.0,
-          "spread": 1063.0
-        },
-        "Gold Bar 0.5G V2.0": {
-          "sell": 320.0,
-          "buy": 264.0,
-          "spread": 56.0
-        },
-        "Gold Bar 0.2G V2.0": {
-          "sell": 157.0,
-          "buy": 106.0,
-          "spread": 51.0
-        },
-        "Gold Coin 1 Dinar V2.0": {
-          "sell": 2468.0,
-          "buy": 2244.0,
-          "spread": 224.0
+        "Gold Bar 1G V2.0": {
+          "sell": 588.0,
+          "buy": 528.0,
+          "spread": 60.0
         },
         "Gold Bar 1G Maal Hijrah 1448H": {
           "sell": 598.0,
           "buy": 528.0,
           "spread": 70.0
         },
+        "Gold Bar 0.5G V2.0": {
+          "sell": 320.0,
+          "buy": 264.0,
+          "spread": 56.0
+        },
+        "Gold Coin 5 Dinar V2.0": {
+          "sell": 12270.0,
+          "buy": 11209.0,
+          "spread": 1061.0
+        },
+        "Gold Coin 10 Dinar V2.0": {
+          "sell": 24685.0,
+          "buy": 22550.0,
+          "spread": 2135.0
+        },
+        "Gold Coin 1 Dinar V2.0": {
+          "sell": 2465.0,
+          "buy": 2241.0,
+          "spread": 224.0
+        },
+        "Gold Coin 0.5 Dinar V2.0": {
+          "sell": 1237.0,
+          "buy": 1120.0,
+          "spread": 117.0
+        },
+        "Gold Bar 10G V2.0": {
+          "sell": 5790.0,
+          "buy": 5273.0,
+          "spread": 517.0
+        },
+        "Gold Bar 0.2G V2.0": {
+          "sell": 156.0,
+          "buy": 105.0,
+          "spread": 51.0
+        },
         "Gold Bar 5G V2.0": {
-          "sell": 2902.0,
-          "buy": 2640.0,
-          "spread": 262.0
+          "sell": 2898.0,
+          "buy": 2637.0,
+          "spread": 261.0
         },
-        "Gold Bar 100G V2.0": {
-          "sell": 57259.0,
-          "buy": 53186.0,
-          "spread": 4073.0
-        },
-        "Gold Bar 1G V2.0": {
-          "sell": 588.0,
-          "buy": 528.0,
-          "spread": 60.0
+        "Gold Bar 50G V2.0": {
+          "sell": 28731.0,
+          "buy": 26539.0,
+          "spread": 2192.0
         }
       }
     },
@@ -174,34 +174,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 539.55,
-          "buy": 539.55,
+          "sell": 538.87,
+          "buy": 538.87,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4110.2,
-          "buy": 4110.2,
+          "sell": 4105.0,
+          "buy": 4105.0,
           "spread": 0.0
         }
       },
-      "last_updated": "31 Jul 26 18:03"
+      "last_updated": "31 Jul 26 19:20"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 7.62,
-          "buy": 7.62,
+          "sell": 7.63,
+          "buy": 7.63,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 58.08,
-          "buy": 58.08,
+          "sell": 58.12,
+          "buy": 58.12,
           "spread": 0.0
         }
       },
-      "last_updated": "31 Jul 26 18:03"
+      "last_updated": "31 Jul 26 19:21"
     },
     {
       "id": "mygold_i",
