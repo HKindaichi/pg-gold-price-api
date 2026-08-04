@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 22:04",
+  "updated_label": "Today 23:14",
   "merchants": [
     {
       "id": "public_gold",
@@ -46,65 +46,65 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 1G Maal Hijrah 1448H": {
-          "sell": 605.0,
-          "buy": 534.0,
-          "spread": 71.0
+        "Gold Bar 100G V2.0": {
+          "sell": 57855.0,
+          "buy": 53731.0,
+          "spread": 4124.0
+        },
+        "Gold Coin 10 Dinar V2.0": {
+          "sell": 24974.0,
+          "buy": 22810.0,
+          "spread": 2164.0
         },
         "Gold Coin 1/2 Dinar V2.0": {
-          "sell": 1258.0,
-          "buy": 1135.0,
+          "sell": 1256.0,
+          "buy": 1133.0,
           "spread": 123.0
         },
-        "Gold Bar 1G V2.0": {
-          "sell": 600.0,
-          "buy": 534.0,
-          "spread": 66.0
+        "Gold Bar 5G V2.0": {
+          "sell": 2936.0,
+          "buy": 2667.0,
+          "spread": 269.0
         },
         "Gold Bar 0.5G V2.0": {
-          "sell": 324.0,
-          "buy": 268.0,
+          "sell": 323.0,
+          "buy": 267.0,
           "spread": 56.0
+        },
+        "Gold Coin 5 Dinar V2.0": {
+          "sell": 12422.0,
+          "buy": 11339.0,
+          "spread": 1083.0
+        },
+        "Gold Bar 10G V2.0": {
+          "sell": 5862.0,
+          "buy": 5334.0,
+          "spread": 528.0
+        },
+        "Gold Bar 50G V2.0": {
+          "sell": 29067.0,
+          "buy": 26845.0,
+          "spread": 2222.0
+        },
+        "Gold Bar 1G V2.0": {
+          "sell": 599.0,
+          "buy": 533.0,
+          "spread": 66.0
         },
         "Gold Bar 0.2G V2.0": {
           "sell": 158.0,
           "buy": 107.0,
           "spread": 51.0
         },
+        "Gold Bar 1G Maal Hijrah 1448H": {
+          "sell": 604.0,
+          "buy": 533.0,
+          "spread": 71.0
+        },
         "Gold Coin 1 Dinar V2.0": {
-          "sell": 2500.0,
-          "buy": 2269.0,
+          "sell": 2498.0,
+          "buy": 2267.0,
           "spread": 231.0
-        },
-        "Gold Bar 50G V2.0": {
-          "sell": 29096.0,
-          "buy": 26872.0,
-          "spread": 2224.0
-        },
-        "Gold Bar 100G V2.0": {
-          "sell": 57912.0,
-          "buy": 53784.0,
-          "spread": 4128.0
-        },
-        "Gold Bar 10G V2.0": {
-          "sell": 5868.0,
-          "buy": 5339.0,
-          "spread": 529.0
-        },
-        "Gold Coin 10 Dinar V2.0": {
-          "sell": 24999.0,
-          "buy": 22833.0,
-          "spread": 2166.0
-        },
-        "Gold Coin 5 Dinar V2.0": {
-          "sell": 12434.0,
-          "buy": 11350.0,
-          "spread": 1084.0
-        },
-        "Gold Bar 5G V2.0": {
-          "sell": 2939.0,
-          "buy": 2670.0,
-          "spread": 269.0
         }
       }
     },
@@ -174,34 +174,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 545.48,
-          "buy": 545.48,
+          "sell": 543.52,
+          "buy": 543.52,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4144.2,
-          "buy": 4144.2,
+          "sell": 4138.4,
+          "buy": 4138.4,
           "spread": 0.0
         }
       },
-      "last_updated": "04 Aug 26 14:04"
+      "last_updated": "04 Aug 26 15:14"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 7.9,
-          "buy": 7.9,
+          "sell": 7.85,
+          "buy": 7.85,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 60.01,
-          "buy": 60.01,
+          "sell": 59.8,
+          "buy": 59.8,
           "spread": 0.0
         }
       },
-      "last_updated": "04 Aug 26 14:04"
+      "last_updated": "04 Aug 26 15:14"
     },
     {
       "id": "mygold_i",
@@ -224,7 +224,7 @@
           "spread": 20.91
         }
       },
-      "last_updated": "04 August 2026 09:30 PM"
+      "last_updated": "04 August 2026 11:00 PM"
     },
     {
       "id": "rhb",
