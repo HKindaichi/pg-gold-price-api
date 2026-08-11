@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 17:27",
+  "updated_label": "Today 18:23",
   "merchants": [
     {
       "id": "public_gold",
@@ -46,65 +46,65 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 50G V2.0": {
-          "sell": 31045.0,
-          "buy": 28675.0,
-          "spread": 2370.0
-        },
-        "Gold Coin 1 Dinar V2.0": {
-          "sell": 2667.0,
-          "buy": 2421.0,
-          "spread": 246.0
-        },
-        "Gold Coin 10 Dinar V2.0": {
-          "sell": 26674.0,
-          "buy": 24366.0,
-          "spread": 2308.0
-        },
-        "Gold Coin 1/2 Dinar V2.0": {
-          "sell": 1341.0,
-          "buy": 1211.0,
-          "spread": 130.0
-        },
         "Gold Bar 1G V2.0": {
-          "sell": 639.0,
-          "buy": 570.0,
+          "sell": 640.0,
+          "buy": 571.0,
           "spread": 69.0
         },
+        "Gold Bar 5G V2.0": {
+          "sell": 3139.0,
+          "buy": 2852.0,
+          "spread": 287.0
+        },
+        "Gold Bar 50G V2.0": {
+          "sell": 31078.0,
+          "buy": 28706.0,
+          "spread": 2372.0
+        },
         "Gold Coin 5 Dinar V2.0": {
-          "sell": 13266.0,
-          "buy": 12111.0,
-          "spread": 1155.0
+          "sell": 13280.0,
+          "buy": 12124.0,
+          "spread": 1156.0
         },
         "Gold Bar 1G Maal Hijrah 1448H": {
-          "sell": 644.0,
-          "buy": 570.0,
+          "sell": 645.0,
+          "buy": 571.0,
           "spread": 74.0
         },
-        "Gold Bar 0.5G V2.0": {
-          "sell": 343.0,
-          "buy": 285.0,
-          "spread": 58.0
-        },
-        "Gold Bar 100G V2.0": {
-          "sell": 61792.0,
-          "buy": 57392.0,
-          "spread": 4400.0
-        },
-        "Gold Bar 5G V2.0": {
-          "sell": 3135.0,
-          "buy": 2849.0,
-          "spread": 286.0
-        },
         "Gold Bar 10G V2.0": {
-          "sell": 6260.0,
-          "buy": 5697.0,
+          "sell": 6267.0,
+          "buy": 5704.0,
           "spread": 563.0
+        },
+        "Gold Bar 0.5G V2.0": {
+          "sell": 344.0,
+          "buy": 286.0,
+          "spread": 58.0
         },
         "Gold Bar 0.2G V2.0": {
           "sell": 166.0,
           "buy": 114.0,
           "spread": 52.0
+        },
+        "Gold Coin 1/2 Dinar V2.0": {
+          "sell": 1342.0,
+          "buy": 1212.0,
+          "spread": 130.0
+        },
+        "Gold Bar 100G V2.0": {
+          "sell": 61858.0,
+          "buy": 57454.0,
+          "spread": 4404.0
+        },
+        "Gold Coin 1 Dinar V2.0": {
+          "sell": 2670.0,
+          "buy": 2424.0,
+          "spread": 246.0
+        },
+        "Gold Coin 10 Dinar V2.0": {
+          "sell": 26702.0,
+          "buy": 24391.0,
+          "spread": 2311.0
         }
       }
     },
@@ -174,34 +174,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 582.71,
-          "buy": 582.71,
+          "sell": 582.94,
+          "buy": 582.94,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4430.3,
-          "buy": 4430.3,
+          "sell": 4432.4,
+          "buy": 4432.4,
           "spread": 0.0
         }
       },
-      "last_updated": "11 Aug 26 09:27"
+      "last_updated": "11 Aug 26 10:23"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 8.54,
-          "buy": 8.54,
+          "sell": 8.56,
+          "buy": 8.56,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 64.97,
-          "buy": 64.97,
+          "sell": 65.09,
+          "buy": 65.09,
           "spread": 0.0
         }
       },
-      "last_updated": "11 Aug 26 09:27"
+      "last_updated": "11 Aug 26 10:23"
     },
     {
       "id": "mygold_i",
@@ -224,7 +224,7 @@
           "spread": 22.59
         }
       },
-      "last_updated": "11 August 2026 05:00 PM"
+      "last_updated": "11 August 2026 06:00 PM"
     },
     {
       "id": "rhb",
