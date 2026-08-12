@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 19:37",
+  "updated_label": "Today 20:40",
   "merchants": [
     {
       "id": "public_gold",
@@ -46,65 +46,65 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 0.5G V2.0": {
-          "sell": 347.0,
-          "buy": 288.0,
-          "spread": 59.0
-        },
         "Gold Bar 10G V2.0": {
-          "sell": 6322.0,
-          "buy": 5754.0,
-          "spread": 568.0
-        },
-        "Gold Bar 5G V2.0": {
-          "sell": 3166.0,
-          "buy": 2877.0,
-          "spread": 289.0
-        },
-        "Gold Bar 50G V2.0": {
-          "sell": 31351.0,
-          "buy": 28958.0,
-          "spread": 2393.0
-        },
-        "Gold Bar 100G V2.0": {
-          "sell": 62400.0,
-          "buy": 57958.0,
-          "spread": 4442.0
-        },
-        "Gold Bar 1G V2.0": {
-          "sell": 645.0,
-          "buy": 575.0,
-          "spread": 70.0
-        },
-        "Gold Coin 10 Dinar V2.0": {
-          "sell": 26936.0,
-          "buy": 24605.0,
-          "spread": 2331.0
-        },
-        "Gold Coin 1 Dinar V2.0": {
-          "sell": 2693.0,
-          "buy": 2445.0,
-          "spread": 248.0
-        },
-        "Gold Coin 5 Dinar V2.0": {
-          "sell": 13397.0,
-          "buy": 12231.0,
-          "spread": 1166.0
+          "sell": 6326.0,
+          "buy": 5757.0,
+          "spread": 569.0
         },
         "Gold Bar 0.2G V2.0": {
           "sell": 167.0,
           "buy": 115.0,
           "spread": 52.0
         },
-        "Gold Coin 1/2 Dinar V2.0": {
-          "sell": 1354.0,
-          "buy": 1223.0,
-          "spread": 131.0
+        "Gold Bar 50G V2.0": {
+          "sell": 31371.0,
+          "buy": 28977.0,
+          "spread": 2394.0
+        },
+        "Gold Bar 5G V2.0": {
+          "sell": 3168.0,
+          "buy": 2879.0,
+          "spread": 289.0
+        },
+        "Gold Coin 1 Dinar V2.0": {
+          "sell": 2695.0,
+          "buy": 2447.0,
+          "spread": 248.0
+        },
+        "Gold Bar 0.5G V2.0": {
+          "sell": 347.0,
+          "buy": 288.0,
+          "spread": 59.0
+        },
+        "Gold Coin 10 Dinar V2.0": {
+          "sell": 26953.0,
+          "buy": 24621.0,
+          "spread": 2332.0
+        },
+        "Gold Bar 1G V2.0": {
+          "sell": 646.0,
+          "buy": 576.0,
+          "spread": 70.0
+        },
+        "Gold Bar 100G V2.0": {
+          "sell": 62441.0,
+          "buy": 57996.0,
+          "spread": 4445.0
+        },
+        "Gold Coin 5 Dinar V2.0": {
+          "sell": 13405.0,
+          "buy": 12238.0,
+          "spread": 1167.0
         },
         "Gold Bar 1G Maal Hijrah 1448H": {
-          "sell": 650.0,
-          "buy": 575.0,
+          "sell": 651.0,
+          "buy": 576.0,
           "spread": 75.0
+        },
+        "Gold Coin 1/2 Dinar V2.0": {
+          "sell": 1355.0,
+          "buy": 1223.0,
+          "spread": 132.0
         }
       }
     },
@@ -174,34 +174,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 587.05,
-          "buy": 587.05,
+          "sell": 588.25,
+          "buy": 588.25,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4471.5,
-          "buy": 4471.5,
+          "sell": 4480.6,
+          "buy": 4480.6,
           "spread": 0.0
         }
       },
-      "last_updated": "12 Aug 26 11:37"
+      "last_updated": "12 Aug 26 12:40"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 8.73,
-          "buy": 8.73,
+          "sell": 8.67,
+          "buy": 8.67,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 66.52,
-          "buy": 66.52,
+          "sell": 66.04,
+          "buy": 66.04,
           "spread": 0.0
         }
       },
-      "last_updated": "12 Aug 26 11:37"
+      "last_updated": "12 Aug 26 12:40"
     },
     {
       "id": "mygold_i",
@@ -224,7 +224,7 @@
           "spread": 22.72
         }
       },
-      "last_updated": "12 August 2026 07:00 PM"
+      "last_updated": "12 August 2026 08:00 PM"
     },
     {
       "id": "rhb",
