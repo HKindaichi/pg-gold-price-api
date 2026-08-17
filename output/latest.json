@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 00:52",
+  "updated_label": "Today 01:16",
   "merchants": [
     {
       "id": "public_gold",
@@ -108,34 +108,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 585.17,
-          "buy": 585.17,
+          "sell": 584.82,
+          "buy": 584.82,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4483.0,
-          "buy": 4483.0,
+          "sell": 4480.3,
+          "buy": 4480.3,
           "spread": 0.0
         }
       },
-      "last_updated": "17 Aug 26 16:52"
+      "last_updated": "17 Aug 26 17:16"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 8.69,
-          "buy": 8.69,
+          "sell": 8.68,
+          "buy": 8.68,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 66.56,
-          "buy": 66.56,
+          "sell": 66.5,
+          "buy": 66.5,
           "spread": 0.0
         }
       },
-      "last_updated": "17 Aug 26 16:52"
+      "last_updated": "17 Aug 26 17:16"
     },
     {
       "id": "mygold_i",
