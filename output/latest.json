@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 05:15",
+  "updated_label": "Today 05:46",
   "merchants": [
     {
       "id": "public_gold",
@@ -118,7 +118,7 @@
           "spread": 0.0
         }
       },
-      "last_updated": "17 Aug 26 21:15"
+      "last_updated": "17 Aug 26 21:46"
     },
     {
       "id": "world_silver",
@@ -135,7 +135,7 @@
           "spread": 0.0
         }
       },
-      "last_updated": "17 Aug 26 21:15"
+      "last_updated": "17 Aug 26 21:46"
     },
     {
       "id": "mygold_i",
