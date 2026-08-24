@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 21:28",
+  "updated_label": "Today 22:09",
   "merchants": [
     {
       "id": "public_gold",
@@ -11,9 +11,9 @@
           "spread": 60
         },
         "916": {
-          "sell": 620,
-          "buy": 539,
-          "spread": 81
+          "sell": 625,
+          "buy": 543,
+          "spread": 82
         }
       },
       "last_updated": "24-Aug-2026"
@@ -46,60 +46,60 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 1G V2.0": {
-          "sell": 675.0,
-          "buy": 603.0,
-          "spread": 72.0
-        },
         "Gold Bar 0.2G V2.0": {
           "sell": 173.0,
           "buy": 120.0,
           "spread": 53.0
         },
+        "Gold Bar 100G V2.0": {
+          "sell": 65149.0,
+          "buy": 60514.0,
+          "spread": 4635.0
+        },
+        "Gold Coin 5 Dinar V2.0": {
+          "sell": 13986.0,
+          "buy": 12770.0,
+          "spread": 1216.0
+        },
+        "Gold Bar 50G V2.0": {
+          "sell": 32731.0,
+          "buy": 30235.0,
+          "spread": 2496.0
+        },
         "Gold Coin 1/2 Dinar V2.0": {
-          "sell": 1417.0,
-          "buy": 1280.0,
+          "sell": 1413.0,
+          "buy": 1276.0,
           "spread": 137.0
+        },
+        "Gold Bar 1G Hari Kebangsaan 2026": {
+          "sell": 678.0,
+          "buy": 601.0,
+          "spread": 77.0
+        },
+        "Gold Bar 5G V2.0": {
+          "sell": 3305.0,
+          "buy": 3004.0,
+          "spread": 301.0
         },
         "Gold Bar 0.5G V2.0": {
           "sell": 361.0,
           "buy": 301.0,
           "spread": 60.0
         },
-        "Gold Bar 5G V2.0": {
-          "sell": 3314.0,
-          "buy": 3012.0,
-          "spread": 302.0
-        },
-        "Gold Bar 100G V2.0": {
-          "sell": 65325.0,
-          "buy": 60678.0,
-          "spread": 4647.0
-        },
         "Gold Bar 10G V2.0": {
-          "sell": 6618.0,
-          "buy": 6024.0,
-          "spread": 594.0
-        },
-        "Gold Bar 50G V2.0": {
-          "sell": 32820.0,
-          "buy": 30317.0,
-          "spread": 2503.0
+          "sell": 6600.0,
+          "buy": 6008.0,
+          "spread": 592.0
         },
         "Gold Coin 1 Dinar V2.0": {
-          "sell": 2819.0,
-          "buy": 2560.0,
-          "spread": 259.0
+          "sell": 2811.0,
+          "buy": 2553.0,
+          "spread": 258.0
         },
-        "Gold Coin 5 Dinar V2.0": {
-          "sell": 14024.0,
-          "buy": 12805.0,
-          "spread": 1219.0
-        },
-        "Gold Bar 1G Hari Kebangsaan 2026": {
-          "sell": 680.0,
-          "buy": 603.0,
-          "spread": 77.0
+        "Gold Bar 1G V2.0": {
+          "sell": 673.0,
+          "buy": 601.0,
+          "spread": 72.0
         }
       }
     },
@@ -169,34 +169,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 614.59,
-          "buy": 614.59,
+          "sell": 613.02,
+          "buy": 613.02,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4731.1,
-          "buy": 4731.1,
+          "sell": 4719.6,
+          "buy": 4719.6,
           "spread": 0.0
         }
       },
-      "last_updated": "24 Aug 26 13:27"
+      "last_updated": "24 Aug 26 14:08"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 9.05,
-          "buy": 9.05,
+          "sell": 8.95,
+          "buy": 8.95,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 69.67,
-          "buy": 69.67,
+          "sell": 68.94,
+          "buy": 68.94,
           "spread": 0.0
         }
       },
-      "last_updated": "24 Aug 26 13:27"
+      "last_updated": "24 Aug 26 14:09"
     },
     {
       "id": "mygold_i",
@@ -219,7 +219,7 @@
           "spread": 23.58
         }
       },
-      "last_updated": "24 August 2026 09:00 PM"
+      "last_updated": "24 August 2026 09:30 PM"
     },
     {
       "id": "rhb",
