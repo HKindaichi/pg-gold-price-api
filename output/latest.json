@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 07:19",
+  "updated_label": "Today 09:08",
   "merchants": [
     {
       "id": "public_gold",
@@ -46,60 +46,60 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 50G V2.0": {
-          "sell": 31126.0,
-          "buy": 28750.0,
-          "spread": 2376.0
-        },
-        "Gold Bar 1G Edisi Muktamar": {
-          "sell": 646.0,
-          "buy": 572.0,
-          "spread": 74.0
+        "Gold Coin 1/2 Dinar V2.0": {
+          "sell": 1338.0,
+          "buy": 1208.0,
+          "spread": 130.0
         },
         "Gold Bar 0.2G V2.0": {
-          "sell": 166.0,
-          "buy": 114.0,
+          "sell": 165.0,
+          "buy": 113.0,
           "spread": 52.0
         },
-        "Gold Bar 10G V2.0": {
-          "sell": 6277.0,
-          "buy": 5713.0,
-          "spread": 564.0
-        },
-        "Gold Bar 1G V2.0": {
-          "sell": 641.0,
-          "buy": 572.0,
-          "spread": 69.0
-        },
-        "Gold Bar 5G V2.0": {
-          "sell": 3143.0,
-          "buy": 2856.0,
-          "spread": 287.0
-        },
-        "Gold Bar 0.5G V2.0": {
-          "sell": 344.0,
-          "buy": 286.0,
-          "spread": 58.0
-        },
-        "Gold Coin 1/2 Dinar V2.0": {
-          "sell": 1345.0,
-          "buy": 1214.0,
-          "spread": 131.0
-        },
-        "Gold Bar 0.5G Edisi Muktamar": {
-          "sell": 333.0,
-          "buy": 286.0,
-          "spread": 47.0
-        },
         "Gold Bar 100G V2.0": {
-          "sell": 61953.0,
-          "buy": 57542.0,
-          "spread": 4411.0
+          "sell": 61671.0,
+          "buy": 57280.0,
+          "spread": 4391.0
         },
         "Gold Bar 1G Hari Kebangsaan 2026": {
-          "sell": 646.0,
-          "buy": 572.0,
+          "sell": 643.0,
+          "buy": 569.0,
           "spread": 74.0
+        },
+        "Gold Bar 5G V2.0": {
+          "sell": 3129.0,
+          "buy": 2843.0,
+          "spread": 286.0
+        },
+        "Gold Bar 50G V2.0": {
+          "sell": 30985.0,
+          "buy": 28620.0,
+          "spread": 2365.0
+        },
+        "Gold Bar 0.5G Edisi Muktamar": {
+          "sell": 331.0,
+          "buy": 284.0,
+          "spread": 47.0
+        },
+        "Gold Bar 1G V2.0": {
+          "sell": 638.0,
+          "buy": 569.0,
+          "spread": 69.0
+        },
+        "Gold Bar 1G Edisi Muktamar": {
+          "sell": 643.0,
+          "buy": 569.0,
+          "spread": 74.0
+        },
+        "Gold Bar 0.5G V2.0": {
+          "sell": 343.0,
+          "buy": 285.0,
+          "spread": 58.0
+        },
+        "Gold Bar 10G V2.0": {
+          "sell": 6248.0,
+          "buy": 5686.0,
+          "spread": 562.0
         }
       }
     },
@@ -169,8 +169,8 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 581.6,
-          "buy": 581.6,
+          "sell": 581.75,
+          "buy": 581.75,
           "spread": 0.0
         },
         "USD/oz": {
@@ -179,7 +179,7 @@
           "spread": 0.0
         }
       },
-      "last_updated": "06 Sep 26 23:19"
+      "last_updated": "07 Sep 26 01:08"
     },
     {
       "id": "world_silver",
@@ -196,7 +196,7 @@
           "spread": 0.0
         }
       },
-      "last_updated": "06 Sep 26 23:19"
+      "last_updated": "07 Sep 26 01:08"
     },
     {
       "id": "mygold_i",
@@ -219,21 +219,21 @@
           "spread": 22.71
         }
       },
-      "last_updated": "07 September 2026 07:00 AM"
+      "last_updated": "07 September 2026 08:30 AM"
     },
     {
       "id": "rhb",
       "name": "RHB",
       "items": {
         "999": {
-          "sell": 597.3992,
-          "buy": 567.5334,
-          "spread": 29.87
+          "sell": 590.8009,
+          "buy": 560.4805,
+          "spread": 30.32
         },
         "Silver": {
-          "sell": 9.0552,
-          "buy": 8.3927,
-          "spread": 0.66
+          "sell": 8.9607,
+          "buy": 8.2945,
+          "spread": 0.67
         }
       }
     }
