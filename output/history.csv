@@ -27594,3 +27594,7 @@ timestamp,merchant,item,sell,buy,spread
 2026-09-26 16:53:38,world_gold,USD/oz,4321.2,4321.2,0.0
 2026-09-26 16:53:38,world_silver,Silver,8.48,8.48,0.0
 2026-09-26 16:53:38,world_silver,USD/oz,64.8,64.8,0.0
+2026-09-27 01:19:13,public_gold,999,607.0,552.0,55
+2026-09-27 01:19:13,public_gold,916,577.0,501.0,76
+2026-09-27 01:19:13,kab_gold,Gold Bar 0.5G Custom Wanita,326.0,279.0,47.0
+2026-09-27 01:19:13,kab_gold,Gold Bar 1G Custom Wanita,631.0,558.0,73.0
