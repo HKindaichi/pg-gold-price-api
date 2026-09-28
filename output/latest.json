@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 04:38",
+  "updated_label": "Today 06:56",
   "merchants": [
     {
       "id": "public_gold",
@@ -46,59 +46,59 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
+        "Gold Bar 0.5G Edisi Muktamar": {
+          "sell": 315.0,
+          "buy": 267.0,
+          "spread": 48.0
+        },
+        "Gold Bar 1G Custom Wanita": {
+          "sell": 605.0,
+          "buy": 532.0,
+          "spread": 73.0
+        },
         "Gold Bar 0.2G V2.0": {
           "sell": 158.0,
           "buy": 107.0,
           "spread": 51.0
         },
         "Gold Bar 5G V2.0": {
-          "sell": 2934.0,
-          "buy": 2656.0,
+          "sell": 2939.0,
+          "buy": 2661.0,
           "spread": 278.0
         },
-        "Gold Bar 0.5G V2.0": {
-          "sell": 324.0,
-          "buy": 266.0,
-          "spread": 58.0
-        },
         "Gold Bar 0.5G Custom Wanita": {
-          "sell": 314.0,
-          "buy": 266.0,
+          "sell": 315.0,
+          "buy": 267.0,
           "spread": 48.0
         },
-        "Gold Bar 1G Custom Wanita": {
-          "sell": 604.0,
-          "buy": 531.0,
-          "spread": 73.0
+        "Gold Bar 1G V2.0": {
+          "sell": 600.0,
+          "buy": 532.0,
+          "spread": 68.0
         },
         "Gold Bar 1G Hari Kebangsaan 2026": {
-          "sell": 604.0,
-          "buy": 531.0,
-          "spread": 73.0
-        },
-        "Gold Bar 1G Edisi Perhimpunan": {
-          "sell": 604.0,
-          "buy": 531.0,
+          "sell": 605.0,
+          "buy": 532.0,
           "spread": 73.0
         },
         "Gold Bar 1G Edisi Muktamar": {
-          "sell": 604.0,
-          "buy": 531.0,
+          "sell": 605.0,
+          "buy": 532.0,
           "spread": 73.0
         },
-        "Gold Bar 1G V2.0": {
-          "sell": 599.0,
-          "buy": 531.0,
-          "spread": 68.0
+        "Gold Bar 0.5G V2.0": {
+          "sell": 325.0,
+          "buy": 267.0,
+          "spread": 58.0
         },
-        "Gold Bar 0.5G Edisi Muktamar": {
-          "sell": 314.0,
-          "buy": 266.0,
-          "spread": 48.0
+        "Gold Bar 1G Edisi Perhimpunan": {
+          "sell": 605.0,
+          "buy": 532.0,
+          "spread": 73.0
         },
         "Gold Bar 0.5G Edisi Perhimpunan": {
-          "sell": 314.0,
-          "buy": 266.0,
+          "sell": 315.0,
+          "buy": 267.0,
           "spread": 48.0
         }
       }
@@ -169,34 +169,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 544.47,
-          "buy": 544.47,
+          "sell": 545.28,
+          "buy": 545.28,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4150.7,
-          "buy": 4150.7,
+          "sell": 4156.9,
+          "buy": 4156.9,
           "spread": 0.0
         }
       },
-      "last_updated": "28 Sep 26 20:38"
+      "last_updated": "28 Sep 26 22:55"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 8.01,
-          "buy": 8.01,
+          "sell": 8.02,
+          "buy": 8.02,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 61.09,
-          "buy": 61.09,
+          "sell": 61.17,
+          "buy": 61.17,
           "spread": 0.0
         }
       },
-      "last_updated": "28 Sep 26 20:38"
+      "last_updated": "28 Sep 26 22:55"
     },
     {
       "id": "mygold_i",
@@ -219,7 +219,7 @@
           "spread": 21.67
         }
       },
-      "last_updated": "29 September 2026 12:05 AM"
+      "last_updated": "29 September 2026 06:30 AM"
     },
     {
       "id": "rhb",
