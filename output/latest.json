@@ -1,22 +1,22 @@
 {
-  "updated_label": "Today 20:26",
+  "updated_label": "Today 00:34",
   "merchants": [
     {
       "id": "public_gold",
       "name": "Public Gold",
       "items": {
         "999": {
-          "sell": 591,
-          "buy": 537,
+          "sell": 592,
+          "buy": 538,
           "spread": 54
         },
         "916": {
-          "sell": 562,
-          "buy": 488,
+          "sell": 563,
+          "buy": 489,
           "spread": 74
         }
       },
-      "last_updated": "01-Oct-2026"
+      "last_updated": "02-Oct-2026"
     },
     {
       "id": "miga_i",
@@ -46,44 +46,64 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
+        "Gold Bar 1G V2.0": {
+          "sell": 606.0,
+          "buy": 538.0,
+          "spread": 68.0
+        },
+        "Gold Bar 0.5G V2.0": {
+          "sell": 328.0,
+          "buy": 269.0,
+          "spread": 59.0
+        },
+        "Gold Bar 0.5G Edisi Muktamar": {
+          "sell": 318.0,
+          "buy": 269.0,
+          "spread": 49.0
+        },
+        "Gold Bar 1G Edisi Muktamar": {
+          "sell": 611.0,
+          "buy": 538.0,
+          "spread": 73.0
+        },
+        "Gold Bar 0.5G Custom Wanita": {
+          "sell": 318.0,
+          "buy": 269.0,
+          "spread": 49.0
+        },
+        "Gold Bar 1G Hari Kebangsaan 2026": {
+          "sell": 611.0,
+          "buy": 538.0,
+          "spread": 73.0
+        },
+        "Gold Bar 0.5G Edisi Perhimpunan": {
+          "sell": 318.0,
+          "buy": 269.0,
+          "spread": 49.0
+        },
         "Gold Bar 0.2G V2.0": {
           "sell": 159.0,
           "buy": 108.0,
           "spread": 51.0
         },
-        "Gold Bar 0.5G Custom Wanita": {
-          "sell": 319.0,
-          "buy": 270.0,
-          "spread": 49.0
-        },
-        "Gold Bar 0.5G Edisi Muktamar": {
-          "sell": 319.0,
-          "buy": 270.0,
-          "spread": 49.0
-        },
-        "Gold Bar 1G Hari Kebangsaan 2026": {
-          "sell": 613.0,
-          "buy": 540.0,
-          "spread": 73.0
-        },
-        "Gold Bar 0.5G Edisi Perhimpunan": {
-          "sell": 319.0,
-          "buy": 270.0,
-          "spread": 49.0
+        "Gold Bar 10G V2.0": {
+          "sell": 5931.0,
+          "buy": 5379.0,
+          "spread": 552.0
         },
         "Gold Bar 1G Custom Wanita": {
-          "sell": 613.0,
-          "buy": 540.0,
+          "sell": 611.0,
+          "buy": 538.0,
           "spread": 73.0
+        },
+        "Gold Bar 5G V2.0": {
+          "sell": 2970.0,
+          "buy": 2689.0,
+          "spread": 281.0
         },
         "Gold Bar 1G Edisi Perhimpunan": {
-          "sell": 613.0,
-          "buy": 540.0,
-          "spread": 73.0
-        },
-        "Gold Bar 1G Edisi Muktamar": {
-          "sell": 613.0,
-          "buy": 540.0,
+          "sell": 611.0,
+          "buy": 538.0,
           "spread": 73.0
         }
       }
@@ -154,34 +174,34 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 552.14,
-          "buy": 552.14,
+          "sell": 550.81,
+          "buy": 550.81,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4205.6,
-          "buy": 4205.6,
+          "sell": 4197.0,
+          "buy": 4197.0,
           "spread": 0.0
         }
       },
-      "last_updated": "01 Oct 26 12:26"
+      "last_updated": "01 Oct 26 16:34"
     },
     {
       "id": "world_silver",
       "name": "World Silver",
       "items": {
         "Silver": {
-          "sell": 8.06,
-          "buy": 8.06,
+          "sell": 8.01,
+          "buy": 8.01,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 61.38,
-          "buy": 61.38,
+          "sell": 61.05,
+          "buy": 61.05,
           "spread": 0.0
         }
       },
-      "last_updated": "01 Oct 26 12:26"
+      "last_updated": "01 Oct 26 16:34"
     },
     {
       "id": "mygold_i",
@@ -204,7 +224,7 @@
           "spread": 21.59
         }
       },
-      "last_updated": "01 October 2026 08:00 PM"
+      "last_updated": "02 October 2026 12:05 AM"
     },
     {
       "id": "rhb",
