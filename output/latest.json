@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 04:44",
+  "updated_label": "Today 04:58",
   "merchants": [
     {
       "id": "public_gold",
@@ -46,65 +46,65 @@
       "id": "kab_gold",
       "name": "KAB Gold",
       "items": {
-        "Gold Bar 10G V2.0": {
-          "sell": 5694.0,
-          "buy": 5220.0,
-          "spread": 474.0
-        },
-        "Gold Bar 0.5G V2.0": {
-          "sell": 316.0,
-          "buy": 261.0,
-          "spread": 55.0
-        },
-        "Gold Bar 1G Edisi Istimewa": {
-          "sell": 597.0,
+        "Gold Bar 1G Hari Kebangsaan 2026": {
+          "sell": 587.0,
           "buy": 522.0,
-          "spread": 75.0
+          "spread": 65.0
         },
-        "Gold Bar 0.2G V2.0": {
-          "sell": 154.0,
-          "buy": 104.0,
-          "spread": 50.0
-        },
-        "Gold Bar 50G V2.0": {
-          "sell": 28256.0,
-          "buy": 26095.0,
-          "spread": 2161.0
-        },
-        "Gold Coin 1/2 Dinar V2.0": {
-          "sell": 1221.0,
-          "buy": 1110.0,
-          "spread": 111.0
+        "Gold Coin 1 Dinar V2.0": {
+          "sell": 2424.0,
+          "buy": 2216.0,
+          "spread": 208.0
         },
         "Gold Bar 0.5G Edisi Istimewa": {
           "sell": 316.0,
           "buy": 261.0,
           "spread": 55.0
         },
-        "Gold Bar 1G Hari Kebangsaan 2026": {
-          "sell": 587.0,
-          "buy": 522.0,
-          "spread": 65.0
+        "Gold Bar 0.2G V2.0": {
+          "sell": 154.0,
+          "buy": 104.0,
+          "spread": 50.0
         },
-        "Gold Bar 5G V2.0": {
-          "sell": 2852.0,
-          "buy": 2610.0,
-          "spread": 242.0
+        "Gold Bar 10G V2.0": {
+          "sell": 5688.0,
+          "buy": 5215.0,
+          "spread": 473.0
         },
-        "Gold Bar 100G V2.0": {
-          "sell": 56237.0,
-          "buy": 52170.0,
-          "spread": 4067.0
+        "Gold Bar 0.5G V2.0": {
+          "sell": 316.0,
+          "buy": 261.0,
+          "spread": 55.0
         },
-        "Gold Coin 1 Dinar V2.0": {
-          "sell": 2426.0,
-          "buy": 2218.0,
-          "spread": 208.0
+        "Gold Bar 50G V2.0": {
+          "sell": 28227.0,
+          "buy": 26068.0,
+          "spread": 2159.0
         },
         "Gold Bar 1G V2.0": {
           "sell": 582.0,
           "buy": 522.0,
           "spread": 60.0
+        },
+        "Gold Bar 5G V2.0": {
+          "sell": 2849.0,
+          "buy": 2607.0,
+          "spread": 242.0
+        },
+        "Gold Coin 1/2 Dinar V2.0": {
+          "sell": 1219.0,
+          "buy": 1108.0,
+          "spread": 111.0
+        },
+        "Gold Bar 100G V2.0": {
+          "sell": 56180.0,
+          "buy": 52117.0,
+          "spread": 4063.0
+        },
+        "Gold Bar 1G Edisi Istimewa": {
+          "sell": 597.0,
+          "buy": 522.0,
+          "spread": 75.0
         }
       }
     },
@@ -174,17 +174,17 @@
       "name": "World Gold",
       "items": {
         "999": {
-          "sell": 526.25,
-          "buy": 526.25,
+          "sell": 525.98,
+          "buy": 525.98,
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 4008.9,
-          "buy": 4008.9,
+          "sell": 4006.8,
+          "buy": 4006.8,
           "spread": 0.0
         }
       },
-      "last_updated": "23 Oct 26 20:44"
+      "last_updated": "23 Oct 26 20:58"
     },
     {
       "id": "world_silver",
@@ -196,12 +196,12 @@
           "spread": 0.0
         },
         "USD/oz": {
-          "sell": 53.97,
-          "buy": 53.97,
+          "sell": 53.91,
+          "buy": 53.91,
           "spread": 0.0
         }
       },
-      "last_updated": "23 Oct 26 20:44"
+      "last_updated": "23 Oct 26 20:58"
     },
     {
       "id": "mygold_i",
