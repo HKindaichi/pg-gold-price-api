@@ -1,5 +1,5 @@
 {
-  "updated_label": "Today 16:23",
+  "updated_label": "Today 22:02",
   "merchants": [
     {
       "id": "public_gold",
@@ -51,30 +51,30 @@
           "buy": 116649.0,
           "spread": 8413.0
         },
-        "Gold Bar 1G V2.0": {
-          "sell": 522.0,
-          "buy": 466.0,
-          "spread": 56.0
-        },
-        "Gold Bar 0.2G Edisi The": {
-          "sell": 150.0,
-          "buy": 120.0,
-          "spread": 30.0
+        "Gold Bar 50G V2.0": {
+          "sell": 25259.0,
+          "buy": 23323.0,
+          "spread": 1936.0
         },
         "Gold Bar 0.5G Edisi Istimewa": {
           "sell": 285.0,
           "buy": 233.0,
           "spread": 52.0
         },
-        "Gold Bar 50G V2.0": {
-          "sell": 25259.0,
-          "buy": 23323.0,
-          "spread": 1936.0
-        },
-        "Gold Bar 1G Edisi Istimewa": {
-          "sell": 537.0,
+        "Gold Bar 1G V2.0": {
+          "sell": 522.0,
           "buy": 466.0,
-          "spread": 71.0
+          "spread": 56.0
+        },
+        "Gold Bar 0.5G V2.0": {
+          "sell": 285.0,
+          "buy": 233.0,
+          "spread": 52.0
+        },
+        "Gold Bar 0.2G Edisi The": {
+          "sell": 150.0,
+          "buy": 120.0,
+          "spread": 30.0
         },
         "Gold Bar 500G": {
           "sell": 250029.0,
@@ -91,11 +91,6 @@
           "buy": 93.0,
           "spread": 49.0
         },
-        "Gold Bar 0.5G V2.0": {
-          "sell": 285.0,
-          "buy": 233.0,
-          "spread": 52.0
-        },
         "Gold Bar 5G V2.0": {
           "sell": 2551.0,
           "buy": 2333.0,
@@ -105,6 +100,11 @@
           "sell": 5091.0,
           "buy": 4665.0,
           "spread": 426.0
+        },
+        "Gold Bar 1G Edisi Istimewa": {
+          "sell": 537.0,
+          "buy": 466.0,
+          "spread": 71.0
         }
       }
     },
@@ -131,20 +131,16 @@
       "last_updated": "22/11/2026 08:00"
     },
     {
-      "id": "maa_gold",
-      "name": "MAA Gold",
+      "id": "biga_i",
+      "name": "BIGA-i",
       "items": {
         "999": {
-          "sell": 501.0,
-          "buy": 445.0,
-          "spread": 56.0
-        },
-        "916": {
-          "sell": 461.0,
-          "buy": 400.0,
-          "spread": 61.0
+          "sell": 477.17,
+          "buy": 502.36,
+          "spread": -25.19
         }
-      }
+      },
+      "last_updated": "20 November 2026; 9:00am"
     },
     {
       "id": "easigold",
@@ -184,7 +180,7 @@
           "spread": 0.0
         }
       },
-      "last_updated": "22 Nov 26 08:23"
+      "last_updated": "22 Nov 26 14:02"
     },
     {
       "id": "world_silver",
@@ -201,7 +197,7 @@
           "spread": 0.0
         }
       },
-      "last_updated": "22 Nov 26 08:23"
+      "last_updated": "22 Nov 26 14:02"
     },
     {
       "id": "pbb",
